@@ -1,0 +1,112 @@
+{
+  "date": "2026-10-12",
+  "checkpoint": "T06 auth",
+  "scope": {
+    "workspace": "flowmind-ai",
+    "project": "flowmind-ai"
+  },
+  "statusBefore": {
+    "counts": {
+      "pages_latest": 8,
+      "pages_all": 16,
+      "sessions": 0,
+      "observations": 0,
+      "evidence_rows": 0
+    },
+    "scope": {
+      "workspace": "flowmind-ai",
+      "project": "flowmind-ai",
+      "resolved_by": "explicit"
+    }
+  },
+  "pages": [
+    {
+      "path": "notes/flowmind-contexto-continuidade.md",
+      "source": "Resumo consolidado",
+      "changed": true,
+      "sourceSha256": "59d8c00b717816c3a5e715da34f40805bd3fc3bd3e9a6b2e2632956d721bdc92",
+      "storedSha256": "59d8c00b717816c3a5e715da34f40805bd3fc3bd3e9a6b2e2632956d721bdc92",
+      "readbackExact": true
+    },
+    {
+      "path": "imports/obsidian/docs/MEMORIA.md",
+      "source": "docs/MEMORIA.md",
+      "changed": true,
+      "sourceSha256": "cab26f168fb7796eea661d94b2dbf3d1aae603299c6297106e0ca64ea15518cb",
+      "storedSha256": "cab26f168fb7796eea661d94b2dbf3d1aae603299c6297106e0ca64ea15518cb",
+      "readbackExact": true,
+      "firstSourceSha256": "030a8a7307c1f4906f50cb06fb0096968446a008642eac626d8efb0eb1b52e17",
+      "refreshReason": "Fonte alterada por outra execução; ressalva do principal adicionada."
+    },
+    {
+      "path": "imports/obsidian/plan.md",
+      "source": "plan.md",
+      "changed": true,
+      "sourceSha256": "81408a70b24b28dc3ab6f7d76ae3772b049de753e13ff70437bcaac4ade5393e",
+      "storedSha256": "81408a70b24b28dc3ab6f7d76ae3772b049de753e13ff70437bcaac4ade5393e",
+      "readbackExact": true,
+      "firstSourceSha256": "8b0cde2409d9b5eeacff800c5c89a629abb085999b46147203c35b5a3d9586c8",
+      "refreshReason": "Fonte alterada por outra execução; ressalva do principal adicionada."
+    },
+    {
+      "path": "imports/obsidian/docs/QA_SECURITY_MATRIX.md",
+      "source": "docs/QA_SECURITY_MATRIX.md",
+      "changed": true,
+      "sourceSha256": "2b07881a5c44d0dddb1c000caebfdfbcc7904d047f46b95dcff2970d89313ba5",
+      "storedSha256": "2b07881a5c44d0dddb1c000caebfdfbcc7904d047f46b95dcff2970d89313ba5",
+      "readbackExact": true
+    },
+    {
+      "path": "imports/obsidian/docs/VALIDATION_T06_AUTH.md",
+      "source": "docs/VALIDATION_T06_AUTH.md",
+      "changed": true,
+      "sourceSha256": "f15fdbe74fe6c96b720d9ab85956bbd945cf33780a8d185d408eedf971763642",
+      "storedSha256": "f15fdbe74fe6c96b720d9ab85956bbd945cf33780a8d185d408eedf971763642",
+      "readbackExact": true
+    },
+    {
+      "path": "imports/obsidian/docs/CONCURRENT_EDITING_T06.md",
+      "source": "docs/CONCURRENT_EDITING_T06.md",
+      "sourceSha256": "c94382086661b37a113877f03e667666daed765737e860f0b10f97c3746da1df",
+      "storedSha256": "c94382086661b37a113877f03e667666daed765737e860f0b10f97c3746da1df",
+      "readbackExact": true,
+      "changed": true
+    }
+  ],
+  "statusAfter": {
+    "counts": {
+      "pages_latest": 9,
+      "pages_all": 21,
+      "sessions": 0,
+      "observations": 0,
+      "evidence_rows": 0
+    },
+    "scope": {
+      "workspace": "flowmind-ai",
+      "project": "flowmind-ai",
+      "resolved_by": "explicit"
+    }
+  },
+  "queryPaths": [
+    "imports/obsidian/docs/VALIDATION_T06_AUTH.md",
+    "imports/obsidian/docs/QA_SECURITY_MATRIX.md",
+    "notes/flowmind-contexto-continuidade.md"
+  ],
+  "statusAtHandoff": {
+    "counts": {
+      "pages_latest": 10,
+      "pages_all": 24,
+      "sessions": 0,
+      "observations": 0,
+      "evidence_rows": 0
+    },
+    "scope": {
+      "workspace": "flowmind-ai",
+      "project": "flowmind-ai",
+      "resolved_by": "explicit"
+    }
+  },
+  "qualifiedAt": "2026-10-12T04:28:57.446628-03:00",
+  "concurrentSourceEdits": true,
+  "sourceDriftAtHandoff": []
+}

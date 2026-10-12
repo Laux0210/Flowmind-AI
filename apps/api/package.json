@@ -1,0 +1,45 @@
+{
+  "name": "@flowmind/api",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "nest build",
+    "start": "nest start",
+    "start:dev": "nest start --watch",
+    "test": "node --experimental-vm-modules ../../node_modules/jest/bin/jest.js",
+    "typecheck": "tsc --project tsconfig.json --noEmit",
+    "typecheck:test": "tsc --project tsconfig.spec.json --noEmit",
+    "lint": "node ../../scripts/lint.mjs",
+    "prisma:generate": "prisma generate --config prisma7.config.ts",
+    "prisma:validate": "prisma validate --config prisma7.config.ts"
+  },
+  "dependencies": {
+    "@flowmind/contracts": "*",
+    "@clerk/backend": "3.23.2",
+    "@nestjs/common": "12.1.2",
+    "@nestjs/core": "12.1.2",
+    "@nestjs/platform-express": "12.1.2",
+    "@prisma/client": "7.10.0",
+    "bullmq": "5.81.5",
+    "ioredis": "5.11.1",
+    "reflect-metadata": "0.2.2",
+    "rxjs": "7.8.2",
+    "@prisma/adapter-pg": "7.10.0",
+    "pg": "8.23.1",
+    "dotenv": "17.4.2"
+  },
+  "devDependencies": {
+    "@flowmind/tsconfig": "*",
+    "@nestjs/cli": "12.0.8",
+    "@nestjs/schematics": "12.0.6",
+    "@nestjs/testing": "12.1.2",
+    "@types/express": "5.0.6",
+    "@types/node": "24.19.2",
+    "prisma": "7.10.0",
+    "typescript": "6.0.3",
+    "jest": "30.5.2",
+    "ts-jest": "29.4.14",
+    "@types/jest": "30.0.0",
+    "@types/pg": "8.23.1"
+  }
+}

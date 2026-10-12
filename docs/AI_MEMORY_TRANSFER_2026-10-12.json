@@ -1,0 +1,105 @@
+{
+  "verified_on": "2026-10-12",
+  "server": {
+    "name": "ai-memory",
+    "version": "2.6.3",
+    "transport": "MCP HTTP",
+    "endpoint": "http://127.0.0.1:49374/mcp"
+  },
+  "scope": {
+    "workspace": "flowmind-ai",
+    "project": "flowmind-ai"
+  },
+  "marker": ".ai-memory.toml",
+  "sources_preserved": true,
+  "automatic_capture_verified": false,
+  "product_tests_rerun": false,
+  "readback_verified_pages": 6,
+  "status": {
+    "counts": {
+      "pages_latest": 6,
+      "pages_all": 10,
+      "sessions": 0,
+      "observations": 0,
+      "evidence_rows": 0
+    },
+    "scope": {
+      "workspace": "flowmind-ai",
+      "project": "flowmind-ai",
+      "resolved_by": "explicit"
+    }
+  },
+  "retrieval_verified": true,
+  "pages": [
+    {
+      "path": "notes/flowmind-contexto-continuidade.md",
+      "source": null,
+      "action": "updated",
+      "stored_body_sha256": "8654b50b895a6479d1ff027a5f2938cb38a38c228bd94f0da52639cecd7a159c",
+      "readback_verified": true,
+      "characters": 4182,
+      "sanitized": false
+    },
+    {
+      "path": "imports/obsidian/docs/MEMORIA.md",
+      "source": "docs/MEMORIA.md",
+      "action": "updated",
+      "stored_body_sha256": "c58be5fd01617ef755622ad2dc5daeda3b6318596db64ccf24c5d7a39daa0ffc",
+      "readback_verified": true,
+      "characters": 2703,
+      "sanitized": false,
+      "source_file_sha256": "59f3d46782d555125edcc627e0c97000966803551352dac6f94b6f30e3198dfb",
+      "source_text_sha256": "c58be5fd01617ef755622ad2dc5daeda3b6318596db64ccf24c5d7a39daa0ffc",
+      "source_matches_with_declared_sanitization": true
+    },
+    {
+      "path": "imports/obsidian/plan.md",
+      "source": "plan.md",
+      "action": "updated",
+      "stored_body_sha256": "a8e5512f6bcae7cfd86b091902d35c63a5a03bf3d9c76762433e90363876d807",
+      "readback_verified": true,
+      "characters": 35065,
+      "sanitized": false,
+      "source_file_sha256": "bad2af1c699e0c9c7a0720c7028aa1e437ba537cfe457632719583960f6cf524",
+      "source_text_sha256": "a8e5512f6bcae7cfd86b091902d35c63a5a03bf3d9c76762433e90363876d807",
+      "source_matches_with_declared_sanitization": true
+    },
+    {
+      "path": "imports/obsidian/docs/PROJECT_CONTEXT.md",
+      "source": "docs/PROJECT_CONTEXT.md",
+      "action": "unchanged",
+      "stored_body_sha256": "d7f5d1ca3585259c1f2bd58e77bafe14903e7f43116017f88b3ca94a028b4e5d",
+      "readback_verified": true,
+      "characters": 13780,
+      "sanitized": false,
+      "source_file_sha256": "1b1f9fd03a90fce48bec353324102af7b6c1d2097be6aeb2711d57b20861961a",
+      "source_text_sha256": "d7f5d1ca3585259c1f2bd58e77bafe14903e7f43116017f88b3ca94a028b4e5d",
+      "source_matches_with_declared_sanitization": true
+    },
+    {
+      "path": "imports/obsidian/docs/AGENT_TEAM.md",
+      "source": "docs/AGENT_TEAM.md",
+      "action": "unchanged",
+      "stored_body_sha256": "93073e115a9fe202a462c78e5f378683c5cdc2cb77194f713129ac508347bed3",
+      "readback_verified": true,
+      "characters": 11958,
+      "sanitized": false,
+      "source_file_sha256": "93073e115a9fe202a462c78e5f378683c5cdc2cb77194f713129ac508347bed3",
+      "source_text_sha256": "93073e115a9fe202a462c78e5f378683c5cdc2cb77194f713129ac508347bed3",
+      "source_matches_with_declared_sanitization": true
+    },
+    {
+      "path": "imports/obsidian/docs/VALIDATION_R05.md",
+      "source": "docs/VALIDATION_R05.md",
+      "action": "updated",
+      "stored_body_sha256": "b8ff47b23e033a171b827f834c806e5bca598cd5f050ce6af5d2f80b6d4bd091",
+      "readback_verified": true,
+      "characters": 7937,
+      "sanitized": true,
+      "source_file_sha256": "ac132da285ff9e227a968963d40d7f31c6c6c98c2eca311a56b7b699084ad4ce",
+      "source_text_sha256": "bd4701ac435eca0f952231a2013e1bd61f1e5093786a6f0cd9b357ebc2bfb7a6",
+      "source_matches_with_declared_sanitization": true
+    }
+  ],
+  "evidence_directory": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-ai-memory-20261012-q8l_w3b1"
+}

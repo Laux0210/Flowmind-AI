@@ -1,0 +1,126 @@
+// FlowMind AI — Prisma Schema (PostgreSQL Multi-tenant)
+// Rascunho local em revisão. Nenhuma migration foi aplicada nesta entrega.
+
+generator client {
+  provider     = "prisma-client"
+  output       = "../src/generated/prisma"
+  moduleFormat = "cjs"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum WorkflowStatus {
+  DRAFT
+  REVIEWED
+  PUBLISHED
+  ARCHIVED
+}
+
+enum ExecutionMode {
+  SIMULATION
+  LIVE
+}
+
+enum ExecutionStatus {
+  PENDING
+  RUNNING
+  COMPLETED
+  FAILED
+}
+
+model Organization {
+  id        String     @id // Identificador estável do Clerk (ex: org_2b...)
+  name      String
+  createdAt DateTime   @default(now()) @map("created_at")
+  updatedAt DateTime   @updatedAt @map("updated_at")
+
+  workflows   Workflow[]
+  leadRecords LeadRecord[]
+
+  @@map("organizations")
+}
+
+model Workflow {
+  id            String         @id @default(uuid())
+  orgId         String         @map("org_id")
+  name          String
+  description   String?
+  status        WorkflowStatus @default(DRAFT)
+  version       Int            @default(1)
+  schemaVersion String         @default("1.0.0") @map("schema_version")
+  triggerNodeId String         @default("") @map("trigger_node_id")
+  nodes         Json           @default("[]")
+  edges         Json           @default("[]")
+  reviewedBy    String?        @map("reviewed_by")
+  reviewedAt    DateTime?      @map("reviewed_at")
+  createdAt     DateTime       @default(now()) @map("created_at")
+  updatedAt     DateTime       @updatedAt @map("updated_at")
+
+  organization Organization        @relation(fields: [orgId], references: [id], onDelete: Cascade)
+  versions     WorkflowVersion[]
+  executions   WorkflowExecution[]
+  leads        LeadRecord[]
+
+  @@index([orgId])
+  @@map("workflows")
+}
+
+model WorkflowVersion {
+  id            String   @id @default(uuid())
+  workflowId    String   @map("workflow_id")
+  version       Int
+  schemaVersion String   @default("1.0.0") @map("schema_version")
+  triggerNodeId String   @map("trigger_node_id")
+  nodes         Json
+  edges         Json
+  publishedBy   String   @map("published_by") // userId do Clerk
+  publishedAt   DateTime @default(now()) @map("published_at")
+
+  workflow Workflow @relation(fields: [workflowId], references: [id], onDelete: Cascade)
+
+  @@unique([workflowId, version])
+  @@map("workflow_versions")
+}
+
+model WorkflowExecution {
+  id              String          @id @default(uuid())
+  workflowId      String          @map("workflow_id")
+  workflowVersion Int             @map("workflow_version")
+  orgId           String          @map("org_id")
+  mode            ExecutionMode   @default(SIMULATION)
+  status          ExecutionStatus @default(PENDING)
+  triggeredBy     String          @map("triggered_by")
+  nodeResults     Json            @default("[]") @map("node_results")
+  startedAt       DateTime        @default(now()) @map("started_at")
+  completedAt     DateTime?       @map("completed_at")
+
+  workflow Workflow @relation(fields: [workflowId], references: [id], onDelete: Cascade)
+
+  @@index([orgId])
+  @@index([workflowId])
+  @@map("workflow_executions")
+}
+
+model LeadRecord {
+  id            String   @id @default(uuid())
+  orgId         String   @map("org_id")
+  workflowId    String   @map("workflow_id")
+  name          String
+  email         String
+  rawMessage    String   @map("raw_message")
+  // Campo legado preservado para revisão de migração; não integra o novo contrato.
+  interestLevel String?  @map("interest_level")
+  aiSummary     String   @map("ai_summary")
+  aiIntent      String?  @map("ai_intent")
+  ambiguities   Json?
+  createdAt     DateTime @default(now()) @map("created_at")
+
+  organization Organization @relation(fields: [orgId], references: [id], onDelete: Cascade)
+  workflow     Workflow     @relation(fields: [workflowId], references: [id], onDelete: Cascade)
+
+  @@index([orgId])
+  @@index([workflowId])
+  @@map("lead_records")
+}

@@ -1,0 +1,16 @@
+# Configuração do projeto; modelos e ferramentas herdam os padrões pessoais.
+approval_policy = "on-request"
+sandbox_mode = "workspace-write"
+
+[agents]
+enabled = true
+max_concurrent_threads_per_session = 2
+
+# O sandbox elevado falhou no ambiente atual; este fallback passou em leitura.
+# Mantém sandbox ativo, com proteção de rede inferior à implementação elevada.
+[windows]
+sandbox = "unelevated"
+
+# Reutiliza o plugin já instalado; não baixa nem instala skills.
+[plugins."superpowers@openai-curated-remote"]
+enabled = true

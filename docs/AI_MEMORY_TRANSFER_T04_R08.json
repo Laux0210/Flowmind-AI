@@ -1,0 +1,124 @@
+{
+  "date": "2026-10-12",
+  "scope": {
+    "workspace": "flowmind-ai",
+    "project": "flowmind-ai"
+  },
+  "checkpoint": "T04 R08",
+  "statusBefore": {
+    "counts": {
+      "pages_latest": 6,
+      "pages_all": 10,
+      "sessions": 0,
+      "observations": 0,
+      "evidence_rows": 0
+    },
+    "scope": {
+      "workspace": "flowmind-ai",
+      "project": "flowmind-ai",
+      "resolved_by": "explicit"
+    }
+  },
+  "pages": [
+    {
+      "path": "notes/flowmind-contexto-continuidade.md",
+      "source": "Resumo consolidado pelo principal",
+      "sourceSha256": "2b8f67601408f730db411aba953d343933e0b736bb1e4128be8d1fce94c5e737",
+      "storedSha256": "2b8f67601408f730db411aba953d343933e0b736bb1e4128be8d1fce94c5e737",
+      "readbackExact": true,
+      "previousSha256": "8654b50b895a6479d1ff027a5f2938cb38a38c228bd94f0da52639cecd7a159c",
+      "write": {
+        "page_id": "01a12ede-ae46-7a80-b653-f9701a6c142b",
+        "path": "notes/flowmind-contexto-continuidade.md",
+        "checkpoint": "f78c59b76ae5fc741a2279c5a3f328b67326620c"
+      }
+    },
+    {
+      "path": "imports/obsidian/docs/MEMORIA.md",
+      "source": "docs/MEMORIA.md",
+      "sourceSha256": "e1f48268c81aeac8d8d8d9b7774a4bb70b2d57c4e567434ef29e83c608e9b208",
+      "storedSha256": "e1f48268c81aeac8d8d8d9b7774a4bb70b2d57c4e567434ef29e83c608e9b208",
+      "readbackExact": true,
+      "previousSha256": "c58be5fd01617ef755622ad2dc5daeda3b6318596db64ccf24c5d7a39daa0ffc",
+      "write": {
+        "page_id": "01a12ede-aef9-7941-891a-66ce1a29c50a",
+        "path": "imports/obsidian/docs/MEMORIA.md",
+        "checkpoint": "edbd3a5d88a510b90e4a1c56c5b6f95c5307df17"
+      }
+    },
+    {
+      "path": "imports/obsidian/plan.md",
+      "source": "plan.md",
+      "sourceSha256": "8a61b20c340d6b3d0a1bc7ce71036122b59a3b83fa4186ad19508d8558aed42c",
+      "storedSha256": "8a61b20c340d6b3d0a1bc7ce71036122b59a3b83fa4186ad19508d8558aed42c",
+      "readbackExact": true,
+      "previousSha256": "a8e5512f6bcae7cfd86b091902d35c63a5a03bf3d9c76762433e90363876d807",
+      "write": {
+        "page_id": "01a12ede-b05c-70c0-b5c3-c2cd4d86327a",
+        "path": "imports/obsidian/plan.md",
+        "checkpoint": "cdb21bed5448d167254ee764b87287f972b573f0"
+      }
+    },
+    {
+      "path": "imports/obsidian/docs/PROJECT_CONTEXT.md",
+      "source": "docs/PROJECT_CONTEXT.md",
+      "sourceSha256": "ca3e570e6ffac4f2e25a4b4fecb2eb2fa333a767e67aa845017c17962680e017",
+      "storedSha256": "ca3e570e6ffac4f2e25a4b4fecb2eb2fa333a767e67aa845017c17962680e017",
+      "readbackExact": true,
+      "previousSha256": "d7f5d1ca3585259c1f2bd58e77bafe14903e7f43116017f88b3ca94a028b4e5d",
+      "write": {
+        "page_id": "01a12ede-b11a-71e2-aa19-db673a6c6977",
+        "path": "imports/obsidian/docs/PROJECT_CONTEXT.md",
+        "checkpoint": "8330e8a22dc3489882afb99c187d2194aeeb0445"
+      }
+    },
+    {
+      "path": "imports/obsidian/docs/QA_SECURITY_MATRIX.md",
+      "source": "docs/QA_SECURITY_MATRIX.md",
+      "sourceSha256": "bcd748b8c60514dd279228a7730e30f908432b527af3419646d115e9aafd5b5a",
+      "storedSha256": "bcd748b8c60514dd279228a7730e30f908432b527af3419646d115e9aafd5b5a",
+      "readbackExact": true,
+      "previousSha256": null,
+      "write": {
+        "page_id": "01a12ede-b1e4-7183-9ccb-3c99050be636",
+        "path": "imports/obsidian/docs/QA_SECURITY_MATRIX.md",
+        "checkpoint": "86420344d8fe65cfc9cbd59ac65e385fcea30b3e"
+      }
+    },
+    {
+      "path": "imports/obsidian/docs/VALIDATION_T04_R08.md",
+      "source": "docs/VALIDATION_T04_R08.md",
+      "sourceSha256": "71c74def877cfabc17f23893566979366f245a18414fa650b67def5e75098cb8",
+      "storedSha256": "71c74def877cfabc17f23893566979366f245a18414fa650b67def5e75098cb8",
+      "readbackExact": true,
+      "previousSha256": null,
+      "write": {
+        "page_id": "01a12ede-b29a-78e0-99e4-ca928caa93de",
+        "path": "imports/obsidian/docs/VALIDATION_T04_R08.md",
+        "checkpoint": "136d870d5960a03ca42d36e5b239eeea9cb37b9c"
+      }
+    }
+  ],
+  "statusAfter": {
+    "counts": {
+      "pages_latest": 8,
+      "pages_all": 16,
+      "sessions": 0,
+      "observations": 0,
+      "evidence_rows": 0
+    },
+    "scope": {
+      "workspace": "flowmind-ai",
+      "project": "flowmind-ai",
+      "resolved_by": "explicit"
+    }
+  },
+  "queryKeys": [
+    "hits"
+  ],
+  "queryPaths": [
+    "imports/obsidian/docs/VALIDATION_T04_R08.md",
+    "imports/obsidian/docs/QA_SECURITY_MATRIX.md",
+    "notes/flowmind-contexto-continuidade.md"
+  ]
+}

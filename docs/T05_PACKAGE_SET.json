@@ -1,0 +1,955 @@
+{
+  "status": "installed-local-checks-recorded-pending-security-and-integration",
+  "checkedOn": "2026-10-10",
+  "root": "C:\\Users\\jv883\\Documents\\Codex\\FlowMind-AI\\Flowmind-AI",
+  "node": {
+    "version": "24.21.0",
+    "archive": "https://nodejs.org/dist/v24.21.0/node-v24.21.0-win-x64.zip",
+    "sha256": "158f7685b44de51f6c0df1d153526cbcd3e1bc739a8dfc607721cef75de9e541",
+    "installDirectory": "C:\\Users\\jv883\\Documents\\Codex\\FlowMind-AI\\Flowmind-AI\\.tools\\node-v24.21.0-win-x64",
+    "affectsGlobalNode": false
+  },
+  "proposedManifests": {
+    "package.json": {
+      "name": "flowmind-ai",
+      "version": "0.1.0",
+      "private": true,
+      "description": "SaaS B2B de automações com IA em linguagem natural",
+      "workspaces": [
+        "apps/*",
+        "packages/*"
+      ],
+      "scripts": {
+        "build": "node scripts/run-checks.mjs build",
+        "typecheck": "node scripts/run-checks.mjs typecheck",
+        "test": "node scripts/run-checks.mjs test",
+        "test:regression": "node --experimental-vm-modules --test tests/regression/security.test.mjs tests/regression/simulation.test.mjs tests/regression/generation-client.test.mjs tests/regression/persistence.test.mjs tests/regression/toolchain.test.mjs",
+        "lint": "npm run --workspaces --if-present lint"
+      },
+      "devDependencies": {
+        "typescript": "6.0.3"
+      }
+    },
+    "apps/api/package.json": {
+      "name": "@flowmind/api",
+      "version": "0.1.0",
+      "private": true,
+      "scripts": {
+        "build": "nest build",
+        "start": "nest start",
+        "start:dev": "nest start --watch",
+        "test": "jest",
+        "typecheck": "tsc --project tsconfig.json --noEmit",
+        "typecheck:test": "tsc --project tsconfig.spec.json --noEmit"
+      },
+      "dependencies": {
+        "@flowmind/contracts": "*",
+        "@clerk/backend": "3.23.2",
+        "@nestjs/common": "12.1.2",
+        "@nestjs/core": "12.1.2",
+        "@nestjs/platform-express": "12.1.2",
+        "@prisma/client": "7.10.0",
+        "bullmq": "5.81.5",
+        "ioredis": "5.11.1",
+        "reflect-metadata": "0.2.2",
+        "rxjs": "7.8.2",
+        "@prisma/adapter-pg": "7.10.0",
+        "pg": "8.23.1",
+        "dotenv": "17.4.2"
+      },
+      "devDependencies": {
+        "@flowmind/tsconfig": "*",
+        "@nestjs/cli": "12.0.8",
+        "@nestjs/schematics": "12.0.6",
+        "@nestjs/testing": "12.1.2",
+        "@types/express": "5.0.6",
+        "@types/node": "24.19.2",
+        "prisma": "7.10.0",
+        "typescript": "6.0.3",
+        "jest": "30.5.2",
+        "ts-jest": "29.4.14",
+        "@types/jest": "30.0.0",
+        "@types/pg": "8.23.1"
+      }
+    },
+    "apps/web/package.json": {
+      "name": "@flowmind/web",
+      "version": "0.1.0",
+      "private": true,
+      "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint",
+        "typecheck": "tsc --noEmit"
+      },
+      "dependencies": {
+        "@flowmind/contracts": "*",
+        "@clerk/nextjs": "7.9.14",
+        "@xyflow/react": "12.12.0",
+        "lucide-react": "1.55.0",
+        "next": "16.4.0",
+        "react": "19.2.8",
+        "react-dom": "19.2.8"
+      },
+      "devDependencies": {
+        "@flowmind/tsconfig": "*",
+        "@types/node": "24.19.2",
+        "@types/react": "19.2.18",
+        "@types/react-dom": "19.2.7",
+        "autoprefixer": "10.6.1",
+        "postcss": "8.5.29",
+        "tailwindcss": "3.4.19",
+        "typescript": "6.0.3"
+      }
+    },
+    "packages/contracts/package.json": {
+      "name": "@flowmind/contracts",
+      "version": "0.1.0",
+      "private": true,
+      "main": "./dist/index.js",
+      "types": "./dist/index.d.ts",
+      "scripts": {
+        "build": "tsc",
+        "clean": "rimraf dist"
+      },
+      "devDependencies": {
+        "@flowmind/tsconfig": "*",
+        "typescript": "6.0.3"
+      }
+    }
+  },
+  "registryMetadata": {
+    "typescript": {
+      "version": "6.0.3",
+      "source": "https://registry.npmjs.org/typescript/6.0.3",
+      "engines": {
+        "node": ">=14.17"
+      },
+      "peerDependencies": {},
+      "peerDependenciesMeta": {},
+      "integrity": "sha512-y2TvuxSZPDyQakkFRPZHKFm+KKVqIisdg9/CZwm9ftvKXLP8NRWj38/ODjNbr43SsoXqNuAisEf1GdCxqWcdBw==",
+      "scripts": {
+        "gulp": "hereby",
+        "knip": "hereby knip",
+        "lint": "hereby lint",
+        "test": "hereby runtests-parallel --light=false",
+        "build": "npm run build:compiler && npm run build:tests",
+        "clean": "hereby clean",
+        "format": "dprint fmt",
+        "build:tests": "hereby tests",
+        "setup-hooks": "node scripts/link-hooks.mjs",
+        "build:compiler": "hereby local",
+        "test:eslint-rules": "hereby run-eslint-rules-tests",
+        "build:tests:notypecheck": "hereby tests --no-typecheck"
+      }
+    },
+    "next": {
+      "version": "16.4.0",
+      "source": "https://registry.npmjs.org/next/16.4.0",
+      "engines": {
+        "node": ">=20.9.0"
+      },
+      "peerDependencies": {
+        "sass": "^1.3.0",
+        "react": "^18.2.0 || 19.0.0-rc-de68d2f4-20241204 || ^19.0.0",
+        "react-dom": "^18.2.0 || 19.0.0-rc-de68d2f4-20241204 || ^19.0.0",
+        "@playwright/test": "^1.51.1",
+        "@opentelemetry/api": "^1.1.0",
+        "babel-plugin-react-compiler": "*"
+      },
+      "peerDependenciesMeta": {
+        "sass": {
+          "optional": true
+        },
+        "@playwright/test": {
+          "optional": true
+        },
+        "@opentelemetry/api": {
+          "optional": true
+        },
+        "babel-plugin-react-compiler": {
+          "optional": true
+        }
+      },
+      "integrity": "sha512-N2C+9q89Z/oLrsepSRS4jRMtwmUZAoZuAHU0e9T6+sAB5DdhADmrnOW+zjYijlrYFmVfmQhGVGy9eMFoB7UgKg==",
+      "scripts": {
+        "start": "node server.js"
+      }
+    },
+    "react": {
+      "version": "19.2.8",
+      "source": "https://registry.npmjs.org/react/19.2.8",
+      "engines": {
+        "node": ">=0.10.0"
+      },
+      "peerDependencies": {},
+      "peerDependenciesMeta": {},
+      "integrity": "sha512-PWaYA1L/q9u2u7xYQi+Y3L3Yfnie7XyLeaJICV1MGD6LprsBxcAqGjYyr0eY3p+QdsA+x/Irkt4Qif8D63+Sbw==",
+      "scripts": {}
+    },
+    "react-dom": {
+      "version": "19.2.8",
+      "source": "https://registry.npmjs.org/react-dom/19.2.8",
+      "engines": {},
+      "peerDependencies": {
+        "react": "^19.2.8"
+      },
+      "peerDependenciesMeta": {},
+      "integrity": "sha512-rVprimfGBG3DR+Tq0IQG2DT5PxKth1WIGDmj5yPmlzr4YBe7uyE+Du4oVqTDXZSHGGGXRtTJEGSSePyQCMBglQ==",
+      "scripts": {
+        "start": "node server.js"
+      }
+    },
+    "@clerk/nextjs": {
+      "version": "7.9.14",
+      "source": "https://registry.npmjs.org/@clerk/nextjs/7.9.14",
+      "engines": {
+        "node": ">=20.9.0"
+      },
+      "peerDependencies": {
+        "next": "^15.2.8 || ^15.3.8 || ^15.4.10 || ^15.5.9 || ^15.6.0-0 || ^16.0.10 || ^16.1.0-0",
+        "react": "^18.0.0 || ~19.0.3 || ~19.1.4 || ~19.2.3 || ~19.3.0-0",
+        "react-dom": "^18.0.0 || ~19.0.3 || ~19.1.4 || ~19.2.3 || ~19.3.0-0"
+      },
+      "peerDependenciesMeta": {},
+      "integrity": "sha512-fHP9/D0zJCcC1DHJBoA/rlfMXLYBtgNoVE8T45jTBbdDeftLYIl6nJ4cbHERvNsc+D5MotTdrvZd5zenZ013EQ==",
+      "scripts": {
+        "dev": "tsup --watch",
+        "lint": "eslint src",
+        "test": "vitest run",
+        "build": "pnpm clean && tsup",
+        "clean": "rimraf ./dist",
+        "format": "node ../../scripts/format-package.mjs",
+        "dev:pub": "pnpm dev -- --env.publish",
+        "lint:attw": "attw --pack . --profile node16 --ignore-rules unexpected-module-syntax",
+        "test:watch": "vitest watch",
+        "format:check": "node ../../scripts/format-package.mjs --check",
+        "lint:publint": "publint",
+        "build:declarations": "tsc -p tsconfig.declarations.json"
+      }
+    },
+    "@clerk/backend": {
+      "version": "3.23.2",
+      "source": "https://registry.npmjs.org/@clerk/backend/3.23.2",
+      "engines": {
+        "node": ">=20.9.0"
+      },
+      "peerDependencies": {},
+      "peerDependenciesMeta": {},
+      "integrity": "sha512-QW2qJPY7xQyn5SrNWJ+xO7o6va60X9/v4nX8y5zq8OJFS10X7GlEz8s5PDKTgo6W6SWb8L3APhrZH+LTp7yuNw==",
+      "scripts": {
+        "dev": "tsup --watch",
+        "lint": "eslint src",
+        "test": "run-s test:node test:edge-runtime",
+        "build": "tsup",
+        "clean": "rimraf ./dist",
+        "format": "node ../../scripts/format-package.mjs",
+        "dev:pub": "pnpm dev -- --env.publish",
+        "build:lib": "tsup --env.NODE_ENV production",
+        "lint:attw": "attw --pack . --profile node16 --ignore-rules false-cjs",
+        "test:node": "vitest run --environment node",
+        "test:watch": "run-s test:watch:node test:watch:edge-runtime",
+        "format:check": "node ../../scripts/format-package.mjs --check",
+        "lint:publint": "publint",
+        "build:runtime": "cpy 'src/runtime/**/*.{mjs,js,cjs}' dist/runtime",
+        "test:watch:node": "vitest watch --environment node",
+        "test:edge-runtime": "vitest run --environment edge-runtime",
+        "build:declarations": "tsc -p tsconfig.declarations.json",
+        "test:watch:edge-runtime": "vitest watch --environment edge-runtime"
+      }
+    },
+    "@nestjs/common": {
+      "version": "12.1.2",
+      "source": "https://registry.npmjs.org/@nestjs/common/12.1.2",
+      "engines": {},
+      "peerDependencies": {
+        "rxjs": "^7.1.0",
+        "class-validator": ">=0.13.2",
+        "reflect-metadata": "^0.1.12 || ^0.2.0",
+        "class-transformer": ">=0.4.1"
+      },
+      "peerDependenciesMeta": {
+        "class-validator": {
+          "optional": true
+        },
+        "class-transformer": {
+          "optional": true
+        }
+      },
+      "integrity": "sha512-e2tvLcEaG18sJy5IXrdSLv0ZBpR5djWxypCLkLuMAEFCvVPYL1lEIhvAMBkarlg+ZA8tbZN40J0tFurUl9NpdA==",
+      "scripts": {}
+    },
+    "@nestjs/core": {
+      "version": "12.1.2",
+      "source": "https://registry.npmjs.org/@nestjs/core/12.1.2",
+      "engines": {
+        "node": ">= 20"
+      },
+      "peerDependencies": {
+        "rxjs": "^7.1.0",
+        "@nestjs/common": "^12.0.0",
+        "reflect-metadata": "^0.1.12 || ^0.2.0",
+        "@nestjs/websockets": "^12.0.0",
+        "@nestjs/microservices": "^12.0.0",
+        "@nestjs/platform-express": "^12.0.0"
+      },
+      "peerDependenciesMeta": {
+        "@nestjs/websockets": {
+          "optional": true
+        },
+        "@nestjs/microservices": {
+          "optional": true
+        },
+        "@nestjs/platform-express": {
+          "optional": true
+        }
+      },
+      "integrity": "sha512-ieNRDv6P6dLsF/wMz9IUjwnyQbj7/Oluq1FXe3Xhje7TFSKPprLc83QniA2I6tjkr7YVDosdL2Dj7CVv9kU8og==",
+      "scripts": {}
+    },
+    "@nestjs/platform-express": {
+      "version": "12.1.2",
+      "source": "https://registry.npmjs.org/@nestjs/platform-express/12.1.2",
+      "engines": {},
+      "peerDependencies": {
+        "@nestjs/core": "^12.0.0",
+        "@nestjs/common": "^12.0.0"
+      },
+      "peerDependenciesMeta": {},
+      "integrity": "sha512-//ftPv5+UONizm5zcme/AP91EFo1EsqFFyC2I3HC2w8swYVXadHKW1L3A2mgUuOhM1sdKkd2gzjQmL9504x85Q==",
+      "scripts": {}
+    },
+    "@nestjs/cli": {
+      "version": "12.0.8",
+      "source": "https://registry.npmjs.org/@nestjs/cli/12.0.8",
+      "engines": {
+        "node": ">= 20.11"
+      },
+      "peerDependencies": {
+        "webpack": "^5.105.4",
+        "@swc/cli": "^0.8.0",
+        "@swc/core": "^1.15.18",
+        "ts-loader": "^9.5.4",
+        "@rspack/core": "^1.7.7 || ^2.1.10",
+        "webpack-node-externals": "^3.0.0",
+        "tsconfig-paths-webpack-plugin": "^4.2.0",
+        "fork-ts-checker-webpack-plugin": "^9.1.0"
+      },
+      "peerDependenciesMeta": {
+        "webpack": {
+          "optional": true
+        },
+        "@swc/cli": {
+          "optional": true
+        },
+        "@swc/core": {
+          "optional": true
+        },
+        "ts-loader": {
+          "optional": true
+        },
+        "@rspack/core": {
+          "optional": true
+        },
+        "webpack-node-externals": {
+          "optional": true
+        },
+        "tsconfig-paths-webpack-plugin": {
+          "optional": true
+        },
+        "fork-ts-checker-webpack-plugin": {
+          "optional": true
+        }
+      },
+      "integrity": "sha512-iqm+KXb8cnpnlD4hMBf1w2/4i1GSs0DCLI7oyP4MTmwf9KmjTG1SpAjkl/D+kKuUToycBrMF4+eSwyPVdTMGKQ==",
+      "scripts": {
+        "lint": "oxlint lib/ commands/ actions/",
+        "test": "vitest run",
+        "build": "tsc",
+        "clean": "node tools/clean.js",
+        "start": "node bin/nest.js",
+        "format": "prettier --write \"**/*.ts\"",
+        "prepack": "npm run build",
+        "prepare": "husky && node tools/postinstall.cjs",
+        "release": "release-it",
+        "test:dev": "npm run clean && vitest --watch",
+        "test:e2e": "vitest run -c vitest.e2e.config.ts",
+        "prerelease": "npm run build",
+        "publish:npm": "npm publish --access public",
+        "publish:next": "npm publish --access public --tag next",
+        "prepublish:npm": "npm run build",
+        "prepublish:next": "npm run build"
+      }
+    },
+    "@nestjs/schematics": {
+      "version": "12.0.6",
+      "source": "https://registry.npmjs.org/@nestjs/schematics/12.0.6",
+      "engines": {
+        "node": "^22.22.3 || ^24.15.0 || >=26.0.0"
+      },
+      "peerDependencies": {
+        "prettier": "^3.0.0",
+        "typescript": ">=6.0.0"
+      },
+      "peerDependenciesMeta": {
+        "prettier": {
+          "optional": true
+        }
+      },
+      "integrity": "sha512-2OG0BUhGPJqVvWFhiy+7oaQa4VQUvTS9Dw8YRfvweznl4KS3YyZrdPi4cVGuRAThoEIsbdfguZzSOv1+t8U1tg==",
+      "scripts": {
+        "lint": "oxlint --ignore-pattern 'src/**/files/**' --ignore-pattern 'src/**/workspace/**' src/ test/",
+        "test": "npm run clean && NODE_ENV=test NODE_OPTIONS=\"--require tsx/cjs\" vitest run",
+        "build": "rm -rf dist *.tsbuildinfo && tsc -b tsconfig.lib.json",
+        "clean": "del 'src/**/*.{js,d.ts,js.map,d.ts.map}' '!src/**/files/**' '!src/**/workspace/**' '!src/**/*.schema.d.ts'",
+        "prepare": "husky",
+        "release": "release-it",
+        "copy:lib": "cpx 'src/lib/**/{files,workspace}/**/*.*' dist/lib && cpx 'src/lib/**/{files,workspace}/**/.!(gitignore)' dist/lib",
+        "test:dev": "NODE_ENV=test NODE_OPTIONS=\"--require tsx/cjs\" vitest",
+        "postbuild": "npm run copy:collection && npm run copy:lib",
+        "typecheck": "tsc -b tsconfig.json",
+        "prerelease": "npm run build",
+        "publish:npm": "npm publish --access public",
+        "publish:next": "npm publish --access public --tag next",
+        "prepublish:npm": "npm run build",
+        "copy:collection": "cpx src/collection.json dist && cpx 'src/lib/**/schema.json' dist/lib",
+        "prepublish:next": "npm run build"
+      }
+    },
+    "@nestjs/testing": {
+      "version": "12.1.2",
+      "source": "https://registry.npmjs.org/@nestjs/testing/12.1.2",
+      "engines": {},
+      "peerDependencies": {
+        "@nestjs/core": "^12.0.0",
+        "@nestjs/common": "^12.0.0",
+        "@nestjs/microservices": "^12.0.0",
+        "@nestjs/platform-express": "^12.0.0"
+      },
+      "peerDependenciesMeta": {
+        "@nestjs/microservices": {
+          "optional": true
+        },
+        "@nestjs/platform-express": {
+          "optional": true
+        }
+      },
+      "integrity": "sha512-JgetYeGHGK6iUEztXyiQLOfYLWqUgAyexLMzhuAMasgLiDgYShh/PoRESE9tzpRZo4eWKme3uSZ9DFR6Myuojw==",
+      "scripts": {}
+    },
+    "@prisma/client": {
+      "version": "7.10.0",
+      "source": "https://registry.npmjs.org/@prisma/client/7.10.0",
+      "engines": {
+        "node": "^20.19 || ^22.12 || >=24.0"
+      },
+      "peerDependencies": {
+        "prisma": "*",
+        "typescript": ">=5.4.0"
+      },
+      "peerDependenciesMeta": {
+        "prisma": {
+          "optional": true
+        },
+        "typescript": {
+          "optional": true
+        }
+      },
+      "integrity": "sha512-Ubw/QS9JGIBSBUsyxAUQuK/Jcu0Tsva7le7QbLd91Kix9yJvYDdj5QkwgEbbZniH80dd+sziQcALPc+HnvQC8Q==",
+      "scripts": {
+        "dev": "DEV=true tsx helpers/build.ts",
+        "test": "dotenv -e ../../.db.env -- jest --silent",
+        "build": "tsx helpers/build.ts",
+        "new-test": "tsx ./helpers/new-test/new-test.ts",
+        "test:e2e": "dotenv -e ../../.db.env -- tsx tests/e2e/_utils/run.ts",
+        "test-notypes": "dotenv -e ../../.db.env -- jest --testPathIgnorePatterns src/__tests__/types/types.test.ts",
+        "test:functional": "dotenv -e ../../.db.env -- tsx helpers/functional-test/run-tests.ts",
+        "test:functional:code": "dotenv -e ../../.db.env -- tsx helpers/functional-test/run-tests.ts --no-types",
+        "test:functional:types": "dotenv -e ../../.db.env -- tsx helpers/functional-test/run-tests.ts --types-only",
+        "test:functional:client": "pnpm run test:functional --client-runtime client"
+      }
+    },
+    "prisma": {
+      "version": "7.10.0",
+      "source": "https://registry.npmjs.org/prisma/7.10.0",
+      "engines": {
+        "node": "^20.19 || ^22.12 || >=24.0"
+      },
+      "peerDependencies": {
+        "typescript": ">=5.4.0",
+        "better-sqlite3": ">=9.0.0"
+      },
+      "peerDependenciesMeta": {
+        "typescript": {
+          "optional": true
+        },
+        "better-sqlite3": {
+          "optional": true
+        }
+      },
+      "integrity": "sha512-o0ornyJOWgygVAzGCpr8PdXV8EJLHyVGDDUr/voBQt8Azzw8cYTByzzPGcA/m4tCkPcnJA8raEOv2CslsKhPEw==",
+      "scripts": {
+        "pm": "tsx src/bin.ts platform --early-access",
+        "dev": "DEV=true tsx helpers/build.ts",
+        "tsc": "tsc -d -p tsconfig.build.json",
+        "test": "dotenv -e ../../.db.env -- tsx helpers/run-tests.ts",
+        "build": "tsx helpers/build.ts",
+        "prisma": "tsx src/bin.ts",
+        "platform": "tsx src/bin.ts platform --early-access",
+        "preinstall": "node scripts/preinstall-entry.js",
+        "test:platform": "dotenv -e ../../.db.env -- tsx helpers/run-tests.ts src/platform",
+        "generate-api-client": "openapi-typescript https://api.prisma.io/v1/doc --output ./src/management-api/openapi.d.ts && prettier --write ./src/management-api/openapi.d.ts"
+      }
+    },
+    "@prisma/adapter-pg": {
+      "version": "7.10.0",
+      "source": "https://registry.npmjs.org/@prisma/adapter-pg/7.10.0",
+      "engines": {},
+      "peerDependencies": {},
+      "peerDependenciesMeta": {},
+      "integrity": "sha512-N7nwSor0HO1Kz6xBv0TPAjAPysKK0fac6p4fVN3ensLOuzc/83Fgmln5k92eK/cvzqdkSR/2kkAqlbcdwVrwpw==",
+      "scripts": {
+        "dev": "DEV=true tsx helpers/build.ts",
+        "test": "vitest run",
+        "build": "tsx helpers/build.ts"
+      }
+    },
+    "pg": {
+      "version": "8.23.1",
+      "source": "https://registry.npmjs.org/pg/8.23.1",
+      "engines": {
+        "node": ">= 16.0.0"
+      },
+      "peerDependencies": {
+        "pg-native": ">=3.0.1"
+      },
+      "peerDependenciesMeta": {
+        "pg-native": {
+          "optional": true
+        }
+      },
+      "integrity": "sha512-aL96AHANtWjPLDOLqnhx+ngp9+UK7ETEU8VJrDCGvsSSi/mGLcWYsS6Herg7lmaBJe4uwrfqsa7gTEFaSizDoQ==",
+      "scripts": {
+        "test": "make test-all"
+      }
+    },
+    "@types/pg": {
+      "version": "8.23.1",
+      "source": "https://registry.npmjs.org/@types/pg/8.23.1",
+      "engines": {},
+      "peerDependencies": {},
+      "peerDependenciesMeta": {},
+      "integrity": "sha512-fKVHpikPdg4GKks3JuLEhvwSyvwzF23hnabPy6DD8ljVbC7+6J5dQzdv4arV6jqq57djnMgs1HKBxX4P8aBI3A==",
+      "scripts": {}
+    },
+    "dotenv": {
+      "version": "17.4.2",
+      "source": "https://registry.npmjs.org/dotenv/17.4.2",
+      "engines": {
+        "node": ">=12"
+      },
+      "peerDependencies": {},
+      "peerDependenciesMeta": {},
+      "integrity": "sha512-nI4U3TottKAcAD9LLud4Cb7b2QztQMUEfHbvhTH09bqXTxnSie8WnjPALV/WMCrJZ6UV/qHJ6L03OqO3LcdYZw==",
+      "scripts": {
+        "lint": "standard",
+        "test": "tap run tests/**/*.js --allow-empty-coverage --disable-coverage --timeout=60000",
+        "pretest": "npm run lint && npm run dts-check",
+        "release": "standard-version",
+        "dts-check": "tsc --project tests/types/tsconfig.json",
+        "prerelease": "npm test",
+        "test:coverage": "tap run tests/**/*.js --show-full-coverage --timeout=60000 --coverage-report=text --coverage-report=lcov"
+      }
+    },
+    "bullmq": {
+      "version": "5.81.5",
+      "source": "https://registry.npmjs.org/bullmq/5.81.5",
+      "engines": {
+        "node": ">=12.22.0"
+      },
+      "peerDependencies": {
+        "redis": ">=5.0.0"
+      },
+      "peerDependenciesMeta": {
+        "redis": {
+          "optional": true
+        }
+      },
+      "integrity": "sha512-pW7pFc/X+9AEIx91TWTdIpZ1icfbJnA0unsyzD7VICjCUw8a3qedSjej5dxxn6LjfM1kr2jvalOCGbCmoA5Kxg==",
+      "scripts": {
+        "tsc": "tsc",
+        "docs": "typedoc --excludeExternals --excludeProtected --excludePrivate --readme none src/index.ts",
+        "lint": "eslint .",
+        "test": "vitest run --no-file-parallelism",
+        "build": "npm run clean:dist && npm run pretest && npm run tsc:all && npm run copy:main:type && npm run clean:temp:files && npm run copy:lua && npm run copy:includes:lua",
+        "dc:up": "docker-compose -f docker-compose.yml up -d",
+        "dc:down": "docker-compose -f docker-compose.yml down",
+        "dry-run": "npm publish --dry-run",
+        "prepare": "husky",
+        "pretest": "npm run clean:scripts && npm run generate:raw:scripts && npm run transform:commands && npm run circular:references",
+        "tsc:all": "tsc && tsc -p tsconfig-cjs.json",
+        "copy:lua": "cpx \"./src/commands/*.lua\" ./dist/cjs/commands && cpx \"./src/commands/*.lua\" ./dist/esm/commands",
+        "coverage": "vitest run --no-file-parallelism --coverage --config vitest.coverage.config.ts",
+        "docs:dev": "vitepress dev docs",
+        "prettier": "prettier **/*.ts --write",
+        "test:bun": "bun node_modules/vitest/dist/cli.js run --no-file-parallelism --config vitest.bun.config.ts",
+        "docs:json": "typedoc --excludeExternals --excludeProtected --excludePrivate --readme none src/index.ts --json ./apiVersions/v5.json --name v5",
+        "clean:dist": "rimraf dist",
+        "docs:build": "vitepress build docs",
+        "eslint:fix": "eslint . --fix",
+        "test:smoke": "vitest run --no-file-parallelism --bail=1 tests/async_fifo_queue.test.ts tests/script_loader.test.ts tests/scripts.test.ts tests/child-pool.test.ts tests/bulk.test.ts tests/queue.test.ts",
+        "test:watch": "vitest --watch",
+        "lint:staged": "lint-staged",
+        "test:vitest": "vitest run --no-file-parallelism",
+        "copy:lua:php": "cpx \"./rawScripts/*.lua\" ./php/src/commands",
+        "docs:preview": "vitepress preview docs",
+        "pretty:quick": "pretty-quick --staged",
+        "test:ioredis": "vitest run --no-file-parallelism --config vitest.ioredis.config.ts",
+        "clean:scripts": "rimraf rawScripts src/scripts",
+        "copy:lua:rust": "cpx \"./rawScripts/*.lua\" ./rust/src/commands",
+        "copy:main:type": "cpx \"./dist/esm/classes/main.d.ts\" ./dist/cjs/classes && cpx \"./dist/esm/classes/main-worker.d.ts\" ./dist/cjs/classes",
+        "prepublishOnly": "npm run build",
+        "test:bun:smoke": "bun test --timeout 20000 tests/bun-redis.test.ts tests/bun-adapter-suite.test.ts",
+        "test:vitest:ui": "vitest --ui",
+        "copy:lua:elixir": "cpx \"./rawScripts/*.lua\" ./elixir/priv/scripts",
+        "copy:lua:python": "cpx \"./rawScripts/*.lua\" ./python/bullmq/commands",
+        "test:node-redis": "vitest run --no-file-parallelism --config vitest.node-redis.config.ts",
+        "clean:temp:files": "rimraf dist/cjs/bullmq.d.ts dist/esm/bullmq.d.ts dist/tsdoc-metadata.json",
+        "semantic-release": "semantic-release",
+        "copy:includes:lua": "cpx \"./src/commands/includes/*.lua\" ./dist/cjs/commands/includes && cpx \"./src/commands/includes/*.lua\" ./dist/esm/commands/includes",
+        "test:valkey-glide": "vitest run --no-file-parallelism --config vitest.valkey-glide.config.ts",
+        "test:vitest:watch": "vitest",
+        "transform:commands": "node ./scripts/commandTransform.js ./rawScripts ./src/scripts",
+        "circular:references": "madge --circular --extensions ts ./src",
+        "generate:raw:scripts": "ts-node --project tsconfig-cjs.json scripts/generateRawScripts.ts",
+        "semantic-release:debug": "semantic-release --no-ci --dry-run --debug",
+        "semantic-release-prepare": "ts-node tools/semantic-release-prepare",
+        "test:adapter-conformance": "vitest run --no-file-parallelism --config vitest.adapter-conformance.config.ts"
+      }
+    },
+    "ioredis": {
+      "version": "5.11.1",
+      "source": "https://registry.npmjs.org/ioredis/5.11.1",
+      "engines": {
+        "node": ">=12.22.0"
+      },
+      "peerDependencies": {},
+      "peerDependenciesMeta": {},
+      "integrity": "sha512-ehuGcf94bQXhfagULNXrJdfnWO38v070jxSx/qE87Kjzmu2fU7ro5EFAb+OPituLqgfyuQaym5DlrNydW2sJ9A==",
+      "scripts": {
+        "docs": "npx typedoc --logLevel Error --excludeExternals --excludeProtected --excludePrivate --readme none lib/index.ts",
+        "lint": "eslint --ext .js,.ts ./lib",
+        "test": "npm run test:js && npm run test:tsd",
+        "build": "rm -rf built && tsc",
+        "format": "prettier --write \"{,!(node_modules)/**/}*.{js,ts}\"",
+        "test:js": "TS_NODE_TRANSPILE_ONLY=true NODE_ENV=test mocha --no-experimental-strip-types \"test/helpers/*.ts\" \"test/unit/**/*.ts\" \"test/functional/**/*.ts\"",
+        "test:cov": "nyc npm run test:js",
+        "test:tsd": "npm run build && tsd",
+        "docker:setup": "docker compose -f test/docker-compose.yml up -d --wait",
+        "format-check": "prettier --check \"{,!(node_modules)/**/}*.{js,ts}\"",
+        "test:cluster": "TS_NODE_TRANSPILE_ONLY=true NODE_ENV=test mocha --no-experimental-strip-types \"test/cluster/**/*.ts\"",
+        "prepublishOnly": "npm run build",
+        "docker:teardown": "docker compose -f test/docker-compose.yml down --volumes --remove-orphans",
+        "semantic-release": "semantic-release"
+      }
+    },
+    "reflect-metadata": {
+      "version": "0.2.2",
+      "source": "https://registry.npmjs.org/reflect-metadata/0.2.2",
+      "engines": {},
+      "peerDependencies": {},
+      "peerDependenciesMeta": {},
+      "integrity": "sha512-urBwgfrvVP/eAyXx4hluJivBKzuEbSQs9rKWCrCkbSxNv8mxPcUZKeuoF3Uy4mJl3Lwprp6yy5/39VWigZ4K6Q==",
+      "scripts": {
+        "test": "gulp test",
+        "build": "gulp build",
+        "start": "gulp start",
+        "prepublishOnly": "gulp prepublish"
+      }
+    },
+    "rxjs": {
+      "version": "7.8.2",
+      "source": "https://registry.npmjs.org/rxjs/7.8.2",
+      "engines": {},
+      "peerDependencies": {},
+      "peerDependenciesMeta": {},
+      "integrity": "sha512-dhKf903U/PQZY6boNNtAGdWbG85WAbjT/1xYoZIC7FAY0yWapOBQVsVrDl58W86//e1VpMNBtRV4MaXfdMySFA==",
+      "scripts": {
+        "lint": "npm-run-all --parallel lint_*",
+        "test": "cross-env TS_NODE_PROJECT=tsconfig.mocha.json mocha --config spec/support/.mocharc.js \"spec/**/*-spec.ts\"",
+        "watch": "nodemon -w \"src/\" -w \"spec/\" -e ts -x npm test",
+        "compile": "tsc -b ./src/tsconfig.cjs.json ./src/tsconfig.cjs.spec.json ./src/tsconfig.esm.json ./src/tsconfig.esm5.json ./src/tsconfig.esm5.rollup.json ./src/tsconfig.types.json ./src/tsconfig.types.spec.json ./spec/tsconfig.json",
+        "dtslint": "tsc -b ./src/tsconfig.types.json && tslint -c spec-dtslint/tslint.json -p spec-dtslint/tsconfig.json \"spec-dtslint/**/*.ts\"",
+        "lint_src": "tslint -c tslint.json -p src/tsconfig.base.json \"src/**/*.ts\"",
+        "test:esm": "node spec/module-test-spec.mjs",
+        "changelog": "npx conventional-changelog-cli -p angular -i CHANGELOG.md -s",
+        "lint_spec": "tslint -c spec/tslint.json -p spec/tsconfig.json \"spec/**/*.ts\"",
+        "build:clean": "shx rm -rf ./dist",
+        "test:import": "ts-node ./integration/import/runner.ts",
+        "build:global": "node ./tools/make-umd-bundle.js && node ./tools/make-closure-core.js",
+        "publish_docs": "./publish_docs.sh",
+        "test:browser": "echo \"Browser test is not working currently\" && exit -1 && npm-run-all build:spec:browser && opn spec/support/mocha-browser-runner.html",
+        "build:package": "npm-run-all build:clean compile build:global && node ./tools/prepare-package.js && node ./tools/generate-alias.js",
+        "test:circular": "dependency-cruiser --validate .dependency-cruiser.json -x \"^node_modules\" dist/esm5",
+        "test:systemjs": "node integration/systemjs/systemjs-compatibility-spec.js",
+        "watch:dtslint": "nodemon -w \"src/\" -w \"spec-dtslint/\" -e ts -x npm run dtslint",
+        "prepublishOnly": "npm run build:package && npm run lint && npm run test && npm run test:circular && npm run dtslint && npm run test:side-effects",
+        "test:side-effects": "check-side-effects --test integration/side-effects/side-effects.json",
+        "build:spec:browser": "echo \"Browser test is not working currently\" && exit -1 && webpack --config spec/support/webpack.mocha.config.js",
+        "test:side-effects:update": "npm run test:side-effects -- --update"
+      }
+    },
+    "jest": {
+      "version": "30.5.2",
+      "source": "https://registry.npmjs.org/jest/30.5.2",
+      "engines": {
+        "node": "^18.14.0 || ^20.0.0 || ^22.0.0 || >=24.0.0"
+      },
+      "peerDependencies": {
+        "node-notifier": "^8.0.1 || ^9.0.0 || ^10.0.0"
+      },
+      "peerDependenciesMeta": {
+        "node-notifier": {
+          "optional": true
+        }
+      },
+      "integrity": "sha512-3gnpdBIza8ijCl3iMV9ChE3hSt1+46865qqod863gQtJr1DixOkAU5DoGbi3u+XlRcw++BhZQMu/y4xBdHBvSQ==",
+      "scripts": {}
+    },
+    "ts-jest": {
+      "version": "29.4.14",
+      "source": "https://registry.npmjs.org/ts-jest/29.4.14",
+      "engines": {
+        "node": "^14.15.0 || ^16.10.0 || ^18.0.0 || >=20.0.0"
+      },
+      "peerDependencies": {
+        "jest": "^29.0.0 || ^30.0.0",
+        "jest-util": "^29.0.0 || ^30.0.0",
+        "babel-jest": "^29.0.0 || ^30.0.0",
+        "typescript": ">=4.3 <7",
+        "@babel/core": ">=7.0.0-beta.0 <9",
+        "@jest/types": "^29.0.0 || ^30.0.0",
+        "@jest/transform": "^29.0.0 || ^30.0.0"
+      },
+      "peerDependenciesMeta": {
+        "esbuild": {
+          "optional": true
+        },
+        "jest-util": {
+          "optional": true
+        },
+        "babel-jest": {
+          "optional": true
+        },
+        "@babel/core": {
+          "optional": true
+        },
+        "@jest/types": {
+          "optional": true
+        },
+        "@jest/transform": {
+          "optional": true
+        }
+      },
+      "integrity": "sha512-+943G6wCX5E3VpzTQhBGBFntCmdT+QAkTvUlp03edTONFBvqskuXPhpyX16xdUotO4P5HQKyppldSWjocoltLQ==",
+      "scripts": {
+        "doc": "cd website && npm run start",
+        "lint": "eslint .",
+        "test": "jest -c=jest.config.ts",
+        "build": "tsc -p tsconfig.build.json",
+        "prepare": "npm run build",
+        "version": "npm run changelog && git add CHANGELOG.md",
+        "lint-fix": "eslint --fix .",
+        "prebuild": "rimraf --glob dist coverage *.tgz",
+        "test-e2e": "jest -c=e2e/jest.config.cts",
+        "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 1",
+        "doc:build": "cd website && npm run build",
+        "postbuild": "node scripts/post-build.js",
+        "preversion": "npm run test",
+        "lint-prettier": "prettier \"**/*.{yml,yaml,md}\" --write",
+        "test-examples": "node scripts/test-examples.js",
+        "prepublishOnly": "npm run test",
+        "lint-prettier-ci": "prettier '**/*.{yml,yaml,md}' --check"
+      }
+    },
+    "@types/jest": {
+      "version": "30.0.0",
+      "source": "https://registry.npmjs.org/@types/jest/30.0.0",
+      "engines": {},
+      "peerDependencies": {},
+      "peerDependenciesMeta": {},
+      "integrity": "sha512-XTYugzhuwqWjws0CVz8QpM36+T+Dz5mTEBKhNs/esGLnCIlGdRy+Dq78NRjd7ls7r8BC8ZRMOrKlkO1hU0JOwA==",
+      "scripts": {}
+    },
+    "@types/express": {
+      "version": "5.0.6",
+      "source": "https://registry.npmjs.org/@types/express/5.0.6",
+      "engines": {},
+      "peerDependencies": {},
+      "peerDependenciesMeta": {},
+      "integrity": "sha512-sKYVuV7Sv9fbPIt/442koC7+IIwK5olP1KWeD88e/idgoJqDm3JV/YUiPwkoKK92ylff2MGxSz1CSjsXelx0YA==",
+      "scripts": {}
+    },
+    "@types/node": {
+      "version": "24.19.2",
+      "source": "https://registry.npmjs.org/@types/node/24.19.2",
+      "engines": {},
+      "peerDependencies": {},
+      "peerDependenciesMeta": {},
+      "integrity": "sha512-93d49wCWJkCyN87MxLpNN6KXPCwFw7bVUg79mGUV1OS40JGWwVCr8n61DXCSqz7CV6/VfPkb7xec7uP2M+QHWQ==",
+      "scripts": {}
+    },
+    "@xyflow/react": {
+      "version": "12.12.0",
+      "source": "https://registry.npmjs.org/@xyflow/react/12.12.0",
+      "engines": {},
+      "peerDependencies": {
+        "react": ">=17",
+        "react-dom": ">=17",
+        "@types/react": ">=17",
+        "@types/react-dom": ">=17"
+      },
+      "peerDependenciesMeta": {
+        "@types/react": {
+          "optional": true
+        },
+        "@types/react-dom": {
+          "optional": true
+        }
+      },
+      "integrity": "sha512-74oXI0Rgm1Eu33cHQAd74J6oVgCH9mbFyTVQbsGgp2kmWwh0HdtBr2VP04z8mbPD+M/xO69nqG5dDEt7/EN2rQ==",
+      "scripts": {
+        "css": "postcss src/styles/{base,style}.css --config ./../../tooling/postcss-config/ --dir dist ",
+        "dev": "concurrently \"rollup --config node:@xyflow/rollup-config --watch\" pnpm:css-watch",
+        "lint": "eslint --ext .js,.jsx,.ts,.tsx src",
+        "build": "rollup --config node:@xyflow/rollup-config --environment NODE_ENV:production && npm run css",
+        "css-watch": "pnpm css --watch",
+        "typecheck": "tsc --noEmit"
+      }
+    },
+    "lucide-react": {
+      "version": "1.55.0",
+      "source": "https://registry.npmjs.org/lucide-react/1.55.0",
+      "engines": {},
+      "peerDependencies": {
+        "react": "^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0",
+        "@types/react": "*"
+      },
+      "peerDependenciesMeta": {
+        "@types/react": {
+          "optional": true
+        }
+      },
+      "integrity": "sha512-bSozQHiI3/8q7JvgoqVRGOYUi7fYT3siAZwmZsljjsOH2Husp/2ODdFf/leD+ZC/2yKfn7r8oh6yeoR3ITR5vA==",
+      "scripts": {
+        "test": "pnpm build:icons && vitest run",
+        "build": "pnpm clean && pnpm copy:license && pnpm build:icons && pnpm typecheck && pnpm build:bundles",
+        "clean": "rm -rf dist && rm -rf stats && rm -rf ./src/icons/*.ts && rm -f dynamic.{d.ts,d.mts,mts,mjs,mjs.map} && rm -f dynamicIconImports.d.ts",
+        "typecheck": "pnpm build:icons && tsc --noEmit",
+        "test:watch": "vitest watch",
+        "build:icons": "build-icons --output=./src --templateSrc=./scripts/exportTemplate.mts --renderUniqueKey --withAliases --withDynamicImports --separateAliasesFile --separateAliasesFileIgnore=fingerprint --aliasesFileExtension=.ts --iconFileExtension=.ts --exportFileName=index.ts",
+        "copy:license": "cp ../../LICENSE ./LICENSE",
+        "build:bundles": "rollup -c ./rollup.config.mjs",
+        "typecheck:watch": "tsc -w"
+      }
+    },
+    "@types/react": {
+      "version": "19.2.18",
+      "source": "https://registry.npmjs.org/@types/react/19.2.18",
+      "engines": {},
+      "peerDependencies": {},
+      "peerDependenciesMeta": {},
+      "integrity": "sha512-AnzbBERsrLKtk2XSfTbYRLjQPdy116Sty4q+T+Bp3IC4l6jNBvreVPAHmpq9qhXQM7CXZPjLVmGMw9sy+hxQ3w==",
+      "scripts": {}
+    },
+    "@types/react-dom": {
+      "version": "19.2.7",
+      "source": "https://registry.npmjs.org/@types/react-dom/19.2.7",
+      "engines": {},
+      "peerDependencies": {
+        "@types/react": "^19.2.0"
+      },
+      "peerDependenciesMeta": {},
+      "integrity": "sha512-I8bPpDLcHBv1qiIiXDCy71Rt8eQDKJP0sMSWJphDdAcdqiJ1sGpZamavoEIRZmYzjia9LuEb2HlYdDpmoENpvQ==",
+      "scripts": {}
+    },
+    "autoprefixer": {
+      "version": "10.6.1",
+      "source": "https://registry.npmjs.org/autoprefixer/10.6.1",
+      "engines": {
+        "node": "^10 || ^12 || >=14"
+      },
+      "peerDependencies": {
+        "postcss": "^8.1.0"
+      },
+      "peerDependenciesMeta": {},
+      "integrity": "sha512-cL1Qz6ADZhcEbny/8HPfe99J6HhNoYtpX2LFLIbhgGE7Q1hlQVkYFdetDN7Id3KiQxhDrHwzlHr/YQCnZ8+xSA==",
+      "scripts": {}
+    },
+    "postcss": {
+      "version": "8.5.29",
+      "source": "https://registry.npmjs.org/postcss/8.5.29",
+      "engines": {
+        "node": "^10 || ^12 || >=14"
+      },
+      "peerDependencies": {},
+      "peerDependenciesMeta": {},
+      "integrity": "sha512-49cGhUbXj8Qenv0iTMxA1cFBzxXoctpC9Ujd77t1WcbJIr6nF/eI7g/8MgxrYldFRuAXvja7xQRwavoW7kgrxQ==",
+      "scripts": {}
+    },
+    "tailwindcss": {
+      "version": "3.4.19",
+      "source": "https://registry.npmjs.org/tailwindcss/3.4.19",
+      "engines": {
+        "node": ">=14.0.0"
+      },
+      "peerDependencies": {},
+      "peerDependenciesMeta": {},
+      "integrity": "sha512-3ofp+LL8E+pK/JuPLPggVAIaEuhvIz4qNcf3nA1Xn2o/7fb7s/TYpHhwGDv1ZU3PkBluUVaF8PyCHcm48cKLWQ==",
+      "scripts": {
+        "test": "jest",
+        "build": "swc src --out-dir lib --copy-files",
+        "style": "eslint .",
+        "pretest": "npm run generate",
+        "generate": "npm run generate:plugin-list && npm run generate:types",
+        "prebuild": "npm run generate && rimraf lib",
+        "postbuild": "esbuild lib/cli-peer-dependencies.js --bundle --platform=node --outfile=peers/index.js --define:process.env.CSS_TRANSFORMER_WASM=false",
+        "release-notes": "node ./scripts/release-notes.js",
+        "generate:types": "node -r @swc/register scripts/generate-types.js",
+        "prepublishOnly": "npm install --force && npm run build",
+        "release-channel": "node ./scripts/release-channel.js",
+        "rebuild-fixtures": "npm run build && node -r @swc/register scripts/rebuildFixtures.js",
+        "test:integrations": "npm run test --prefix ./integrations",
+        "generate:plugin-list": "node -r @swc/register scripts/create-plugin-list.js",
+        "install:integrations": "node scripts/install-integrations.js"
+      }
+    }
+  },
+  "limitations": [
+    "Not a resolved npm lockfile; transitive dependencies/security/builds remain unverified.",
+    "Install with scripts disabled first; inspect necessary vendor scripts before execution.",
+    "Prisma 7 requires generator/config/import/adapter changes, no database migration authorized.",
+    "ESLint deferred: latest ESLint 10 does not satisfy eslint-plugin-react peer range; ESLint 9 deprecated.",
+    "Web build may require local Clerk development publishable key; no real Clerk/OpenAI usage authorized."
+  ],
+  "approval": {
+    "on": "2026-10-10",
+    "userMessage": "pode seguir",
+    "scope": "Pacote T05 local: runtime portatil, 34 pins, adaptacoes SDK/toolchain, geracao Prisma, typecheck/Jest/build. Sem migracoes, servicos ou escolhas T02."
+  },
+  "installed": {
+    "nodeVersion": "24.21.0",
+    "npmVersion": "11.19.0",
+    "directExternalPackages": 34,
+    "lockfile": "package-lock.json",
+    "directPinsAndIntegritiesMatched": true,
+    "bulkInstallScriptsEnabled": false,
+    "prismaGeneratedAndValidated": true,
+    "report": "docs/VALIDATION_R05.md",
+    "checks": "docs/T05_CHECKS_R05.json",
+    "audit": "docs/T05_AUDIT_R05.json",
+    "lintScope": "heuristic-source-pattern-scanner; ESLint pending",
+    "proposedManifestsAreHistorical": true
+  }
+}

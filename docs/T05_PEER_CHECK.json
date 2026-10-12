@@ -1,0 +1,6 @@
+{
+  "node": "24.21.0",
+  "exactPackages": 34,
+  "scope": "declared direct metadata only; no npm resolution or execution",
+  "errors": []
+}

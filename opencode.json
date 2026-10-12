@@ -1,0 +1,14 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "graphify": {
+      "type": "local",
+      "command": [
+        "graphify",
+        "\\\\?\\C:\\Users\\jv883\\Documents\\Codex\\FlowMind-AI\\Flowmind-AI",
+        "--mcp"
+      ],
+      "enabled": true
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "checkedOn": "2026-10-10",
+  "scope": "scanner heuristico; nao substitui ESLint",
+  "results": {
+    "root": {
+      "exitCode": 0,
+      "output": "\n> flowmind-ai@0.1.0 lint\n> node scripts/lint.mjs\n\n\n✔ Lint aprovado: 80 arquivos verificados, zero violações encontradas.\n"
+    },
+    "api": {
+      "exitCode": 0,
+      "output": "\n> @flowmind/api@0.1.0 lint\n> node ../../scripts/lint.mjs\n\n\n✔ Lint aprovado: 80 arquivos verificados, zero violações encontradas.\n"
+    },
+    "web": {
+      "exitCode": 0,
+      "output": "\n> @flowmind/web@0.1.0 lint\n> node ../../scripts/lint.mjs\n\n\n✔ Lint aprovado: 80 arquivos verificados, zero violações encontradas.\n"
+    },
+    "debuggerFixture": {
+      "exitCode": 1,
+      "output": "\n❌ Falhas encontradas no lint (1 erro(s) em 2 arquivos):\n  - apps\\invalid.ts:1 [Comando debugger] Padrão de código encontrado; conferir o arquivo localmente.\n"
+    },
+    "missingDirectoryFixture": {
+      "exitCode": 1,
+      "errorDetected": true
+    }
+  }
+}

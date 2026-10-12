@@ -1,0 +1,78 @@
+name: FlowMind AI CI Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate-and-test:
+    name: Validações locais e auditoria de dependências
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do Código
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Validar Perfis de Agentes e Governança (.codex)
+        run: |
+          python .codex/validate_team.py
+
+      - name: Checar Integridade do Git
+        run: |
+          git diff --check
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24.21.0'
+          cache: 'npm'
+
+      - name: Instalar Dependências
+        run: npm ci --ignore-scripts --no-fund
+
+      - name: Gerar e validar Prisma sem migration
+        run: |
+          npm run prisma:generate
+          npm run prisma:validate
+        env:
+          CHECKPOINT_DISABLE: '1'
+          DO_NOT_TRACK: '1'
+
+      - name: Compilação TypeScript (Typecheck)
+        run: npm run typecheck
+
+      - name: Executar Testes Automatizados
+        run: npm test
+        env:
+          NODE_ENV: test
+
+      - name: Executar regressões isoladas
+        run: npm run test:regression
+
+      - name: Compilar com fixture Clerk de validação
+        run: npm run build
+        env:
+          NEXT_TELEMETRY_DISABLED: '1'
+          # Fixture flowmind-build.invalid: não é credencial nem build de deploy.
+          NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: pk_test_Zmxvd21pbmQtYnVpbGQuaW52YWxpZCQ=
+          NEXT_PUBLIC_CLERK_KEYLESS_DISABLED: 'true'
+          NEXT_PUBLIC_CLERK_TELEMETRY_DISABLED: 'true'
+
+      - name: Conferir imports e metadados da API sem bootstrap
+        run: npm run check:api-artifact
+
+      - name: Validar prontidão operacional (T15)
+        run: npm run check:operation
+
+      - name: Conferir padrões locais de código
+        run: npm run lint
+
+      - name: Auditar dependências
+        run: npm audit --audit-level=high
