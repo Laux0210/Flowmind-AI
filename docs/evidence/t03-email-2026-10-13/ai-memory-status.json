@@ -1,0 +1,10 @@
+{
+  "recordedAtUtc": "2026-10-13T16:11:24.538405+00:00",
+  "requestId": 130,
+  "workspace": "flowmind-ai",
+  "project": "flowmind-ai",
+  "writeAttempted": false,
+  "automaticCaptureProven": false,
+  "result": "ConnectionRefusedError",
+  "transportExitCode": 2
+}

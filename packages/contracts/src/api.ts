@@ -2,7 +2,7 @@
  * FlowMind AI — DTOs e Envelopes de API REST
  */
 
-import { WorkflowDefinition, WorkflowExecution, WorkflowVersion } from './workflow';
+import type { WorkflowDefinition, WorkflowExecution, WorkflowVersion } from './workflow';
 
 // Envelopes de Resposta Padrão
 export interface ApiResponse<T> {
@@ -92,7 +92,7 @@ export interface GenerateWorkflowResponse {
   reasoning: string;
   warnings?: string[];
   modelUsed: string;
-  tokensConsumed: number;
+  tokensConsumed: number | null; // Uso desconhecido não deve ser convertido em zero.
   requiresHumanReview: true;
 }
 
@@ -103,8 +103,11 @@ export interface OrgUsageReport {
   totalExecutions: number;
   maxExecutionsQuota: number;
   usagePercentage: number;
-  estimatedTokensConsumed: number;
+  /** null enquanto o consumo de tokens não tiver sido medido. */
+  estimatedTokensConsumed: number | null;
   isLimitReached: boolean;
+  /** Total de execuções de simulação registradas no período (isentas da cota comercial LIVE). */
+  totalSimulations?: number;
 }
 
 export interface ExecutionListItemDto {

@@ -1,0 +1,39 @@
+{
+  "backups": [
+    {
+      "source": "plan.md",
+      "backup": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-resource-plan-20261015-11r8wqt6\\plan.md",
+      "sha256": "cf0804c06da34605a2573f69d71f128e26ec79a09c50282a0d9ff378bbf05fb5"
+    },
+    {
+      "source": "docs/MEMORIA.md",
+      "backup": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-resource-plan-20261015-11r8wqt6\\docs\\MEMORIA.md",
+      "sha256": "83b990896766ee1db3f1bc7c0910bb9d1c393a47079246fe1e7b1cb674785731"
+    },
+    {
+      "source": "docs/PROJECT_CONTEXT.md",
+      "backup": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-resource-plan-20261015-11r8wqt6\\docs\\PROJECT_CONTEXT.md",
+      "sha256": "bca0f8dfcc2dbd3aa6a7fcf9703015b76d222397258f031299fbcb06231309da"
+    },
+    {
+      "source": "docs/AI_MEMORY.md",
+      "backup": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-resource-plan-20261015-11r8wqt6\\docs\\AI_MEMORY.md",
+      "sha256": "22c1c9c0cf2294ae82d434c19959b44735e723b401b8e0cee1f7a25a2111ac83"
+    },
+    {
+      "source": "docs/AI_MEMORY_SYNC_PENDING_2026-10-12.json",
+      "backup": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-resource-plan-20261015-11r8wqt6\\docs\\AI_MEMORY_SYNC_PENDING_2026-10-12.json",
+      "sha256": "5629e6676152c5da4b63b8be9108082def4ade9ba24e243e16f10923c6154078"
+    },
+    {
+      "source": "docs/T03_RESOURCE_PROPOSAL.md",
+      "backup": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-resource-plan-20261015-11r8wqt6\\docs\\T03_RESOURCE_PROPOSAL.md",
+      "sha256": "e3176e58f353f21918fcf6406985500dff55a5d18cf74f7c3a8d6326e3ed518f"
+    },
+    {
+      "source": "docs/T03_RESOURCE_IMPLEMENTATION_PLAN.md",
+      "backup": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-resource-plan-20261015-11r8wqt6\\docs\\T03_RESOURCE_IMPLEMENTATION_PLAN.md",
+      "sha256": "7b9e5187dcda5f0b4fa76070b365924629a95881402e1b2492a35c3f7e0ace80"
+    }
+  ]
+}

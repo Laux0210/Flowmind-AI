@@ -1,0 +1,40 @@
+{
+  "savedAtUtc": "2026-10-13T22:29:49.004947+00:00",
+  "files": [
+    {
+      "source": "docs/MEMORIA.md",
+      "backup": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-t08-editor-20261013-3d130c91\\concurrent-MEMORIA.md",
+      "sha256": "f723222290c2215b989cb730b1a787a7c8fd8bfb0b9c1c1d33655c1dbd207922"
+    },
+    {
+      "source": "plan.md",
+      "backup": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-t08-editor-20261013-3d130c91\\concurrent-plan.md",
+      "sha256": "13cec35d0396dac7aa7f3355fda58cd7f2cef50337e6d3f2d73ca26a36ab848d"
+    },
+    {
+      "source": "docs/PROJECT_CONTEXT.md",
+      "backup": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-t08-editor-20261013-3d130c91\\concurrent-PROJECT_CONTEXT.md",
+      "sha256": "77f227d15a8437b22bd77e714b7991f7066b3d23b7497bd6571c6a22bcb0cd23"
+    },
+    {
+      "source": "docs/T03_AVAILABILITY_PROPOSAL.md",
+      "backup": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-t08-editor-20261013-3d130c91\\concurrent-T03_AVAILABILITY_PROPOSAL.md",
+      "sha256": "528a51b75c7954ee68efb2ab855684960d1ce4cbe7de154d096d081501676fde"
+    },
+    {
+      "source": "docs/AI_MEMORY.md",
+      "backup": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-t08-editor-20261013-3d130c91\\concurrent-AI_MEMORY.md",
+      "sha256": "fd77f3e9c6525bf22524e0bb5e68bee4c6344c2df9514027a2cacf0876492440"
+    },
+    {
+      "source": "docs/QA_SECURITY_MATRIX.md",
+      "backup": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-t08-editor-20261013-3d130c91\\concurrent-QA_SECURITY_MATRIX.md",
+      "sha256": "be25d597b3c2b828fcaf79d2419f4e220bb83d148383285da887d01e185e6ee9"
+    },
+    {
+      "source": "README.md",
+      "backup": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-t08-editor-20261013-3d130c91\\concurrent-README.md",
+      "sha256": "b1d0fd98cebe0b6b8e54d1d94ee31e51f9e2d501d77b971c2512c921b4451e85"
+    }
+  ]
+}

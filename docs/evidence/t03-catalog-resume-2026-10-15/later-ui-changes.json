@@ -1,0 +1,13 @@
+{
+  "checkedAtUtc": "2026-10-15T18:56:47.385252+00:00",
+  "acceptedCatalogSnapshot": "checks.json",
+  "laterChanges": {
+    "apps/web/src/app/dashboard/page.tsx": "8a383d23bf901cc7dcb5e361ed16f2a877dea935d94a96f4fcb57b37b419e50d",
+    "apps/web/src/app/history/page.tsx": "efc92ac6e8b15d5b9bc342579142d7059fd54f6ac9cbde980d25bf428138466f",
+    "tests/regression/ui-workflow.test.mjs": "d8eae8850ae6d7637019373a3fb378f9f9f991dc6e5a5ad62790b29fba106190"
+  },
+  "scope": "Independent concurrent dashboard/history edits; no acceptance of these later UI changes by catalog R5",
+  "supplementalChecks": "post-history-change/checks.json",
+  "supplementalChecksAccepted": false,
+  "fullCheckoutAcceptance": false
+}

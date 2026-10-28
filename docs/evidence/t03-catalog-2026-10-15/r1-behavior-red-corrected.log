@@ -1,0 +1,562 @@
+ts-jest[config] (WARN) message TS151002: Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) message TS151002: Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+(node:5972) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+FAIL apps/api/src/resources/resource-catalog.spec.ts
+  ● Catálogo autorizado e público › lista somente recursos ativos concedidos à organização e omite dados internos
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 14
+    + Received  +  1
+
+    - Array [
+    -   Object {
+    -     "id": "cred-a",
+    -     "name": "Credencial A",
+    -     "status": "ACTIVE",
+    -     "type": "credential",
+    -   },
+    -   Object {
+    -     "id": "test-model",
+    -     "name": "Modelo sintético",
+    -     "status": "ACTIVE",
+    -     "type": "ai_model",
+    -   },
+    - ]
+    + Array []
+
+      20 |   it('lista somente recursos ativos concedidos à organização e omite dados internos', () => {
+      21 |     const catalog = make([credential, form, model]);
+    > 22 |     expect(catalog.list('alpha')).toEqual([
+         |                                   ^
+      23 |       { id: 'cred-a', type: 'credential', name: 'Credencial A', status: 'ACTIVE' },
+      24 |       { id: 'test-model', type: 'ai_model', name: 'Modelo sintético', status: 'ACTIVE' },
+      25 |     ]);
+
+      at Object.<anonymous> (src/resources/resource-catalog.spec.ts:22:35)
+
+  ● Catálogo autorizado e público › filtra tipo sem conceder recursos de outro tipo
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 8
+    + Received  + 1
+
+    - Array [
+    -   Object {
+    -     "id": "test-model",
+    -     "name": "Modelo sintético",
+    -     "status": "ACTIVE",
+    -     "type": "ai_model",
+    -   },
+    - ]
+    + Array []
+
+      28 |   });
+      29 |   it('filtra tipo sem conceder recursos de outro tipo', () => {
+    > 30 |     expect(make([credential, model]).list('alpha', 'ai_model')).toEqual([
+         |                                                                 ^
+      31 |       { id: 'test-model', type: 'ai_model', name: 'Modelo sintético', status: 'ACTIVE' },
+      32 |     ]);
+      33 |   });
+
+      at Object.<anonymous> (src/resources/resource-catalog.spec.ts:30:65)
+
+  ● Catálogo autorizado e público › não lista nem permite utilizar recurso próprio INACTIVE
+
+    expect(received).toMatchObject(expected)
+
+    - Expected  - 1
+    + Received  + 1
+
+      Object {
+    -   "code": "RESOURCE_INACTIVE",
+    +   "code": "RESOURCE_NOT_FOUND",
+      }
+
+      40 |     const catalog = make([{ ...credential, status }]);
+      41 |     expect(catalog.list('alpha')).toEqual([]);
+    > 42 |     expect(rejection(() => catalog.resolve('alpha', 'cred-a', 'credential'))).toMatchObject({ code: 'RESOURCE_INACTIVE' });
+         |                                                                               ^
+      43 |   });
+      44 |   it('recurso alheio, ausente, tipo errado e contexto inválido produzem a mesma resposta', () => {
+      45 |     const catalog = make([credential, form]);
+
+      at src/resources/resource-catalog.spec.ts:42:79
+
+  ● Catálogo autorizado e público › não lista nem permite utilizar recurso próprio REVOKED
+
+    expect(received).toMatchObject(expected)
+
+    - Expected  - 1
+    + Received  + 1
+
+      Object {
+    -   "code": "RESOURCE_INACTIVE",
+    +   "code": "RESOURCE_NOT_FOUND",
+      }
+
+      40 |     const catalog = make([{ ...credential, status }]);
+      41 |     expect(catalog.list('alpha')).toEqual([]);
+    > 42 |     expect(rejection(() => catalog.resolve('alpha', 'cred-a', 'credential'))).toMatchObject({ code: 'RESOURCE_INACTIVE' });
+         |                                                                               ^
+      43 |   });
+      44 |   it('recurso alheio, ausente, tipo errado e contexto inválido produzem a mesma resposta', () => {
+      45 |     const catalog = make([credential, form]);
+
+      at src/resources/resource-catalog.spec.ts:42:79
+
+  ● Catálogo autorizado e público › não lista com contexto inválido 
+
+    A operação deveria ser negada
+
+      14 |     return (error as BadRequestException).getResponse();
+      15 |   }
+    > 16 |   throw new Error('A operação deveria ser negada');
+         |         ^
+      17 | }
+      18 |
+      19 | describe('Catálogo autorizado e público', () => {
+
+      at rejection (src/resources/resource-catalog.spec.ts:16:9)
+      at src/resources/resource-catalog.spec.ts:53:12
+
+  ● Catálogo autorizado e público › não lista com contexto inválido  
+
+    A operação deveria ser negada
+
+      14 |     return (error as BadRequestException).getResponse();
+      15 |   }
+    > 16 |   throw new Error('A operação deveria ser negada');
+         |         ^
+      17 | }
+      18 |
+      19 | describe('Catálogo autorizado e público', () => {
+
+      at rejection (src/resources/resource-catalog.spec.ts:16:9)
+      at src/resources/resource-catalog.spec.ts:53:12
+
+  ● Catálogo autorizado e público › não lista com contexto inválido null
+
+    A operação deveria ser negada
+
+      14 |     return (error as BadRequestException).getResponse();
+      15 |   }
+    > 16 |   throw new Error('A operação deveria ser negada');
+         |         ^
+      17 | }
+      18 |
+      19 | describe('Catálogo autorizado e público', () => {
+
+      at rejection (src/resources/resource-catalog.spec.ts:16:9)
+      at src/resources/resource-catalog.spec.ts:53:12
+
+  ● Catálogo autorizado e público › não lista com contexto inválido undefined
+
+    A operação deveria ser negada
+
+      14 |     return (error as BadRequestException).getResponse();
+      15 |   }
+    > 16 |   throw new Error('A operação deveria ser negada');
+         |         ^
+      17 | }
+      18 |
+      19 | describe('Catálogo autorizado e público', () => {
+
+      at rejection (src/resources/resource-catalog.spec.ts:16:9)
+      at src/resources/resource-catalog.spec.ts:53:12
+
+  ● Catálogo autorizado e público › compartilha modelo somente por concessão explícita e mantém pendentes privados
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 3
+    + Received  + 1
+
+    - Array [
+    -   "test-model",
+    - ]
+    + Array []
+
+      59 |       { ...model, id: 'not-approved', approval: 'PENDING' },
+      60 |     ]);
+    > 61 |     expect(catalog.list('beta').map((item) => item.id)).toEqual(['test-model']);
+         |                                                         ^
+      62 |     expect(catalog.list('gamma')).toEqual([]);
+      63 |     for (const id of ['no-grants', 'not-approved']) {
+      64 |       expect(rejection(() => catalog.resolve('alpha', id, 'ai_model'))).toMatchObject({ code: 'RESOURCE_NOT_FOUND' });
+
+      at Object.<anonymous> (src/resources/resource-catalog.spec.ts:61:57)
+
+  ● Catálogo autorizado e público › mapeamento explícito do alias exige aprovação e concessão
+
+    BadRequestException: Recurso não encontrado para esta organização.
+
+      16 |
+      17 |   resolve(_orgId: string, _id: string, _type: ResourceType): PublicResource {
+    > 18 |     throw new BadRequestException({ code: 'RESOURCE_NOT_FOUND', message: 'Recurso não encontrado para esta organização.' });
+         |           ^
+      19 |   }
+      20 | }
+      21 |
+
+      at ConfiguredResourceCatalog.resolve (src/resources/resource-catalog.ts:18:11)
+      at Object.<anonymous> (src/resources/resource-catalog.spec.ts:69:20)
+
+  ● Catálogo autorizado e público › não permite que mutações de entrada ou retorno ampliem concessões
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 8
+    + Received  + 1
+
+    - Array [
+    -   Object {
+    -     "id": "test-model",
+    -     "name": "Modelo sintético",
+    -     "status": "ACTIVE",
+    -     "type": "ai_model",
+    -   },
+    - ]
+    + Array []
+
+      79 |     try { (list[0] as any).name = 'mutated'; } catch {}
+      80 |     try { (list as any).push({ ...credential, id: 'injected' }); } catch {}
+    > 81 |     expect(catalog.list('alpha')).toEqual([{ id: 'test-model', type: 'ai_model', name: 'Modelo sintético', status: 'ACTIVE' }]);
+         |                                   ^
+      82 |   });
+      83 | });
+      84 |
+
+      at Object.<anonymous> (src/resources/resource-catalog.spec.ts:81:35)
+
+  ● Carga de configuração nega metadados inválidos › recusa configuração inválida sem revelar seu conteúdo 0
+
+    expect(received).toThrow(expected)
+
+    Expected substring: "Configuração de catálogo inválida"
+
+    Received function did not throw
+
+      94 |     [{ ...model, id: 'modelo-a-aprovar' }], [credential, { ...form, id: credential.id }],
+      95 |   ])('recusa configuração inválida sem revelar seu conteúdo %#', (...entries) => {
+    > 96 |     expect(() => make(entries)).toThrow('Configuração de catálogo inválida');
+         |                                 ^
+      97 |   });
+      98 | });
+      99 |
+
+      at src/resources/resource-catalog.spec.ts:96:33
+
+  ● Carga de configuração nega metadados inválidos › recusa configuração inválida sem revelar seu conteúdo 1
+
+    expect(received).toThrow(expected)
+
+    Expected substring: "Configuração de catálogo inválida"
+
+    Received function did not throw
+
+      94 |     [{ ...model, id: 'modelo-a-aprovar' }], [credential, { ...form, id: credential.id }],
+      95 |   ])('recusa configuração inválida sem revelar seu conteúdo %#', (...entries) => {
+    > 96 |     expect(() => make(entries)).toThrow('Configuração de catálogo inválida');
+         |                                 ^
+      97 |   });
+      98 | });
+      99 |
+
+      at src/resources/resource-catalog.spec.ts:96:33
+
+  ● Carga de configuração nega metadados inválidos › recusa configuração inválida sem revelar seu conteúdo 2
+
+    expect(received).toThrow(expected)
+
+    Expected substring: "Configuração de catálogo inválida"
+
+    Received function did not throw
+
+      94 |     [{ ...model, id: 'modelo-a-aprovar' }], [credential, { ...form, id: credential.id }],
+      95 |   ])('recusa configuração inválida sem revelar seu conteúdo %#', (...entries) => {
+    > 96 |     expect(() => make(entries)).toThrow('Configuração de catálogo inválida');
+         |                                 ^
+      97 |   });
+      98 | });
+      99 |
+
+      at src/resources/resource-catalog.spec.ts:96:33
+
+  ● Carga de configuração nega metadados inválidos › recusa configuração inválida sem revelar seu conteúdo 3
+
+    expect(received).toThrow(expected)
+
+    Expected substring: "Configuração de catálogo inválida"
+
+    Received function did not throw
+
+      94 |     [{ ...model, id: 'modelo-a-aprovar' }], [credential, { ...form, id: credential.id }],
+      95 |   ])('recusa configuração inválida sem revelar seu conteúdo %#', (...entries) => {
+    > 96 |     expect(() => make(entries)).toThrow('Configuração de catálogo inválida');
+         |                                 ^
+      97 |   });
+      98 | });
+      99 |
+
+      at src/resources/resource-catalog.spec.ts:96:33
+
+  ● Carga de configuração nega metadados inválidos › recusa configuração inválida sem revelar seu conteúdo 4
+
+    expect(received).toThrow(expected)
+
+    Expected substring: "Configuração de catálogo inválida"
+
+    Received function did not throw
+
+      94 |     [{ ...model, id: 'modelo-a-aprovar' }], [credential, { ...form, id: credential.id }],
+      95 |   ])('recusa configuração inválida sem revelar seu conteúdo %#', (...entries) => {
+    > 96 |     expect(() => make(entries)).toThrow('Configuração de catálogo inválida');
+         |                                 ^
+      97 |   });
+      98 | });
+      99 |
+
+      at src/resources/resource-catalog.spec.ts:96:33
+
+  ● Carga de configuração nega metadados inválidos › recusa configuração inválida sem revelar seu conteúdo 5
+
+    expect(received).toThrow(expected)
+
+    Expected substring: "Configuração de catálogo inválida"
+
+    Received function did not throw
+
+      94 |     [{ ...model, id: 'modelo-a-aprovar' }], [credential, { ...form, id: credential.id }],
+      95 |   ])('recusa configuração inválida sem revelar seu conteúdo %#', (...entries) => {
+    > 96 |     expect(() => make(entries)).toThrow('Configuração de catálogo inválida');
+         |                                 ^
+      97 |   });
+      98 | });
+      99 |
+
+      at src/resources/resource-catalog.spec.ts:96:33
+
+  ● Carga de configuração nega metadados inválidos › recusa configuração inválida sem revelar seu conteúdo 6
+
+    expect(received).toThrow(expected)
+
+    Expected substring: "Configuração de catálogo inválida"
+
+    Received function did not throw
+
+      94 |     [{ ...model, id: 'modelo-a-aprovar' }], [credential, { ...form, id: credential.id }],
+      95 |   ])('recusa configuração inválida sem revelar seu conteúdo %#', (...entries) => {
+    > 96 |     expect(() => make(entries)).toThrow('Configuração de catálogo inválida');
+         |                                 ^
+      97 |   });
+      98 | });
+      99 |
+
+      at src/resources/resource-catalog.spec.ts:96:33
+
+  ● Carga de configuração nega metadados inválidos › recusa configuração inválida sem revelar seu conteúdo 7
+
+    expect(received).toThrow(expected)
+
+    Expected substring: "Configuração de catálogo inválida"
+
+    Received function did not throw
+
+      94 |     [{ ...model, id: 'modelo-a-aprovar' }], [credential, { ...form, id: credential.id }],
+      95 |   ])('recusa configuração inválida sem revelar seu conteúdo %#', (...entries) => {
+    > 96 |     expect(() => make(entries)).toThrow('Configuração de catálogo inválida');
+         |                                 ^
+      97 |   });
+      98 | });
+      99 |
+
+      at src/resources/resource-catalog.spec.ts:96:33
+
+  ● Carga de configuração nega metadados inválidos › recusa configuração inválida sem revelar seu conteúdo 8
+
+    expect(received).toThrow(expected)
+
+    Expected substring: "Configuração de catálogo inválida"
+
+    Received function did not throw
+
+      94 |     [{ ...model, id: 'modelo-a-aprovar' }], [credential, { ...form, id: credential.id }],
+      95 |   ])('recusa configuração inválida sem revelar seu conteúdo %#', (...entries) => {
+    > 96 |     expect(() => make(entries)).toThrow('Configuração de catálogo inválida');
+         |                                 ^
+      97 |   });
+      98 | });
+      99 |
+
+      at src/resources/resource-catalog.spec.ts:96:33
+
+  ● Carga de configuração nega metadados inválidos › recusa configuração inválida sem revelar seu conteúdo 9
+
+    expect(received).toThrow(expected)
+
+    Expected substring: "Configuração de catálogo inválida"
+
+    Received function did not throw
+
+      94 |     [{ ...model, id: 'modelo-a-aprovar' }], [credential, { ...form, id: credential.id }],
+      95 |   ])('recusa configuração inválida sem revelar seu conteúdo %#', (...entries) => {
+    > 96 |     expect(() => make(entries)).toThrow('Configuração de catálogo inválida');
+         |                                 ^
+      97 |   });
+      98 | });
+      99 |
+
+      at src/resources/resource-catalog.spec.ts:96:33
+
+  ● Carga de configuração nega metadados inválidos › recusa configuração inválida sem revelar seu conteúdo 10
+
+    expect(received).toThrow(expected)
+
+    Expected substring: "Configuração de catálogo inválida"
+
+    Received function did not throw
+
+      94 |     [{ ...model, id: 'modelo-a-aprovar' }], [credential, { ...form, id: credential.id }],
+      95 |   ])('recusa configuração inválida sem revelar seu conteúdo %#', (...entries) => {
+    > 96 |     expect(() => make(entries)).toThrow('Configuração de catálogo inválida');
+         |                                 ^
+      97 |   });
+      98 | });
+      99 |
+
+      at src/resources/resource-catalog.spec.ts:96:33
+
+  ● Carga de configuração nega metadados inválidos › recusa configuração inválida sem revelar seu conteúdo 11
+
+    expect(received).toThrow(expected)
+
+    Expected substring: "Configuração de catálogo inválida"
+
+    Received function did not throw
+
+      94 |     [{ ...model, id: 'modelo-a-aprovar' }], [credential, { ...form, id: credential.id }],
+      95 |   ])('recusa configuração inválida sem revelar seu conteúdo %#', (...entries) => {
+    > 96 |     expect(() => make(entries)).toThrow('Configuração de catálogo inválida');
+         |                                 ^
+      97 |   });
+      98 | });
+      99 |
+
+      at src/resources/resource-catalog.spec.ts:96:33
+
+  ● Carga de configuração nega metadados inválidos › recusa configuração inválida sem revelar seu conteúdo 12
+
+    expect(received).toThrow(expected)
+
+    Expected substring: "Configuração de catálogo inválida"
+
+    Received function did not throw
+
+      94 |     [{ ...model, id: 'modelo-a-aprovar' }], [credential, { ...form, id: credential.id }],
+      95 |   ])('recusa configuração inválida sem revelar seu conteúdo %#', (...entries) => {
+    > 96 |     expect(() => make(entries)).toThrow('Configuração de catálogo inválida');
+         |                                 ^
+      97 |   });
+      98 | });
+      99 |
+
+      at src/resources/resource-catalog.spec.ts:96:33
+
+  ● Carga de configuração nega metadados inválidos › recusa configuração inválida sem revelar seu conteúdo 13
+
+    expect(received).toThrow(expected)
+
+    Expected substring: "Configuração de catálogo inválida"
+
+    Received function did not throw
+
+      94 |     [{ ...model, id: 'modelo-a-aprovar' }], [credential, { ...form, id: credential.id }],
+      95 |   ])('recusa configuração inválida sem revelar seu conteúdo %#', (...entries) => {
+    > 96 |     expect(() => make(entries)).toThrow('Configuração de catálogo inválida');
+         |                                 ^
+      97 |   });
+      98 | });
+      99 |
+
+      at src/resources/resource-catalog.spec.ts:96:33
+
+  ● Carga de configuração nega metadados inválidos › recusa configuração inválida sem revelar seu conteúdo 14
+
+    expect(received).toThrow(expected)
+
+    Expected substring: "Configuração de catálogo inválida"
+
+    Received function did not throw
+
+      94 |     [{ ...model, id: 'modelo-a-aprovar' }], [credential, { ...form, id: credential.id }],
+      95 |   ])('recusa configuração inválida sem revelar seu conteúdo %#', (...entries) => {
+    > 96 |     expect(() => make(entries)).toThrow('Configuração de catálogo inválida');
+         |                                 ^
+      97 |   });
+      98 | });
+      99 |
+
+      at src/resources/resource-catalog.spec.ts:96:33
+
+  ● Carga de configuração nega metadados inválidos › recusa configuração inválida sem revelar seu conteúdo 15
+
+    expect(received).toThrow(expected)
+
+    Expected substring: "Configuração de catálogo inválida"
+
+    Received function did not throw
+
+      94 |     [{ ...model, id: 'modelo-a-aprovar' }], [credential, { ...form, id: credential.id }],
+      95 |   ])('recusa configuração inválida sem revelar seu conteúdo %#', (...entries) => {
+    > 96 |     expect(() => make(entries)).toThrow('Configuração de catálogo inválida');
+         |                                 ^
+      97 |   });
+      98 | });
+      99 |
+
+      at src/resources/resource-catalog.spec.ts:96:33
+
+  ● Carga de configuração nega metadados inválidos › recusa configuração inválida sem revelar seu conteúdo 16
+
+    expect(received).toThrow(expected)
+
+    Expected substring: "Configuração de catálogo inválida"
+
+    Received function did not throw
+
+      94 |     [{ ...model, id: 'modelo-a-aprovar' }], [credential, { ...form, id: credential.id }],
+      95 |   ])('recusa configuração inválida sem revelar seu conteúdo %#', (...entries) => {
+    > 96 |     expect(() => make(entries)).toThrow('Configuração de catálogo inválida');
+         |                                 ^
+      97 |   });
+      98 | });
+      99 |
+
+      at src/resources/resource-catalog.spec.ts:96:33
+
+  ● Carga de configuração nega metadados inválidos › recusa configuração inválida sem revelar seu conteúdo 17
+
+    expect(received).toThrow(expected)
+
+    Expected substring: "Configuração de catálogo inválida"
+
+    Received function did not throw
+
+      94 |     [{ ...model, id: 'modelo-a-aprovar' }], [credential, { ...form, id: credential.id }],
+      95 |   ])('recusa configuração inválida sem revelar seu conteúdo %#', (...entries) => {
+    > 96 |     expect(() => make(entries)).toThrow('Configuração de catálogo inválida');
+         |                                 ^
+      97 |   });
+      98 | });
+      99 |
+
+      at src/resources/resource-catalog.spec.ts:96:33
+
+Test Suites: 1 failed, 1 total
+Tests:       29 failed, 2 passed, 31 total
+Snapshots:   0 total
+Time:        3.728 s
+Ran all test suites within paths "apps/api/src/resources/resource-catalog.spec.ts".

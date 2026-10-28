@@ -1,0 +1,80 @@
+(node:3436) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ configuração pendente impede salvar uma definição anterior à edição do usuário (71.3805ms)
+(node:3436) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+✔ resposta de salvamento obsoleta não substitui novas alterações nem escreve feedback de erro (30.3138ms)
+✔ parâmetros de e-mail editados preservam IDs, referências e campos não alterados (52.7856ms)
+✔ valores JSON da condição preservam número, array e booleano (0.4591ms)
+✔ JSON inválido e campos desconhecidos não substituem a configuração (0.8653ms)
+✔ aliases existentes de mensagem e mapeamento são preservados ao editar outro campo (0.3505ms)
+✔ draft incompleto continua editável e ausência de opcionais não injeta defaults (0.2179ms)
+✔ edições de parâmetros/posições/conexões são negadas em REVIEWED (0.601ms)
+✔ edições de parâmetros/posições/conexões são negadas em PUBLISHED (0.1394ms)
+✔ edições de parâmetros/posições/conexões são negadas em ARCHIVED (0.1552ms)
+✔ movimentação persiste coordenadas finitas sem mudar configuração ou arestas (0.2982ms)
+✔ conexões condicionais preservam os handles usados pelo motor (0.2292ms)
+✔ ciclo, auto-conexão, nó ausente e conexão repetida são recusados antes de mudar o grafo (0.2901ms)
+✔ remoção de conexão preserva nós e demais IDs, sem resolver convergências (0.1412ms)
+✔ formulários abrangem os seis tipos e conservam ausência versus valores JSON (0.2109ms)
+✔ arestas exibidas no canvas mantêm sourceHandle e targetHandle sem normalização (15.395ms)
+✔ edição aplicada marca dirty, avança revisão e invalida resultado anterior (26.992ms)
+✔ edição não altera o workflow durante saving (17.1745ms)
+✔ edição não altera o workflow durante reviewing (16.6519ms)
+✔ edição não altera o workflow durante publishing (15.0637ms)
+✔ edição não altera o workflow durante deactivating (16.039ms)
+✔ edição não altera o workflow durante simulating (14.9839ms)
+✔ edição não altera o workflow durante generatingAi (16.9095ms)
+✔ duas movimentações antes de renderizar preservam as duas alterações (12.7184ms)
+✔ edição com contexto Alpha→Beta→Alpha anterior é descartada (20.9959ms)
+✔ rascunho local de parâmetros impede trocar etapa, mover ou aplicar conexões (12.1351ms)
+✔ conectar e remover pela interface altera somente as arestas pertinentes (11.2091ms)
+✔ editar e salvar no mesmo snapshot usa a definição recente da referência (12.3967ms)
+✔ edição antes de render bloqueia simulação, revisão e ativação do snapshot antigo (15.998ms)
+✔ proposta aplicada e editada antes de render mantém os nós da proposta (22.4275ms)
+✔ REVIEWED recebido impede editar antes de renderizar o novo estado (14.0036ms)
+✔ PUBLISHED recebido impede editar antes de renderizar o novo estado (11.1502ms)
+✔ falha de carregamento do contexto anterior não altera erro ou loading atuais (12.7366ms)
+✔ handles padrão e nomeado default têm chaves distintas no componente real (35.8488ms)
+✔ efeito real do nó solicita atualização dos bounds dos handles após render (7.5608ms)
+✔ formulário real de trigger_form renderiza labels, valores escapados e bloqueio de edição (31.9811ms)
+✔ formulário real de ai_analyze_intent renderiza labels, valores escapados e bloqueio de edição (11.1842ms)
+✔ formulário real de internal_record renderiza labels, valores escapados e bloqueio de edição (10.4001ms)
+✔ formulário real de send_email renderiza labels, valores escapados e bloqueio de edição (9.3439ms)
+✔ formulário real de condition renderiza labels, valores escapados e bloqueio de edição (22.5471ms)
+✔ formulário real de http_request renderiza labels, valores escapados e bloqueio de edição (9.5267ms)
+✔ addWorkflowNode: adiciona nó do catálogo com defaults e rejeita fora de DRAFT (0.5897ms)
+✔ removeWorkflowNode: remove nó e cascateia remoção de arestas conectadas (0.2445ms)
+✔ handleAddNode: adiciona nó pelo editor e atualiza seleção e estado dirty (16.9736ms)
+✔ handleRemoveNode: remove nó pelo editor e limpa seleção se era o nó selecionado (13.2978ms)
+✔ gatilho de agendamento: troca explícita preserva ID, arestas e referências para revisão (0.3425ms)
+✔ agendamento pode ser o primeiro e único gatilho em um rascunho vazio (0.1119ms)
+✔ trigger_form: gatilho sem aresta de entrada não oferece conector de entrada (8.4932ms)
+✖ trigger_schedule: gatilho sem aresta de entrada não oferece conector de entrada (9.5141ms)
+✔ gatilho conserva indicação de aresta legada inválida para revisão explícita (7.4823ms)
+ℹ tests 50
+ℹ suites 0
+ℹ pass 49
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 913.965
+
+✖ failing tests:
+
+test at tests\regression\workflow-editing.test.mjs:420:3
+✖ trigger_schedule: gatilho sem aresta de entrada não oferece conector de entrada (9.5141ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:424:12)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

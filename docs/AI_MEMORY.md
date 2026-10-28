@@ -1,10 +1,10 @@
 # FlowMind AI — AI MEMORY
 
-Verificado em 12/10/2026, a pedido do usuário para conferir a conexão e transferir a memória do projeto.
+Histórico de conexão/transferências a pedido do usuário. Atualização em 15/10/2026: o servidor recusou a conexão; o checkpoint local atual ainda não foi transferido.
 
 ## Conexão e escopo
 
-- Servidor MCP `ai-memory`, versão 2.6.3, respondeu em `http://127.0.0.1:49374/mcp`.
+- Última conexão comprovada: servidor MCP `ai-memory`, versão 2.6.3, em `http://127.0.0.1:49374/mcp`. A consulta atual de `memory_status`, no mesmo escopo, falhou com `ConnectionRefusedError`. Não afirmar conexão ativa ou atualização atual.
 - Configuração global existente conferida em leitura; marcador existente `.ai-memory.toml` preservado.
 - Escopo explícito: `workspace=flowmind-ai`, `project=flowmind-ai`. Não usar o último projeto ativo do servidor nem gravar em escopo global.
 - O workspace ainda não tinha cadastro. A primeira gravação criou o cadastro correspondente ao marcador; não foi encontrado contexto anterior do FlowMind na busca global.
@@ -31,7 +31,7 @@ O checkpoint T06 inicialmente chegou a nove páginas e 21 versões, com leitura 
 
 Outra execução substituiu memória/plano após a primeira cópia. Os cabeçalhos agora distinguem o checkpoint comprovado de relatos de conclusão integrada; as cópias qualificadas foram lidas de volta. A escolha da sessão coordenadora foi solicitada ao usuário. Não tratar relatos paralelos como aprovação ou evidência de integração.
 
-O contexto atual registra T04/T05/T10 com aceite parcial e autenticação vigente em T06 como próxima ação local. Os 101 testes Jest e 50 regressões correspondem ao snapshot verificado; alterações paralelas posteriores exigem nova validação integrada.
+O contexto transferido anteriormente continha checkpoints T04/T06. É uma cópia histórica; o estado canônico atual, C03/container/storage, está no Obsidian. Não usar os números antigos como evidência das fontes atuais.
 
 Cada corpo foi lido novamente e comparado com o enviado. O servidor sanitizou uma única linha da fixture Clerk na validação R05; a nota original continua intacta. [Recibos e hashes](AI_MEMORY_TRANSFER_2026-10-12.json).
 
@@ -52,6 +52,9 @@ Nesta sessão as ferramentas não apareceram diretamente no catálogo do agente;
 
 Obsidian permanece a fonte canônica e continua obrigatório nos eventos de AGENTS.md. Esta é uma cópia de contexto, não uma sincronização contínua do vault. O status após a importação apresentou zero sessões/observações: captura automática não comprovada.
 
-## Continuidade
+## Continuidade e sincronização pendente
 
-Correção local de sessão/membership/RBAC entregue em T06; JWT, Clerk/PostgreSQL, container e HTTP reais seguem pendentes. Próxima ação local: C03 e validação antes de efeitos. Testes foram executados antes da transferência; a cópia de memória não executa testes. Consultar Obsidian e conferir fontes atuais antes de declarar aceite. Zero sessões/observações no status: captura automática não demonstrada.
+- Canônico: [MEMORIA](MEMORIA.md), [plano](../plan.md), [resultado T03-S3/A](VALIDATION_T03_CATALOG_2026-10-15.md). R1–R5 revalidadas localmente na retomada, com dez comandos aprovados e fontes estáveis. As páginas preservam o histórico de falhas e o novo checkpoint; A não aprova S2b, modelo comercial, cofre ou integração real.
+- Última consulta em 15/10: memory_status request 136 no escopo FlowMind, ConnectionRefusedError; sem gravação. [Recibo](evidence/t03-catalog-resume-2026-10-15/ai-memory-status.json). Captura automática não demonstrada; dez páginas/24 versões são histórico.
+- [33 páginas pendentes](AI_MEMORY_SYNC_PENDING_2026-10-12.json), incluindo contrato aprovado, resultado local e relatos concorrentes qualificados. Manifesto enumera hashes/fontes; não é transferência.
+- Preservar metadata e usar somente workspace=flowmind-ai, project=flowmind-ai. Ler corpos de volta e conferir hashes/busca/status. Não instalar/iniciar serviço nem alterar configuração para contornar a recusa.

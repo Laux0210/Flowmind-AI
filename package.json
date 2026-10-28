@@ -10,10 +10,12 @@
   "scripts": {
     "dev:web": "npm run dev --workspace @flowmind/web",
     "dev:api": "npm run start:dev --workspace @flowmind/api",
+    "dev:worker": "npm run dev:worker --workspace @flowmind/api",
     "build": "node scripts/run-checks.mjs build",
     "typecheck": "node scripts/run-checks.mjs typecheck",
     "test": "node scripts/run-checks.mjs test",
-    "test:regression": "node --experimental-vm-modules --test tests/regression/security.test.mjs tests/regression/simulation.test.mjs tests/regression/generation-client.test.mjs tests/regression/persistence.test.mjs tests/regression/toolchain.test.mjs tests/regression/ui-workflow.test.mjs tests/regression/triggers.test.mjs tests/regression/executions.test.mjs tests/regression/full-journey.test.mjs",
+    "test:regression": "node --experimental-vm-modules --test tests/regression/security.test.mjs tests/regression/simulation.test.mjs tests/regression/generation-client.test.mjs tests/regression/persistence.test.mjs tests/regression/toolchain.test.mjs tests/regression/ui-workflow.test.mjs tests/regression/triggers.test.mjs tests/regression/executions.test.mjs tests/regression/full-journey.test.mjs tests/regression/ai-evaluation.test.mjs tests/regression/triggers-email.test.mjs tests/regression/ai-generation-usage.test.mjs tests/regression/workflow-editing.test.mjs tests/regression/resource-catalog.test.mjs tests/regression/schedule-panel.test.mjs tests/regression/webhook-panel.test.mjs",
+    "eval:offline": "npm run build --workspace @flowmind/contracts && npm run build --workspace @flowmind/api && node scripts/evaluate-ai-offline.mjs",
     "lint": "node scripts/lint.mjs",
     "check:api-artifact": "node scripts/check-api-artifact.mjs",
     "check:operation": "node scripts/verify-operation.mjs",
@@ -23,5 +25,10 @@
   },
   "devDependencies": {
     "typescript": "6.0.3"
+  },
+  "overrides": {
+    "deepmerge-ts": "8.0.2",
+    "mysql2": "3.24.5",
+    "postcss-selector-parser": "7.1.7"
   }
 }

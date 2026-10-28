@@ -1,0 +1,22 @@
+{
+  "recordedAtUtc": "2026-10-13T23:14:47.341764+00:00",
+  "reviewer": "/root/review_t08_editor",
+  "mode": "independent_read_only_no_test_rerun",
+  "scope": "SEC05 tenant denial and public error equality; no acceptance of models/architecture",
+  "materialOpenFindings": [],
+  "evidenceRead": [
+    "45 behavior failures then 136/136",
+    "two native failures then 7/7"
+  ],
+  "limits": [
+    "synthetic identity/storage; no real services",
+    "orgId canonical format and timing equality not certified"
+  ],
+  "sourceHashes": {
+    "apps/api/src/engine/resource-resolver.ts": "cdbd71167a2bf86bfd16e3b033925aa3906693d81ba695052dba6c5ec1285794",
+    "apps/api/src/engine/resource-tenant-security.spec.ts": "4a27f577d6896637d48f74042bc47c9be6817cff2d3a2cbfaecec0981c7ef8ba",
+    "apps/api/src/engine/resource-resolver.spec.ts": "ba64dfb964a774b37876056608e795888129b32f791f14a7c633f93e387dfd93",
+    "apps/api/src/auth/workflow-container.spec.ts": "d5f56751893fbab15bb4bfeaae01e6625a070283bd9c8cffeda192c6068c9946",
+    "tests/regression/triggers-email.test.mjs": "c92f0fa5f606a4582c303a56ed5de009ed47a6258c1371fb8a598aa9f016d6f8"
+  }
+}

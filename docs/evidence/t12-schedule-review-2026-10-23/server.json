@@ -1,0 +1,10 @@
+{
+  "origin": "http://127.0.0.1:51400",
+  "pid": 27188,
+  "output": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-schedule-qa-VFjBUj",
+  "sourceHashes": {
+    "apps/web/src/components/workflows/schedule-panel.tsx": "69c508cd28acfdb8235fd818e4d82e0c34108478d2725fce014fe5dc02137363",
+    "apps/web/src/lib/api-client.ts": "81249e37089c35d270d1cdeb4b58a2609d1e3e69e98597a928c42d7559cc8628"
+  },
+  "scope": "Real SchedulePanel and ApiClient; synthetic auth/HTTP state, A response held for stale-context reproduction"
+}

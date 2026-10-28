@@ -1,0 +1,8 @@
+{
+  "installed": "7.10.0",
+  "candidateInSameMajor": "7.10.0",
+  "candidateCliMysql2": "3.15.3",
+  "candidateConfig": "7.10.0",
+  "candidateDeepmergeTs": "7.1.5",
+  "scope": "metadata_only_no_install_or_execution_of_packages"
+}

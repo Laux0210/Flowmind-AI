@@ -1,3 +1,4 @@
+import { createTestResourceResolver } from '../../test/resource-fixtures';
 import { WorkflowEngineService } from './workflow-engine.service';
 import type { WorkflowDefinition, WorkflowNode, WorkflowEdge } from '@flowmind/contracts';
 import { WORKFLOW_SCHEMA_VERSION } from '@flowmind/contracts';
@@ -6,7 +7,7 @@ describe('WorkflowEngineService (DAG & Simulation Engine)', () => {
   let engine: WorkflowEngineService;
 
   beforeEach(() => {
-    engine = new WorkflowEngineService();
+    engine = new WorkflowEngineService(createTestResourceResolver());
   });
 
   function createValidMvpWorkflow(): WorkflowDefinition {
@@ -166,7 +167,7 @@ describe('WorkflowEngineService (DAG & Simulation Engine)', () => {
     const triggerNode = workflow.nodes.find((n) => n.id === 'node_trigger')!;
     triggerNode.config = {
       requiredFields: ['name', 'email', 'message'],
-      invalidRef: '{{node_ai.summary}}',
+      formId: '{{node_ai.summary}}',
     };
 
     await expect(
@@ -199,7 +200,7 @@ describe('WorkflowEngineService (DAG & Simulation Engine)', () => {
         type: 'send_email',
         label: 'E-mail VIP',
         position: { x: 400, y: -100 },
-        config: { to: 'vip@example.test', subject: 'VIP' },
+        config: { to: 'vip@example.test', subject: 'VIP', bodyTemplate: 'Fixture do ramo VIP' },
       },
     ];
 
@@ -259,7 +260,7 @@ describe('WorkflowEngineService (DAG & Simulation Engine)', () => {
         type: 'send_email',
         label: 'Filho Direto',
         position: { x: 400, y: 0 },
-        config: { to: 'vip@example.test', subject: 'VIP 1' },
+        config: { to: 'vip@example.test', subject: 'VIP 1', bodyTemplate: 'Fixture do ramo VIP' },
       },
       {
         id: 'step_grandchild_1',
@@ -329,7 +330,7 @@ describe('WorkflowEngineService (DAG & Simulation Engine)', () => {
         type: 'send_email',
         label: 'E-mail Ramo VIP',
         position: { x: 400, y: -100 },
-        config: { to: 'vip-team@example.test', subject: 'Novo VIP' },
+        config: { to: 'vip-team@example.test', subject: 'Novo VIP', bodyTemplate: 'Fixture do ramo VIP' },
       },
       {
         id: 'branch_comum',

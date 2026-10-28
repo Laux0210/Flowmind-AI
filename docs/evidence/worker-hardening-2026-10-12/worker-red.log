@@ -1,0 +1,252 @@
+
+> @flowmind/api@0.1.0 test
+> node --experimental-vm-modules ../../node_modules/jest/bin/jest.js --runInBand --runTestsByPath src/worker/worker.service.spec.ts src/worker/worker-bootstrap.spec.ts
+
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151002: [0mUsing hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+FAIL src/worker/worker-bootstrap.spec.ts
+  ● Test suite failed to run
+
+    [96msrc/worker/worker-bootstrap.spec.ts[0m:[93m7[0m:[93m96[0m - [91merror[0m[90m TS2769: [0mNo overload matches this call.
+      The last overload gave the following error.
+        Argument of type 'string' is not assignable to parameter of type 'Signals'.
+
+    [7m7[0m     const listeners = new Map(['SIGINT', 'SIGTERM'].map((signal) => [signal, process.listeners(signal)]));
+    [7m [0m [91m                                                                                               ~~~~~~[0m
+
+      [96m../../node_modules/@types/node/process.d.ts[0m:[93m2090[0m:[93m17[0m
+        [7m2090[0m                 listeners(event: Signals): SignalsListener[];
+        [7m    [0m [96m                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+        The last overload is declared here.
+    [96msrc/worker/worker-bootstrap.spec.ts[0m:[93m17[0m:[93m34[0m - [91merror[0m[90m TS2769: [0mNo overload matches this call.
+      The last overload gave the following error.
+        Argument of type 'string' is not assignable to parameter of type 'Signals'.
+
+    [7m17[0m         expect(process.listeners(signal)).toEqual(initial);
+    [7m  [0m [91m                                 ~~~~~~[0m
+
+      [96m../../node_modules/@types/node/process.d.ts[0m:[93m2090[0m:[93m17[0m
+        [7m2090[0m                 listeners(event: Signals): SignalsListener[];
+        [7m    [0m [96m                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+        The last overload is declared here.
+    [96msrc/worker/worker-bootstrap.spec.ts[0m:[93m21[0m:[93m49[0m - [91merror[0m[90m TS2769: [0mNo overload matches this call.
+      The last overload gave the following error.
+        Argument of type 'string' is not assignable to parameter of type 'Signals'.
+
+    [7m21[0m         for (const handler of process.listeners(signal)) {
+    [7m  [0m [91m                                                ~~~~~~[0m
+
+      [96m../../node_modules/@types/node/process.d.ts[0m:[93m2090[0m:[93m17[0m
+        [7m2090[0m                 listeners(event: Signals): SignalsListener[];
+        [7m    [0m [96m                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+        The last overload is declared here.
+
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151002: [0mUsing hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+[Nest] 21964  - 12/10/2026, 22:32:45     LOG [WorkerService] Worker conectado às filas BullMQ/Redis em redis-fixture.invalid:6379. Pronto para processar jobs.
+[Nest] 21964  - 12/10/2026, 22:32:45    WARN [WorkerService] REDIS_HOST não configurado. Worker inicializado em modo standby defensivo.
+[Nest] 21964  - 12/10/2026, 22:32:45     LOG [WorkerService] Processando job [ID: job_123] para workflow [ID: wf_worker_1] org [org_test]
+[Nest] 21964  - 12/10/2026, 22:32:45     LOG [WorkerService] Job [job_123] concluído com status COMPLETED [ExecutionId: exec_recorded_job_1]
+[Nest] 21964  - 12/10/2026, 22:32:45     LOG [WorkerService] Processando job [ID: job_404] para workflow [ID: wf_missing] org [org_test]
+[Nest] 21964  - 12/10/2026, 22:32:45   ERROR [WorkerService] Workflow não encontrado: wf_missing
+[Nest] 21964  - 12/10/2026, 22:32:45     LOG [WorkerService] Processando job [ID: job_live] para workflow [ID: wf_worker_1] org [org_test]
+[Nest] 21964  - 12/10/2026, 22:32:45     LOG [WorkerService] Job [job_live] concluído com status COMPLETED [ExecutionId: exec_recorded_job_1]
+[Nest] 21964  - 12/10/2026, 22:32:45     LOG [WorkerService] Processando job [ID: undefined] para workflow [ID: undefined] org [undefined]
+[Nest] 21964  - 12/10/2026, 22:32:45     LOG [WorkerService] Job [undefined] concluído com status COMPLETED [ExecutionId: exec_recorded_job_1]
+[Nest] 21964  - 12/10/2026, 22:32:45     LOG [WorkerService] Processando job [ID: undefined] para workflow [ID: undefined] org [undefined]
+[Nest] 21964  - 12/10/2026, 22:32:45     LOG [WorkerService] Job [undefined] concluído com status COMPLETED [ExecutionId: exec_recorded_job_1]
+[Nest] 21964  - 12/10/2026, 22:32:45     LOG [WorkerService] Processando job [ID: job_invalid] para workflow [ID: wf_worker_1] org [org_test]
+[Nest] 21964  - 12/10/2026, 22:32:45     LOG [WorkerService] Job [job_invalid] concluído com status COMPLETED [ExecutionId: exec_recorded_job_1]
+[Nest] 21964  - 12/10/2026, 22:32:45     LOG [WorkerService] Processando job [ID: job_invalid] para workflow [ID: wf_worker_1] org [org_test]
+[Nest] 21964  - 12/10/2026, 22:32:45     LOG [WorkerService] Job [job_invalid] concluído com status COMPLETED [ExecutionId: exec_recorded_job_1]
+[Nest] 21964  - 12/10/2026, 22:32:45     LOG [WorkerService] Processando job [ID:  ] para workflow [ID: wf_worker_1] org [org_test]
+[Nest] 21964  - 12/10/2026, 22:32:45     LOG [WorkerService] Job [ ] concluído com status COMPLETED [ExecutionId: exec_recorded_job_1]
+[Nest] 21964  - 12/10/2026, 22:32:45     LOG [WorkerService] Processando job [ID: job_mutable] para workflow [ID: wf_worker_1] org [org_test]
+[Nest] 21964  - 12/10/2026, 22:32:45     LOG [WorkerService] Job [job_mutable] concluído com status COMPLETED [ExecutionId: exec_recorded_job_1]
+[Nest] 21964  - 12/10/2026, 22:32:45     LOG [WorkerService] Processando job [ID: job_cross] para workflow [ID: wf_worker_1] org [org_test]
+[Nest] 21964  - 12/10/2026, 22:32:45     LOG [WorkerService] Job [job_cross] concluído com status COMPLETED [ExecutionId: exec_recorded_job_1]
+(node:21964) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+FAIL src/worker/worker.service.spec.ts
+  ● WorkerService (T05 — Background Worker sem HTTP) › permanece em standby sem consumidor de fila, mesmo com REDIS_HOST configurado
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      76 |     expect(workerService.isWorkerRunning()).toBe(false);
+      77 |     await workerService.onModuleInit();
+    > 78 |     expect(workerService.isWorkerRunning()).toBe(false);
+         |                                             ^
+      79 |
+      80 |     await workerService.onModuleDestroy();
+      81 |     expect(workerService.isWorkerRunning()).toBe(false);
+
+      at Object.<anonymous> (src/worker/worker.service.spec.ts:78:45)
+
+  ● WorkerService (T05 — Background Worker sem HTTP) › bloqueia LIVE antes de consultar storage, simular ou registrar consumo
+
+    expect(received).rejects.toThrow()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"executionId": "exec_recorded_job_1", "status": "COMPLETED"}
+
+      145 |       userId: 'user_worker', initialPayload: {}, mode: 'LIVE',
+      146 |     };
+    > 147 |     await expect(workerService.processJob(job)).rejects.toThrow(/LIVE.*não implementada/);
+          |           ^
+      148 |     expect(mockPrisma.workflow.findFirst).not.toHaveBeenCalled();
+      149 |     expect(mockEngine.simulate).not.toHaveBeenCalled();
+      150 |     expect(mockExecutions.recordExecution).not.toHaveBeenCalled();
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at Object.<anonymous> (src/worker/worker.service.spec.ts:147:11)
+
+  ● WorkerService (T05 — Background Worker sem HTTP) › rejeita contrato de job inválido sem acessar providers ([])
+
+    expect(received).rejects.toThrow()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"executionId": "exec_recorded_job_1", "status": "COMPLETED"}
+
+      161 |     userId: 'user_worker', initialPayload: {}, mode: 'SIMULATION',
+      162 |   }])('rejeita contrato de job inválido sem acessar providers (%j)', async (job) => {
+    > 163 |     await expect(workerService.processJob(job as WorkflowJobData)).rejects.toThrow();
+          |           ^
+      164 |     expect(mockPrisma.workflow.findFirst).not.toHaveBeenCalled();
+      165 |     expect(mockEngine.simulate).not.toHaveBeenCalled();
+      166 |     expect(mockExecutions.recordExecution).not.toHaveBeenCalled();
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/worker/worker.service.spec.ts:163:11
+
+  ● WorkerService (T05 — Background Worker sem HTTP) › rejeita contrato de job inválido sem acessar providers ({})
+
+    expect(received).rejects.toThrow()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"executionId": "exec_recorded_job_1", "status": "COMPLETED"}
+
+      161 |     userId: 'user_worker', initialPayload: {}, mode: 'SIMULATION',
+      162 |   }])('rejeita contrato de job inválido sem acessar providers (%j)', async (job) => {
+    > 163 |     await expect(workerService.processJob(job as WorkflowJobData)).rejects.toThrow();
+          |           ^
+      164 |     expect(mockPrisma.workflow.findFirst).not.toHaveBeenCalled();
+      165 |     expect(mockEngine.simulate).not.toHaveBeenCalled();
+      166 |     expect(mockExecutions.recordExecution).not.toHaveBeenCalled();
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/worker/worker.service.spec.ts:163:11
+
+  ● WorkerService (T05 — Background Worker sem HTTP) › rejeita contrato de job inválido sem acessar providers ({"jobId":"job_invalid","workflowId":"wf_worker_1","orgId":"org_test","userId":"user_worker","initialPayload":{},"mode":"UNKNOWN"})
+
+    expect(received).rejects.toThrow()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"executionId": "exec_recorded_job_1", "status": "COMPLETED"}
+
+      161 |     userId: 'user_worker', initialPayload: {}, mode: 'SIMULATION',
+      162 |   }])('rejeita contrato de job inválido sem acessar providers (%j)', async (job) => {
+    > 163 |     await expect(workerService.processJob(job as WorkflowJobData)).rejects.toThrow();
+          |           ^
+      164 |     expect(mockPrisma.workflow.findFirst).not.toHaveBeenCalled();
+      165 |     expect(mockEngine.simulate).not.toHaveBeenCalled();
+      166 |     expect(mockExecutions.recordExecution).not.toHaveBeenCalled();
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/worker/worker.service.spec.ts:163:11
+
+  ● WorkerService (T05 — Background Worker sem HTTP) › rejeita contrato de job inválido sem acessar providers ({"jobId":"job_invalid","workflowId":"wf_worker_1","orgId":"org_test","userId":"user_worker","initialPayload":[],"mode":"SIMULATION"})
+
+    expect(received).rejects.toThrow()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"executionId": "exec_recorded_job_1", "status": "COMPLETED"}
+
+      161 |     userId: 'user_worker', initialPayload: {}, mode: 'SIMULATION',
+      162 |   }])('rejeita contrato de job inválido sem acessar providers (%j)', async (job) => {
+    > 163 |     await expect(workerService.processJob(job as WorkflowJobData)).rejects.toThrow();
+          |           ^
+      164 |     expect(mockPrisma.workflow.findFirst).not.toHaveBeenCalled();
+      165 |     expect(mockEngine.simulate).not.toHaveBeenCalled();
+      166 |     expect(mockExecutions.recordExecution).not.toHaveBeenCalled();
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/worker/worker.service.spec.ts:163:11
+
+  ● WorkerService (T05 — Background Worker sem HTTP) › rejeita contrato de job inválido sem acessar providers ({"jobId":" ","workflowId":"wf_worker_1","orgId":"org_test","userId":"user_worker","initialPayload":{},"mode":"SIMULATION"})
+
+    expect(received).rejects.toThrow()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"executionId": "exec_recorded_job_1", "status": "COMPLETED"}
+
+      161 |     userId: 'user_worker', initialPayload: {}, mode: 'SIMULATION',
+      162 |   }])('rejeita contrato de job inválido sem acessar providers (%j)', async (job) => {
+    > 163 |     await expect(workerService.processJob(job as WorkflowJobData)).rejects.toThrow();
+          |           ^
+      164 |     expect(mockPrisma.workflow.findFirst).not.toHaveBeenCalled();
+      165 |     expect(mockEngine.simulate).not.toHaveBeenCalled();
+      166 |     expect(mockExecutions.recordExecution).not.toHaveBeenCalled();
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/worker/worker.service.spec.ts:163:11
+
+  ● WorkerService (T05 — Background Worker sem HTTP) › fixa organização, autoria e modo antes de aguardar o storage
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 3
+    + Received  + 3
+
+      Array [
+    -   "org_test",
+    +   "org_other",
+        "wf_worker_1",
+        1,
+    -   "SIMULATION",
+    +   "LIVE",
+        "COMPLETED",
+    -   "user_worker",
+    +   "user_other",
+      ]
+
+      179 |     release(row);
+      180 |     await pending;
+    > 181 |     expect(mockExecutions.recordExecution.mock.calls[0].slice(0, 6)).toEqual([
+          |                                                                      ^
+      182 |       'org_test', 'wf_worker_1', 1, 'SIMULATION', 'COMPLETED', 'user_worker',
+      183 |     ]);
+      184 |   });
+
+      at Object.<anonymous> (src/worker/worker.service.spec.ts:181:70)
+
+  ● WorkerService (T05 — Background Worker sem HTTP) › rejeita vínculo inconsistente retornado pelo storage antes do motor
+
+    expect(received).rejects.toThrow()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"executionId": "exec_recorded_job_1", "status": "COMPLETED"}
+
+      187 |     const row = await mockPrisma.workflow.findFirst();
+      188 |     mockPrisma.workflow.findFirst.mockResolvedValue({ ...row, orgId: 'org_other' });
+    > 189 |     await expect(workerService.processJob({
+          |           ^
+      190 |       jobId: 'job_cross', workflowId: 'wf_worker_1', orgId: 'org_test',
+      191 |       userId: 'user_worker', initialPayload: {}, mode: 'SIMULATION',
+      192 |     })).rejects.toThrow();
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at Object.<anonymous> (src/worker/worker.service.spec.ts:189:11)
+
+Test Suites: 2 failed, 2 total
+Tests:       9 failed, 4 passed, 13 total
+Snapshots:   0 total
+Time:        3.368 s
+Ran all test suites within paths "src/worker/worker.service.spec.ts", "src/worker/worker-bootstrap.spec.ts".
+npm error Lifecycle script `test` failed with error:
+npm error code 1
+npm error path C:\Users\jv883\Documents\Codex\FlowMind-AI\Flowmind-AI\apps\api
+npm error workspace @flowmind/api@0.1.0
+npm error location C:\Users\jv883\Documents\Codex\FlowMind-AI\Flowmind-AI\apps\api
+npm error command failed
+npm error command C:\Windows\system32\cmd.exe /d /s /c node --experimental-vm-modules ../../node_modules/jest/bin/jest.js --runInBand --runTestsByPath src/worker/worker.service.spec.ts src/worker/worker-bootstrap.spec.ts

@@ -1,0 +1,18 @@
+ts-jest[config] (WARN) message TS151002: Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+FAIL apps/api/src/resources/resource-catalog.spec.ts
+  ● Test suite failed to run
+
+    apps/api/src/resources/resource-catalog.spec.ts:2:43 - error TS2307: Cannot find module './resource-catalog' or its corresponding type declarations.
+
+    2 import { ConfiguredResourceCatalog } from './resource-catalog';
+                                                ~~~~~~~~~~~~~~~~~~~~
+    apps/api/src/resources/resource-catalog.spec.ts:61:38 - error TS7006: Parameter 'item' implicitly has an 'any' type.
+
+    61     expect(catalog.list('beta').map((item) => item.id)).toEqual(['test-model']);
+                                            ~~~~
+
+Test Suites: 1 failed, 1 total
+Tests:       0 total
+Snapshots:   0 total
+Time:        15.312 s
+Ran all test suites within paths "apps/api/src/resources/resource-catalog.spec.ts".

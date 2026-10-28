@@ -1,0 +1,77 @@
+{
+  "success": true,
+  "data": {
+    "requests": [
+      {
+        "method": "GET",
+        "path": "/api/v1/workflows/wf_a/webhooks"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/workflows/wf_b/webhooks"
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/webhooks/ep_b/rotate"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/workflows/wf_b/webhooks"
+      },
+      {
+        "method": "DELETE",
+        "path": "/api/v1/webhooks/ep_b"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/workflows/wf_b/webhooks"
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/workflows/wf_b/webhooks"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/workflows/wf_b/webhooks"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/workflows/wf_a/webhooks"
+      }
+    ],
+    "endpoints": {
+      "wf_a": [
+        {
+          "publicId": "ep_a",
+          "workflowId": "wf_a",
+          "status": "ACTIVE",
+          "createdAt": "2026-10-23T00:00:00Z"
+        }
+      ],
+      "wf_b": [
+        {
+          "publicId": "ep_b",
+          "workflowId": "wf_b",
+          "status": "REVOKED",
+          "createdAt": "2026-10-23T00:00:00Z",
+          "rotatedAt": "2026-10-23T20:26:00.945Z",
+          "revokedAt": "2026-10-23T20:26:31.804Z"
+        },
+        {
+          "publicId": "ep_new_2",
+          "workflowId": "wf_b",
+          "status": "ACTIVE",
+          "createdAt": "2026-10-23T20:27:02.722Z"
+        }
+      ]
+    },
+    "held": 0,
+    "secretClearedOnContextSwitch": true,
+    "mobileViewport": {
+      "innerWidth": 390,
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "horizontalOverflow": false
+    }
+  }
+}

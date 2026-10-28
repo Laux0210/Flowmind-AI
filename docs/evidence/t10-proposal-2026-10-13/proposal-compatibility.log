@@ -1,0 +1,28 @@
+ts-jest[config] (WARN) message TS151002: Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) message TS151002: Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+(node:26088) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+FAIL apps/api/src/ai/evaluation/ai-evaluator.honesty.spec.ts
+  ● T10 — limites e integridade das evidências › continua detectando score em JSON permitido de operando, sem nota humana
+
+    expect(received).toBeUndefined()
+
+    Received: "AI_INVALID_WORKFLOW_RESPONSE"
+
+      82 |     });
+      83 |     const result = await evaluator.evaluateScenario(scenario('IA01'), client);
+    > 84 |     expect(result.error).toBeUndefined();
+         |                          ^
+      85 |     expect(result.passed).toBe(false);
+      86 |     expect(result.ruleResults.find((entry) => entry.rule === 'NO_COMMERCIAL_SCORING')?.passed).toBe(false);
+      87 |     expect(result.rubricScore).toBeNull();
+
+      at Object.<anonymous> (src/ai/evaluation/ai-evaluator.honesty.spec.ts:84:26)
+
+ts-jest[config] (WARN) message TS151002: Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+
+Test Suites: 1 failed, 2 passed, 3 total
+Tests:       1 failed, 63 passed, 64 total
+Snapshots:   0 total
+Time:        4.222 s, estimated 5 s
+Ran all test suites within paths "apps/api/src/ai/ai-generator.validation.spec.ts", "apps/api/src/ai/evaluation/ai-evaluator.spec.ts", "apps/api/src/ai/evaluation/ai-evaluator.honesty.spec.ts".

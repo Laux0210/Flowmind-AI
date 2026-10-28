@@ -1,63 +1,28 @@
-import {
-  Controller,
-  Post,
-  Param,
-  Body,
-  Headers,
-  HttpCode,
-  HttpStatus,
-  NotFoundException,
-  BadRequestException,
-} from '@nestjs/common';
+import { Controller, Post, HttpCode, HttpStatus, Param, Req, Headers } from '@nestjs/common';
+import type { RawBodyRequest } from '@nestjs/common';
+import type { Request } from 'express';
 import { ApiResponse } from '@flowmind/contracts';
-import { WorkflowsService } from '../workflows/workflows.service';
-import { WebhooksService } from './webhooks.service';
-import type { WebhookTriggerResponse } from './triggers.types';
+import { WebhookIngressService } from './webhook-ingress.service';
 
-@Controller('api/v1/triggers')
+@Controller('triggers')
 export class WebhooksController {
-  private readonly workflowsService: WorkflowsService;
-  private readonly webhooksService: WebhooksService;
+  private readonly ingress: WebhookIngressService;
 
-  constructor(
-    workflowsService: WorkflowsService,
-    webhooksService: WebhooksService,
-  ) {
-    this.workflowsService = workflowsService;
-    this.webhooksService = webhooksService;
+  constructor(ingress: WebhookIngressService) {
+    this.ingress = ingress;
   }
 
-  @Post('webhook/:workflowId')
-  @HttpCode(HttpStatus.OK)
+  // Público: autenticação pela assinatura HMAC do endpoint; organização vem do registro no servidor.
+  @Post('webhook/:publicId')
+  @HttpCode(HttpStatus.ACCEPTED)
   async handleWebhook(
-    @Param('workflowId') workflowId: string,
-    @Body() payload: Record<string, unknown>,
+    @Param('publicId') publicId: string,
+    @Req() req: RawBodyRequest<Request>,
+    @Headers('content-type') contentType?: string,
     @Headers('x-flowmind-signature') signature?: string,
-    @Headers('x-flowmind-idempotency-key') idempotencyKey?: string,
-  ): Promise<ApiResponse<WebhookTriggerResponse>> {
-    if (!workflowId || typeof workflowId !== 'string' || !workflowId.trim()) {
-      throw new BadRequestException('Identificador de workflow obrigatório.');
-    }
-
-    // Busca o workflow ignorando orgId pois webhooks são chamadas externas recebidas por identificador único
-    const workflow = await this.workflowsService.findByIdPublic(workflowId);
-    if (!workflow) {
-      throw new NotFoundException({
-        code: 'WORKFLOW_NOT_FOUND',
-        message: 'Workflow não encontrado.',
-      });
-    }
-
-    const result = await this.webhooksService.handleWebhookTrigger(
-      workflow,
-      payload,
-      { signature, idempotencyKey },
-    );
-
-    return {
-      success: true,
-      data: result,
-      timestamp: new Date().toISOString(),
-    };
+    @Headers('x-flowmind-event-id') eventId?: string,
+  ): Promise<ApiResponse<{ jobId: string }>> {
+    const data = await this.ingress.handle({ publicId, rawBody: req.rawBody, contentType, signature, eventId });
+    return { success: true, data, timestamp: new Date().toISOString() };
   }
 }

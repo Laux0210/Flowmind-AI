@@ -1,0 +1,325 @@
+
+> flowmind-ai@0.1.0 test:regression
+> node --experimental-vm-modules --test tests/regression/security.test.mjs tests/regression/simulation.test.mjs tests/regression/generation-client.test.mjs tests/regression/persistence.test.mjs tests/regression/toolchain.test.mjs tests/regression/ui-workflow.test.mjs tests/regression/triggers.test.mjs tests/regression/executions.test.mjs tests/regression/full-journey.test.mjs tests/regression/ai-evaluation.test.mjs tests/regression/triggers-email.test.mjs tests/regression/ai-generation-usage.test.mjs tests/regression/workflow-editing.test.mjs
+
+(node:27980) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ dataset canônico de avaliação sintética contém exatamente 9 cenários (IA01 a IA09) (110.6159ms)
+(node:27980) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+✔ AiEvaluator verifica IA01 sem fabricar nota semântica (140.2287ms)
+✔ AiEvaluator registra campo comercial rejeitado antes da proposta, sem nota humana (32.5835ms)
+✔ AiEvaluator valida que IA04 bloqueia injeções com SECURITY_SCOPE_VIOLATION (33.4056ms)
+✔ AiEvaluator gera relatório agregado de avaliação (evaluateAll) (40.3915ms)
+(node:19256) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:19256) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+✔ cliente conserva uso da falha controlada AI_INVALID_WORKFLOW_RESPONSE, sem corpo privado (160.8109ms)
+✔ cliente conserva uso da falha controlada AI_PROMPT_REFUSED, sem corpo privado (3.966ms)
+✔ cliente conserva uso da falha controlada AI_INCOMPLETE_RESPONSE, sem corpo privado (5.3642ms)
+✔ cliente conserva uso da falha controlada AI_INVALID_JSON_RESPONSE, sem corpo privado (3.2736ms)
+✔ cliente conserva uso da falha controlada AI_EMPTY_RESPONSE, sem corpo privado (6.0332ms)
+✔ cliente conserva uso da falha controlada AI_INVALID_RESPONSE_STRUCTURE, sem corpo privado (3.995ms)
+✔ cliente preserva classificação do consumo zero (4.2254ms)
+✔ cliente preserva classificação do consumo desconhecido (3.6872ms)
+✔ cliente preserva classificação do consumo ausente (3.909ms)
+✔ cliente preserva classificação do consumo negativo (2.8156ms)
+✔ cliente preserva classificação do consumo fracionário (20.5472ms)
+✔ cliente preserva classificação do consumo infinito (2.6333ms)
+✔ cliente preserva classificação do consumo NaN (5.0967ms)
+✔ cliente preserva classificação do consumo inteiro inseguro (6.7928ms)
+✔ cliente preserva classificação do consumo string (3.6115ms)
+✔ não transforma metadata de UNRELATED_ERROR em medição declarada (2.5822ms)
+✔ não transforma metadata de INVALID_PROMPT em medição declarada (2.6019ms)
+✔ não transforma metadata de SECURITY_SCOPE_VIOLATION em medição declarada (2.7027ms)
+✔ não transforma metadata de AI_PRIVATE_FIXTURE_CODE em medição declarada (2.456ms)
+✔ erro HTTP sem JSON tem consumo desconhecido e mensagem genérica (2.7468ms)
+✔ outras rotas não recebem metadata de geração (2.9277ms)
+✔ sem token não chama fetch nem inventa consumo de geração (2.5757ms)
+✔ feedback do callback real mostra consumo 24, sem reaplicar proposta anterior (217.5708ms)
+✔ feedback do callback real mostra consumo 0, sem reaplicar proposta anterior (50.8155ms)
+✔ feedback do callback real mostra consumo null, sem reaplicar proposta anterior (55.0576ms)
+✔ falha de geração atrasada não mostra consumo no contexto de outra organização (26.2431ms)
+(node:8736) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:8736) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+✔ ExecutionsService: isolamento estrito entre organizações (SEC01 e SEC04) (274.4876ms)
+✔ ExecutionsService: sanitiza segredos e tokens nos dados gravados (11.8299ms)
+✔ UsageLimitsService: barra execução quando limite de quota mensal for atingido (10.3889ms)
+(node:28524) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:28524) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+✔ T14 — C01: Jornada completa com formulário, IA, registro e e-mail (Pedido Completo) (391.0083ms)
+✔ T14 — C02: Preservação de ambiguidades em dúvidas gerais sem pontuação comercial (117.9097ms)
+✔ T14 — C03: Interrupção imediata antes de efeitos colaterais com payload incompleto (66.5876ms)
+✔ T14 — Matriz de Isolamento Multi-tenant (SEC01–SEC04, SEC09) (57.6379ms)
+✔ T14 — Segurança: Proteção contra SSRF e sanitização profunda de credenciais (9.7165ms)
+✔ T14 — Presença estática de atributos de acessibilidade (não comprova WCAG) (2.759ms)
+(node:30864) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:30864) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+✔ template gera rascunho compatível com o motor, sem modelo/tokens fictícios (241.9831ms)
+✔ gerador rejeita condição não interpretada em vez de criar score comercial (21.0996ms)
+✔ gerador aceita caso como substantivo e rejeita caso condicional (104.3698ms)
+✔ gerador sinaliza HTTP sem destino escolhido e nunca executa comandos (60.9372ms)
+✔ ApiClient rejeita todas as operações sem token, antes da rede (5.1497ms)
+✔ ApiClient propaga HTTP 401 sem inventar workflows ou geração (3.8017ms)
+✔ ApiClient propaga HTTP 404 sem inventar workflows ou geração (7.682ms)
+✔ ApiClient propaga HTTP 500 sem inventar workflows ou geração (7.7791ms)
+✔ ApiClient envia Bearer real e PUT de atualização compatível com o controller (3.7101ms)
+✔ ApiClient envia POST correto para rotas de ciclo de vida (review, activate, deactivate) (5.0996ms)
+✔ ApiClient envia DELETE correto para exclusão de workflow e aceita HTTP 204 (30.3852ms)
+✔ OpenAiStructuredClient gera draft com JSON Schema estrito e trata recusa (refusal) (23.3234ms)
+✔ AiGeneratorService suporta cliente de IA customizado via injeção mantendo validação DAG (20.6747ms)
+✔ uso ausente permanece null do provedor até a serialização da proposta (66.4256ms)
+✔ JSON válido com término incompleto não vira proposta e conserva uso informado (59.578ms)
+✔ configuração JSON inválida não é substituída silenciosamente por objeto vazio (28.3759ms)
+✔ recusa não revela mensagem privada nem descarta a medição de uso (14.9426ms)
+(node:11420) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:11420) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+✔ CRUD consulta fonte persistente e isola operações entre organizações com adaptador fake (320.012ms)
+✔ falha do banco não vira sucesso em memória em nenhuma operação (52.0874ms)
+✔ consulta não retorna cópia obsoleta depois de remoção na fonte (63.7402ms)
+✔ edição de versão publicada fica bloqueada até contrato de novas revisões (21.5399ms)
+✔ exclusão de versão publicada fica bloqueada exigindo desativação prévia (43.1561ms)
+(node:29096) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:29096) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+✔ token sintético passa pela verificação do SDK e é rejeitado em test (200.3608ms)
+✔ token sintético passa pela verificação do SDK e é rejeitado em development (67.935ms)
+✔ token sintético passa pela verificação do SDK e é rejeitado em production (10.7036ms)
+✔ utiliza os campos normalizados de toAuth (11.6482ms)
+✔ rejeita sessão sem userId (4.673ms)
+✔ rejeita sessão sem sessionId (7.8413ms)
+✔ rejeita sessão sem orgId (4.4029ms)
+✔ erros e logs não revelam mensagem interna do provedor (3.8539ms)
+✔ ausência de chave e ausência de token falham antes de chamar SDK (8.5818ms)
+✔ chave pública exigida pelo SDK declarado também é obrigatória (9.4014ms)
+✔ guard rejeita cabeçalhos ausentes, duplicados ou com partes extras (11.1383ms)
+✔ guard usa somente a organização resolvida pelo serviço (8.8467ms)
+✔ exige APIs de sessão e membership e persistência, sem permissões por omissão (16.4785ms)
+✔ sessão vigente precisa pertencer ao usuário e ao identificador autenticado (7.0679ms)
+✔ sessão revogada ou expirada falha antes da sincronização (23.521ms)
+✔ consulta membership pelo usuário e usa papel vigente em vez do papel antigo do token (2.8ms)
+✔ membership ausente, alheia, sem papel ou com papel desconhecido não autoriza (19.9992ms)
+✔ organização confirmada no provedor é espelhada antes de conceder acesso (8.5302ms)
+✔ falhas de consulta ou upsert impedem acesso e ocultam detalhes internos (14.0653ms)
+✔ remoção do vínculo depois de uma requisição válida é verificada novamente (9.2073ms)
+(node:13172) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:13172) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+✖ C01 percorre a jornada com efeitos simulados e sem classificação comercial (236.7553ms)
+✖ C02: template com ambiguidades conserva sua interpolação na prévia (65.8009ms)
+✖ C03 falha no gatilho antes dos efeitos com email undefined (59.5376ms)
+✖ C03 falha no gatilho antes dos efeitos com email "" (45.1285ms)
+✖ C03 falha no gatilho antes dos efeitos com email "   " (34.6598ms)
+✖ C03 falha no gatilho antes dos efeitos com email "invalid" (32.997ms)
+✖ C03 falha no gatilho antes dos efeitos com email 123 (35.8078ms)
+✖ campos distintos e aliases não preenchem dados obrigatórios ausentes (30.8521ms)
+✔ referência antiga falha explicitamente em vez de produzir valor vazio (30.6823ms)
+✔ DAG rejeita ciclos, gatilho divergente e nós desconectados (56.6573ms)
+✔ schema ausente ou de outra versão impede a simulação (37.8428ms)
+✔ executores de simulação rejeitam LIVE sem afirmar efeitos reais (3.899ms)
+✔ motor suporta ramificação e convergência (OR-Join), executando nó convergente (47.8851ms)
+✔ interpolação resolve variáveis de internal_record para nós downstream e avalia starts_with (25.7585ms)
+✔ build compila contratos antes da API e da web (998.0592ms)
+✔ falha de um consumidor interrompe o pipeline e preserva código de saída (242.5266ms)
+✔ linter de conformidade e segurança valida arquivos e conclui com sucesso (160.8634ms)
+(node:30044) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:30044) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+✔ WebhookSignatureValidator: gera assinatura HMAC no padrão canônico t=...,v1=... (127.2379ms)
+✔ WebhookSignatureValidator: valida assinatura válida e rejeita adulteração de payload (2.6575ms)
+✔ WebhookSignatureValidator: rejeita replay attack quando timestamp exceder tolerância (2.4668ms)
+✔ SimulatedEmailProvider: despacha e-mail simulado com identificador e sem rede (15.5778ms)
+✔ SimulatedEmailProvider: bloqueia CRLF injection em headers de e-mail (3.3512ms)
+✔ T03-S3 (SC09): ResourceResolver rejeita credenciais e formulários cross-tenant e desconhecidos (40.8152ms)
+✔ T03-S3 (SC09): validateWorkflowResources bloqueia workflow com recurso cross-tenant (22.7999ms)
+(node:26052) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:26052) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+✔ WebhooksService: dispara workflow PUBLISHED e deduplica chamadas idênticas via idempotencyKey (274.5171ms)
+✔ WebhooksService: bloqueia disparo de workflow em estado DRAFT (53.6679ms)
+✔ WebhooksService: valida assinatura timing-safe e rejeita token incorreto (63.8787ms)
+✔ WebhooksService: rejeita payload inválido ou chave de idempotência em branco (30.9344ms)
+✔ SchedulerService: valida cron com limites numéricos e rejeita valores fora da faixa (4.8337ms)
+✔ SchedulerService: valida timezone IANA e bloqueia execuções concorrentes simultâneas (55.1875ms)
+(node:22464) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:22464) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+✔ history: falha do consumo preserva a listagem que respondeu com sucesso (128.9328ms)
+✔ history: falha da listagem preserva consumo obtido e distingue erro de lista vazia (20.7713ms)
+✔ history: carregar contexto cancelado após getToken não dispara consultas (16.4806ms)
+✔ history: resposta E1 atrasada não substitui seleção mais recente E2 (17.4052ms)
+✔ history: finally de uma seleção antiga não encerra loading da seleção atual (19.0216ms)
+✔ history: contexto Alpha→Beta→Alpha invalida a resposta da geração anterior (17.3256ms)
+✔ history: rejeição antiga não escreve erro na nova organização (13.3078ms)
+✔ history: fechar o modal invalida a inspeção pendente (18.1159ms)
+✔ history: troca de contexto durante getToken evita consultar recurso com sessão nova (13.0479ms)
+✔ history: erro da inspeção atual preserva a mensagem do servidor (15.2869ms)
+✔ editor: trocar contexto limpa isReviewing enquanto a operação anterior aguarda token (46.7454ms)
+✔ editor: trocar contexto limpa isPublishing enquanto a operação anterior aguarda token (27.5674ms)
+✔ editor: trocar contexto limpa isDeactivating enquanto a operação anterior aguarda token (30.2735ms)
+✔ editor: feedback da simulação respeita status FAILED (30.8988ms)
+✔ editor: feedback da simulação respeita status COMPLETED (28.9355ms)
+✔ editor: handler de aplicar proposta bloqueia mutação enquanto revisão está pendente (30.3081ms)
+✔ editor: reviewWorkflow não aplica resposta de revisão local anterior (21.3382ms)
+✔ editor: reviewWorkflow não envia mutação após trocar contexto durante getToken (18.9524ms)
+✔ editor: activateWorkflow não aplica resposta de revisão local anterior (39.5333ms)
+✔ editor: activateWorkflow não envia mutação após trocar contexto durante getToken (26.8762ms)
+✔ ApiClient sanitiza URL e codifica identificadores com caracteres especiais (90.941ms)
+✔ ApiClient propaga mensagens de erro estruturadas da API em caso de 400 ou 403 (6.5337ms)
+✔ Mapeamento dos 6 nós do catálogo do MVP para o canvas XYFlow (16.9189ms)
+✔ Validação de simulação de workflow com dados sintéticos no cliente (33.0563ms)
+✔ ApiClient serializa requisições de simulação e ciclo de vida com integridade de headers e payload (2.5061ms)
+✔ Invariantes estáticas de prevenção de condições de corrida e feedback acessível no frontend (1.0104ms)
+(node:20532) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ configuração pendente impede salvar uma definição anterior à edição do usuário (177.0833ms)
+(node:20532) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+✔ resposta de salvamento obsoleta não substitui novas alterações nem escreve feedback de erro (77.7307ms)
+✔ parâmetros de e-mail editados preservam IDs, referências e campos não alterados (111.6314ms)
+✔ valores JSON da condição preservam número, array e booleano (0.9094ms)
+✔ JSON inválido e campos desconhecidos não substituem a configuração (1.1067ms)
+✔ aliases existentes de mensagem e mapeamento são preservados ao editar outro campo (0.677ms)
+✔ draft incompleto continua editável e ausência de opcionais não injeta defaults (0.417ms)
+✔ edições de parâmetros/posições/conexões são negadas em REVIEWED (0.649ms)
+✔ edições de parâmetros/posições/conexões são negadas em PUBLISHED (0.2242ms)
+✔ edições de parâmetros/posições/conexões são negadas em ARCHIVED (0.2601ms)
+✔ movimentação persiste coordenadas finitas sem mudar configuração ou arestas (0.4458ms)
+✔ conexões condicionais preservam os handles usados pelo motor (0.3278ms)
+✔ ciclo, auto-conexão, nó ausente e conexão repetida são recusados antes de mudar o grafo (0.4194ms)
+✔ remoção de conexão preserva nós e demais IDs, sem resolver convergências (0.8169ms)
+✔ formulários abrangem os seis tipos e conservam ausência versus valores JSON (0.2834ms)
+✔ arestas exibidas no canvas mantêm sourceHandle e targetHandle sem normalização (30.7157ms)
+✔ edição aplicada marca dirty, avança revisão e invalida resultado anterior (49.1998ms)
+✔ edição não altera o workflow durante saving (34.4978ms)
+✔ edição não altera o workflow durante reviewing (27.0541ms)
+✔ edição não altera o workflow durante publishing (45.9521ms)
+✔ edição não altera o workflow durante deactivating (31.433ms)
+✔ edição não altera o workflow durante simulating (36.2237ms)
+✔ edição não altera o workflow durante generatingAi (41.862ms)
+✔ duas movimentações antes de renderizar preservam as duas alterações (46.6267ms)
+✔ edição com contexto Alpha→Beta→Alpha anterior é descartada (33.4918ms)
+✔ rascunho local de parâmetros impede trocar etapa, mover ou aplicar conexões (42.4294ms)
+✔ conectar e remover pela interface altera somente as arestas pertinentes (36.2162ms)
+✔ editar e salvar no mesmo snapshot usa a definição recente da referência (17.3987ms)
+✔ edição antes de render bloqueia simulação, revisão e ativação do snapshot antigo (23.3222ms)
+✔ proposta aplicada e editada antes de render mantém os nós da proposta (20.3595ms)
+✔ REVIEWED recebido impede editar antes de renderizar o novo estado (25.5737ms)
+✔ PUBLISHED recebido impede editar antes de renderizar o novo estado (37.1974ms)
+✔ falha de carregamento do contexto anterior não altera erro ou loading atuais (29.0416ms)
+✔ handles padrão e nomeado default têm chaves distintas no componente real (43.4071ms)
+✔ efeito real do nó solicita atualização dos bounds dos handles após render (15.2051ms)
+✔ formulário real de trigger_form renderiza labels, valores escapados e bloqueio de edição (42.4234ms)
+✔ formulário real de ai_analyze_intent renderiza labels, valores escapados e bloqueio de edição (15.6917ms)
+✔ formulário real de internal_record renderiza labels, valores escapados e bloqueio de edição (15.569ms)
+✔ formulário real de send_email renderiza labels, valores escapados e bloqueio de edição (15.971ms)
+✔ formulário real de condition renderiza labels, valores escapados e bloqueio de edição (15.8262ms)
+✔ formulário real de http_request renderiza labels, valores escapados e bloqueio de edição (13.1778ms)
+ℹ tests 179
+ℹ suites 0
+ℹ pass 171
+ℹ fail 8
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2727.3634
+
+✖ failing tests:
+
+test at tests\regression\simulation.test.mjs:32:1
+✖ C01 percorre a jornada com efeitos simulados e sem classificação comercial (236.7553ms)
+  Error: Modelo de IA 'pending' não homologado pelo servidor. Modelos homologados: gpt-4o-mini, gpt-4o, flowmind-default, modelo-a-aprovar.
+      at validateWorkflowResources (C:\Users\jv883\Documents\Codex\FlowMind-AI\Flowmind-AI\apps\api\src\engine\workflow-reference.validation.ts:214:11)
+      at WorkflowEngineService.simulate (C:\Users\jv883\Documents\Codex\FlowMind-AI\Flowmind-AI\apps\api\src\engine\workflow-engine.service.ts:46:5)
+      at simulate (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:29:46)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:33:18)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    response: { code: 'UNKNOWN_MODEL_REFERENCE', message: "Modelo de IA 'pending' não homologado pelo servidor. Modelos homologados: gpt-4o-mini, gpt-4o, flowmind-default, modelo-a-aprovar.", issues: [ [Object] ] }
+  }
+
+test at tests\regression\simulation.test.mjs:53:1
+✖ C02: template com ambiguidades conserva sua interpolação na prévia (65.8009ms)
+  Error: Modelo de IA 'pending' não homologado pelo servidor. Modelos homologados: gpt-4o-mini, gpt-4o, flowmind-default, modelo-a-aprovar.
+      at validateWorkflowResources (C:\Users\jv883\Documents\Codex\FlowMind-AI\Flowmind-AI\apps\api\src\engine\workflow-reference.validation.ts:214:11)
+      at WorkflowEngineService.simulate (C:\Users\jv883\Documents\Codex\FlowMind-AI\Flowmind-AI\apps\api\src\engine\workflow-engine.service.ts:46:5)
+      at simulate (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:29:46)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:54:18)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    response: { code: 'UNKNOWN_MODEL_REFERENCE', message: "Modelo de IA 'pending' não homologado pelo servidor. Modelos homologados: gpt-4o-mini, gpt-4o, flowmind-default, modelo-a-aprovar.", issues: [ [Object] ] }
+  }
+
+test at tests\regression\simulation.test.mjs:64:3
+✖ C03 falha no gatilho antes dos efeitos com email undefined (59.5376ms)
+  Error: Modelo de IA 'pending' não homologado pelo servidor. Modelos homologados: gpt-4o-mini, gpt-4o, flowmind-default, modelo-a-aprovar.
+      at validateWorkflowResources (C:\Users\jv883\Documents\Codex\FlowMind-AI\Flowmind-AI\apps\api\src\engine\workflow-reference.validation.ts:214:11)
+      at WorkflowEngineService.simulate (C:\Users\jv883\Documents\Codex\FlowMind-AI\Flowmind-AI\apps\api\src\engine\workflow-engine.service.ts:46:5)
+      at simulate (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:29:46)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:65:20)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    response: { code: 'UNKNOWN_MODEL_REFERENCE', message: "Modelo de IA 'pending' não homologado pelo servidor. Modelos homologados: gpt-4o-mini, gpt-4o, flowmind-default, modelo-a-aprovar.", issues: [ [Object] ] }
+  }
+
+test at tests\regression\simulation.test.mjs:64:3
+✖ C03 falha no gatilho antes dos efeitos com email "" (45.1285ms)
+  Error: Modelo de IA 'pending' não homologado pelo servidor. Modelos homologados: gpt-4o-mini, gpt-4o, flowmind-default, modelo-a-aprovar.
+      at validateWorkflowResources (C:\Users\jv883\Documents\Codex\FlowMind-AI\Flowmind-AI\apps\api\src\engine\workflow-reference.validation.ts:214:11)
+      at WorkflowEngineService.simulate (C:\Users\jv883\Documents\Codex\FlowMind-AI\Flowmind-AI\apps\api\src\engine\workflow-engine.service.ts:46:5)
+      at simulate (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:29:46)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:65:20)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    response: { code: 'UNKNOWN_MODEL_REFERENCE', message: "Modelo de IA 'pending' não homologado pelo servidor. Modelos homologados: gpt-4o-mini, gpt-4o, flowmind-default, modelo-a-aprovar.", issues: [ [Object] ] }
+  }
+
+test at tests\regression\simulation.test.mjs:64:3
+✖ C03 falha no gatilho antes dos efeitos com email "   " (34.6598ms)
+  Error: Modelo de IA 'pending' não homologado pelo servidor. Modelos homologados: gpt-4o-mini, gpt-4o, flowmind-default, modelo-a-aprovar.
+      at validateWorkflowResources (C:\Users\jv883\Documents\Codex\FlowMind-AI\Flowmind-AI\apps\api\src\engine\workflow-reference.validation.ts:214:11)
+      at WorkflowEngineService.simulate (C:\Users\jv883\Documents\Codex\FlowMind-AI\Flowmind-AI\apps\api\src\engine\workflow-engine.service.ts:46:5)
+      at simulate (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:29:46)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:65:20)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    response: { code: 'UNKNOWN_MODEL_REFERENCE', message: "Modelo de IA 'pending' não homologado pelo servidor. Modelos homologados: gpt-4o-mini, gpt-4o, flowmind-default, modelo-a-aprovar.", issues: [ [Object] ] }
+  }
+
+test at tests\regression\simulation.test.mjs:64:3
+✖ C03 falha no gatilho antes dos efeitos com email "invalid" (32.997ms)
+  Error: Modelo de IA 'pending' não homologado pelo servidor. Modelos homologados: gpt-4o-mini, gpt-4o, flowmind-default, modelo-a-aprovar.
+      at validateWorkflowResources (C:\Users\jv883\Documents\Codex\FlowMind-AI\Flowmind-AI\apps\api\src\engine\workflow-reference.validation.ts:214:11)
+      at WorkflowEngineService.simulate (C:\Users\jv883\Documents\Codex\FlowMind-AI\Flowmind-AI\apps\api\src\engine\workflow-engine.service.ts:46:5)
+      at simulate (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:29:46)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:65:20)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    response: { code: 'UNKNOWN_MODEL_REFERENCE', message: "Modelo de IA 'pending' não homologado pelo servidor. Modelos homologados: gpt-4o-mini, gpt-4o, flowmind-default, modelo-a-aprovar.", issues: [ [Object] ] }
+  }
+
+test at tests\regression\simulation.test.mjs:64:3
+✖ C03 falha no gatilho antes dos efeitos com email 123 (35.8078ms)
+  Error: Modelo de IA 'pending' não homologado pelo servidor. Modelos homologados: gpt-4o-mini, gpt-4o, flowmind-default, modelo-a-aprovar.
+      at validateWorkflowResources (C:\Users\jv883\Documents\Codex\FlowMind-AI\Flowmind-AI\apps\api\src\engine\workflow-reference.validation.ts:214:11)
+      at WorkflowEngineService.simulate (C:\Users\jv883\Documents\Codex\FlowMind-AI\Flowmind-AI\apps\api\src\engine\workflow-engine.service.ts:46:5)
+      at simulate (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:29:46)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:65:20)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    response: { code: 'UNKNOWN_MODEL_REFERENCE', message: "Modelo de IA 'pending' não homologado pelo servidor. Modelos homologados: gpt-4o-mini, gpt-4o, flowmind-default, modelo-a-aprovar.", issues: [ [Object] ] }
+  }
+
+test at tests\regression\simulation.test.mjs:72:1
+✖ campos distintos e aliases não preenchem dados obrigatórios ausentes (30.8521ms)
+  Error: Modelo de IA 'pending' não homologado pelo servidor. Modelos homologados: gpt-4o-mini, gpt-4o, flowmind-default, modelo-a-aprovar.
+      at validateWorkflowResources (C:\Users\jv883\Documents\Codex\FlowMind-AI\Flowmind-AI\apps\api\src\engine\workflow-reference.validation.ts:214:11)
+      at WorkflowEngineService.simulate (C:\Users\jv883\Documents\Codex\FlowMind-AI\Flowmind-AI\apps\api\src\engine\workflow-engine.service.ts:46:5)
+      at simulate (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:29:46)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:73:18)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    response: { code: 'UNKNOWN_MODEL_REFERENCE', message: "Modelo de IA 'pending' não homologado pelo servidor. Modelos homologados: gpt-4o-mini, gpt-4o, flowmind-default, modelo-a-aprovar.", issues: [ [Object] ] }
+  }

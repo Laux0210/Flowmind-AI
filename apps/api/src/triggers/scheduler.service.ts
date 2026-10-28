@@ -96,7 +96,7 @@ export class SchedulerService {
   }
 
   /**
-   * Calcula a próxima execução estimada com suporte a timezone.
+   * Valida a configuração; o cálculo cron/fuso depende da integração do scheduler.
    */
   calculateNextRun(config: ScheduleConfig): ScheduleCalculationResult {
     const tz = config.timezone || 'America/Sao_Paulo';
@@ -128,16 +128,12 @@ export class SchedulerService {
       };
     }
 
-    // Cálculo determinístico do próximo timestamp (arredondado para o próximo minuto no fuso especificado)
-    const now = new Date();
-    const nextMinute = new Date(now.getTime() + 60 * 1000);
-    nextMinute.setSeconds(0, 0);
-
     return {
       isValid: true,
       cronExpression: config.cronExpression,
       timezone: tz,
-      nextExecutionAt: nextMinute.toISOString(),
+      nextExecutionAt: undefined,
+      error: 'Cálculo da próxima execução ainda indisponível.',
     };
   }
 

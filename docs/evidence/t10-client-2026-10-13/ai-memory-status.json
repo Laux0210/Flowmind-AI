@@ -1,0 +1,10 @@
+{
+  "recordedAtUtc": "2026-10-13T06:35:09.775545+00:00",
+  "tool": "memory_status",
+  "requestId": 126,
+  "workspace": "flowmind-ai",
+  "project": "flowmind-ai",
+  "result": "ConnectionRefusedError",
+  "writeAttempted": false,
+  "automaticCaptureProven": false
+}

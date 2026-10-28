@@ -1,5 +1,6 @@
 # FlowMind AI — Guia de Operação, Publicação e Go-Live (T15)
 
+> Documento de preparação: destinos/SOPs são propostas, serviços e CI remoto não foram exercitados e go-live permanece pendente. Evidência atual em [VALIDATION_LOCAL_HARDENING_2026-10-12.md](VALIDATION_LOCAL_HARDENING_2026-10-12.md). Nenhuma migração/restauração foi executada.
 Atualizado pelo principal em 12/10/2026. Documento consolidado de preparação operacional, estratégias de implantação, observabilidade, contingência e checklist de publicação do MVP.
 
 ---
@@ -26,7 +27,7 @@ A infraestrutura de dados de apoio para desenvolvimento e testes locais baseia-s
 | **Banco de Dados** | Neon ou Supabase (PostgreSQL) | AWS RDS PostgreSQL | Neon oferece branching de banco para staging e migrações seguras; backups diários automáticos. |
 | **Cache & Filas** | Upstash Redis | Redis Cloud / AWS ElastiCache | Upstash opera em modelo serverless com pagamento por requisição (ideal para controle de custos no MVP). |
 | **Autenticação** | Clerk (SaaS) | Auth0 / Supabase Auth | Clerk já possui autoridade e guards implementados no código (`ClerkService` e `ClerkAuthGuard`). |
-| **Provedor de IA** | OpenAI API (`gpt-4o-mini`) | Azure OpenAI / Anthropic | `gpt-4o-mini` oferece Structured Outputs estritos (`strict: true`) com menor custo e latência previsível. |
+| **Provedor de IA** | OpenAI API (`gpt-4o-mini`) | Azure OpenAI / Anthropic | Modelo específico ainda pendente; o default do adaptador local não constitui decisão aprovada. |
 
 ---
 
@@ -44,7 +45,8 @@ Todos os segredos e credenciais devem residir estritamente em gerenciadores de s
 | `REDIS_HOST` / `REDIS_PORT` / `REDIS_PASSWORD` | Conexão com o cluster Redis | API |
 | `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` | Chave pública do Clerk para o cliente web | Web e API |
 | `CLERK_SECRET_KEY` | Chave secreta do Clerk para validação de tokens | API |
-| `OPENAI_API_KEY` | Chave de acesso à API da OpenAI | API |
+| `FLOWMIND_ENABLE_EXTERNAL_AI` | Opt-in externo explícito; default `false`, condicionado à aprovação de modelo/privacidade/orçamento | API |
+| `OPENAI_API_KEY` | Credencial; sua presença sozinha não habilita transmissão de prompts | API |
 | `ENCRYPTION_KEY_32BYTES` | Chave simétrica de 32 bytes (hex) para cifras internas | API |
 
 ---
@@ -59,7 +61,8 @@ A API disponibiliza endpoints dedicados para orquestradores de contêineres e ba
 
 2. **Readiness Probe (`GET /api/v1/health/ready`):**
    - Executa uma verificação ativa de conectividade no banco via `SELECT 1`.
-   - Se o banco estiver conectado, responde `200 OK` com status `ready`.
+   - Se a consulta ao banco concluir, responde `200 OK` com status `ready`; na falha, `503` com `not_ready/unavailable`, sem detalhes SQL.
+   - Não verifica migrations, Redis, identidade ou todos os serviços externos; foram testadas respostas com provider sintético.
    - Usado para direcionar tráfego somente após a confirmação de que os serviços essenciais estão aptos.
 
 ---
@@ -71,11 +74,12 @@ A API disponibiliza endpoints dedicados para orquestradores de contêineres e ba
 1. **Migrações Exclusivamente Aditivas:**
    - Adições de colunas devem ser opcionais (`nullable`) ou possuir valor `default`.
    - Nunca remover ou renomear colunas na mesma release em que a aplicação é promovida (estratégia *Expand and Contract*).
-2. **Execução de Migrações:**
+2. **Execução de Migrações (proposta, somente após aprovação):**
+   - Ainda não há migrations versionadas comprovadas neste checkpoint. Preparar/revisar scripts e backup em ambiente descartável autorizado antes de executar deploy; o comando abaixo usa a configuração Prisma 7 existente.
    ```bash
    npm run prisma:generate
    # Em ambiente de release:
-   npx prisma migrate deploy --schema=apps/api/prisma/schema.prisma
+   npm exec --offline --workspace @flowmind/api -- prisma migrate deploy --config prisma7.config.ts
    ```
 3. **Procedimento de Rollback:**
    - Se uma nova versão apresentar instabilidade, a versão anterior do contêiner da aplicação é restabelecida imediatamente no orquestrador.
@@ -102,30 +106,30 @@ A API disponibiliza endpoints dedicados para orquestradores de contêineres e ba
 
 ## 6. Pipeline de Integração Contínua (CI)
 
-O fluxo automatizado de integração é gerido pelo GitHub Actions em [`.github/workflows/ci.yml`](../.github/workflows/ci.yml), executando rigorosamente em cada push ou pull request:
+A configuração proposta do fluxo automatizado de integração está no GitHub Actions em [`.github/workflows/ci.yml`](../.github/workflows/ci.yml), executando rigorosamente em cada push ou pull request:
 
 1. `python .codex/validate_team.py`: Conformidade da governança e papéis dos agentes.
 2. `git diff --check`: Verificação de integridade do Git e ausência de resíduos de merge.
 3. `npm run prisma:validate`: Validação de consistência do schema relacional Prisma.
 4. `npm run typecheck`: Compilação e checagem estrita de tipos TypeScript no monorepo.
-5. `npm test`: Execução das 13 suítes unitárias/integração do Jest.
+5. `npm test`: Execução das suítes Jest; resultados locais não comprovam CI remoto.
 6. `npm run test:regression`: Execução das 9 suítes de regressão do Node 24 VM modules.
 7. `npm run build`: Compilação de produção (NestJS CLI + Next.js Turbopack).
 8. `npm run check:api-artifact`: Inspeção de importações e metadados de injeção de dependência.
-9. `npm run check:operation`: Validação automatizada de prontidão operacional.
+9. `npm run check:operation`: Checagens estáticas de declarações nos arquivos operacionais.
 10. `npm run lint`: Análise estática de regras e conformidade de código.
 
 ---
 
 ## 7. Checklist de Prontidão para Go-Live do MVP
 
-- [x] **Contratos e Schemas:** Versionados formalmente (`WORKFLOW_SCHEMA_VERSION = 1.0.0`) em `@flowmind/contracts`.
-- [x] **Jornada do MVP (C01–C03):** Casos de negócio testados com simulação pura, análise de IA fundamentada e fail-fast em dados incompletos.
-- [x] **Segurança Multi-tenant (SEC01–SEC04, SEC09):** Isolamento total entre organizações, RBAC por endpoint e imutabilidade de versões `PUBLISHED`.
-- [x] **Proteção de Rede & Privacidade:** Bloqueio de SSRF, proteção contra CRLF Injection e sanitização recursiva de dados sensíveis em logs/histórico.
-- [x] **Triggers & Automações:** Webhooks com comparação `timingSafeEqual`, idempotência por chave com replay determinístico e scheduler com validação estrita de cron.
-- [x] **Acessibilidade (WCAG 2.1 AA):** Navegação e fechamento por teclado (tecla <kbd>Escape</kbd>), semântica ARIA nos modais e títulos estruturados.
-- [x] **Observabilidade:** Liveness e Readiness probes implementados em `/health` e `/health/ready`.
-- [x] **Scripts de Operação:** Script `npm run check:operation` aprovado e integrado aos scripts do projeto.
-- [x] **Segurança de Código:** Zero segredos commitados no repositório Git; `.env.example` auditado.
-- [x] **Bateria de Testes:** 131 testes Jest + 74 testes de regressão nativos verdes (100% de aprovação).
+- [ ] **Contratos e Schemas:** Versionados formalmente (`WORKFLOW_SCHEMA_VERSION = 1.0.0`) em `@flowmind/contracts`.
+- [ ] **Jornada do MVP (C01–C03):** Aceite integrado de IA/registro/e-mail; simulação e C03 já têm provas locais.
+- [ ] **Segurança Multi-tenant (SEC01–SEC04, SEC09):** Isolamento com Clerk/PostgreSQL reais, RBAC e imutabilidade; controles locais já existem.
+- [ ] **Proteção de Rede & Privacidade:** Bloqueio de SSRF, proteção contra CRLF Injection e sanitização recursiva de dados sensíveis em logs/histórico.
+- [ ] **Triggers & Automações:** Webhook autenticado por segredo/organização resolvidos no servidor, replay concorrente e scheduler cron real; ingresso atual fechado.
+- [ ] **Acessibilidade (WCAG 2.1 AA):** Navegador, teclado/foco e critérios WCAG; checagens textuais não equivalem a auditoria.
+- [ ] **Observabilidade:** Liveness e Readiness probes implementados em `/health` e `/health/ready`.
+- [ ] **Scripts de Operação:** Script `npm run check:operation` aprovado e integrado aos scripts do projeto.
+- [ ] **Segurança de Código:** Auditoria de segredos/repositório completa e correção das dependências; checar dois prefixos em .env.example não prova ausência de segredos.
+- [ ] **Bateria de Testes:** Ambiente real e testes integrados; checkpoint local passou 207 Jest/74 regressões.

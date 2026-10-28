@@ -1,0 +1,52 @@
+[
+  {
+    "source": "docs/MEMORIA.md",
+    "sha256": "edba0cd3f99173ab28b4461037a130fcc7ba899718dc65fc6c6052996a0ba15c",
+    "backup": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-resource-security-20261013-g7l1h18e\\docs-before-MEMORIA.md"
+  },
+  {
+    "source": "plan.md",
+    "sha256": "f08c682e81b65fe29dbf4ce4f335a27555ef485d5f28d5706daeb536f3b70657",
+    "backup": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-resource-security-20261013-g7l1h18e\\docs-before-plan.md"
+  },
+  {
+    "source": "docs/PROJECT_CONTEXT.md",
+    "sha256": "5081ee210afd39159de1fd0202663494758d8a25e34398e7230d843059517be0",
+    "backup": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-resource-security-20261013-g7l1h18e\\docs-before-PROJECT_CONTEXT.md"
+  },
+  {
+    "source": "docs/QA_SECURITY_MATRIX.md",
+    "sha256": "cb9aaa8da4802b5a6df39f1307ff175ec429da7a78777e4ec9c9ddff3c8b8f71",
+    "backup": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-resource-security-20261013-g7l1h18e\\docs-before-QA_SECURITY_MATRIX.md"
+  },
+  {
+    "source": "docs/T03_RESOURCE_PROPOSAL.md",
+    "sha256": "7ca1f3d578408083235fa7882d65401960dde4d24dc79961029643ee988ef8a4",
+    "backup": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-resource-security-20261013-g7l1h18e\\docs-before-T03_RESOURCE_PROPOSAL.md"
+  },
+  {
+    "source": "docs/AI_MEMORY.md",
+    "sha256": "85df0dfc506eb047b2b9cc13455ead91bd6b701dd08304f7e583ad111e0ac9b5",
+    "backup": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-resource-security-20261013-g7l1h18e\\docs-before-AI_MEMORY.md"
+  },
+  {
+    "source": "docs/AI_EVALUATION.md",
+    "sha256": "346ec88c6b8ffaa4e6683dd6c2e9caa0e01572ece9834360efd4434542630b96",
+    "backup": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-resource-security-20261013-g7l1h18e\\docs-before-AI_EVALUATION.md"
+  },
+  {
+    "source": "README.md",
+    "sha256": "b6f6c30df3df3150b9d618d4a050caa7b4835613edb5695e2157d1e078122236",
+    "backup": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-resource-security-20261013-g7l1h18e\\docs-before-README.md"
+  },
+  {
+    "source": "docs/VALIDATION_T08_EDITOR_2026-10-13.md",
+    "sha256": "3e8a4a96d7dcee465a0755455e52adc39bf00548622f14abd8523e0252bef52c",
+    "backup": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-resource-security-20261013-g7l1h18e\\docs-before-VALIDATION_T08_EDITOR_2026-10-13.md"
+  },
+  {
+    "source": "docs/AI_MEMORY_SYNC_PENDING_2026-10-12.json",
+    "sha256": "36d11c79186515ddc7fe5614060cc12873b0be9fefb11f1ee0a75cd2dabfe986",
+    "backup": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-resource-security-20261013-g7l1h18e\\docs-before-AI_MEMORY_SYNC_PENDING_2026-10-12.json"
+  }
+]

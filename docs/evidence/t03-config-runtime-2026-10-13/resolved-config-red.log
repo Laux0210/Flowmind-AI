@@ -1,0 +1,43 @@
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151002: [0mUsing hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+(node:24352) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+FAIL apps/api/src/engine/node-config-boundaries.spec.ts
+  ● Configurações antes da simulação › falha sem executar e-mail quando a referência exata do corpo produz boolean
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "FAILED"
+    Received: "COMPLETED"
+
+      104 |     const mail = jest.spyOn(NodeExecutors, 'executeSendEmail');
+      105 |     const result = await f.engine.simulate(f.w, { name: 'Fixture', email: 'contato@example.test', message: 'Fixture' });
+    > 106 |     expect(result.status).toBe('FAILED');
+          |                           ^
+      107 |     expect(result.nodeResults.at(-1)?.nodeId).toBe('mail');
+      108 |     expect(mail).not.toHaveBeenCalled();
+      109 |   });
+
+      at Object.<anonymous> (src/engine/node-config-boundaries.spec.ts:106:27)
+
+  ● Configurações antes da simulação › falha sem executar e-mail quando o corpo depende de saída SKIPPED
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "FAILED"
+    Received: "COMPLETED"
+
+      129 |     const mail = jest.spyOn(NodeExecutors, 'executeSendEmail');
+      130 |     const result = await f.engine.simulate(f.w, { name: 'Fixture', email: 'contato@example.test', message: 'Fixture' });
+    > 131 |     expect(result.status).toBe('FAILED');
+          |                           ^
+      132 |     expect(result.nodeResults.find((node) => node.nodeId === 'yes')?.status).toBe('SKIPPED');
+      133 |     expect(mail).not.toHaveBeenCalled();
+      134 |   });
+
+      at Object.<anonymous> (src/engine/node-config-boundaries.spec.ts:131:27)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 60 skipped, 62 total
+Snapshots:   0 total
+Time:        3.028 s
+Ran all test suites within paths "C:\Users\jv883\Documents\Codex\FlowMind-AI\Flowmind-AI\apps\api\src\engine\node-config-boundaries.spec.ts".

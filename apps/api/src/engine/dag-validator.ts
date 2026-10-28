@@ -1,5 +1,6 @@
 import { BadRequestException } from '@nestjs/common';
 import type { WorkflowDefinition, WorkflowNode, WorkflowEdge } from '@flowmind/contracts';
+import { WORKFLOW_NODE_TYPES } from '@flowmind/contracts';
 
 export interface TopologicalSortResult {
   sortedNodes: WorkflowNode[];
@@ -25,6 +26,16 @@ export class DagValidator {
 
     const nodeMap = new Map<string, WorkflowNode>();
     for (const node of nodes) {
+      if (!node || typeof node.id !== 'string' || !node.id.trim()) {
+        throw new BadRequestException({
+          code: 'WORKFLOW_INVALID_NODE_ID', message: 'Identificador de nó ausente ou inválido.',
+        });
+      }
+      if (typeof node.type !== 'string' || !WORKFLOW_NODE_TYPES.includes(node.type)) {
+        throw new BadRequestException({
+          code: 'WORKFLOW_INVALID_NODE_TYPE', message: 'Tipo de nó fora do catálogo permitido.',
+        });
+      }
       if (nodeMap.has(node.id)) {
         throw new BadRequestException(`ID de nó duplicado detectado: ${node.id}`);
       }
@@ -58,7 +69,14 @@ export class DagValidator {
       edgesByTarget.set(node.id, []);
     }
 
+    const edgeIds = new Set<string>();
     for (const edge of edges) {
+      if (!edge || typeof edge.id !== 'string' || !edge.id.trim() || edgeIds.has(edge.id)) {
+        throw new BadRequestException({
+          code: 'WORKFLOW_INVALID_EDGE_ID', message: 'Identificador de aresta ausente, inválido ou repetido.',
+        });
+      }
+      edgeIds.add(edge.id);
       if (!nodeMap.has(edge.sourceNodeId)) {
         throw new BadRequestException(`Aresta referencia nó de origem inexistente: ${edge.sourceNodeId}`);
       }

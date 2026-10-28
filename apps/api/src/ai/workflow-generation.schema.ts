@@ -1,3 +1,5 @@
+import { WORKFLOW_NODE_TYPES } from '@flowmind/contracts';
+
 /**
  * Esquema JSON estrito para OpenAI Structured Outputs (strict: true).
  * Em conformidade com a especificação oficial da OpenAI e os contratos do FlowMind AI.
@@ -35,14 +37,7 @@ export const WORKFLOW_GENERATION_JSON_SCHEMA = {
                 id: { type: 'string' },
                 type: {
                   type: 'string',
-                  enum: [
-                    'trigger_form',
-                    'ai_analyze_intent',
-                    'internal_record',
-                    'send_email',
-                    'condition',
-                    'http_request',
-                  ],
+                  enum: WORKFLOW_NODE_TYPES,
                 },
                 label: { type: 'string' },
                 position: {

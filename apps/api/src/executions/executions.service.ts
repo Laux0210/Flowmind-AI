@@ -1,7 +1,7 @@
 import {
   Injectable,
   NotFoundException,
-  Logger,
+  ServiceUnavailableException,
 } from '@nestjs/common';
 import type {
   WorkflowExecution,
@@ -13,11 +13,6 @@ import { UsageLimitsService } from './usage-limits.service';
 
 @Injectable()
 export class ExecutionsService {
-  private readonly logger = new Logger(ExecutionsService.name);
-
-  // Armazenamento em memória para execuções quando executando em ambiente de testes ou sem postgres ativo
-  private readonly inMemoryExecutions: WorkflowExecution[] = [];
-
   private readonly prisma: PrismaService;
   private readonly usageLimitsService: UsageLimitsService;
 
@@ -42,15 +37,27 @@ export class ExecutionsService {
     nodeResults: NodeExecutionResult[],
     startedAt: string,
     completedAt?: string,
+    executionId?: string,
   ): Promise<WorkflowExecution> {
-    // 1. Aplica e incrementa consumo de quota
-    await this.usageLimitsService.checkAndConsumeExecution(orgId);
+    let workflow;
+    try {
+      workflow = await this.prisma.workflow.findFirst({ where: { id: workflowId, orgId } });
+    } catch {
+      throw this.storageUnavailable();
+    }
+    if (!workflow) {
+      throw new NotFoundException({ code: 'WORKFLOW_NOT_FOUND', message: 'Workflow não encontrado para a organização ativa.' });
+    }
 
-    // 2. Sanitiza dados sensíveis nos resultados dos nós antes de persistir
+    // Sanitizar antes de reservar evita consumo quando a entrada é inválida.
     const sanitizedNodeResults = UsageLimitsService.sanitizeSensitiveData(nodeResults);
+    // Simulações são isentas da cota comercial de execuções ativas (LIVE).
+    const releaseReservation = mode === 'LIVE'
+      ? await this.usageLimitsService.checkAndConsumeExecution(orgId)
+      : () => {};
 
     const execution: WorkflowExecution = {
-      id: `exec_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`,
+      id: executionId || `exec_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`,
       workflowId,
       workflowVersion,
       orgId,
@@ -79,8 +86,8 @@ export class ExecutionsService {
         },
       });
     } catch {
-      // Fallback gracioso em memória
-      this.inMemoryExecutions.unshift(execution);
+      releaseReservation();
+      throw this.storageUnavailable();
     }
 
     return execution;
@@ -98,6 +105,7 @@ export class ExecutionsService {
       const rows = await this.prisma.workflowExecution.findMany({
         where: {
           orgId,
+          workflow: { orgId },
           ...(workflowId ? { workflowId } : {}),
         },
         orderBy: { startedAt: 'desc' },
@@ -129,28 +137,7 @@ export class ExecutionsService {
         };
       });
     } catch {
-      // Fallback em memória filtrado por orgId
-      const filtered = this.inMemoryExecutions.filter(
-        (e) => e.orgId === orgId && (!workflowId || e.workflowId === workflowId),
-      );
-
-      return filtered.slice(0, limit).map((e) => {
-        const start = new Date(e.startedAt).getTime();
-        const end = e.completedAt ? new Date(e.completedAt).getTime() : start;
-        return {
-          id: e.id,
-          workflowId: e.workflowId,
-          workflowName: 'Automação FlowMind',
-          workflowVersion: e.workflowVersion,
-          mode: e.mode,
-          status: e.status,
-          startedAt: e.startedAt,
-          completedAt: e.completedAt,
-          durationMs: end - start,
-          triggeredBy: e.triggeredBy,
-          nodeCount: e.nodeResults.length,
-        };
-      });
+      throw this.storageUnavailable();
     }
   }
 
@@ -160,7 +147,7 @@ export class ExecutionsService {
   async getExecutionById(orgId: string, id: string): Promise<WorkflowExecution> {
     try {
       const row = await this.prisma.workflowExecution.findFirst({
-        where: { id, orgId },
+        where: { id, orgId, workflow: { orgId } },
       });
 
       if (!row) {
@@ -185,22 +172,14 @@ export class ExecutionsService {
     } catch (err: any) {
       if (err instanceof NotFoundException) throw err;
 
-      // Fallback em memória
-      const found = this.inMemoryExecutions.find(
-        (e) => e.id === id && e.orgId === orgId,
-      );
-
-      if (!found) {
-        throw new NotFoundException({
-          code: 'EXECUTION_NOT_FOUND',
-          message: 'Execução não encontrada para a organização ativa.',
-        });
-      }
-
-      return {
-        ...found,
-        nodeResults: UsageLimitsService.sanitizeSensitiveData(found.nodeResults),
-      };
+      throw this.storageUnavailable();
     }
+  }
+
+  private storageUnavailable(): ServiceUnavailableException {
+    return new ServiceUnavailableException({
+      code: 'EXECUTION_STORAGE_UNAVAILABLE',
+      message: 'O histórico de execuções está temporariamente indisponível.',
+    });
   }
 }

@@ -1,0 +1,68 @@
+{
+  "verifiedAtUtc": "2026-10-23T16:18:56.055Z",
+  "scope": "SchedulePanel local UI and asynchronous isolation; production changes limited to pendingOps cleanup/guards, received generation fix and context key preserved",
+  "source": {
+    "before": 195,
+    "after": 195,
+    "changed": [],
+    "stable": true
+  },
+  "exits": {
+    "lint": 0,
+    "typecheck": 0,
+    "test": 0,
+    "test:regression": 0,
+    "prisma:validate": 0,
+    "build": 0,
+    "check:api-artifact": 0,
+    "check:operation": 0
+  },
+  "jest": "Tests:       26 skipped, 806 passed, 832 total\r",
+  "regressions": "tests 210",
+  "unitControls": {
+    "total": 8,
+    "beforeFinalFix": {
+      "pass": 6,
+      "fail": 2
+    },
+    "afterFix": {
+      "pass": 8,
+      "fail": 0
+    }
+  },
+  "browser": {
+    "staleAResponseIgnored": true,
+    "revokedSchedule": "s_b",
+    "scheduleAUnchanged": true,
+    "createdInWorkflow": "wf_b",
+    "cronErrorDisplayed": true,
+    "keyboardTabToTimezone": true,
+    "mobile390NoHorizontalOverflow": true,
+    "consoleErrors": [],
+    "strictMode": true,
+    "fixtureOnly": true
+  },
+  "fixtureSourceUnchanged": true,
+  "fixtureStopped": true,
+  "viewportRestored": true,
+  "auditProduction": {
+    "info": 0,
+    "low": 0,
+    "moderate": 0,
+    "high": 0,
+    "critical": 0,
+    "total": 0
+  },
+  "auditFull": {
+    "info": 0,
+    "low": 0,
+    "moderate": 0,
+    "high": 0,
+    "critical": 0,
+    "total": 0
+  },
+  "coordination": "Initial review message delivered; reproduction message rejected by Claude account limit. Production generation fix appeared during review from another execution; preserved. Narrow correction ownership recorded in protocol.",
+  "backupPath": "C:/Users/jv883/AppData/Local/Temp/flowmind-schedule-context-20261023-131028",
+  "realIntegrationRun": false,
+  "refinedUnitAssertions": "VM uses shared Error identity and explicitly checks absence of stale alerts"
+}

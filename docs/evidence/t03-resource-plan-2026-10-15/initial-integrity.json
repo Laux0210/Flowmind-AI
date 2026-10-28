@@ -1,0 +1,64 @@
+{
+  "checkedAtUtc": "2026-10-15T17:30:02.457392+00:00",
+  "scope": "documentation-only candidate resource contract and canonical notes; no implementation approval, product test rerun or acceptance of concurrent changes",
+  "sourceCountBefore": 148,
+  "sourceCountAfter": 148,
+  "sourceStableDuringDocumentWork": false,
+  "sourceChangesDuringDocumentWork": [
+    "apps/web/src/app/workflows/[id]/page.tsx",
+    "tests/regression/workflow-editing.test.mjs"
+  ],
+  "historicalSec05Drift": {
+    "added": [
+      "apps/api/src/worker/in-memory-job-queue.ts",
+      "packages/contracts/src/queue.ts"
+    ],
+    "removed": [],
+    "changed": [
+      "apps/api/src/worker/worker.module.ts",
+      "apps/api/src/worker/worker.service.spec.ts",
+      "apps/api/src/worker/worker.service.ts",
+      "apps/web/src/app/workflows/[id]/page.tsx",
+      "apps/web/src/lib/workflow-editing.ts",
+      "packages/contracts/src/index.ts",
+      "tests/regression/executions.test.mjs",
+      "tests/regression/workflow-editing.test.mjs"
+    ]
+  },
+  "historicalSec05AppliesToCurrentSources": false,
+  "historicalSec05LogsIntact": true,
+  "badHistoricalLogs": [],
+  "productTestsRerun": false,
+  "concurrentQueueEditorChangesRevalidated": false,
+  "concurrentProductAcceptance": false,
+  "documentBackupsIntact": true,
+  "badBackups": [],
+  "documentsChanged": [
+    "plan.md",
+    "docs/MEMORIA.md",
+    "docs/PROJECT_CONTEXT.md",
+    "docs/AI_MEMORY.md",
+    "docs/AI_MEMORY_SYNC_PENDING_2026-10-12.json",
+    "docs/T03_RESOURCE_PROPOSAL.md",
+    "docs/T03_RESOURCE_IMPLEMENTATION_PLAN.md"
+  ],
+  "documentReviewPassed": true,
+  "obsidianReadbackMatchesCurrent": true,
+  "obsidianChanges": [],
+  "manifestHashesMatch": true,
+  "manifestChanges": [],
+  "pendingManifestPages": 31,
+  "uniqueTargets": true,
+  "utf8DocumentsRead": 6,
+  "brokenLocalLinks": [],
+  "gitDiffCheckExitCode": 0,
+  "gitDiffCheckLogSha256": "0f9712e470547326ad7b9f107aa91dde83180b7adb5db043b013cd0f1e08f785",
+  "aiMemoryStatusRequest": 134,
+  "aiMemoryConnectionRefused": true,
+  "aiMemoryTransferred": false,
+  "architectureChoiceRecorded": false,
+  "R1R5Implemented": false,
+  "browserValidated": false,
+  "realServicesValidated": false,
+  "integrityPassed": false
+}

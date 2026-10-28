@@ -1,0 +1,65 @@
+✖ resposta atrasada A não substitui a lista de B (79.5569ms)
+✔ A→B→A ignora sucesso e erro dos pedidos anteriores (23.6672ms)
+✔ token atrasado de contexto anterior não inicia sua consulta (15.1437ms)
+✖ troca de organização esconde lista anterior já no primeiro render (14.9959ms)
+✖ ação com token pendente não cria agendamento após mudar contexto (16.1449ms)
+✖ duas ações no mesmo render iniciam só uma criação (12.2934ms)
+✔ resposta após unmount não altera estado (12.6735ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 3
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 436.3496
+
+✖ failing tests:
+
+test at tests\regression\schedule-panel.test.mjs:40:1
+✖ resposta atrasada A não substitui a lista de B (79.5569ms)
+  AssertionError [ERR_ASSERTION]: The input was expected to not match the regular expression /A/. Input:
+  
+  'Agendamentos (1 ativos)Cron de 5 campos (minuto hora dia mês dia-da-semana), intervalo mínimo de 15 minutos. Disparos rodam em simulação.BUTCAtivoRevogarExpressão cronFuso horárioCriar agendamentoExemplo: 0 9 * * 1-5 roda às 9h em dias úteis.'
+  
+      at TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/schedule-panel.test.mjs:43:101)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'Agendamentos (1 ativos)Cron de 5 campos (minuto hora dia mês dia-da-semana), intervalo mínimo de 15 minutos. Disparos rodam em simulação.BUTCAtivoRevogarExpressão cronFuso horárioCriar agendamentoExemplo: 0 9 * * 1-5 roda às 9h em dias úteis.',
+    expected: /A/,
+    operator: 'doesNotMatch',
+    diff: 'simple'
+  }
+
+test at tests\regression\schedule-panel.test.mjs:55:1
+✖ troca de organização esconde lista anterior já no primeiro render (14.9959ms)
+  AssertionError [ERR_ASSERTION]: The input was expected to not match the regular expression /PRIVADO_A/. Input:
+  
+  'Agendamentos (1 ativos)Cron de 5 campos (minuto hora dia mês dia-da-semana), intervalo mínimo de 15 minutos. Disparos rodam em simulação.PRIVADO_AUTCAtivoRevogarExpressão cronFuso horárioCriar agendamentoExemplo: 0 9 * * 1-5 roda às 9h em dias úteis.'
+  
+      at TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/schedule-panel.test.mjs:58:10)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'Agendamentos (1 ativos)Cron de 5 campos (minuto hora dia mês dia-da-semana), intervalo mínimo de 15 minutos. Disparos rodam em simulação.PRIVADO_AUTCAtivoRevogarExpressão cronFuso horárioCriar agendamentoExemplo: 0 9 * * 1-5 roda às 9h em dias úteis.',
+    expected: /PRIVADO_A/,
+    operator: 'doesNotMatch',
+    diff: 'simple'
+  }
+
+test at tests\regression\schedule-panel.test.mjs:60:1
+✖ ação com token pendente não cria agendamento após mudar contexto (16.1449ms)
+  TypeError: button(...).props.onClick is not a function
+      at TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/schedule-panel.test.mjs:62:73)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\schedule-panel.test.mjs:65:1
+✖ duas ações no mesmo render iniciam só uma criação (12.2934ms)
+  TypeError: create is not a function
+      at TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/schedule-panel.test.mjs:67:94)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)

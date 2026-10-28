@@ -1,0 +1,69 @@
+ts-jest[config] (WARN) message TS151002: Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+[Nest] 23704  - 28/10/2026, 20:36:27     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Agenda' [ID: wf]
+[Nest] 23704  - 28/10/2026, 20:36:27     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Agenda' [ID: wf]
+[Nest] 23704  - 28/10/2026, 20:36:27   ERROR [WorkflowEngineService] Falha no nó start (trigger_schedule): Horário previsto do agendamento inválido; use ISO UTC.
+[Nest] 23704  - 28/10/2026, 20:36:27     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Agenda' [ID: wf]
+[Nest] 23704  - 28/10/2026, 20:36:27   ERROR [WorkflowEngineService] Falha no nó start (trigger_schedule): Horário previsto do agendamento inválido; use ISO UTC.
+[Nest] 23704  - 28/10/2026, 20:36:27     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Agenda' [ID: wf]
+[Nest] 23704  - 28/10/2026, 20:36:27   ERROR [WorkflowEngineService] Falha no nó start (trigger_schedule): Horário previsto do agendamento inválido; use ISO UTC.
+[Nest] 23704  - 28/10/2026, 20:36:27     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Agenda' [ID: wf]
+[Nest] 23704  - 28/10/2026, 20:36:27   ERROR [WorkflowEngineService] Falha no nó start (trigger_schedule): Horário previsto do agendamento inválido; use ISO UTC.
+[Nest] 23704  - 28/10/2026, 20:36:27     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Agenda' [ID: wf]
+[Nest] 23704  - 28/10/2026, 20:36:27   ERROR [WorkflowEngineService] Falha no nó start (trigger_schedule): Horário previsto do agendamento inválido; use ISO UTC.
+[Nest] 23704  - 28/10/2026, 20:36:27     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Agenda' [ID: wf]
+[Nest] 23704  - 28/10/2026, 20:36:27   ERROR [WorkflowEngineService] Falha no nó start (trigger_schedule): Horário previsto do agendamento inválido; use ISO UTC.
+[Nest] 23704  - 28/10/2026, 20:36:27     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Agenda' [ID: wf]
+[Nest] 23704  - 28/10/2026, 20:36:27   ERROR [WorkflowEngineService] Falha no nó start (trigger_form): Campo obrigatório ausente na submissão do formulário: name
+[Nest] 23704  - 28/10/2026, 20:36:27    WARN [ScheduleTickConsumer] Disparo [sc] ignorado: versão publicada sem gatilho de agendamento compatível.
+[Nest] 23704  - 28/10/2026, 20:36:27     LOG [WorkerService] Processando simulação [Job: job] para workflow [ID: wf] org [org]
+[Nest] 23704  - 28/10/2026, 20:36:27     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Agenda' [ID: wf]
+[Nest] 23704  - 28/10/2026, 20:36:27     LOG [WorkerService] Simulação [Job: job] concluída com status COMPLETED [ExecutionId: exec]
+[Nest] 23704  - 28/10/2026, 20:36:27     LOG [WorkerService] Processando simulação [Job: job] para workflow [ID: wf] org [org]
+[Nest] 23704  - 28/10/2026, 20:36:27     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Agenda' [ID: wf]
+[Nest] 23704  - 28/10/2026, 20:36:27   ERROR [WorkflowEngineService] Falha no nó start (trigger_schedule): Horário previsto do agendamento inválido; use ISO UTC.
+[Nest] 23704  - 28/10/2026, 20:36:27     LOG [WorkerService] Simulação [Job: job] concluída com status FAILED [ExecutionId: exec]
+[Nest] 23704  - 28/10/2026, 20:36:27     LOG [WorkerService] Processando simulação [Job: job] para workflow [ID: wf] org [org]
+[Nest] 23704  - 28/10/2026, 20:36:27     LOG [WorkerService] Processando simulação [Job: job] para workflow [ID: wf] org [other]
+[Nest] 23704  - 28/10/2026, 20:36:27     LOG [WorkerService] Processando simulação [Job: job] para workflow [ID: wf] org [org]
+(node:23704) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+FAIL apps/api/src/schedules/schedule-trigger.spec.ts
+  ● Geração local de agendamento, sem fornecedor externo › preserva o evento de formulário no pedido Para cada envio de formulário, sincronizar contato via webhook
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "trigger_form"
+    Received: "trigger_schedule"
+
+      150 |     ('preserva o evento de formulário no pedido %s', async prompt => {
+      151 |       const result = await new DeterministicAiClient().generateWorkflow(prompt, 'org');
+    > 152 |       expect(result.draft.nodes[0].type).toBe('trigger_form');
+          |                                          ^
+      153 |     });
+      154 |   it.each(['A cada 15 minutos, executar', 'Todo dia, executar'])('reconhece frequência temporal %s', async prompt => {
+      155 |     const result = await new DeterministicAiClient().generateWorkflow(prompt, 'org');
+
+      at src/schedules/schedule-trigger.spec.ts:152:42
+
+  ● Geração local de agendamento, sem fornecedor externo › preserva o evento de formulário no pedido Sincronizar contato recebido no formulário
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "trigger_form"
+    Received: "trigger_schedule"
+
+      150 |     ('preserva o evento de formulário no pedido %s', async prompt => {
+      151 |       const result = await new DeterministicAiClient().generateWorkflow(prompt, 'org');
+    > 152 |       expect(result.draft.nodes[0].type).toBe('trigger_form');
+          |                                          ^
+      153 |     });
+      154 |   it.each(['A cada 15 minutos, executar', 'Todo dia, executar'])('reconhece frequência temporal %s', async prompt => {
+      155 |     const result = await new DeterministicAiClient().generateWorkflow(prompt, 'org');
+
+      at src/schedules/schedule-trigger.spec.ts:152:42
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 25 passed, 27 total
+Snapshots:   0 total
+Time:        3.711 s
+Ran all test suites within paths "apps/api/src/schedules/schedule-trigger.spec.ts".

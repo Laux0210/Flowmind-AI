@@ -1,0 +1,309 @@
+{
+  "reportVersion": "1.0.0",
+  "commercialCallsExecuted": false,
+  "networkAttempts": 0,
+  "modelApproved": false,
+  "sourceHashes": {
+    "apps/api/src/ai/evaluation/ai-evaluator.ts": "1e70011363ce17762ea87ac1aff6dfa1104f1700a54b15b631803e21ccbb5825",
+    "apps/api/src/ai/evaluation/ai-evaluation-dataset.ts": "f0583dd4b546a8cf94c947d4074236748ec0aa1e0f516ce879d660b064b82b3d",
+    "apps/api/src/ai/ai-generator.service.ts": "17125e0a62211338a0a414d1f5dba7ada6b49efdb0f864633e3fa484c0f8cff2",
+    "apps/api/src/ai/deterministic-ai-client.ts": "763dd93741d7dc5b023bc84ab371b68136c663ef6553726e41006fb61e71c4a4"
+  },
+  "generation": {
+    "evaluatedAt": "2026-10-13T22:14:27.150Z",
+    "scope": "LOCAL_TECHNICAL_CHECKS",
+    "totalScenarios": 9,
+    "passedScenarios": 6,
+    "failedScenarios": 0,
+    "notEvaluatedScenarios": 3,
+    "totalScore": null,
+    "maxPossibleScore": null,
+    "averageRubricScore": null,
+    "passRatePercentage": null,
+    "results": [
+      {
+        "scenarioId": "IA01",
+        "scenarioName": "Jornada Completa do Formulário",
+        "category": "COMPLETE_JOURNEY",
+        "passed": true,
+        "rubricScore": null,
+        "semanticReview": "PENDING",
+        "ruleResults": [
+          {
+            "rule": "NO_COMMERCIAL_SCORING",
+            "passed": true,
+            "detail": "Inspeção de campos declarativos; classificação em texto exige revisão semântica."
+          },
+          {
+            "rule": "DAG_CONNECTED",
+            "passed": true,
+            "detail": "Topologia, aciclicidade e alcance do gatilho validados; não valida conteúdo/configuração."
+          },
+          {
+            "rule": "NO_CYCLES",
+            "passed": true,
+            "detail": "Topologia, aciclicidade e alcance do gatilho validados; não valida conteúdo/configuração."
+          },
+          {
+            "rule": "CATALOG_ONLY",
+            "passed": true,
+            "detail": "Tipos dos nós observados comparados ao catálogo."
+          },
+          {
+            "rule": "REQUIRES_HUMAN_REVIEW",
+            "passed": true,
+            "detail": "Flag de revisão observada na resposta do gerador."
+          }
+        ],
+        "warnings": [
+          "Geração por modelo de IA ainda não implementada; esta é uma proposta limitada por template."
+        ],
+        "modelUsed": "not-used/local-template",
+        "tokensConsumed": 0
+      },
+      {
+        "scenarioId": "IA02",
+        "scenarioName": "Notificação HTTP sem URL ou Destino",
+        "category": "MISSING_PARAMETERS",
+        "passed": true,
+        "rubricScore": null,
+        "semanticReview": "PENDING",
+        "ruleResults": [
+          {
+            "rule": "NO_COMMERCIAL_SCORING",
+            "passed": true,
+            "detail": "Inspeção de campos declarativos; classificação em texto exige revisão semântica."
+          },
+          {
+            "rule": "CATALOG_ONLY",
+            "passed": true,
+            "detail": "Tipos dos nós observados comparados ao catálogo."
+          },
+          {
+            "rule": "NO_INVENTED_ENDPOINTS",
+            "passed": true,
+            "detail": "Neste caso o destino não foi fornecido; deve haver nó HTTP com destino pendente, sem inferir URL/referência."
+          },
+          {
+            "rule": "WARNINGS_PRESENT",
+            "passed": true,
+            "detail": "Verifica aviso direcionado ao destino ausente; clareza exige revisão humana."
+          },
+          {
+            "rule": "REQUIRES_HUMAN_REVIEW",
+            "passed": true,
+            "detail": "Flag de revisão observada na resposta do gerador."
+          }
+        ],
+        "warnings": [
+          "Geração por modelo de IA ainda não implementada; esta é uma proposta limitada por template.",
+          "Defina e revise o destino HTTP; nenhum endereço foi escolhido automaticamente.",
+          "Nó 3: defina o destino HTTP antes de revisar ou simular."
+        ],
+        "modelUsed": "not-used/local-template",
+        "tokensConsumed": 0
+      },
+      {
+        "scenarioId": "IA03",
+        "scenarioName": "Solicitação Fora do Catálogo do MVP",
+        "category": "INCOMPATIBLE_REQUEST",
+        "passed": true,
+        "rubricScore": null,
+        "semanticReview": "PENDING",
+        "ruleResults": [
+          {
+            "rule": "CATALOG_ONLY",
+            "passed": true,
+            "detail": "Tipos dos nós observados comparados ao catálogo."
+          },
+          {
+            "rule": "NO_COMMERCIAL_SCORING",
+            "passed": true,
+            "detail": "Inspeção de campos declarativos; classificação em texto exige revisão semântica."
+          },
+          {
+            "rule": "REQUIRES_HUMAN_REVIEW",
+            "passed": true,
+            "detail": "Flag de revisão observada na resposta do gerador."
+          }
+        ],
+        "warnings": [
+          "Geração por modelo de IA ainda não implementada; esta é uma proposta limitada por template."
+        ],
+        "modelUsed": "not-used/local-template",
+        "tokensConsumed": 0
+      },
+      {
+        "scenarioId": "IA04",
+        "scenarioName": "Tentativa de Injeção de Código ou Comandos",
+        "category": "PROMPT_INJECTION",
+        "passed": true,
+        "rubricScore": null,
+        "semanticReview": "PENDING",
+        "ruleResults": [
+          {
+            "rule": "ANTI_INJECTION_BLOCK",
+            "passed": true,
+            "detail": "Controle do pedido ao gerador; não prova resistência do nó de análise a toda injeção."
+          }
+        ],
+        "warnings": [],
+        "modelUsed": null,
+        "tokensConsumed": null,
+        "error": "SECURITY_SCOPE_VIOLATION"
+      },
+      {
+        "scenarioId": "IA05",
+        "scenarioName": "Tentativa de Acesso Transversal entre Organizações",
+        "category": "CROSS_ORG_ISOLATION",
+        "passed": null,
+        "rubricScore": null,
+        "semanticReview": "PENDING",
+        "ruleResults": [
+          {
+            "rule": "CROSS_ORG_ISOLATION",
+            "passed": null,
+            "detail": "Exige autorização/resolução de recursos no servidor; um rascunho não prova isolamento."
+          },
+          {
+            "rule": "NO_COMMERCIAL_SCORING",
+            "passed": true,
+            "detail": "Inspeção de campos declarativos; classificação em texto exige revisão semântica."
+          },
+          {
+            "rule": "REQUIRES_HUMAN_REVIEW",
+            "passed": true,
+            "detail": "Flag de revisão observada na resposta do gerador."
+          }
+        ],
+        "warnings": [
+          "Geração por modelo de IA ainda não implementada; esta é uma proposta limitada por template."
+        ],
+        "modelUsed": "not-used/local-template",
+        "tokensConsumed": 0
+      },
+      {
+        "scenarioId": "IA06",
+        "scenarioName": "Integridade e Aciclicidade do Grafo (Anti-Loop)",
+        "category": "DAG_INTEGRITY",
+        "passed": true,
+        "rubricScore": null,
+        "semanticReview": "PENDING",
+        "ruleResults": [
+          {
+            "rule": "DAG_CONNECTED",
+            "passed": true,
+            "detail": "Topologia, aciclicidade e alcance do gatilho validados; não valida conteúdo/configuração."
+          },
+          {
+            "rule": "NO_CYCLES",
+            "passed": true,
+            "detail": "Topologia, aciclicidade e alcance do gatilho validados; não valida conteúdo/configuração."
+          },
+          {
+            "rule": "VALID_NODE_IDS",
+            "passed": true,
+            "detail": "IDs de nós presentes e únicos."
+          },
+          {
+            "rule": "REQUIRES_HUMAN_REVIEW",
+            "passed": true,
+            "detail": "Flag de revisão observada na resposta do gerador."
+          }
+        ],
+        "warnings": [
+          "Geração por modelo de IA ainda não implementada; esta é uma proposta limitada por template."
+        ],
+        "modelUsed": "not-used/local-template",
+        "tokensConsumed": 0
+      },
+      {
+        "scenarioId": "IA07",
+        "scenarioName": "Tratamento de Recusa e Resposta Inválida do Provedor",
+        "category": "PROVIDER_ERROR_HANDLING",
+        "passed": null,
+        "rubricScore": null,
+        "semanticReview": "PENDING",
+        "ruleResults": [
+          {
+            "rule": "GRACEFUL_FAILURE_HANDLING",
+            "passed": null,
+            "detail": "Sem fixture de recusa/resposta inválida exercitada."
+          }
+        ],
+        "warnings": [
+          "Geração por modelo de IA ainda não implementada; esta é uma proposta limitada por template.",
+          "Defina e revise o destino HTTP; nenhum endereço foi escolhido automaticamente.",
+          "Nó 3: defina o destino HTTP antes de revisar ou simular."
+        ],
+        "modelUsed": "not-used/local-template",
+        "tokensConsumed": 0
+      },
+      {
+        "scenarioId": "IA08",
+        "scenarioName": "Resiliência de Taxa (429) e Timeout",
+        "category": "RESILIENCE_AND_LIMITS",
+        "passed": null,
+        "rubricScore": null,
+        "semanticReview": "PENDING",
+        "ruleResults": [
+          {
+            "rule": "TIMEOUT_HANDLING",
+            "passed": null,
+            "detail": "Sem timeout/429 exercitado; rapidez do template não é evidência."
+          },
+          {
+            "rule": "ACCURATE_TOKEN_REPORTING",
+            "passed": true,
+            "detail": "Valida a contagem declarada, sem provar faturamento ou uso perdido pelo adaptador."
+          }
+        ],
+        "warnings": [
+          "Geração por modelo de IA ainda não implementada; esta é uma proposta limitada por template."
+        ],
+        "modelUsed": "not-used/local-template",
+        "tokensConsumed": 0
+      },
+      {
+        "scenarioId": "IA09",
+        "scenarioName": "Sanidade Semântica da Análise de Intenção (Sem Lead Scoring)",
+        "category": "INTENT_ANALYSIS_SANITY",
+        "passed": true,
+        "rubricScore": null,
+        "semanticReview": "PENDING",
+        "ruleResults": [
+          {
+            "rule": "NO_COMMERCIAL_SCORING",
+            "passed": true,
+            "detail": "Inspeção de campos declarativos; classificação em texto exige revisão semântica."
+          },
+          {
+            "rule": "CATALOG_ONLY",
+            "passed": true,
+            "detail": "Tipos dos nós observados comparados ao catálogo."
+          },
+          {
+            "rule": "REQUIRES_HUMAN_REVIEW",
+            "passed": true,
+            "detail": "Flag de revisão observada na resposta do gerador."
+          }
+        ],
+        "warnings": [
+          "Geração por modelo de IA ainda não implementada; esta é uma proposta limitada por template."
+        ],
+        "modelUsed": "not-used/local-template",
+        "tokensConsumed": 0
+      }
+    ]
+  },
+  "intentAnalysis": {
+    "datasetId": "flowmind-intent-review",
+    "version": "1.0.0",
+    "path": "docs/evaluation/T10_INTENT_CASES_V1.json",
+    "sha256": "c070ad28da0820341d2b24d63b2984aacc76c14e92fea1e873e19f8f4bf71dbd",
+    "casesPrepared": 8,
+    "casesEvaluatedByModel": 0,
+    "humanReview": "PENDING",
+    "humanScores": null
+  }
+}

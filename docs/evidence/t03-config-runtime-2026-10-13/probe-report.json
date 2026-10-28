@@ -1,0 +1,262 @@
+{
+  "observedAtUtc": "2026-10-13T08:26:13.750Z",
+  "scope": "LOCAL_CONTRACT_DIAGNOSTIC",
+  "acceptanceVerdict": "NOT_ASSESSED",
+  "services": "WorkflowsService and WorkflowEngineService compiled locally",
+  "storage": "synthetic; no database or real transaction semantics",
+  "auth": "not exercised; direct service calls",
+  "commercialCallsExecuted": false,
+  "networkAttempts": 0,
+  "sourceHashes": {
+    "packages/contracts/src/nodes.ts": "b4547e544f71fa65f847b2737c61b290f5c655f2bf35fdc44a35d8748c42fa20",
+    "packages/contracts/src/workflow.ts": "0cba354174710e8ad840bd633e006febf5e0c60b03a755af8d47f923b3eb24cb",
+    "packages/contracts/src/api.ts": "a64d75f58faa91490e5a5f88ef9d1081a95204f47f0da0edd8f290fa7f5f0828",
+    "packages/contracts/src/index.ts": "d6a22f590042a67538c0c5749149c18fd51b84656980190c17c781ab2117695d",
+    "packages/contracts/src/node-validation.ts": "2a85a3eda42b2fc27f97f916f5f9fb57ec24bbd9acc8fdc2b4c80c633e41ceb8",
+    "apps/api/src/engine/dag-validator.ts": "00a9cad191e6837ed23156aea0386d236ab9fb5f0f490cac3ded43f5f3e988ff",
+    "apps/api/src/engine/variable-resolver.ts": "7e38f343e97f6ef0cd62df30f36a3ec83f847be88d941bb13a99b27a5cb89384",
+    "apps/api/src/engine/workflow-validation.ts": "0e91bded4b48f954003b4e1e929084b8c165d0fa3b76d6da7fcf69d15e68ca9a",
+    "apps/api/src/engine/node-executors.ts": "9b7f6c60df39685f299dac1246024cbcd900d447f57ebad95e9334ffc253f383",
+    "apps/api/src/engine/workflow-engine.service.ts": "e7faa75b4df2f3c301b89e4475bc4bb9982c1b6195317f520ddcb11b69f8b9ef",
+    "apps/api/src/workflows/workflows.service.ts": "f8add025724880ca548efa98c3413572e30e49401badd6da5ca4cffd66535538",
+    "apps/api/src/workflows/workflows.controller.ts": "54d6f3728114ae864c57f3645f5191439090656d0c0ae7702f8caf9955e0ab0c",
+    "apps/api/src/ai/ai-generator.service.ts": "30e29feb69a1edabe7604e39e851c08b90dded29be74f62321525cda6b13e4f0",
+    "apps/api/src/ai/workflow-proposal.parser.ts": "0ecef2e6cb6371e8440e261657c238e07656b7431b702460e319ca5b1681254f",
+    "apps/api/src/ai/workflow-generation.schema.ts": "75f693525f07560d51f6fa5d1015fe03f5b51710c4ffc56dd5a016deb5773a1c",
+    "apps/api/prisma/schema.prisma": "d72992bbc017f46185df403d9d28ba77ffeacfe7b6f993bca5618788682136a8"
+  },
+  "artifactHashes": {
+    "apps/api/dist/workflows/workflows.service.js": "d4cadc4cb7b8ac439b2c931c4a4e4228b08df032e2b0fe2218ccd6e9181c2ba7",
+    "apps/api/dist/engine/workflow-engine.service.js": "8872a22a98e374c728b51ebb7de2e8a9351b6bb5acf276c8aeca18d55f42720d",
+    "apps/api/dist/engine/node-executors.js": "10667a39da1479aa9a9e96c62d6bc2af0d270abb384791b9cf43ed7ead842fe7",
+    "apps/api/dist/engine/dag-validator.js": "489e3dcc10e82c8eea453663efbe8936fd3080724ef10eb6f89312257d95a469",
+    "apps/api/dist/engine/variable-resolver.js": "6f05bcbf01d10f5316e44267059a6d14a586a288d1cc274a73d570e1826c5fb9",
+    "apps/api/dist/engine/workflow-validation.js": "3df8e0273ad7093538ffe53e0ddfb75471a0c09352c52282dd7627e7e567a93a",
+    "packages/contracts/dist/index.js": "8af0e4bbb62fa8d91d947406c3f6865b54843b897ddbe2cf2b84414b2124a4d7",
+    "packages/contracts/dist/nodes.js": "ea6ae40f5dcd173160f1ea9c4366366e1421d3b0d28ec4f014b960729c2307f3",
+    "packages/contracts/dist/workflow.js": "d7858db125d2c1a54ab44fa006520673ff6a6f0fb732af06c40574f9417bd35f",
+    "packages/contracts/dist/node-validation.js": "0c7e1e8c13bbe8536e5fe54f96d18c93b6f80a24efc42aadd04ad65089550fcd"
+  },
+  "results": [
+    {
+      "id": "SC00",
+      "purpose": "Jornada linear válida",
+      "reviewAttempted": true,
+      "publishAttempted": true,
+      "reviewAccepted": true,
+      "publishAccepted": true,
+      "simulationStatus": "COMPLETED",
+      "nodeStatuses": [
+        {
+          "id": "form",
+          "type": "trigger_form",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "mail",
+          "type": "send_email",
+          "status": "SUCCESS"
+        }
+      ],
+      "persistenceCounters": {
+        "workflowReads": 4,
+        "workflowWrites": 2,
+        "versionSnapshots": 1
+      }
+    },
+    {
+      "id": "SC01",
+      "purpose": "HTTP sem configuração",
+      "reviewAttempted": true,
+      "publishAttempted": false,
+      "reviewAccepted": false,
+      "publishAccepted": false,
+      "lifecycleErrorCode": "WORKFLOW_INVALID_NODE_CONFIG",
+      "simulationStatus": "REJECTED_BEFORE_NODES",
+      "simulationErrorType": "BadRequestException",
+      "persistenceCounters": {
+        "workflowReads": 1,
+        "workflowWrites": 0,
+        "versionSnapshots": 0
+      }
+    },
+    {
+      "id": "SC02",
+      "purpose": "Assunto numérico e corpo ausente",
+      "reviewAttempted": true,
+      "publishAttempted": false,
+      "reviewAccepted": false,
+      "publishAccepted": false,
+      "lifecycleErrorCode": "WORKFLOW_INVALID_NODE_CONFIG",
+      "simulationStatus": "REJECTED_BEFORE_NODES",
+      "simulationErrorType": "BadRequestException",
+      "persistenceCounters": {
+        "workflowReads": 1,
+        "workflowWrites": 0,
+        "versionSnapshots": 0
+      }
+    },
+    {
+      "id": "SC03",
+      "purpose": "Destinatário referencia saída inexistente",
+      "reviewAttempted": true,
+      "publishAttempted": true,
+      "reviewAccepted": true,
+      "publishAccepted": true,
+      "simulationStatus": "FAILED",
+      "nodeStatuses": [
+        {
+          "id": "form",
+          "type": "trigger_form",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "mail",
+          "type": "send_email",
+          "status": "FAILED"
+        }
+      ],
+      "persistenceCounters": {
+        "workflowReads": 4,
+        "workflowWrites": 2,
+        "versionSnapshots": 1
+      }
+    },
+    {
+      "id": "SC04",
+      "purpose": "Corpo referencia nó inexistente",
+      "reviewAttempted": true,
+      "publishAttempted": true,
+      "reviewAccepted": true,
+      "publishAccepted": true,
+      "simulationStatus": "REJECTED_BEFORE_NODES",
+      "simulationErrorType": "BadRequestException",
+      "persistenceCounters": {
+        "workflowReads": 4,
+        "workflowWrites": 2,
+        "versionSnapshots": 1
+      }
+    },
+    {
+      "id": "SC05",
+      "purpose": "Operador fora do catálogo",
+      "reviewAttempted": true,
+      "publishAttempted": false,
+      "reviewAccepted": false,
+      "publishAccepted": false,
+      "lifecycleErrorCode": "WORKFLOW_INVALID_NODE_CONFIG",
+      "simulationStatus": "REJECTED_BEFORE_NODES",
+      "simulationErrorType": "BadRequestException",
+      "persistenceCounters": {
+        "workflowReads": 1,
+        "workflowWrites": 0,
+        "versionSnapshots": 0
+      }
+    },
+    {
+      "id": "SC06",
+      "purpose": "Tipo de nó fora do catálogo",
+      "reviewAttempted": true,
+      "publishAttempted": false,
+      "reviewAccepted": false,
+      "publishAccepted": false,
+      "lifecycleErrorCode": "WORKFLOW_INVALID_NODE_TYPE",
+      "simulationStatus": "REJECTED_BEFORE_NODES",
+      "simulationErrorType": "BadRequestException",
+      "persistenceCounters": {
+        "workflowReads": 1,
+        "workflowWrites": 0,
+        "versionSnapshots": 0
+      }
+    },
+    {
+      "id": "SC07",
+      "purpose": "IDs de arestas duplicados na condição",
+      "reviewAttempted": true,
+      "publishAttempted": false,
+      "reviewAccepted": false,
+      "publishAccepted": false,
+      "lifecycleErrorCode": "WORKFLOW_INVALID_EDGE_ID",
+      "simulationStatus": "REJECTED_BEFORE_NODES",
+      "simulationErrorType": "BadRequestException",
+      "persistenceCounters": {
+        "workflowReads": 1,
+        "workflowWrites": 0,
+        "versionSnapshots": 0
+      }
+    },
+    {
+      "id": "SC08",
+      "purpose": "Consumidor depende da saída de ramo inativo",
+      "reviewAttempted": true,
+      "publishAttempted": true,
+      "reviewAccepted": true,
+      "publishAccepted": true,
+      "simulationStatus": "FAILED",
+      "nodeStatuses": [
+        {
+          "id": "form",
+          "type": "trigger_form",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "condition",
+          "type": "condition",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "yes",
+          "type": "internal_record",
+          "status": "SKIPPED"
+        },
+        {
+          "id": "no",
+          "type": "internal_record",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "mail",
+          "type": "send_email",
+          "status": "FAILED"
+        }
+      ],
+      "consumerBodyUnavailable": null,
+      "persistenceCounters": {
+        "workflowReads": 4,
+        "workflowWrites": 2,
+        "versionSnapshots": 1
+      }
+    },
+    {
+      "id": "SC09",
+      "purpose": "Referências de recursos sem resolução",
+      "reviewAttempted": true,
+      "publishAttempted": true,
+      "reviewAccepted": true,
+      "publishAccepted": true,
+      "simulationStatus": "COMPLETED",
+      "nodeStatuses": [
+        {
+          "id": "form",
+          "type": "trigger_form",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "ai",
+          "type": "ai_analyze_intent",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "http",
+          "type": "http_request",
+          "status": "SUCCESS"
+        }
+      ],
+      "persistenceCounters": {
+        "workflowReads": 4,
+        "workflowWrites": 2,
+        "versionSnapshots": 1
+      }
+    }
+  ]
+}

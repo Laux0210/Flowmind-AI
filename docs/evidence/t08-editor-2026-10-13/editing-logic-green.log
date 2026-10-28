@@ -1,0 +1,67 @@
+(node:1816) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✖ configuração pendente impede salvar uma definição anterior à edição do usuário (92.9589ms)
+(node:1816) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+✖ resposta de salvamento obsoleta não substitui novas alterações nem escreve feedback de erro (25.7571ms)
+✔ parâmetros de e-mail editados preservam IDs, referências e campos não alterados (67.8198ms)
+✔ valores JSON da condição preservam número, array e booleano (0.5331ms)
+✔ JSON inválido e campos desconhecidos não substituem a configuração (1.0231ms)
+✔ aliases existentes de mensagem e mapeamento são preservados ao editar outro campo (0.4654ms)
+✔ draft incompleto continua editável e ausência de opcionais não injeta defaults (0.7848ms)
+✔ edições de parâmetros/posições/conexões são negadas em REVIEWED (0.8234ms)
+✔ edições de parâmetros/posições/conexões são negadas em PUBLISHED (0.2465ms)
+✔ edições de parâmetros/posições/conexões são negadas em ARCHIVED (0.355ms)
+✔ movimentação persiste coordenadas finitas sem mudar configuração ou arestas (0.4334ms)
+✔ conexões condicionais preservam os handles usados pelo motor (0.3628ms)
+✔ ciclo, auto-conexão, nó ausente e conexão repetida são recusados antes de mudar o grafo (0.5775ms)
+✔ remoção de conexão preserva nós e demais IDs, sem resolver convergências (0.5927ms)
+✔ formulários abrangem os seis tipos e conservam ausência versus valores JSON (0.356ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 13
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 511.0686
+
+✖ failing tests:
+
+test at tests\regression\workflow-editing.test.mjs:32:1
+✖ configuração pendente impede salvar uma definição anterior à edição do usuário (92.9589ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /aplique|descarte/i. Input:
+  
+  'salvamento indevido'
+  
+      at TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:38:10)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'salvamento indevido',
+    expected: /aplique|descarte/i,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests\regression\workflow-editing.test.mjs:41:1
+✖ resposta de salvamento obsoleta não substitui novas alterações nem escreve feedback de erro (25.7571ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + {
+  +   message: 'erro de versão anterior',
+  +   type: 'error'
+  + }
+  - null
+  
+      at TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:47:10)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { type: 'error', message: 'erro de versão anterior' },
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

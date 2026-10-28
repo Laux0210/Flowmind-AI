@@ -1,0 +1,155 @@
+ts-jest[config] (WARN) message TS151002: Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) message TS151002: Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+(node:27276) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ts-jest[config] (WARN) message TS151002: Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) message TS151002: Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) message TS151002: Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) message TS151002: Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+[Nest] 27276  - 23/10/2026, 12:16:52     LOG [WorkerBootstrap] Inicializando FlowMind AI Background Worker (sem portas HTTP)...
+[Nest] 27276  - 23/10/2026, 12:16:52     LOG [WorkerBootstrap] Processo do worker inicializado em standby; consumo de fila indisponível.
+ts-jest[config] (WARN) message TS151002: Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+FAIL apps/api/src/worker/bullmq-workflow-queue.spec.ts
+  ● Política da fila T12 › repete só falhas transitórias
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      16 |     expect(isTransientFailure(new NotFoundException())).toBe(false);
+      17 |     expect(isTransientFailure(new Error('genérico'))).toBe(false);
+    > 18 |     expect(isTransientFailure(Object.assign(new Error('db'), { code: 'P1001' }))).toBe(true);
+         |                                                                                   ^
+      19 |     expect(isTransientFailure(Object.assign(new Error('único'), { code: 'P2002' }))).toBe(false);
+      20 |   });
+      21 |
+
+      at Object.<anonymous> (src/worker/bullmq-workflow-queue.spec.ts:18:83)
+
+  ● Política da fila T12 › gera jobId determinístico por versão e evento, sem ":"
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "org_fixture-wf_fixture-v2-evt_1"
+    Received: "wf_fixture-v2-evt_1"
+
+      26 |
+      27 |   it('gera jobId determinístico por versão e evento, sem ":"', () => {
+    > 28 |     expect(workflowJobId(payload('evt:1'))).toBe('org_fixture-wf_fixture-v2-evt_1');
+         |                                             ^
+      29 |     expect(workflowJobId({ ...payload('evt:1'), orgId: 'org_outra' })).not.toBe(workflowJobId(payload('evt:1')));
+      30 |     expect(workflowJobId({ ...payload('evt:1'), workflowVersion: 3 })).not.toBe(workflowJobId(payload('evt:1')));
+      31 |   });
+
+      at Object.<anonymous> (src/worker/bullmq-workflow-queue.spec.ts:28:45)
+
+ts-jest[config] (WARN) message TS151002: Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+[Nest] 27276  - 23/10/2026, 12:16:54   ERROR [WorkflowEngineService] Falha no nó form (trigger_form): Campo obrigatório ausente na submissão do formulário: name
+[Nest] 27276  - 23/10/2026, 12:16:54   ERROR [WorkflowEngineService] Falha no nó form (trigger_form): Campo obrigatório ausente na submissão do formulário: name
+[Nest] 27276  - 23/10/2026, 12:16:56     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Workflow Recursos' [ID: wf_resource_test]
+[Nest] 27276  - 23/10/2026, 12:16:56     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Workflow Recursos' [ID: wf_resource_test]
+[Nest] 27276  - 23/10/2026, 12:16:56     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Workflow Recursos' [ID: wf_resource_test]
+ts-jest[config] (WARN) message TS151002: Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+[Nest] 27276  - 23/10/2026, 12:16:57    WARN [WorkerService] Consumidor de fila não implementado. Worker permanece em standby.
+[Nest] 27276  - 23/10/2026, 12:16:57     LOG [WorkerService] Encerrando WorkerService em standby.
+[Nest] 27276  - 23/10/2026, 12:16:57    WARN [WorkerService] Consumidor de fila não implementado. Worker permanece em standby.
+[Nest] 27276  - 23/10/2026, 12:16:57     LOG [WorkerService] Processando simulação [Job: job_123] para workflow [ID: wf_worker_1] org [org_test]
+[Nest] 27276  - 23/10/2026, 12:16:57     LOG [WorkerService] Simulação [Job: job_123] concluída com status COMPLETED [ExecutionId: exec_recorded_job_1]
+[Nest] 27276  - 23/10/2026, 12:16:57     LOG [WorkerService] Processando simulação [Job: job_404] para workflow [ID: wf_missing] org [org_test]
+[Nest] 27276  - 23/10/2026, 12:16:57     LOG [WorkerService] Processando simulação [Job: job_mutable] para workflow [ID: wf_worker_1] org [org_test]
+[Nest] 27276  - 23/10/2026, 12:16:57     LOG [WorkerService] Simulação [Job: job_mutable] concluída com status COMPLETED [ExecutionId: exec_recorded_job_1]
+[Nest] 27276  - 23/10/2026, 12:16:57     LOG [WorkerService] Processando simulação [Job: job_cross] para workflow [ID: wf_worker_1] org [org_test]
+[Nest] 27276  - 23/10/2026, 12:16:57     LOG [WorkerService] Processando simulação [Job: job_storage] para workflow [ID: wf_worker_1] org [org_test]
+[Nest] 27276  - 23/10/2026, 12:16:57     LOG [WorkerService] Processando simulação [Job: job_queue_1] para workflow [ID: wf_worker_1] org [org_test]
+[Nest] 27276  - 23/10/2026, 12:16:57     LOG [WorkerService] Simulação [Job: job_queue_1] concluída com status COMPLETED [ExecutionId: exec_recorded_job_1]
+[Nest] 27276  - 23/10/2026, 12:16:57     LOG [WorkerService] Processando simulação [Job: job_retry_test] para workflow [ID: wf_worker_1] org [org_test]
+[Nest] 27276  - 23/10/2026, 12:16:57    WARN [WorkerService] Job [job_retry_test] falhou (tentativa 1). Retry possível: true (próxima: 2)
+[Nest] 27276  - 23/10/2026, 12:16:57     LOG [WorkerService] Processando simulação [Job: job_retry_test] para workflow [ID: wf_worker_1] org [org_test]
+[Nest] 27276  - 23/10/2026, 12:16:57    WARN [WorkerService] Job [job_retry_test] falhou (tentativa 2). Retry possível: false (próxima: 2)
+[Nest] 27276  - 23/10/2026, 12:16:57     LOG [WorkerService] Iniciando consumidor determinístico local (intervalo: 50ms).
+[Nest] 27276  - 23/10/2026, 12:16:58     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Quando formulário for enviado resuma' [ID: wf_c01_full]
+[Nest] 27276  - 23/10/2026, 12:16:58     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Receba formulário de dúvidas gerais' [ID: wf_c02_doubts]
+[Nest] 27276  - 23/10/2026, 12:16:58     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Automação Comercial de Governança' [ID: wf_governance_c03]
+[Nest] 27276  - 23/10/2026, 12:16:58     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Triagem Condicional' [ID: wf_c03_branch]
+[Nest] 27276  - 23/10/2026, 12:16:59     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Fixture' [ID: wf_email_fixture]
+[Nest] 27276  - 23/10/2026, 12:16:59     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Fixture' [ID: wf_email_fixture]
+[Nest] 27276  - 23/10/2026, 12:16:59     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Fixture' [ID: wf_email_fixture]
+[Nest] 27276  - 23/10/2026, 12:16:59     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Fixture' [ID: wf_email_fixture]
+[Nest] 27276  - 23/10/2026, 12:16:59     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Fixture' [ID: wf_email_fixture]
+[Nest] 27276  - 23/10/2026, 12:16:59     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Fixture' [ID: wf_email_fixture]
+[Nest] 27276  - 23/10/2026, 12:16:59     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Fixture' [ID: wf_email_fixture]
+[Nest] 27276  - 23/10/2026, 12:16:59     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Fixture' [ID: wf_email_fixture]
+[Nest] 27276  - 23/10/2026, 12:16:59     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Fixture' [ID: wf_email_fixture]
+[Nest] 27276  - 23/10/2026, 12:16:59     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Fixture' [ID: wf_email_fixture]
+[Nest] 27276  - 23/10/2026, 12:16:59     LOG [WebhooksService] Idempotência acionada para chave 'unique_req_id_999' no workflow 'wf_webhook_pub'
+[Nest] 27276  - 23/10/2026, 12:16:59    WARN [SchedulerService] Agendamento ignorado para workflow 'wf_concurrent_test': execução anterior ainda em andamento (concorrência bloqueada).
+[Nest] 27276  - 23/10/2026, 12:17:01     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Sintético' [ID: wf]
+[Nest] 27276  - 23/10/2026, 12:17:01     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Sintético' [ID: wf]
+[Nest] 27276  - 23/10/2026, 12:17:01     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Sintético' [ID: wf]
+[Nest] 27276  - 23/10/2026, 12:17:01     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Sintético' [ID: wf]
+[Nest] 27276  - 23/10/2026, 12:17:01     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Sintético' [ID: wf]
+[Nest] 27276  - 23/10/2026, 12:17:01     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Sintético' [ID: wf]
+[Nest] 27276  - 23/10/2026, 12:17:01     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Sintético' [ID: wf]
+[Nest] 27276  - 23/10/2026, 12:17:01     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Fixture' [ID: wf_c03]
+[Nest] 27276  - 23/10/2026, 12:17:01     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Fixture' [ID: wf_c03]
+[Nest] 27276  - 23/10/2026, 12:17:01     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Fixture' [ID: wf_c03]
+[Nest] 27276  - 23/10/2026, 12:17:01     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Fixture' [ID: wf_c03]
+[Nest] 27276  - 23/10/2026, 12:17:01   ERROR [WorkflowEngineService] Falha no nó form (trigger_form): Campo obrigatório ausente na submissão do formulário: email
+[Nest] 27276  - 23/10/2026, 12:17:01     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Fixture' [ID: wf_c03]
+[Nest] 27276  - 23/10/2026, 12:17:01   ERROR [WorkflowEngineService] Falha no nó form (trigger_form): E-mail inválido na submissão do formulário
+[Nest] 27276  - 23/10/2026, 12:17:03     LOG [WebhooksService] Idempotência acionada para chave 'fixture_event' no workflow 'wf_beta'
+[Nest] 27276  - 23/10/2026, 12:17:03     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Workflow MVP Formulário' [ID: wf_mvp_test]
+[Nest] 27276  - 23/10/2026, 12:17:03     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Workflow MVP Formulário' [ID: wf_mvp_test]
+[Nest] 27276  - 23/10/2026, 12:17:03     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Workflow MVP Formulário' [ID: wf_mvp_test]
+[Nest] 27276  - 23/10/2026, 12:17:03   ERROR [WorkflowEngineService] Falha no nó node_trigger (trigger_form): Campo obrigatório ausente na submissão do formulário: email
+[Nest] 27276  - 23/10/2026, 12:17:03     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Workflow MVP Formulário' [ID: wf_mvp_test]
+[Nest] 27276  - 23/10/2026, 12:17:03     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Workflow MVP Formulário' [ID: wf_mvp_test]
+[Nest] 27276  - 23/10/2026, 12:17:03     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Workflow Condicional' [ID: wf_cond_test]
+[Nest] 27276  - 23/10/2026, 12:17:03     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Workflow Branch Profundo' [ID: wf_deep_branch]
+[Nest] 27276  - 23/10/2026, 12:17:03     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Workflow Convergência' [ID: wf_join_test]
+[Nest] 27276  - 23/10/2026, 12:17:03     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Workflow Convergência' [ID: wf_join_test]
+
+Summary of all failing tests
+FAIL src/worker/bullmq-workflow-queue.spec.ts
+  ● Política da fila T12 › repete só falhas transitórias
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      16 |     expect(isTransientFailure(new NotFoundException())).toBe(false);
+      17 |     expect(isTransientFailure(new Error('genérico'))).toBe(false);
+    > 18 |     expect(isTransientFailure(Object.assign(new Error('db'), { code: 'P1001' }))).toBe(true);
+         |                                                                                   ^
+      19 |     expect(isTransientFailure(Object.assign(new Error('único'), { code: 'P2002' }))).toBe(false);
+      20 |   });
+      21 |
+
+      at Object.<anonymous> (src/worker/bullmq-workflow-queue.spec.ts:18:83)
+
+  ● Política da fila T12 › gera jobId determinístico por versão e evento, sem ":"
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "org_fixture-wf_fixture-v2-evt_1"
+    Received: "wf_fixture-v2-evt_1"
+
+      26 |
+      27 |   it('gera jobId determinístico por versão e evento, sem ":"', () => {
+    > 28 |     expect(workflowJobId(payload('evt:1'))).toBe('org_fixture-wf_fixture-v2-evt_1');
+         |                                             ^
+      29 |     expect(workflowJobId({ ...payload('evt:1'), orgId: 'org_outra' })).not.toBe(workflowJobId(payload('evt:1')));
+      30 |     expect(workflowJobId({ ...payload('evt:1'), workflowVersion: 3 })).not.toBe(workflowJobId(payload('evt:1')));
+      31 |   });
+
+      at Object.<anonymous> (src/worker/bullmq-workflow-queue.spec.ts:28:45)
+
+
+Test Suites: 1 failed, 1 skipped, 40 passed, 41 of 42 total
+Tests:       2 failed, 9 skipped, 780 passed, 791 total
+Snapshots:   0 total
+Time:        17.117 s, estimated 19 s
+Ran all test suites.
+Test results written to: docs\evidence\t05-next-security-2026-10-23\jest-final.json

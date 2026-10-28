@@ -1,0 +1,584 @@
+
+> flowmind-ai@0.1.0 test:regression
+> node --experimental-vm-modules --test tests/regression/security.test.mjs tests/regression/simulation.test.mjs tests/regression/generation-client.test.mjs tests/regression/persistence.test.mjs tests/regression/toolchain.test.mjs tests/regression/ui-workflow.test.mjs tests/regression/triggers.test.mjs tests/regression/executions.test.mjs tests/regression/full-journey.test.mjs tests/regression/ai-evaluation.test.mjs tests/regression/triggers-email.test.mjs
+
+(node:12024) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:12024) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+✔ dataset canônico de avaliação sintética contém exatamente 9 cenários (IA01 a IA09) (94.4425ms)
+✖ AiEvaluator verifica IA01 sem fabricar nota semântica (37.9328ms)
+✖ AiEvaluator detecta campo comercial sem atribuir nota humana (19.0042ms)
+✖ AiEvaluator valida que IA04 bloqueia injeções com SECURITY_SCOPE_VIOLATION (108.3378ms)
+✖ AiEvaluator gera relatório agregado de avaliação (evaluateAll) (34.5221ms)
+(node:28188) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:28188) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+✔ ExecutionsService: isolamento estrito entre organizações (SEC01 e SEC04) (261.5584ms)
+✔ ExecutionsService: sanitiza segredos e tokens nos dados gravados (19.0621ms)
+✔ UsageLimitsService: barra execução quando limite de quota mensal for atingido (2.9364ms)
+(node:16480) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:16480) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+✖ T14 — C01: Jornada completa com formulário, IA, registro e e-mail (Pedido Completo) (203.8536ms)
+✖ T14 — C02: Preservação de ambiguidades em dúvidas gerais sem pontuação comercial (21.347ms)
+✖ T14 — C03: Interrupção imediata antes de efeitos colaterais com payload incompleto (130.4094ms)
+✖ T14 — Matriz de Isolamento Multi-tenant (SEC01–SEC04, SEC09) (30.7337ms)
+✔ T14 — Segurança: Proteção contra SSRF e sanitização profunda de credenciais (8.3613ms)
+✔ T14 — Presença estática de atributos de acessibilidade (não comprova WCAG) (3.5928ms)
+(node:536) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:536) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+✖ template gera rascunho compatível com o motor, sem modelo/tokens fictícios (160.5724ms)
+✖ gerador rejeita condição não interpretada em vez de criar score comercial (16.1456ms)
+✖ gerador aceita caso como substantivo e rejeita caso condicional (17.5956ms)
+✖ gerador sinaliza HTTP sem destino escolhido e nunca executa comandos (33.0639ms)
+✔ ApiClient rejeita todas as operações sem token, antes da rede (14.189ms)
+✔ ApiClient propaga HTTP 401 sem inventar workflows ou geração (4.2039ms)
+✔ ApiClient propaga HTTP 404 sem inventar workflows ou geração (3.0842ms)
+✔ ApiClient propaga HTTP 500 sem inventar workflows ou geração (2.6136ms)
+✔ ApiClient envia Bearer real e PUT de atualização compatível com o controller (3.0949ms)
+✔ ApiClient envia POST correto para rotas de ciclo de vida (review, activate, deactivate) (2.4609ms)
+✔ ApiClient envia DELETE correto para exclusão de workflow e aceita HTTP 204 (9.9737ms)
+✖ OpenAiStructuredClient gera draft com JSON Schema estrito e trata recusa (refusal) (95.3699ms)
+✖ AiGeneratorService suporta cliente de IA customizado via injeção mantendo validação DAG (11.3579ms)
+✖ uso ausente permanece null do provedor até a serialização da proposta (6.9815ms)
+✖ JSON válido com término incompleto não vira proposta e conserva uso informado (6.5754ms)
+✖ configuração JSON inválida não é substituída silenciosamente por objeto vazio (18.9981ms)
+✖ recusa não revela mensagem privada nem descarta a medição de uso (19.5303ms)
+(node:13964) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:13964) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+✖ CRUD consulta fonte persistente e isola operações entre organizações com adaptador fake (281.7085ms)
+✖ falha do banco não vira sucesso em memória em nenhuma operação (23.4899ms)
+✖ consulta não retorna cópia obsoleta depois de remoção na fonte (28.7871ms)
+✖ edição de versão publicada fica bloqueada até contrato de novas revisões (27.2429ms)
+✖ exclusão de versão publicada fica bloqueada exigindo desativação prévia (22.1847ms)
+(node:15892) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:15892) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+✔ token sintético passa pela verificação do SDK e é rejeitado em test (119.6065ms)
+✔ token sintético passa pela verificação do SDK e é rejeitado em development (6.7364ms)
+✔ token sintético passa pela verificação do SDK e é rejeitado em production (4.8524ms)
+✔ utiliza os campos normalizados de toAuth (17.6855ms)
+✔ rejeita sessão sem userId (6.3948ms)
+✔ rejeita sessão sem sessionId (8.9197ms)
+✔ rejeita sessão sem orgId (4.1797ms)
+✔ erros e logs não revelam mensagem interna do provedor (4.0267ms)
+✔ ausência de chave e ausência de token falham antes de chamar SDK (8.6673ms)
+✔ chave pública exigida pelo SDK declarado também é obrigatória (8.0925ms)
+✔ guard rejeita cabeçalhos ausentes, duplicados ou com partes extras (47.7898ms)
+✔ guard usa somente a organização resolvida pelo serviço (3.4863ms)
+✔ exige APIs de sessão e membership e persistência, sem permissões por omissão (8.3199ms)
+✔ sessão vigente precisa pertencer ao usuário e ao identificador autenticado (5.099ms)
+✔ sessão revogada ou expirada falha antes da sincronização (6.5994ms)
+✔ consulta membership pelo usuário e usa papel vigente em vez do papel antigo do token (3.2887ms)
+✔ membership ausente, alheia, sem papel ou com papel desconhecido não autoriza (33.2841ms)
+✔ organização confirmada no provedor é espelhada antes de conceder acesso (6.1794ms)
+✔ falhas de consulta ou upsert impedem acesso e ocultam detalhes internos (13.6445ms)
+✔ remoção do vínculo depois de uma requisição válida é verificada novamente (2.7486ms)
+(node:22784) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:22784) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+✖ C01 percorre a jornada com efeitos simulados e sem classificação comercial (215.2663ms)
+✖ C02: template com ambiguidades conserva sua interpolação na prévia (24.5402ms)
+✖ C03 falha no gatilho antes dos efeitos com email undefined (55.0069ms)
+✖ C03 falha no gatilho antes dos efeitos com email "" (11.9619ms)
+✖ C03 falha no gatilho antes dos efeitos com email "   " (13.4548ms)
+✖ C03 falha no gatilho antes dos efeitos com email "invalid" (14.1872ms)
+✖ C03 falha no gatilho antes dos efeitos com email 123 (12.4471ms)
+✖ campos distintos e aliases não preenchem dados obrigatórios ausentes (11.1059ms)
+✖ referência antiga falha explicitamente em vez de produzir valor vazio (9.9111ms)
+✖ DAG rejeita ciclos, gatilho divergente e nós desconectados (12.9067ms)
+✖ schema ausente ou de outra versão impede a simulação (15.1925ms)
+✔ executores de simulação rejeitam LIVE sem afirmar efeitos reais (3.6992ms)
+✖ motor suporta ramificação e convergência (OR-Join), executando nó convergente (10.9173ms)
+✖ interpolação resolve variáveis de internal_record para nós downstream e avalia starts_with (10.7026ms)
+✔ build compila contratos antes da API e da web (452.6344ms)
+✔ falha de um consumidor interrompe o pipeline e preserva código de saída (171.0177ms)
+✔ linter de conformidade e segurança valida arquivos e conclui com sucesso (105.4407ms)
+(node:16652) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:16652) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+✔ WebhookSignatureValidator: gera assinatura HMAC no padrão canônico t=...,v1=... (121.6177ms)
+✔ WebhookSignatureValidator: valida assinatura válida e rejeita adulteração de payload (8.3306ms)
+✔ WebhookSignatureValidator: rejeita replay attack quando timestamp exceder tolerância (3.1855ms)
+✔ SimulatedEmailProvider: despacha e-mail simulado com identificador e sem rede (9.6054ms)
+✔ SimulatedEmailProvider: bloqueia CRLF injection em headers de e-mail (4.4132ms)
+(node:2284) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2284) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+✖ WebhooksService: dispara workflow PUBLISHED e deduplica chamadas idênticas via idempotencyKey (245.9942ms)
+✖ WebhooksService: bloqueia disparo de workflow em estado DRAFT (20.2072ms)
+✖ WebhooksService: valida assinatura timing-safe e rejeita token incorreto (25.9987ms)
+✖ WebhooksService: rejeita payload inválido ou chave de idempotência em branco (13.3189ms)
+✔ SchedulerService: valida cron com limites numéricos e rejeita valores fora da faixa (4.0051ms)
+✔ SchedulerService: valida timezone IANA e bloqueia execuções concorrentes simultâneas (33.7614ms)
+(node:21920) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:21920) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+✔ history: falha do consumo preserva a listagem que respondeu com sucesso (78.6674ms)
+✔ history: falha da listagem preserva consumo obtido e distingue erro de lista vazia (17.1996ms)
+✔ history: carregar contexto cancelado após getToken não dispara consultas (12.7531ms)
+✔ history: resposta E1 atrasada não substitui seleção mais recente E2 (14.3011ms)
+✔ history: finally de uma seleção antiga não encerra loading da seleção atual (14.9953ms)
+✔ history: contexto Alpha→Beta→Alpha invalida a resposta da geração anterior (12.8992ms)
+✔ history: rejeição antiga não escreve erro na nova organização (10.9566ms)
+✔ history: fechar o modal invalida a inspeção pendente (12.6816ms)
+✔ history: troca de contexto durante getToken evita consultar recurso com sessão nova (8.5657ms)
+✔ history: erro da inspeção atual preserva a mensagem do servidor (8.5126ms)
+✔ editor: trocar contexto limpa isReviewing enquanto a operação anterior aguarda token (18.3469ms)
+✔ editor: trocar contexto limpa isPublishing enquanto a operação anterior aguarda token (14.9396ms)
+✔ editor: trocar contexto limpa isDeactivating enquanto a operação anterior aguarda token (12.7533ms)
+✔ editor: feedback da simulação respeita status FAILED (15.1869ms)
+✔ editor: feedback da simulação respeita status COMPLETED (9.8458ms)
+✔ editor: handler de aplicar proposta bloqueia mutação enquanto revisão está pendente (13.0368ms)
+✔ editor: reviewWorkflow não aplica resposta de revisão local anterior (18.4971ms)
+✔ editor: reviewWorkflow não envia mutação após trocar contexto durante getToken (12.1209ms)
+✔ editor: activateWorkflow não aplica resposta de revisão local anterior (11.4768ms)
+✔ editor: activateWorkflow não envia mutação após trocar contexto durante getToken (10.4877ms)
+✔ ApiClient sanitiza URL e codifica identificadores com caracteres especiais (49.9281ms)
+✔ ApiClient propaga mensagens de erro estruturadas da API em caso de 400 ou 403 (2.1798ms)
+✖ Mapeamento dos 6 nós do catálogo do MVP para o canvas XYFlow (8.2406ms)
+✖ Validação de simulação de workflow com dados sintéticos no cliente (11.7583ms)
+✔ ApiClient serializa requisições de simulação e ciclo de vida com integridade de headers e payload (3.0868ms)
+✔ Invariantes estáticas de prevenção de condições de corrida e feedback acessível no frontend (1.1095ms)
+ℹ tests 110
+ℹ suites 0
+ℹ pass 68
+ℹ fail 42
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1234.1314
+
+✖ failing tests:
+
+test at tests\regression\ai-evaluation.test.mjs:27:1
+✖ AiEvaluator verifica IA01 sem fabricar nota semântica (37.9328ms)
+  SyntaxError: The requested module './workflow' does not provide an export named 'WorkflowDefinition'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/ai-evaluation.test.mjs:28:36)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\ai-evaluation.test.mjs:44:1
+✖ AiEvaluator detecta campo comercial sem atribuir nota humana (19.0042ms)
+  SyntaxError: The requested module './workflow' does not provide an export named 'WorkflowDefinition'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/ai-evaluation.test.mjs:45:36)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\ai-evaluation.test.mjs:80:1
+✖ AiEvaluator valida que IA04 bloqueia injeções com SECURITY_SCOPE_VIOLATION (108.3378ms)
+  SyntaxError: The requested module './workflow' does not provide an export named 'WorkflowDefinition'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/ai-evaluation.test.mjs:81:36)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\ai-evaluation.test.mjs:97:1
+✖ AiEvaluator gera relatório agregado de avaliação (evaluateAll) (34.5221ms)
+  SyntaxError: The requested module './workflow' does not provide an export named 'WorkflowDefinition'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/ai-evaluation.test.mjs:98:36)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\full-journey.test.mjs:80:1
+✖ T14 — C01: Jornada completa com formulário, IA, registro e e-mail (Pedido Completo) (203.8536ms)
+  SyntaxError: The requested module './workflow' does not provide an export named 'WorkflowDefinition'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/full-journey.test.mjs:81:37)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+test at tests\regression\full-journey.test.mjs:157:1
+✖ T14 — C02: Preservação de ambiguidades em dúvidas gerais sem pontuação comercial (21.347ms)
+  SyntaxError: The requested module './workflow' does not provide an export named 'WorkflowDefinition'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/full-journey.test.mjs:158:37)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\full-journey.test.mjs:178:1
+✖ T14 — C03: Interrupção imediata antes de efeitos colaterais com payload incompleto (130.4094ms)
+  SyntaxError: The requested module './workflow' does not provide an export named 'WorkflowDefinition'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/full-journey.test.mjs:179:37)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\full-journey.test.mjs:201:1
+✖ T14 — Matriz de Isolamento Multi-tenant (SEC01–SEC04, SEC09) (30.7337ms)
+  SyntaxError: The requested module './workflow' does not provide an export named 'WorkflowDefinition'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/full-journey.test.mjs:202:40)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\generation-client.test.mjs:30:1
+✖ template gera rascunho compatível com o motor, sem modelo/tokens fictícios (160.5724ms)
+  SyntaxError: The requested module './workflow' does not provide an export named 'WorkflowDefinition'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/generation-client.test.mjs:31:23)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+test at tests\regression\generation-client.test.mjs:47:1
+✖ gerador rejeita condição não interpretada em vez de criar score comercial (16.1456ms)
+  SyntaxError: The requested module './workflow' does not provide an export named 'WorkflowDefinition'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/generation-client.test.mjs:48:23)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\generation-client.test.mjs:54:1
+✖ gerador aceita caso como substantivo e rejeita caso condicional (17.5956ms)
+  SyntaxError: The requested module './workflow' does not provide an export named 'WorkflowDefinition'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/generation-client.test.mjs:55:23)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\generation-client.test.mjs:67:1
+✖ gerador sinaliza HTTP sem destino escolhido e nunca executa comandos (33.0639ms)
+  SyntaxError: The requested module './workflow' does not provide an export named 'WorkflowDefinition'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/generation-client.test.mjs:68:23)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\generation-client.test.mjs:147:1
+✖ OpenAiStructuredClient gera draft com JSON Schema estrito e trata recusa (refusal) (95.3699ms)
+  SyntaxError: The requested module './workflow' does not provide an export named 'WorkflowDefinition'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/generation-client.test.mjs:189:23)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\generation-client.test.mjs:219:1
+✖ AiGeneratorService suporta cliente de IA customizado via injeção mantendo validação DAG (11.3579ms)
+  SyntaxError: The requested module './workflow' does not provide an export named 'WorkflowDefinition'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/generation-client.test.mjs:220:35)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\generation-client.test.mjs:253:1
+✖ uso ausente permanece null do provedor até a serialização da proposta (6.9815ms)
+  SyntaxError: The requested module './workflow' does not provide an export named 'WorkflowDefinition'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async fakeProvider (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/generation-client.test.mjs:23:23)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/generation-client.test.mjs:255:18)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\generation-client.test.mjs:263:1
+✖ JSON válido com término incompleto não vira proposta e conserva uso informado (6.5754ms)
+  SyntaxError: The requested module './workflow' does not provide an export named 'WorkflowDefinition'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async fakeProvider (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/generation-client.test.mjs:23:23)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/generation-client.test.mjs:265:18)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\generation-client.test.mjs:273:1
+✖ configuração JSON inválida não é substituída silenciosamente por objeto vazio (18.9981ms)
+  SyntaxError: The requested module './workflow' does not provide an export named 'WorkflowDefinition'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async fakeProvider (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/generation-client.test.mjs:23:23)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/generation-client.test.mjs:278:18)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\generation-client.test.mjs:287:1
+✖ recusa não revela mensagem privada nem descarta a medição de uso (19.5303ms)
+  SyntaxError: The requested module './workflow' does not provide an export named 'WorkflowDefinition'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async fakeProvider (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/generation-client.test.mjs:23:23)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/generation-client.test.mjs:289:18)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\persistence.test.mjs:44:1
+✖ CRUD consulta fonte persistente e isola operações entre organizações com adaptador fake (281.7085ms)
+  SyntaxError: The requested module './workflow' does not provide an export named 'WorkflowDefinition'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async fixture (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/persistence.test.mjs:35:23)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/persistence.test.mjs:45:23)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+test at tests\regression\persistence.test.mjs:64:1
+✖ falha do banco não vira sucesso em memória em nenhuma operação (23.4899ms)
+  SyntaxError: The requested module './workflow' does not provide an export named 'WorkflowDefinition'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async fixture (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/persistence.test.mjs:35:23)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/persistence.test.mjs:65:33)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\persistence.test.mjs:80:1
+✖ consulta não retorna cópia obsoleta depois de remoção na fonte (28.7871ms)
+  SyntaxError: The requested module './workflow' does not provide an export named 'WorkflowDefinition'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async fixture (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/persistence.test.mjs:35:23)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/persistence.test.mjs:81:29)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\persistence.test.mjs:88:1
+✖ edição de versão publicada fica bloqueada até contrato de novas revisões (27.2429ms)
+  SyntaxError: The requested module './workflow' does not provide an export named 'WorkflowDefinition'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async fixture (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/persistence.test.mjs:35:23)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/persistence.test.mjs:89:29)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\persistence.test.mjs:95:1
+✖ exclusão de versão publicada fica bloqueada exigindo desativação prévia (22.1847ms)
+  SyntaxError: The requested module './workflow' does not provide an export named 'WorkflowDefinition'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async fixture (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/persistence.test.mjs:35:23)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/persistence.test.mjs:96:29)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\simulation.test.mjs:32:1
+✖ C01 percorre a jornada com efeitos simulados e sem classificação comercial (215.2663ms)
+  SyntaxError: The requested module './workflow' does not provide an export named 'WorkflowDefinition'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async simulate (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:28:23)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:33:18)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+test at tests\regression\simulation.test.mjs:53:1
+✖ C02: template com ambiguidades conserva sua interpolação na prévia (24.5402ms)
+  SyntaxError: The requested module './workflow' does not provide an export named 'WorkflowDefinition'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async simulate (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:28:23)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:54:18)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\simulation.test.mjs:64:3
+✖ C03 falha no gatilho antes dos efeitos com email undefined (55.0069ms)
+  SyntaxError: The requested module './workflow' does not provide an export named 'WorkflowDefinition'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async simulate (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:28:23)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:65:20)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\simulation.test.mjs:64:3
+✖ C03 falha no gatilho antes dos efeitos com email "" (11.9619ms)
+  SyntaxError: The requested module './workflow' does not provide an export named 'WorkflowDefinition'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async simulate (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:28:23)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:65:20)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\simulation.test.mjs:64:3
+✖ C03 falha no gatilho antes dos efeitos com email "   " (13.4548ms)
+  SyntaxError: The requested module './workflow' does not provide an export named 'WorkflowDefinition'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async simulate (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:28:23)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:65:20)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\simulation.test.mjs:64:3
+✖ C03 falha no gatilho antes dos efeitos com email "invalid" (14.1872ms)
+  SyntaxError: The requested module './workflow' does not provide an export named 'WorkflowDefinition'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async simulate (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:28:23)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:65:20)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\simulation.test.mjs:64:3
+✖ C03 falha no gatilho antes dos efeitos com email 123 (12.4471ms)
+  SyntaxError: The requested module './workflow' does not provide an export named 'WorkflowDefinition'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async simulate (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:28:23)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:65:20)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\simulation.test.mjs:72:1
+✖ campos distintos e aliases não preenchem dados obrigatórios ausentes (11.1059ms)
+  SyntaxError: The requested module './workflow' does not provide an export named 'WorkflowDefinition'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async simulate (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:28:23)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:73:18)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\simulation.test.mjs:78:1
+✖ referência antiga falha explicitamente em vez de produzir valor vazio (9.9111ms)
+  SyntaxError: The requested module './workflow' does not provide an export named 'WorkflowDefinition'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async simulate (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:28:23)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:81:18)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\simulation.test.mjs:87:1
+✖ DAG rejeita ciclos, gatilho divergente e nós desconectados (12.9067ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /Ciclo/. Input:
+  
+  "SyntaxError: The requested module './workflow' does not provide an export named 'WorkflowDefinition'"
+  
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:91:3)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: SyntaxError: The requested module './workflow' does not provide an export named 'WorkflowDefinition'
+        at SourceTextModule.link (node:internal/vm/module:209:17)
+        at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+        at async simulate (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:28:23)
+        at async waitForActual (node:assert:646:5)
+        at async strict.rejects (node:assert:769:25)
+        at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:91:3)
+        at async Test.run (node:internal/test_runner/test:1409:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:974:7),
+    expected: /Ciclo/,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at tests\regression\simulation.test.mjs:100:1
+✖ schema ausente ou de outra versão impede a simulação (15.1925ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /schema/. Input:
+  
+  "SyntaxError: The requested module './workflow' does not provide an export named 'WorkflowDefinition'"
+  
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:103:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: SyntaxError: The requested module './workflow' does not provide an export named 'WorkflowDefinition'
+        at SourceTextModule.link (node:internal/vm/module:209:17)
+        at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+        at async simulate (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:28:23)
+        at async waitForActual (node:assert:646:5)
+        at async strict.rejects (node:assert:769:25)
+        at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:103:5)
+        at async Test.run (node:internal/test_runner/test:1409:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:974:7),
+    expected: /schema/,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at tests\regression\simulation.test.mjs:116:1
+✖ motor suporta ramificação e convergência (OR-Join), executando nó convergente (10.9173ms)
+  SyntaxError: The requested module './workflow' does not provide an export named 'WorkflowDefinition'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async simulate (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:28:23)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:136:18)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\simulation.test.mjs:149:1
+✖ interpolação resolve variáveis de internal_record para nós downstream e avalia starts_with (10.7026ms)
+  SyntaxError: The requested module './workflow' does not provide an export named 'WorkflowDefinition'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async simulate (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:28:23)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:166:15)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\triggers.test.mjs:30:1
+✖ WebhooksService: dispara workflow PUBLISHED e deduplica chamadas idênticas via idempotencyKey (245.9942ms)
+  SyntaxError: The requested module './workflow' does not provide an export named 'WorkflowDefinition'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/triggers.test.mjs:31:23)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+test at tests\regression\triggers.test.mjs:63:1
+✖ WebhooksService: bloqueia disparo de workflow em estado DRAFT (20.2072ms)
+  SyntaxError: The requested module './workflow' does not provide an export named 'WorkflowDefinition'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/triggers.test.mjs:64:23)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\triggers.test.mjs:75:1
+✖ WebhooksService: valida assinatura timing-safe e rejeita token incorreto (25.9987ms)
+  SyntaxError: The requested module './workflow' does not provide an export named 'WorkflowDefinition'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/triggers.test.mjs:76:23)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\triggers.test.mjs:98:1
+✖ WebhooksService: rejeita payload inválido ou chave de idempotência em branco (13.3189ms)
+  SyntaxError: The requested module './workflow' does not provide an export named 'WorkflowDefinition'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/triggers.test.mjs:99:23)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\ui-workflow.test.mjs:222:1
+✖ Mapeamento dos 6 nós do catálogo do MVP para o canvas XYFlow (8.2406ms)
+  SyntaxError: The requested module './workflow' does not provide an export named 'WorkflowDefinition'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/ui-workflow.test.mjs:223:28)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\ui-workflow.test.mjs:264:1
+✖ Validação de simulação de workflow com dados sintéticos no cliente (11.7583ms)
+  SyntaxError: The requested module './workflow' does not provide an export named 'WorkflowDefinition'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/ui-workflow.test.mjs:265:31)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)

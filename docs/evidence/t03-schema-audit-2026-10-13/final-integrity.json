@@ -1,0 +1,17 @@
+{
+  "checkedAtUtc": "2026-10-13T07:36:19.432364+00:00",
+  "sourceStableSinceAcceptedSnapshot": true,
+  "inputCount": 128,
+  "changedInputs": [],
+  "validationLogHashesMatch": true,
+  "diagnosticSourceAndArtifactHashesMatch": true,
+  "diagnosticScriptSha256": "189c1eebdb13d6681318c43e5893d44a4ceebc403dbaab703fe121cc3793c34b",
+  "diagnosticReportAfterSha256": "05a61739334854cdf12384284fd7221c2d7caa8c69fa60bf893433980751a0d1",
+  "obsidianReadbackHashesStillMatch": true,
+  "pendingAiMemoryPages": 19,
+  "pendingAiMemoryManifestHashesMatch": true,
+  "markdownFilesChecked": 8,
+  "missingLinks": [],
+  "replacementCharacters": [],
+  "gitDiffCheckExitCode": 0
+}

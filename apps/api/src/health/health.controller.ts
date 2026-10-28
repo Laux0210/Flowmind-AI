@@ -1,4 +1,4 @@
-import { Controller, Get, HttpCode, HttpStatus } from '@nestjs/common';
+import { Controller, Get, HttpCode, HttpStatus, ServiceUnavailableException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 
 @Controller('health')
@@ -31,16 +31,19 @@ export class HealthController {
   @Get('ready')
   @HttpCode(HttpStatus.OK)
   async checkReadiness() {
-    let dbStatus = 'connected';
     try {
       await this.prisma.$queryRaw`SELECT 1`;
     } catch {
-      dbStatus = 'degraded_in_memory_fallback';
+      throw new ServiceUnavailableException({
+        status: 'not_ready',
+        database: 'unavailable',
+        timestamp: new Date().toISOString(),
+      });
     }
 
     return {
       status: 'ready',
-      database: dbStatus,
+      database: 'connected',
       timestamp: new Date().toISOString(),
     };
   }

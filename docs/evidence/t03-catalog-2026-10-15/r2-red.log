@@ -1,0 +1,224 @@
+ts-jest[config] (WARN) message TS151002: Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) message TS151002: Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) message TS151002: Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) message TS151002: Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+(node:17584) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+FAIL apps/api/src/resources/resource-validation.spec.ts
+  ● R2 — referências exigem catálogo explícito › recusa construção sem catálogo em vez de conceder fixtures globais
+
+    expect(received).toThrow()
+
+    Received function did not throw
+
+      26 | describe('R2 — referências exigem catálogo explícito', () => {
+      27 |   it('recusa construção sem catálogo em vez de conceder fixtures globais', () => {
+    > 28 |     expect(() => new (ResourceResolver as any)()).toThrow();
+         |                                                   ^
+      29 |   });
+      30 |   it.each(['pending', 'modelo-a-aprovar', 'flowmind-default'])('marcador %s não permite revisão/ativação', (ref) => {
+      31 |     expect(code(() => validateWorkflowResources(workflow(ref), make()))).toBe('PENDING_MODEL_SELECTION');
+
+      at Object.<anonymous> (src/resources/resource-validation.spec.ts:28:51)
+
+  ● R2 — referências exigem catálogo explícito › marcador pending não permite revisão/ativação
+
+    TypeError: error.getResponse is not a function
+
+      21 | }
+      22 | function code(action: () => unknown): string | undefined {
+    > 23 |   try { action(); } catch (error) { return ((error as BadRequestException).getResponse() as any).code; }
+         |                                                                            ^
+      24 |   return undefined;
+      25 | }
+      26 | describe('R2 — referências exigem catálogo explícito', () => {
+
+      at code (src/resources/resource-validation.spec.ts:23:76)
+      at src/resources/resource-validation.spec.ts:31:12
+
+  ● R2 — referências exigem catálogo explícito › marcador modelo-a-aprovar não permite revisão/ativação
+
+    TypeError: error.getResponse is not a function
+
+      21 | }
+      22 | function code(action: () => unknown): string | undefined {
+    > 23 |   try { action(); } catch (error) { return ((error as BadRequestException).getResponse() as any).code; }
+         |                                                                            ^
+      24 |   return undefined;
+      25 | }
+      26 | describe('R2 — referências exigem catálogo explícito', () => {
+
+      at code (src/resources/resource-validation.spec.ts:23:76)
+      at src/resources/resource-validation.spec.ts:31:12
+
+  ● R2 — referências exigem catálogo explícito › marcador flowmind-default não permite revisão/ativação
+
+    TypeError: error.getResponse is not a function
+
+      21 | }
+      22 | function code(action: () => unknown): string | undefined {
+    > 23 |   try { action(); } catch (error) { return ((error as BadRequestException).getResponse() as any).code; }
+         |                                                                            ^
+      24 |   return undefined;
+      25 | }
+      26 | describe('R2 — referências exigem catálogo explícito', () => {
+
+      at code (src/resources/resource-validation.spec.ts:23:76)
+      at src/resources/resource-validation.spec.ts:31:12
+
+  ● R2 — referências exigem catálogo explícito › simulação local sem referências concretas admite undefined com catálogo vazio
+
+    TypeError: customResources is not iterable
+
+      45 |     this.customResources = new Map(ResourceResolver.defaultResources);
+      46 |     if (customResources) {
+    > 47 |       for (const res of customResources) {
+         |                         ^
+      48 |         this.customResources.set(res.id, res);
+      49 |       }
+      50 |     }
+
+      at new ResourceResolver (src/engine/resource-resolver.ts:47:25)
+      at make (src/resources/resource-validation.spec.ts:8:39)
+      at src/resources/resource-validation.spec.ts:34:55
+
+  ● R2 — referências exigem catálogo explícito › simulação local sem referências concretas admite pending com catálogo vazio
+
+    TypeError: customResources is not iterable
+
+      45 |     this.customResources = new Map(ResourceResolver.defaultResources);
+      46 |     if (customResources) {
+    > 47 |       for (const res of customResources) {
+         |                         ^
+      48 |         this.customResources.set(res.id, res);
+      49 |       }
+      50 |     }
+
+      at new ResourceResolver (src/engine/resource-resolver.ts:47:25)
+      at make (src/resources/resource-validation.spec.ts:8:39)
+      at src/resources/resource-validation.spec.ts:34:55
+
+  ● R2 — referências exigem catálogo explícito › simulação local sem referências concretas admite modelo-a-aprovar com catálogo vazio
+
+    TypeError: customResources is not iterable
+
+      45 |     this.customResources = new Map(ResourceResolver.defaultResources);
+      46 |     if (customResources) {
+    > 47 |       for (const res of customResources) {
+         |                         ^
+      48 |         this.customResources.set(res.id, res);
+      49 |       }
+      50 |     }
+
+      at new ResourceResolver (src/engine/resource-resolver.ts:47:25)
+      at make (src/resources/resource-validation.spec.ts:8:39)
+      at src/resources/resource-validation.spec.ts:34:55
+
+  ● R2 — referências exigem catálogo explícito › simulação local sem referências concretas admite flowmind-default com catálogo vazio
+
+    TypeError: customResources is not iterable
+
+      45 |     this.customResources = new Map(ResourceResolver.defaultResources);
+      46 |     if (customResources) {
+    > 47 |       for (const res of customResources) {
+         |                         ^
+      48 |         this.customResources.set(res.id, res);
+      49 |       }
+      50 |     }
+
+      at new ResourceResolver (src/engine/resource-resolver.ts:47:25)
+      at make (src/resources/resource-validation.spec.ts:8:39)
+      at src/resources/resource-validation.spec.ts:34:55
+
+  ● R2 — referências exigem catálogo explícito › nega modelo concreto PENDING antes do primeiro nó
+
+    TypeError: customResources is not iterable
+
+      45 |     this.customResources = new Map(ResourceResolver.defaultResources);
+      46 |     if (customResources) {
+    > 47 |       for (const res of customResources) {
+         |                         ^
+      48 |         this.customResources.set(res.id, res);
+      49 |       }
+      50 |     }
+
+      at new ResourceResolver (src/engine/resource-resolver.ts:47:25)
+      at make (src/resources/resource-validation.spec.ts:8:39)
+      at src/resources/resource-validation.spec.ts:40:22
+
+  ● R2 — referências exigem catálogo explícito › nega modelo concreto foreign antes do primeiro nó
+
+    TypeError: customResources is not iterable
+
+      45 |     this.customResources = new Map(ResourceResolver.defaultResources);
+      46 |     if (customResources) {
+    > 47 |       for (const res of customResources) {
+         |                         ^
+      48 |         this.customResources.set(res.id, res);
+      49 |       }
+      50 |     }
+
+      at new ResourceResolver (src/engine/resource-resolver.ts:47:25)
+      at make (src/resources/resource-validation.spec.ts:8:39)
+      at src/resources/resource-validation.spec.ts:40:22
+
+  ● R2 — referências exigem catálogo explícito › nega modelo concreto missing antes do primeiro nó
+
+    TypeError: customResources is not iterable
+
+      45 |     this.customResources = new Map(ResourceResolver.defaultResources);
+      46 |     if (customResources) {
+    > 47 |       for (const res of customResources) {
+         |                         ^
+      48 |         this.customResources.set(res.id, res);
+      49 |       }
+      50 |     }
+
+      at new ResourceResolver (src/engine/resource-resolver.ts:47:25)
+      at make (src/resources/resource-validation.spec.ts:8:39)
+      at src/resources/resource-validation.spec.ts:40:22
+
+  ● R2 — referências exigem catálogo explícito › resolve modelo aprovado somente no escopo concedido e mantém modelo de geração separado
+
+    TypeError: customResources is not iterable
+
+      45 |     this.customResources = new Map(ResourceResolver.defaultResources);
+      46 |     if (customResources) {
+    > 47 |       for (const res of customResources) {
+         |                         ^
+      48 |         this.customResources.set(res.id, res);
+      49 |       }
+      50 |     }
+
+      at new ResourceResolver (src/engine/resource-resolver.ts:47:25)
+      at make (src/resources/resource-validation.spec.ts:8:39)
+      at Object.<anonymous> (src/resources/resource-validation.spec.ts:45:22)
+
+  ● R2 — referências exigem catálogo explícito › alias mapeado explicitamente exige aprovação, status e concessão
+
+    expect(received).not.toThrow()
+
+    Error name:    "TypeError"
+    Error message: "customResources is not iterable"
+
+          45 |     this.customResources = new Map(ResourceResolver.defaultResources);
+          46 |     if (customResources) {
+        > 47 |       for (const res of customResources) {
+             |                         ^
+          48 |         this.customResources.set(res.id, res);
+          49 |       }
+          50 |     }
+
+      at new ResourceResolver (src/engine/resource-resolver.ts:47:25)
+      at make (src/resources/resource-validation.spec.ts:8:39)
+      at src/resources/resource-validation.spec.ts:50:74
+      at Object.<anonymous> (../../node_modules/expect/build/index.js:1824:9)
+      at Object.throwingMatcher [as toThrow] (../../node_modules/expect/build/index.js:2235:93)
+      at Object.<anonymous> (src/resources/resource-validation.spec.ts:50:125)
+      at Object.<anonymous> (src/resources/resource-validation.spec.ts:50:125)
+
+Test Suites: 1 failed, 1 total
+Tests:       13 failed, 13 total
+Snapshots:   0 total
+Time:        4.045 s
+Ran all test suites within paths "apps/api/src/resources/resource-validation.spec.ts".

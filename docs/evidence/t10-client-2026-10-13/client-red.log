@@ -1,0 +1,961 @@
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151002: [0mUsing hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+(node:27584) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+FAIL apps/api/src/ai/openai-structured-client.hardening.spec.ts
+  ● T10 — integridade da resposta e consumo do provedor › rejeita JSON completo quando finish_reason é length
+
+    expect(received).toBeInstanceOf(expected)
+
+    Expected constructor: BadRequestException
+
+    Received value has no prototype
+    Received value: null
+
+      42 | async function rejected(pending: Promise<unknown>, code: string, tokens: number | null = 24) {
+      43 |   const error = await pending.then(() => null, (value: unknown) => value);
+    > 44 |   expect(error).toBeInstanceOf(BadRequestException);
+         |                 ^
+      45 |   const response = (error as BadRequestException).getResponse();
+      46 |   expect(response).toMatchObject({ code, tokensConsumed: tokens });
+      47 |   expect(JSON.stringify(response)).not.toContain(privateMarker);
+
+      at rejected (src/ai/openai-structured-client.hardening.spec.ts:44:17)
+      at src/ai/openai-structured-client.hardening.spec.ts:63:5
+
+  ● T10 — integridade da resposta e consumo do provedor › rejeita JSON completo quando finish_reason é content_filter
+
+    expect(received).toBeInstanceOf(expected)
+
+    Expected constructor: BadRequestException
+
+    Received value has no prototype
+    Received value: null
+
+      42 | async function rejected(pending: Promise<unknown>, code: string, tokens: number | null = 24) {
+      43 |   const error = await pending.then(() => null, (value: unknown) => value);
+    > 44 |   expect(error).toBeInstanceOf(BadRequestException);
+         |                 ^
+      45 |   const response = (error as BadRequestException).getResponse();
+      46 |   expect(response).toMatchObject({ code, tokensConsumed: tokens });
+      47 |   expect(JSON.stringify(response)).not.toContain(privateMarker);
+
+      at rejected (src/ai/openai-structured-client.hardening.spec.ts:44:17)
+      at src/ai/openai-structured-client.hardening.spec.ts:63:5
+
+  ● T10 — integridade da resposta e consumo do provedor › não aceita estado terminal não previsto: undefined
+
+    expect(received).toBeInstanceOf(expected)
+
+    Expected constructor: BadRequestException
+
+    Received value has no prototype
+    Received value: null
+
+      42 | async function rejected(pending: Promise<unknown>, code: string, tokens: number | null = 24) {
+      43 |   const error = await pending.then(() => null, (value: unknown) => value);
+    > 44 |   expect(error).toBeInstanceOf(BadRequestException);
+         |                 ^
+      45 |   const response = (error as BadRequestException).getResponse();
+      46 |   expect(response).toMatchObject({ code, tokensConsumed: tokens });
+      47 |   expect(JSON.stringify(response)).not.toContain(privateMarker);
+
+      at rejected (src/ai/openai-structured-client.hardening.spec.ts:44:17)
+      at src/ai/openai-structured-client.hardening.spec.ts:69:5
+
+  ● T10 — integridade da resposta e consumo do provedor › não aceita estado terminal não previsto: null
+
+    expect(received).toBeInstanceOf(expected)
+
+    Expected constructor: BadRequestException
+
+    Received value has no prototype
+    Received value: null
+
+      42 | async function rejected(pending: Promise<unknown>, code: string, tokens: number | null = 24) {
+      43 |   const error = await pending.then(() => null, (value: unknown) => value);
+    > 44 |   expect(error).toBeInstanceOf(BadRequestException);
+         |                 ^
+      45 |   const response = (error as BadRequestException).getResponse();
+      46 |   expect(response).toMatchObject({ code, tokensConsumed: tokens });
+      47 |   expect(JSON.stringify(response)).not.toContain(privateMarker);
+
+      at rejected (src/ai/openai-structured-client.hardening.spec.ts:44:17)
+      at src/ai/openai-structured-client.hardening.spec.ts:69:5
+
+  ● T10 — integridade da resposta e consumo do provedor › não aceita estado terminal não previsto: tool_calls
+
+    expect(received).toBeInstanceOf(expected)
+
+    Expected constructor: BadRequestException
+
+    Received value has no prototype
+    Received value: null
+
+      42 | async function rejected(pending: Promise<unknown>, code: string, tokens: number | null = 24) {
+      43 |   const error = await pending.then(() => null, (value: unknown) => value);
+    > 44 |   expect(error).toBeInstanceOf(BadRequestException);
+         |                 ^
+      45 |   const response = (error as BadRequestException).getResponse();
+      46 |   expect(response).toMatchObject({ code, tokensConsumed: tokens });
+      47 |   expect(JSON.stringify(response)).not.toContain(privateMarker);
+
+      at rejected (src/ai/openai-structured-client.hardening.spec.ts:44:17)
+      at src/ai/openai-structured-client.hardening.spec.ts:69:5
+
+  ● T10 — integridade da resposta e consumo do provedor › não aceita estado terminal não previsto: function_call
+
+    expect(received).toBeInstanceOf(expected)
+
+    Expected constructor: BadRequestException
+
+    Received value has no prototype
+    Received value: null
+
+      42 | async function rejected(pending: Promise<unknown>, code: string, tokens: number | null = 24) {
+      43 |   const error = await pending.then(() => null, (value: unknown) => value);
+    > 44 |   expect(error).toBeInstanceOf(BadRequestException);
+         |                 ^
+      45 |   const response = (error as BadRequestException).getResponse();
+      46 |   expect(response).toMatchObject({ code, tokensConsumed: tokens });
+      47 |   expect(JSON.stringify(response)).not.toContain(privateMarker);
+
+      at rejected (src/ai/openai-structured-client.hardening.spec.ts:44:17)
+      at src/ai/openai-structured-client.hardening.spec.ts:69:5
+
+  ● T10 — integridade da resposta e consumo do provedor › não aceita estado terminal não previsto: unexpected
+
+    expect(received).toBeInstanceOf(expected)
+
+    Expected constructor: BadRequestException
+
+    Received value has no prototype
+    Received value: null
+
+      42 | async function rejected(pending: Promise<unknown>, code: string, tokens: number | null = 24) {
+      43 |   const error = await pending.then(() => null, (value: unknown) => value);
+    > 44 |   expect(error).toBeInstanceOf(BadRequestException);
+         |                 ^
+      45 |   const response = (error as BadRequestException).getResponse();
+      46 |   expect(response).toMatchObject({ code, tokensConsumed: tokens });
+      47 |   expect(JSON.stringify(response)).not.toContain(privateMarker);
+
+      at rejected (src/ai/openai-structured-client.hardening.spec.ts:44:17)
+      at src/ai/openai-structured-client.hardening.spec.ts:69:5
+
+  ● T10 — integridade da resposta e consumo do provedor › rejeita envelope inválido 0
+
+    expect(received).toMatchObject(expected)
+
+    - Expected  - 2
+    + Received  + 1
+
+      Object {
+    -   "code": "AI_INVALID_RESPONSE_STRUCTURE",
+    -   "tokensConsumed": null,
+    +   "code": "AI_REQUEST_FAILED",
+      }
+
+      44 |   expect(error).toBeInstanceOf(BadRequestException);
+      45 |   const response = (error as BadRequestException).getResponse();
+    > 46 |   expect(response).toMatchObject({ code, tokensConsumed: tokens });
+         |                    ^
+      47 |   expect(JSON.stringify(response)).not.toContain(privateMarker);
+      48 | }
+      49 |
+
+      at rejected (src/ai/openai-structured-client.hardening.spec.ts:46:20)
+      at src/ai/openai-structured-client.hardening.spec.ts:73:5
+
+  ● T10 — integridade da resposta e consumo do provedor › rejeita envelope inválido 1
+
+    expect(received).toMatchObject(expected)
+
+    - Expected  - 2
+    + Received  + 1
+
+      Object {
+    -   "code": "AI_INVALID_RESPONSE_STRUCTURE",
+    -   "tokensConsumed": null,
+    +   "code": "AI_EMPTY_RESPONSE",
+      }
+
+      44 |   expect(error).toBeInstanceOf(BadRequestException);
+      45 |   const response = (error as BadRequestException).getResponse();
+    > 46 |   expect(response).toMatchObject({ code, tokensConsumed: tokens });
+         |                    ^
+      47 |   expect(JSON.stringify(response)).not.toContain(privateMarker);
+      48 | }
+      49 |
+
+      at rejected (src/ai/openai-structured-client.hardening.spec.ts:46:20)
+      at src/ai/openai-structured-client.hardening.spec.ts:73:5
+
+  ● T10 — integridade da resposta e consumo do provedor › rejeita envelope inválido 2
+
+    expect(received).toMatchObject(expected)
+
+    - Expected  - 2
+    + Received  + 1
+
+      Object {
+    -   "code": "AI_INVALID_RESPONSE_STRUCTURE",
+    -   "tokensConsumed": null,
+    +   "code": "AI_EMPTY_RESPONSE",
+      }
+
+      44 |   expect(error).toBeInstanceOf(BadRequestException);
+      45 |   const response = (error as BadRequestException).getResponse();
+    > 46 |   expect(response).toMatchObject({ code, tokensConsumed: tokens });
+         |                    ^
+      47 |   expect(JSON.stringify(response)).not.toContain(privateMarker);
+      48 | }
+      49 |
+
+      at rejected (src/ai/openai-structured-client.hardening.spec.ts:46:20)
+      at src/ai/openai-structured-client.hardening.spec.ts:73:5
+
+  ● T10 — integridade da resposta e consumo do provedor › rejeita envelope inválido 3
+
+    expect(received).toMatchObject(expected)
+
+    - Expected  - 2
+    + Received  + 1
+
+      Object {
+    -   "code": "AI_INVALID_RESPONSE_STRUCTURE",
+    -   "tokensConsumed": null,
+    +   "code": "AI_EMPTY_RESPONSE",
+      }
+
+      44 |   expect(error).toBeInstanceOf(BadRequestException);
+      45 |   const response = (error as BadRequestException).getResponse();
+    > 46 |   expect(response).toMatchObject({ code, tokensConsumed: tokens });
+         |                    ^
+      47 |   expect(JSON.stringify(response)).not.toContain(privateMarker);
+      48 | }
+      49 |
+
+      at rejected (src/ai/openai-structured-client.hardening.spec.ts:46:20)
+      at src/ai/openai-structured-client.hardening.spec.ts:73:5
+
+  ● T10 — integridade da resposta e consumo do provedor › rejeita envelope inválido 4
+
+    expect(received).toMatchObject(expected)
+
+    - Expected  - 2
+    + Received  + 1
+
+      Object {
+    -   "code": "AI_INVALID_RESPONSE_STRUCTURE",
+    -   "tokensConsumed": null,
+    +   "code": "AI_EMPTY_RESPONSE",
+      }
+
+      44 |   expect(error).toBeInstanceOf(BadRequestException);
+      45 |   const response = (error as BadRequestException).getResponse();
+    > 46 |   expect(response).toMatchObject({ code, tokensConsumed: tokens });
+         |                    ^
+      47 |   expect(JSON.stringify(response)).not.toContain(privateMarker);
+      48 | }
+      49 |
+
+      at rejected (src/ai/openai-structured-client.hardening.spec.ts:46:20)
+      at src/ai/openai-structured-client.hardening.spec.ts:73:5
+
+  ● T10 — integridade da resposta e consumo do provedor › rejeita envelope inválido 5
+
+    expect(received).toMatchObject(expected)
+
+    - Expected  - 2
+    + Received  + 1
+
+      Object {
+    -   "code": "AI_INVALID_RESPONSE_STRUCTURE",
+    -   "tokensConsumed": null,
+    +   "code": "AI_EMPTY_RESPONSE",
+      }
+
+      44 |   expect(error).toBeInstanceOf(BadRequestException);
+      45 |   const response = (error as BadRequestException).getResponse();
+    > 46 |   expect(response).toMatchObject({ code, tokensConsumed: tokens });
+         |                    ^
+      47 |   expect(JSON.stringify(response)).not.toContain(privateMarker);
+      48 | }
+      49 |
+
+      at rejected (src/ai/openai-structured-client.hardening.spec.ts:46:20)
+      at src/ai/openai-structured-client.hardening.spec.ts:73:5
+
+  ● T10 — integridade da resposta e consumo do provedor › bloqueia proposta com workflow ausente, sem substituir por valores vazios
+
+    expect(received).toMatchObject(expected)
+
+    - Expected  - 2
+    + Received  + 1
+
+      Object {
+    -   "code": "AI_INVALID_WORKFLOW_RESPONSE",
+    -   "tokensConsumed": 24,
+    +   "code": "AI_REQUEST_FAILED",
+      }
+
+      44 |   expect(error).toBeInstanceOf(BadRequestException);
+      45 |   const response = (error as BadRequestException).getResponse();
+    > 46 |   expect(response).toMatchObject({ code, tokensConsumed: tokens });
+         |                    ^
+      47 |   expect(JSON.stringify(response)).not.toContain(privateMarker);
+      48 | }
+      49 |
+
+      at rejected (src/ai/openai-structured-client.hardening.spec.ts:46:20)
+      at src/ai/openai-structured-client.hardening.spec.ts:105:5
+
+  ● T10 — integridade da resposta e consumo do provedor › bloqueia proposta com workflow nulo, sem substituir por valores vazios
+
+    expect(received).toMatchObject(expected)
+
+    - Expected  - 2
+    + Received  + 1
+
+      Object {
+    -   "code": "AI_INVALID_WORKFLOW_RESPONSE",
+    -   "tokensConsumed": 24,
+    +   "code": "AI_REQUEST_FAILED",
+      }
+
+      44 |   expect(error).toBeInstanceOf(BadRequestException);
+      45 |   const response = (error as BadRequestException).getResponse();
+    > 46 |   expect(response).toMatchObject({ code, tokensConsumed: tokens });
+         |                    ^
+      47 |   expect(JSON.stringify(response)).not.toContain(privateMarker);
+      48 | }
+      49 |
+
+      at rejected (src/ai/openai-structured-client.hardening.spec.ts:46:20)
+      at src/ai/openai-structured-client.hardening.spec.ts:105:5
+
+  ● T10 — integridade da resposta e consumo do provedor › bloqueia proposta com organização escolhida pelo modelo, sem substituir por valores vazios
+
+    expect(received).toBeInstanceOf(expected)
+
+    Expected constructor: BadRequestException
+
+    Received value has no prototype
+    Received value: null
+
+      42 | async function rejected(pending: Promise<unknown>, code: string, tokens: number | null = 24) {
+      43 |   const error = await pending.then(() => null, (value: unknown) => value);
+    > 44 |   expect(error).toBeInstanceOf(BadRequestException);
+         |                 ^
+      45 |   const response = (error as BadRequestException).getResponse();
+      46 |   expect(response).toMatchObject({ code, tokensConsumed: tokens });
+      47 |   expect(JSON.stringify(response)).not.toContain(privateMarker);
+
+      at rejected (src/ai/openai-structured-client.hardening.spec.ts:44:17)
+      at src/ai/openai-structured-client.hardening.spec.ts:105:5
+
+  ● T10 — integridade da resposta e consumo do provedor › bloqueia proposta com schema desconhecido, sem substituir por valores vazios
+
+    expect(received).toBeInstanceOf(expected)
+
+    Expected constructor: BadRequestException
+
+    Received value has no prototype
+    Received value: null
+
+      42 | async function rejected(pending: Promise<unknown>, code: string, tokens: number | null = 24) {
+      43 |   const error = await pending.then(() => null, (value: unknown) => value);
+    > 44 |   expect(error).toBeInstanceOf(BadRequestException);
+         |                 ^
+      45 |   const response = (error as BadRequestException).getResponse();
+      46 |   expect(response).toMatchObject({ code, tokensConsumed: tokens });
+      47 |   expect(JSON.stringify(response)).not.toContain(privateMarker);
+
+      at rejected (src/ai/openai-structured-client.hardening.spec.ts:44:17)
+      at src/ai/openai-structured-client.hardening.spec.ts:105:5
+
+  ● T10 — integridade da resposta e consumo do provedor › bloqueia proposta com nome inválido, sem substituir por valores vazios
+
+    expect(received).toBeInstanceOf(expected)
+
+    Expected constructor: BadRequestException
+
+    Received value has no prototype
+    Received value: null
+
+      42 | async function rejected(pending: Promise<unknown>, code: string, tokens: number | null = 24) {
+      43 |   const error = await pending.then(() => null, (value: unknown) => value);
+    > 44 |   expect(error).toBeInstanceOf(BadRequestException);
+         |                 ^
+      45 |   const response = (error as BadRequestException).getResponse();
+      46 |   expect(response).toMatchObject({ code, tokensConsumed: tokens });
+      47 |   expect(JSON.stringify(response)).not.toContain(privateMarker);
+
+      at rejected (src/ai/openai-structured-client.hardening.spec.ts:44:17)
+      at src/ai/openai-structured-client.hardening.spec.ts:105:5
+
+  ● T10 — integridade da resposta e consumo do provedor › bloqueia proposta com gatilho vazio, sem substituir por valores vazios
+
+    expect(received).toBeInstanceOf(expected)
+
+    Expected constructor: BadRequestException
+
+    Received value has no prototype
+    Received value: null
+
+      42 | async function rejected(pending: Promise<unknown>, code: string, tokens: number | null = 24) {
+      43 |   const error = await pending.then(() => null, (value: unknown) => value);
+    > 44 |   expect(error).toBeInstanceOf(BadRequestException);
+         |                 ^
+      45 |   const response = (error as BadRequestException).getResponse();
+      46 |   expect(response).toMatchObject({ code, tokensConsumed: tokens });
+      47 |   expect(JSON.stringify(response)).not.toContain(privateMarker);
+
+      at rejected (src/ai/openai-structured-client.hardening.spec.ts:44:17)
+      at src/ai/openai-structured-client.hardening.spec.ts:105:5
+
+  ● T10 — integridade da resposta e consumo do provedor › bloqueia proposta com nós ausentes, sem substituir por valores vazios
+
+    expect(received).toBeInstanceOf(expected)
+
+    Expected constructor: BadRequestException
+
+    Received value has no prototype
+    Received value: null
+
+      42 | async function rejected(pending: Promise<unknown>, code: string, tokens: number | null = 24) {
+      43 |   const error = await pending.then(() => null, (value: unknown) => value);
+    > 44 |   expect(error).toBeInstanceOf(BadRequestException);
+         |                 ^
+      45 |   const response = (error as BadRequestException).getResponse();
+      46 |   expect(response).toMatchObject({ code, tokensConsumed: tokens });
+      47 |   expect(JSON.stringify(response)).not.toContain(privateMarker);
+
+      at rejected (src/ai/openai-structured-client.hardening.spec.ts:44:17)
+      at src/ai/openai-structured-client.hardening.spec.ts:105:5
+
+  ● T10 — integridade da resposta e consumo do provedor › bloqueia proposta com lista de nós vazia, sem substituir por valores vazios
+
+    expect(received).toBeInstanceOf(expected)
+
+    Expected constructor: BadRequestException
+
+    Received value has no prototype
+    Received value: null
+
+      42 | async function rejected(pending: Promise<unknown>, code: string, tokens: number | null = 24) {
+      43 |   const error = await pending.then(() => null, (value: unknown) => value);
+    > 44 |   expect(error).toBeInstanceOf(BadRequestException);
+         |                 ^
+      45 |   const response = (error as BadRequestException).getResponse();
+      46 |   expect(response).toMatchObject({ code, tokensConsumed: tokens });
+      47 |   expect(JSON.stringify(response)).not.toContain(privateMarker);
+
+      at rejected (src/ai/openai-structured-client.hardening.spec.ts:44:17)
+      at src/ai/openai-structured-client.hardening.spec.ts:105:5
+
+  ● T10 — integridade da resposta e consumo do provedor › bloqueia proposta com tipo fora do catálogo, sem substituir por valores vazios
+
+    expect(received).toBeInstanceOf(expected)
+
+    Expected constructor: BadRequestException
+
+    Received value has no prototype
+    Received value: null
+
+      42 | async function rejected(pending: Promise<unknown>, code: string, tokens: number | null = 24) {
+      43 |   const error = await pending.then(() => null, (value: unknown) => value);
+    > 44 |   expect(error).toBeInstanceOf(BadRequestException);
+         |                 ^
+      45 |   const response = (error as BadRequestException).getResponse();
+      46 |   expect(response).toMatchObject({ code, tokensConsumed: tokens });
+      47 |   expect(JSON.stringify(response)).not.toContain(privateMarker);
+
+      at rejected (src/ai/openai-structured-client.hardening.spec.ts:44:17)
+      at src/ai/openai-structured-client.hardening.spec.ts:105:5
+
+  ● T10 — integridade da resposta e consumo do provedor › bloqueia proposta com ID vazio, sem substituir por valores vazios
+
+    expect(received).toBeInstanceOf(expected)
+
+    Expected constructor: BadRequestException
+
+    Received value has no prototype
+    Received value: null
+
+      42 | async function rejected(pending: Promise<unknown>, code: string, tokens: number | null = 24) {
+      43 |   const error = await pending.then(() => null, (value: unknown) => value);
+    > 44 |   expect(error).toBeInstanceOf(BadRequestException);
+         |                 ^
+      45 |   const response = (error as BadRequestException).getResponse();
+      46 |   expect(response).toMatchObject({ code, tokensConsumed: tokens });
+      47 |   expect(JSON.stringify(response)).not.toContain(privateMarker);
+
+      at rejected (src/ai/openai-structured-client.hardening.spec.ts:44:17)
+      at src/ai/openai-structured-client.hardening.spec.ts:105:5
+
+  ● T10 — integridade da resposta e consumo do provedor › bloqueia proposta com posição inválida, sem substituir por valores vazios
+
+    expect(received).toBeInstanceOf(expected)
+
+    Expected constructor: BadRequestException
+
+    Received value has no prototype
+    Received value: null
+
+      42 | async function rejected(pending: Promise<unknown>, code: string, tokens: number | null = 24) {
+      43 |   const error = await pending.then(() => null, (value: unknown) => value);
+    > 44 |   expect(error).toBeInstanceOf(BadRequestException);
+         |                 ^
+      45 |   const response = (error as BadRequestException).getResponse();
+      46 |   expect(response).toMatchObject({ code, tokensConsumed: tokens });
+      47 |   expect(JSON.stringify(response)).not.toContain(privateMarker);
+
+      at rejected (src/ai/openai-structured-client.hardening.spec.ts:44:17)
+      at src/ai/openai-structured-client.hardening.spec.ts:105:5
+
+  ● T10 — integridade da resposta e consumo do provedor › bloqueia proposta com configuração JSON inválida, sem substituir por valores vazios
+
+    expect(received).toBeInstanceOf(expected)
+
+    Expected constructor: BadRequestException
+
+    Received value has no prototype
+    Received value: null
+
+      42 | async function rejected(pending: Promise<unknown>, code: string, tokens: number | null = 24) {
+      43 |   const error = await pending.then(() => null, (value: unknown) => value);
+    > 44 |   expect(error).toBeInstanceOf(BadRequestException);
+         |                 ^
+      45 |   const response = (error as BadRequestException).getResponse();
+      46 |   expect(response).toMatchObject({ code, tokensConsumed: tokens });
+      47 |   expect(JSON.stringify(response)).not.toContain(privateMarker);
+
+      at rejected (src/ai/openai-structured-client.hardening.spec.ts:44:17)
+      at src/ai/openai-structured-client.hardening.spec.ts:105:5
+
+  ● T10 — integridade da resposta e consumo do provedor › bloqueia proposta com configuração em objeto no lugar de string, sem substituir por valores vazios
+
+    expect(received).toBeInstanceOf(expected)
+
+    Expected constructor: BadRequestException
+
+    Received value has no prototype
+    Received value: null
+
+      42 | async function rejected(pending: Promise<unknown>, code: string, tokens: number | null = 24) {
+      43 |   const error = await pending.then(() => null, (value: unknown) => value);
+    > 44 |   expect(error).toBeInstanceOf(BadRequestException);
+         |                 ^
+      45 |   const response = (error as BadRequestException).getResponse();
+      46 |   expect(response).toMatchObject({ code, tokensConsumed: tokens });
+      47 |   expect(JSON.stringify(response)).not.toContain(privateMarker);
+
+      at rejected (src/ai/openai-structured-client.hardening.spec.ts:44:17)
+      at src/ai/openai-structured-client.hardening.spec.ts:105:5
+
+  ● T10 — integridade da resposta e consumo do provedor › bloqueia proposta com configuração nula, sem substituir por valores vazios
+
+    expect(received).toBeInstanceOf(expected)
+
+    Expected constructor: BadRequestException
+
+    Received value has no prototype
+    Received value: null
+
+      42 | async function rejected(pending: Promise<unknown>, code: string, tokens: number | null = 24) {
+      43 |   const error = await pending.then(() => null, (value: unknown) => value);
+    > 44 |   expect(error).toBeInstanceOf(BadRequestException);
+         |                 ^
+      45 |   const response = (error as BadRequestException).getResponse();
+      46 |   expect(response).toMatchObject({ code, tokensConsumed: tokens });
+      47 |   expect(JSON.stringify(response)).not.toContain(privateMarker);
+
+      at rejected (src/ai/openai-structured-client.hardening.spec.ts:44:17)
+      at src/ai/openai-structured-client.hardening.spec.ts:105:5
+
+  ● T10 — integridade da resposta e consumo do provedor › bloqueia proposta com configuração em array, sem substituir por valores vazios
+
+    expect(received).toBeInstanceOf(expected)
+
+    Expected constructor: BadRequestException
+
+    Received value has no prototype
+    Received value: null
+
+      42 | async function rejected(pending: Promise<unknown>, code: string, tokens: number | null = 24) {
+      43 |   const error = await pending.then(() => null, (value: unknown) => value);
+    > 44 |   expect(error).toBeInstanceOf(BadRequestException);
+         |                 ^
+      45 |   const response = (error as BadRequestException).getResponse();
+      46 |   expect(response).toMatchObject({ code, tokensConsumed: tokens });
+      47 |   expect(JSON.stringify(response)).not.toContain(privateMarker);
+
+      at rejected (src/ai/openai-structured-client.hardening.spec.ts:44:17)
+      at src/ai/openai-structured-client.hardening.spec.ts:105:5
+
+  ● T10 — integridade da resposta e consumo do provedor › bloqueia proposta com configuração escalar, sem substituir por valores vazios
+
+    expect(received).toBeInstanceOf(expected)
+
+    Expected constructor: BadRequestException
+
+    Received value has no prototype
+    Received value: null
+
+      42 | async function rejected(pending: Promise<unknown>, code: string, tokens: number | null = 24) {
+      43 |   const error = await pending.then(() => null, (value: unknown) => value);
+    > 44 |   expect(error).toBeInstanceOf(BadRequestException);
+         |                 ^
+      45 |   const response = (error as BadRequestException).getResponse();
+      46 |   expect(response).toMatchObject({ code, tokensConsumed: tokens });
+      47 |   expect(JSON.stringify(response)).not.toContain(privateMarker);
+
+      at rejected (src/ai/openai-structured-client.hardening.spec.ts:44:17)
+      at src/ai/openai-structured-client.hardening.spec.ts:105:5
+
+  ● T10 — integridade da resposta e consumo do provedor › bloqueia proposta com chave de protótipo, sem substituir por valores vazios
+
+    expect(received).toBeInstanceOf(expected)
+
+    Expected constructor: BadRequestException
+
+    Received value has no prototype
+    Received value: null
+
+      42 | async function rejected(pending: Promise<unknown>, code: string, tokens: number | null = 24) {
+      43 |   const error = await pending.then(() => null, (value: unknown) => value);
+    > 44 |   expect(error).toBeInstanceOf(BadRequestException);
+         |                 ^
+      45 |   const response = (error as BadRequestException).getResponse();
+      46 |   expect(response).toMatchObject({ code, tokensConsumed: tokens });
+      47 |   expect(JSON.stringify(response)).not.toContain(privateMarker);
+
+      at rejected (src/ai/openai-structured-client.hardening.spec.ts:44:17)
+      at src/ai/openai-structured-client.hardening.spec.ts:105:5
+
+  ● T10 — integridade da resposta e consumo do provedor › bloqueia proposta com número não finito, sem substituir por valores vazios
+
+    expect(received).toBeInstanceOf(expected)
+
+    Expected constructor: BadRequestException
+
+    Received value has no prototype
+    Received value: null
+
+      42 | async function rejected(pending: Promise<unknown>, code: string, tokens: number | null = 24) {
+      43 |   const error = await pending.then(() => null, (value: unknown) => value);
+    > 44 |   expect(error).toBeInstanceOf(BadRequestException);
+         |                 ^
+      45 |   const response = (error as BadRequestException).getResponse();
+      46 |   expect(response).toMatchObject({ code, tokensConsumed: tokens });
+      47 |   expect(JSON.stringify(response)).not.toContain(privateMarker);
+
+      at rejected (src/ai/openai-structured-client.hardening.spec.ts:44:17)
+      at src/ai/openai-structured-client.hardening.spec.ts:105:5
+
+  ● T10 — integridade da resposta e consumo do provedor › bloqueia proposta com arestas inválidas, sem substituir por valores vazios
+
+    expect(received).toBeInstanceOf(expected)
+
+    Expected constructor: BadRequestException
+
+    Received value has no prototype
+    Received value: null
+
+      42 | async function rejected(pending: Promise<unknown>, code: string, tokens: number | null = 24) {
+      43 |   const error = await pending.then(() => null, (value: unknown) => value);
+    > 44 |   expect(error).toBeInstanceOf(BadRequestException);
+         |                 ^
+      45 |   const response = (error as BadRequestException).getResponse();
+      46 |   expect(response).toMatchObject({ code, tokensConsumed: tokens });
+      47 |   expect(JSON.stringify(response)).not.toContain(privateMarker);
+
+      at rejected (src/ai/openai-structured-client.hardening.spec.ts:44:17)
+      at src/ai/openai-structured-client.hardening.spec.ts:105:5
+
+  ● T10 — integridade da resposta e consumo do provedor › bloqueia proposta com campo de aresta ausente, sem substituir por valores vazios
+
+    expect(received).toBeInstanceOf(expected)
+
+    Expected constructor: BadRequestException
+
+    Received value has no prototype
+    Received value: null
+
+      42 | async function rejected(pending: Promise<unknown>, code: string, tokens: number | null = 24) {
+      43 |   const error = await pending.then(() => null, (value: unknown) => value);
+    > 44 |   expect(error).toBeInstanceOf(BadRequestException);
+         |                 ^
+      45 |   const response = (error as BadRequestException).getResponse();
+      46 |   expect(response).toMatchObject({ code, tokensConsumed: tokens });
+      47 |   expect(JSON.stringify(response)).not.toContain(privateMarker);
+
+      at rejected (src/ai/openai-structured-client.hardening.spec.ts:44:17)
+      at src/ai/openai-structured-client.hardening.spec.ts:105:5
+
+  ● T10 — integridade da resposta e consumo do provedor › bloqueia proposta com warnings inválidos, sem substituir por valores vazios
+
+    expect(received).toBeInstanceOf(expected)
+
+    Expected constructor: BadRequestException
+
+    Received value has no prototype
+    Received value: null
+
+      42 | async function rejected(pending: Promise<unknown>, code: string, tokens: number | null = 24) {
+      43 |   const error = await pending.then(() => null, (value: unknown) => value);
+    > 44 |   expect(error).toBeInstanceOf(BadRequestException);
+         |                 ^
+      45 |   const response = (error as BadRequestException).getResponse();
+      46 |   expect(response).toMatchObject({ code, tokensConsumed: tokens });
+      47 |   expect(JSON.stringify(response)).not.toContain(privateMarker);
+
+      at rejected (src/ai/openai-structured-client.hardening.spec.ts:44:17)
+      at src/ai/openai-structured-client.hardening.spec.ts:105:5
+
+  ● T10 — integridade da resposta e consumo do provedor › bloqueia proposta com reasoning ausente, sem substituir por valores vazios
+
+    expect(received).toBeInstanceOf(expected)
+
+    Expected constructor: BadRequestException
+
+    Received value has no prototype
+    Received value: null
+
+      42 | async function rejected(pending: Promise<unknown>, code: string, tokens: number | null = 24) {
+      43 |   const error = await pending.then(() => null, (value: unknown) => value);
+    > 44 |   expect(error).toBeInstanceOf(BadRequestException);
+         |                 ^
+      45 |   const response = (error as BadRequestException).getResponse();
+      46 |   expect(response).toMatchObject({ code, tokensConsumed: tokens });
+      47 |   expect(JSON.stringify(response)).not.toContain(privateMarker);
+
+      at rejected (src/ai/openai-structured-client.hardening.spec.ts:44:17)
+      at src/ai/openai-structured-client.hardening.spec.ts:105:5
+
+  ● T10 — integridade da resposta e consumo do provedor › bloqueia proposta com campo inesperado, sem substituir por valores vazios
+
+    expect(received).toBeInstanceOf(expected)
+
+    Expected constructor: BadRequestException
+
+    Received value has no prototype
+    Received value: null
+
+      42 | async function rejected(pending: Promise<unknown>, code: string, tokens: number | null = 24) {
+      43 |   const error = await pending.then(() => null, (value: unknown) => value);
+    > 44 |   expect(error).toBeInstanceOf(BadRequestException);
+         |                 ^
+      45 |   const response = (error as BadRequestException).getResponse();
+      46 |   expect(response).toMatchObject({ code, tokensConsumed: tokens });
+      47 |   expect(JSON.stringify(response)).not.toContain(privateMarker);
+
+      at rejected (src/ai/openai-structured-client.hardening.spec.ts:44:17)
+      at src/ai/openai-structured-client.hardening.spec.ts:105:5
+
+  ● T10 — integridade da resposta e consumo do provedor › preserva consumo ausente/inválido como desconhecido 0
+
+    expect(received).toBeNull()
+
+    Received: 0
+
+      109 |     const body = envelope(); body.usage = usage;
+      110 |     const result = await clientFor(body).generateWorkflow('Formulário sintético', 'org_synthetic');
+    > 111 |     expect(result.tokensConsumed).toBeNull();
+          |                                   ^
+      112 |     expect(result.draft.nodes[0].config).toEqual({ requiredFields: ['name', 'email', 'message'] });
+      113 |   });
+      114 |
+
+      at src/ai/openai-structured-client.hardening.spec.ts:111:35
+
+  ● T10 — integridade da resposta e consumo do provedor › preserva consumo ausente/inválido como desconhecido 1
+
+    expect(received).toBeNull()
+
+    Received: 0
+
+      109 |     const body = envelope(); body.usage = usage;
+      110 |     const result = await clientFor(body).generateWorkflow('Formulário sintético', 'org_synthetic');
+    > 111 |     expect(result.tokensConsumed).toBeNull();
+          |                                   ^
+      112 |     expect(result.draft.nodes[0].config).toEqual({ requiredFields: ['name', 'email', 'message'] });
+      113 |   });
+      114 |
+
+      at src/ai/openai-structured-client.hardening.spec.ts:111:35
+
+  ● T10 — integridade da resposta e consumo do provedor › preserva consumo ausente/inválido como desconhecido 2
+
+    expect(received).toBeNull()
+
+    Received: 0
+
+      109 |     const body = envelope(); body.usage = usage;
+      110 |     const result = await clientFor(body).generateWorkflow('Formulário sintético', 'org_synthetic');
+    > 111 |     expect(result.tokensConsumed).toBeNull();
+          |                                   ^
+      112 |     expect(result.draft.nodes[0].config).toEqual({ requiredFields: ['name', 'email', 'message'] });
+      113 |   });
+      114 |
+
+      at src/ai/openai-structured-client.hardening.spec.ts:111:35
+
+  ● T10 — integridade da resposta e consumo do provedor › preserva consumo ausente/inválido como desconhecido 3
+
+    expect(received).toBeNull()
+
+    Received: 0
+
+      109 |     const body = envelope(); body.usage = usage;
+      110 |     const result = await clientFor(body).generateWorkflow('Formulário sintético', 'org_synthetic');
+    > 111 |     expect(result.tokensConsumed).toBeNull();
+          |                                   ^
+      112 |     expect(result.draft.nodes[0].config).toEqual({ requiredFields: ['name', 'email', 'message'] });
+      113 |   });
+      114 |
+
+      at src/ai/openai-structured-client.hardening.spec.ts:111:35
+
+  ● T10 — integridade da resposta e consumo do provedor › preserva consumo ausente/inválido como desconhecido 4
+
+    expect(received).toBeNull()
+
+    Received: "12"
+
+      109 |     const body = envelope(); body.usage = usage;
+      110 |     const result = await clientFor(body).generateWorkflow('Formulário sintético', 'org_synthetic');
+    > 111 |     expect(result.tokensConsumed).toBeNull();
+          |                                   ^
+      112 |     expect(result.draft.nodes[0].config).toEqual({ requiredFields: ['name', 'email', 'message'] });
+      113 |   });
+      114 |
+
+      at src/ai/openai-structured-client.hardening.spec.ts:111:35
+
+  ● T10 — integridade da resposta e consumo do provedor › preserva consumo ausente/inválido como desconhecido 5
+
+    expect(received).toBeNull()
+
+    Received: -1
+
+      109 |     const body = envelope(); body.usage = usage;
+      110 |     const result = await clientFor(body).generateWorkflow('Formulário sintético', 'org_synthetic');
+    > 111 |     expect(result.tokensConsumed).toBeNull();
+          |                                   ^
+      112 |     expect(result.draft.nodes[0].config).toEqual({ requiredFields: ['name', 'email', 'message'] });
+      113 |   });
+      114 |
+
+      at src/ai/openai-structured-client.hardening.spec.ts:111:35
+
+  ● T10 — integridade da resposta e consumo do provedor › preserva consumo ausente/inválido como desconhecido 6
+
+    expect(received).toBeNull()
+
+    Received: 2.5
+
+      109 |     const body = envelope(); body.usage = usage;
+      110 |     const result = await clientFor(body).generateWorkflow('Formulário sintético', 'org_synthetic');
+    > 111 |     expect(result.tokensConsumed).toBeNull();
+          |                                   ^
+      112 |     expect(result.draft.nodes[0].config).toEqual({ requiredFields: ['name', 'email', 'message'] });
+      113 |   });
+      114 |
+
+      at src/ai/openai-structured-client.hardening.spec.ts:111:35
+
+  ● T10 — integridade da resposta e consumo do provedor › preserva consumo ausente/inválido como desconhecido 7
+
+    expect(received).toBeNull()
+
+    Received: 9007199254740992
+
+      109 |     const body = envelope(); body.usage = usage;
+      110 |     const result = await clientFor(body).generateWorkflow('Formulário sintético', 'org_synthetic');
+    > 111 |     expect(result.tokensConsumed).toBeNull();
+          |                                   ^
+      112 |     expect(result.draft.nodes[0].config).toEqual({ requiredFields: ['name', 'email', 'message'] });
+      113 |   });
+      114 |
+
+      at src/ai/openai-structured-client.hardening.spec.ts:111:35
+
+  ● T10 — integridade da resposta e consumo do provedor › preserva uso da recusa sem publicar a justificativa privada do provedor
+
+    expect(received).toMatchObject(expected)
+
+    - Expected  - 1
+    + Received  + 0
+
+      Object {
+        "code": "AI_PROMPT_REFUSED",
+    -   "tokensConsumed": 24,
+      }
+
+      44 |   expect(error).toBeInstanceOf(BadRequestException);
+      45 |   const response = (error as BadRequestException).getResponse();
+    > 46 |   expect(response).toMatchObject({ code, tokensConsumed: tokens });
+         |                    ^
+      47 |   expect(JSON.stringify(response)).not.toContain(privateMarker);
+      48 | }
+      49 |
+
+      at rejected (src/ai/openai-structured-client.hardening.spec.ts:46:20)
+      at Object.<anonymous> (src/ai/openai-structured-client.hardening.spec.ts:130:5)
+
+  ● T10 — integridade da resposta e consumo do provedor › transporta consumo desconhecido pelo gerador e JSON da API
+
+    expect(received).toBeNull()
+
+    Received: 0
+
+      134 |     const body = envelope(); delete body.usage;
+      135 |     const response = await new AiGeneratorService(clientFor(body)).generateFromNaturalLanguage({ prompt: 'Formulário sintético' }, 'org_synthetic');
+    > 136 |     expect(response.tokensConsumed).toBeNull();
+          |                                     ^
+      137 |     expect(JSON.parse(JSON.stringify(response)).tokensConsumed).toBeNull();
+      138 |     expect(response.requiresHumanReview).toBe(true);
+      139 |   });
+
+      at Object.<anonymous> (src/ai/openai-structured-client.hardening.spec.ts:136:37)
+
+  ● T10 — integridade da resposta e consumo do provedor › avalia uso desconhecido como controle não exercitado, sem inventar zero
+
+    expect(received).toBeNull()
+
+    Received: 0
+
+      143 |     const scenario = AI_EVALUATION_DATASET.find((entry) => entry.id === 'IA08')!;
+      144 |     const response = await new AiEvaluator().evaluateScenario(scenario, clientFor(body));
+    > 145 |     expect(response.tokensConsumed).toBeNull();
+          |                                     ^
+      146 |     expect(response.ruleResults.find((rule) => rule.rule === 'ACCURATE_TOKEN_REPORTING')?.passed).toBeNull();
+      147 |   });
+      148 |
+
+      at Object.<anonymous> (src/ai/openai-structured-client.hardening.spec.ts:145:37)
+
+  ● T10 — integridade da resposta e consumo do provedor › mantém uso observado em falha no relatório de avaliação
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "AI_INCOMPLETE_RESPONSE"
+    Received: undefined
+
+      151 |     const scenario = AI_EVALUATION_DATASET.find((entry) => entry.id === 'IA07')!;
+      152 |     const response = await new AiEvaluator().evaluateScenario(scenario, clientFor(body));
+    > 153 |     expect(response.error).toBe('AI_INCOMPLETE_RESPONSE');
+          |                            ^
+      154 |     expect(response.tokensConsumed).toBe(24);
+      155 |     expect(response.rubricScore).toBeNull();
+      156 |   });
+
+      at Object.<anonymous> (src/ai/openai-structured-client.hardening.spec.ts:153:28)
+
+Test Suites: 1 failed, 1 total
+Tests:       48 failed, 3 passed, 51 total
+Snapshots:   0 total
+Time:        3.1 s
+Ran all test suites within paths "C:\Users\jv883\Documents\Codex\FlowMind-AI\Flowmind-AI\apps\api\src\ai\openai-structured-client.hardening.spec.ts".

@@ -1,0 +1,9 @@
+{
+  "lint": 0,
+  "typecheck": 0,
+  "test": 0,
+  "test:regression": 0,
+  "build": 0,
+  "check:api-artifact": 0,
+  "check:operation": 0
+}

@@ -1,0 +1,89 @@
+(node:13704) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ configuração pendente impede salvar uma definição anterior à edição do usuário (89.2598ms)
+(node:13704) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+✔ resposta de salvamento obsoleta não substitui novas alterações nem escreve feedback de erro (36.4644ms)
+✔ parâmetros de e-mail editados preservam IDs, referências e campos não alterados (67.955ms)
+✔ valores JSON da condição preservam número, array e booleano (0.5745ms)
+✔ JSON inválido e campos desconhecidos não substituem a configuração (0.7858ms)
+✔ aliases existentes de mensagem e mapeamento são preservados ao editar outro campo (0.5182ms)
+✔ draft incompleto continua editável e ausência de opcionais não injeta defaults (0.2851ms)
+✔ edições de parâmetros/posições/conexões são negadas em REVIEWED (0.4494ms)
+✔ edições de parâmetros/posições/conexões são negadas em PUBLISHED (0.2046ms)
+✔ edições de parâmetros/posições/conexões são negadas em ARCHIVED (0.1793ms)
+✔ movimentação persiste coordenadas finitas sem mudar configuração ou arestas (0.3036ms)
+✔ conexões condicionais preservam os handles usados pelo motor (0.3307ms)
+✔ ciclo, auto-conexão, nó ausente e conexão repetida são recusados antes de mudar o grafo (0.2843ms)
+✔ remoção de conexão preserva nós e demais IDs, sem resolver convergências (0.3537ms)
+✔ formulários abrangem os seis tipos e conservam ausência versus valores JSON (0.4441ms)
+✔ arestas exibidas no canvas mantêm sourceHandle e targetHandle sem normalização (22.7315ms)
+✔ edição aplicada marca dirty, avança revisão e invalida resultado anterior (36.7372ms)
+✔ edição não altera o workflow durante saving (24.9391ms)
+✔ edição não altera o workflow durante reviewing (24.4201ms)
+✔ edição não altera o workflow durante publishing (39.9416ms)
+✔ edição não altera o workflow durante deactivating (26.7115ms)
+✔ edição não altera o workflow durante simulating (28.8008ms)
+✔ edição não altera o workflow durante generatingAi (18.1928ms)
+✔ duas movimentações antes de renderizar preservam as duas alterações (17.7402ms)
+✔ edição com contexto Alpha→Beta→Alpha anterior é descartada (17.4934ms)
+✔ rascunho local de parâmetros impede trocar etapa, mover ou aplicar conexões (15.3918ms)
+✔ conectar e remover pela interface altera somente as arestas pertinentes (16.9473ms)
+✔ editar e salvar no mesmo snapshot usa a definição recente da referência (22.9858ms)
+✔ edição antes de render bloqueia simulação, revisão e ativação do snapshot antigo (16.7222ms)
+✔ proposta aplicada e editada antes de render mantém os nós da proposta (13.1861ms)
+✖ REVIEWED recebido impede editar antes de renderizar o novo estado (17.8311ms)
+✖ PUBLISHED recebido impede editar antes de renderizar o novo estado (28.2359ms)
+✔ handles padrão e nomeado default têm chaves distintas no componente real (56.4004ms)
+✔ efeito real do nó solicita atualização dos bounds dos handles após render (11.2744ms)
+✔ formulário real de trigger_form renderiza labels, valores escapados e bloqueio de edição (38.9521ms)
+✔ formulário real de ai_analyze_intent renderiza labels, valores escapados e bloqueio de edição (12.9345ms)
+✔ formulário real de internal_record renderiza labels, valores escapados e bloqueio de edição (11.626ms)
+✔ formulário real de send_email renderiza labels, valores escapados e bloqueio de edição (8.9973ms)
+✔ formulário real de condition renderiza labels, valores escapados e bloqueio de edição (11.2998ms)
+✔ formulário real de http_request renderiza labels, valores escapados e bloqueio de edição (9.5626ms)
+ℹ tests 40
+ℹ suites 0
+ℹ pass 38
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1095.9163
+
+✖ failing tests:
+
+test at tests\regression\workflow-editing.test.mjs:243:3
+✖ REVIEWED recebido impede editar antes de renderizar o novo estado (17.8311ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  true !== false
+  
+      at TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:249:12)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests\regression\workflow-editing.test.mjs:243:3
+✖ PUBLISHED recebido impede editar antes de renderizar o novo estado (28.2359ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'REVIEWED'
+  - 'PUBLISHED'
+  
+      at TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:250:12)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'REVIEWED',
+    expected: 'PUBLISHED',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

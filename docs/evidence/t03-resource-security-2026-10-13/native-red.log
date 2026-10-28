@@ -1,0 +1,68 @@
+(node:28768) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:28768) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+✔ WebhookSignatureValidator: gera assinatura HMAC no padrão canônico t=...,v1=... (59.5176ms)
+✔ WebhookSignatureValidator: valida assinatura válida e rejeita adulteração de payload (2.6892ms)
+✔ WebhookSignatureValidator: rejeita replay attack quando timestamp exceder tolerância (1.6734ms)
+✔ SimulatedEmailProvider: despacha e-mail simulado com identificador e sem rede (4.8136ms)
+✔ SimulatedEmailProvider: bloqueia CRLF injection em headers de e-mail (4.1073ms)
+✖ T03-S3 (SC09): ResourceResolver rejeita credenciais e formulários cross-tenant e desconhecidos (98.0452ms)
+✖ T03-S3 (SC09): validateWorkflowResources bloqueia workflow com recurso cross-tenant (11.9749ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 5
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 324.0101
+
+✖ failing tests:
+
+test at tests\regression\triggers-email.test.mjs:112:1
+✖ T03-S3 (SC09): ResourceResolver rejeita credenciais e formulários cross-tenant e desconhecidos (98.0452ms)
+  AssertionError [ERR_ASSERTION]: The validation function is expected to return "true". Received false
+  
+  Caught error:
+  
+  Error: Acesso negado: a credencial 'cred_beta_http' não pertence à organização do workflow.
+      at TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/triggers-email.test.mjs:117:10)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: Acesso negado: a credencial 'cred_beta_http' não pertence à organização do workflow.
+        at ResourceResolver.resolveCredential (C:\Users\jv883\Documents\Codex\FlowMind-AI\Flowmind-AI\apps\api\src\engine\resource-resolver.ts:98:13)
+        at file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/triggers-email.test.mjs:118:20
+        at getActual (node:assert:611:5)
+        at strict.throws (node:assert:759:24)
+        at TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/triggers-email.test.mjs:117:10)
+        at async Test.run (node:internal/test_runner/test:1409:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:974:7),
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests\regression\triggers-email.test.mjs:148:1
+✖ T03-S3 (SC09): validateWorkflowResources bloqueia workflow com recurso cross-tenant (11.9749ms)
+  AssertionError [ERR_ASSERTION]: The validation function is expected to return "true". Received false
+  
+  Caught error:
+  
+  Error: Acesso negado: a credencial 'cred_beta_http' não pertence à organização do workflow.
+      at TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/triggers-email.test.mjs:166:10)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: Acesso negado: a credencial 'cred_beta_http' não pertence à organização do workflow.
+        at Module.validateWorkflowResources (C:\Users\jv883\Documents\Codex\FlowMind-AI\Flowmind-AI\apps\api\src\engine\workflow-reference.validation.ts:225:11)
+        at file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/triggers-email.test.mjs:167:22
+        at getActual (node:assert:611:5)
+        at strict.throws (node:assert:759:24)
+        at TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/triggers-email.test.mjs:166:10)
+        at async Test.run (node:internal/test_runner/test:1409:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:974:7),
+    operator: 'throws',
+    diff: 'simple'
+  }

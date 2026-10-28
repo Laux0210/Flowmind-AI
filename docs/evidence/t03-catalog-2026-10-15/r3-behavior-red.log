@@ -1,0 +1,271 @@
+ts-jest[config] (WARN) message TS151002: Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) message TS151002: Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) message TS151002: Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) message TS151002: Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) message TS151002: Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) message TS151002: Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) message TS151002: Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) message TS151002: Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) message TS151002: Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) message TS151002: Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) message TS151002: Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) message TS151002: Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+(node:29676) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+FAIL apps/api/src/resources/resources-container.spec.ts
+  ● R3 — catálogo no AppModule, guard real e HTTP loopback › Alpha member consulta somente seus recursos e concessões, mesmo com tenant forjado
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 200
+    Received: 404
+
+      67 |   it.each(['member', 'admin'])('Alpha %s consulta somente seus recursos e concessões, mesmo com tenant forjado', async (role) => {
+      68 |     const result = await request('alpha:' + role, '?orgId=org_beta');
+    > 69 |     expect(result.status).toBe(200);
+         |                           ^
+      70 |     expect(result.body).toMatchObject({ success: true });
+      71 |     expect(result.body.data.map((item: any) => item.id)).toEqual(['form-alpha', 'model-shared']);
+      72 |     expect(JSON.stringify(result.body)).not.toMatch(/PRIVATE_PROVIDER|allowedOrgIds|providerModelId|pending-model|Credencial B|org_beta/);
+
+      at src/resources/resources-container.spec.ts:69:27
+
+  ● R3 — catálogo no AppModule, guard real e HTTP loopback › Alpha admin consulta somente seus recursos e concessões, mesmo com tenant forjado
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 200
+    Received: 404
+
+      67 |   it.each(['member', 'admin'])('Alpha %s consulta somente seus recursos e concessões, mesmo com tenant forjado', async (role) => {
+      68 |     const result = await request('alpha:' + role, '?orgId=org_beta');
+    > 69 |     expect(result.status).toBe(200);
+         |                           ^
+      70 |     expect(result.body).toMatchObject({ success: true });
+      71 |     expect(result.body.data.map((item: any) => item.id)).toEqual(['form-alpha', 'model-shared']);
+      72 |     expect(JSON.stringify(result.body)).not.toMatch(/PRIVATE_PROVIDER|allowedOrgIds|providerModelId|pending-model|Credencial B|org_beta/);
+
+      at src/resources/resources-container.spec.ts:69:27
+
+  ● R3 — catálogo no AppModule, guard real e HTTP loopback › Beta recebe seu recurso e modelo compartilhado
+
+    TypeError: Cannot read properties of undefined (reading 'map')
+
+      74 |   });
+      75 |   it('Beta recebe seu recurso e modelo compartilhado', async () => {
+    > 76 |     expect((await request('beta:member')).body.data.map((item: any) => item.id)).toEqual(['cred-beta', 'model-shared']);
+         |                                                     ^
+      77 |   });
+      78 |   it.each(['form', 'credential', 'ai_model'])('aplica filtro %s', async (type) => {
+      79 |     const result = await request('alpha:member', '?type=' + type);
+
+      at Object.<anonymous> (src/resources/resources-container.spec.ts:76:53)
+
+  ● R3 — catálogo no AppModule, guard real e HTTP loopback › aplica filtro form
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 200
+    Received: 404
+
+      78 |   it.each(['form', 'credential', 'ai_model'])('aplica filtro %s', async (type) => {
+      79 |     const result = await request('alpha:member', '?type=' + type);
+    > 80 |     expect(result.status).toBe(200);
+         |                           ^
+      81 |     expect(result.body.data.every((item: any) => item.type === type)).toBe(true);
+      82 |     expect(result.body.data).toHaveLength(type === 'credential' ? 0 : 1);
+      83 |   });
+
+      at src/resources/resources-container.spec.ts:80:27
+
+  ● R3 — catálogo no AppModule, guard real e HTTP loopback › aplica filtro credential
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 200
+    Received: 404
+
+      78 |   it.each(['form', 'credential', 'ai_model'])('aplica filtro %s', async (type) => {
+      79 |     const result = await request('alpha:member', '?type=' + type);
+    > 80 |     expect(result.status).toBe(200);
+         |                           ^
+      81 |     expect(result.body.data.every((item: any) => item.type === type)).toBe(true);
+      82 |     expect(result.body.data).toHaveLength(type === 'credential' ? 0 : 1);
+      83 |   });
+
+      at src/resources/resources-container.spec.ts:80:27
+
+  ● R3 — catálogo no AppModule, guard real e HTTP loopback › aplica filtro ai_model
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 200
+    Received: 404
+
+      78 |   it.each(['form', 'credential', 'ai_model'])('aplica filtro %s', async (type) => {
+      79 |     const result = await request('alpha:member', '?type=' + type);
+    > 80 |     expect(result.status).toBe(200);
+         |                           ^
+      81 |     expect(result.body.data.every((item: any) => item.type === type)).toBe(true);
+      82 |     expect(result.body.data).toHaveLength(type === 'credential' ? 0 : 1);
+      83 |   });
+
+      at src/resources/resources-container.spec.ts:80:27
+
+  ● R3 — catálogo no AppModule, guard real e HTTP loopback › recusa filtro inválido/repetido unknown
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 400
+    Received: 404
+
+      83 |   });
+      84 |   it.each(['unknown', 'form&type=credential'])('recusa filtro inválido/repetido %s', async (query) => {
+    > 85 |     expect((await request('alpha:member', '?type=' + query)).status).toBe(400);
+         |                                                                      ^
+      86 |   });
+      87 |   it.each([undefined, 'invalid:member'])('nega identidade ausente/inválida %s', async (token) => {
+      88 |     expect((await request(token)).status).toBe(401);
+
+      at src/resources/resources-container.spec.ts:85:70
+
+  ● R3 — catálogo no AppModule, guard real e HTTP loopback › recusa filtro inválido/repetido form&type=credential
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 400
+    Received: 404
+
+      83 |   });
+      84 |   it.each(['unknown', 'form&type=credential'])('recusa filtro inválido/repetido %s', async (query) => {
+    > 85 |     expect((await request('alpha:member', '?type=' + query)).status).toBe(400);
+         |                                                                      ^
+      86 |   });
+      87 |   it.each([undefined, 'invalid:member'])('nega identidade ausente/inválida %s', async (token) => {
+      88 |     expect((await request(token)).status).toBe(401);
+
+      at src/resources/resources-container.spec.ts:85:70
+
+  ● R3 — catálogo no AppModule, guard real e HTTP loopback › nega identidade ausente/inválida undefined
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 401
+    Received: 404
+
+      86 |   });
+      87 |   it.each([undefined, 'invalid:member'])('nega identidade ausente/inválida %s', async (token) => {
+    > 88 |     expect((await request(token)).status).toBe(401);
+         |                                           ^
+      89 |   });
+      90 |   it('falha de autoridade não concede acesso', async () => {
+      91 |     expect((await request('unavailable')).status).toBe(503);
+
+      at src/resources/resources-container.spec.ts:88:43
+
+  ● R3 — catálogo no AppModule, guard real e HTTP loopback › nega identidade ausente/inválida invalid:member
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 401
+    Received: 404
+
+      86 |   });
+      87 |   it.each([undefined, 'invalid:member'])('nega identidade ausente/inválida %s', async (token) => {
+    > 88 |     expect((await request(token)).status).toBe(401);
+         |                                           ^
+      89 |   });
+      90 |   it('falha de autoridade não concede acesso', async () => {
+      91 |     expect((await request('unavailable')).status).toBe(503);
+
+      at src/resources/resources-container.spec.ts:88:43
+
+  ● R3 — catálogo no AppModule, guard real e HTTP loopback › falha de autoridade não concede acesso
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 503
+    Received: 404
+
+      89 |   });
+      90 |   it('falha de autoridade não concede acesso', async () => {
+    > 91 |     expect((await request('unavailable')).status).toBe(503);
+         |                                                   ^
+      92 |   });
+      93 |   it('catálogo vazio válido é sucesso explícito, sem fixtures de produção', async () => {
+      94 |     catalog = new ConfiguredResourceCatalog([]);
+
+      at Object.<anonymous> (src/resources/resources-container.spec.ts:91:51)
+
+  ● R3 — catálogo no AppModule, guard real e HTTP loopback › catálogo vazio válido é sucesso explícito, sem fixtures de produção
+
+    expect(received).toMatchObject(expected)
+
+    - Expected  - 2
+    + Received  + 3
+
+      Object {
+    -   "data": Array [],
+    -   "success": true,
+    +   "error": "Not Found",
+    +   "message": "Cannot GET /api/v1/resources",
+    +   "statusCode": 404,
+      }
+
+      93 |   it('catálogo vazio válido é sucesso explícito, sem fixtures de produção', async () => {
+      94 |     catalog = new ConfiguredResourceCatalog([]);
+    > 95 |     expect((await request('alpha:member')).body).toMatchObject({ success: true, data: [] });
+         |                                                  ^
+      96 |   });
+      97 |   it('organização sem concessões não recebe fallback global', async () => {
+      98 |     expect((await request('empty:member')).body).toMatchObject({ success: true, data: [] });
+
+      at Object.<anonymous> (src/resources/resources-container.spec.ts:95:50)
+
+  ● R3 — catálogo no AppModule, guard real e HTTP loopback › organização sem concessões não recebe fallback global
+
+    expect(received).toMatchObject(expected)
+
+    - Expected  - 2
+    + Received  + 3
+
+      Object {
+    -   "data": Array [],
+    -   "success": true,
+    +   "error": "Not Found",
+    +   "message": "Cannot GET /api/v1/resources",
+    +   "statusCode": 404,
+      }
+
+       96 |   });
+       97 |   it('organização sem concessões não recebe fallback global', async () => {
+    >  98 |     expect((await request('empty:member')).body).toMatchObject({ success: true, data: [] });
+          |                                                  ^
+       99 |   });
+      100 |   it('falha do catálogo é indisponibilidade, sem sucesso vazio nem detalhe privado', async () => {
+      101 |     unavailable = true;
+
+      at Object.<anonymous> (src/resources/resources-container.spec.ts:98:50)
+
+  ● R3 — catálogo no AppModule, guard real e HTTP loopback › falha do catálogo é indisponibilidade, sem sucesso vazio nem detalhe privado
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 503
+    Received: 404
+
+      101 |     unavailable = true;
+      102 |     const result = await request('alpha:member');
+    > 103 |     expect(result.status).toBe(503);
+          |                           ^
+      104 |     expect(result.body.code).toBe('RESOURCE_CATALOG_UNAVAILABLE');
+      105 |     expect(JSON.stringify(result.body)).not.toContain('PRIVATE_BACKEND_CONFIG');
+      106 |   });
+
+      at Object.<anonymous> (src/resources/resources-container.spec.ts:103:27)
+
+Test Suites: 1 failed, 1 total
+Tests:       14 failed, 14 total
+Snapshots:   0 total
+Time:        4.365 s
+Ran all test suites within paths "apps/api/src/resources/resources-container.spec.ts".

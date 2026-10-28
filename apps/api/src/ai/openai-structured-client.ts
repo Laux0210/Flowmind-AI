@@ -1,6 +1,7 @@
 import { Injectable, BadRequestException } from '@nestjs/common';
 import type { AiClient, AiGenerationResult } from './ai-client.interface';
 import { WORKFLOW_GENERATION_JSON_SCHEMA } from './workflow-generation.schema';
+import { isJsonObject, parseWorkflowProposal } from './workflow-proposal.parser';
 
 const SYSTEM_PROMPT = `Você é o Arquiteto de Automação com IA do FlowMind AI.
 Sua missão é converter a descrição do usuário em linguagem natural em uma proposta de workflow executável em formato JSON estrito.
@@ -9,6 +10,7 @@ Regras Obrigatórias e Inegociáveis:
 1. O workflow DEVE ser um Grafo Acíclico Dirigido (DAG) conectado a partir do nó de gatilho.
 2. O catálogo de tipos de nós é restrito e fechado ao MVP:
    - trigger_form: Gatilho inicial ao receber envio de formulário web.
+   - trigger_schedule: Gatilho de agendamento, config {}, saída única scheduledAt (ISO UTC). Use exatamente um gatilho; não invente contato, cron ou destinatário. A frequência é configurada no painel após publicação.
    - ai_analyze_intent: Analisa resumo, intenção e ambiguidades com IA. NÃO atribui score comercial, nota ou pontuação de lead.
    - internal_record: Salva dados internamente na organização (nome, e-mail, mensagem original, resumo de IA, intenção, ambiguidades).
    - send_email: Envia e-mail de resposta ou notificação ao autor do contato.
@@ -49,6 +51,9 @@ export class OpenAiStructuredClient implements AiClient {
         ? setTimeout(() => controller.abort(), this.timeoutMs)
         : null;
 
+    let tokensConsumed: number | null = null;
+    const failure = (code: string, message: string) => new BadRequestException({ code, message, tokensConsumed });
+
     try {
       const response = await this.fetchFn('https://api.openai.com/v1/chat/completions', {
         method: 'POST',
@@ -72,122 +77,79 @@ export class OpenAiStructuredClient implements AiClient {
 
       if (!response.ok) {
         if (response.status === 429) {
-          throw new BadRequestException({
-            code: 'AI_RATE_LIMIT_EXCEEDED',
-            message: 'Limite de taxa de requisições excedido no provedor de IA. Tente novamente em instantes.',
-          });
+          throw failure('AI_RATE_LIMIT_EXCEEDED', 'Limite de taxa de requisições excedido no provedor de IA. Tente novamente em instantes.');
         }
         if (response.status === 401) {
-          throw new BadRequestException({
-            code: 'AI_AUTHENTICATION_ERROR',
-            message: 'Chave de autenticação do provedor de IA inválida ou não autorizada.',
-          });
+          throw failure('AI_AUTHENTICATION_ERROR', 'Chave de autenticação do provedor de IA inválida ou não autorizada.');
         }
-        throw new BadRequestException({
-          code: 'AI_UPSTREAM_ERROR',
-          message: `Falha na comunicação com o provedor de IA (HTTP ${response.status}).`,
-        });
+        throw failure('AI_UPSTREAM_ERROR', `Falha na comunicação com o provedor de IA (HTTP ${response.status}).`);
       }
 
-      const data = (await response.json()) as {
-        choices?: Array<{
-          message?: {
-            content?: string;
-            refusal?: string | null;
-          };
-        }>;
-        usage?: {
-          total_tokens?: number;
-        };
-      };
-
-      const choice = data.choices?.[0];
-
-      if (choice?.message?.refusal) {
-        throw new BadRequestException({
-          code: 'AI_PROMPT_REFUSED',
-          message: `A solicitação foi recusada pelo modelo de IA: ${choice.message.refusal}`,
-        });
-      }
-
-      const rawContent = choice?.message?.content;
-      if (!rawContent) {
-        throw new BadRequestException({
-          code: 'AI_EMPTY_RESPONSE',
-          message: 'O modelo de IA retornou uma resposta vazia.',
-        });
-      }
-
-      let parsed: {
-        workflow: {
-          schemaVersion: string;
-          name: string;
-          description: string;
-          triggerNodeId: string;
-          nodes: Array<{
-            id: string;
-            type: string;
-            label: string;
-            position: { x: number; y: number };
-            config: unknown;
-          }>;
-          edges: Array<{
-            id: string;
-            sourceNodeId: string;
-            targetNodeId: string;
-            sourceHandle?: string | null;
-            targetHandle?: string | null;
-          }>;
-        };
-        reasoning?: string;
-        warnings?: string[];
-      };
-
+      let data: unknown;
       try {
-        parsed = JSON.parse(rawContent);
-      } catch {
-        throw new BadRequestException({
-          code: 'AI_INVALID_JSON_RESPONSE',
-          message: 'A resposta do modelo de IA não pôde ser interpretada como JSON.',
-        });
-      }
-
-      // Desserializa configurações de nós se enviadas como string JSON
-      if (Array.isArray(parsed.workflow.nodes)) {
-        for (const node of parsed.workflow.nodes) {
-          if (typeof node.config === 'string') {
-            try {
-              node.config = JSON.parse(node.config);
-            } catch {
-              node.config = {};
-            }
-          }
+        data = await response.json();
+      } catch (error: unknown) {
+        if (error instanceof SyntaxError) {
+          throw failure('AI_INVALID_RESPONSE_STRUCTURE', 'O provedor de IA retornou um envelope inválido.');
         }
+        throw error;
+      }
+      if (!isJsonObject(data)) {
+        throw failure('AI_INVALID_RESPONSE_STRUCTURE', 'O provedor de IA retornou um envelope inválido.');
+      }
+      const total = isJsonObject(data.usage) ? data.usage.total_tokens : null;
+      tokensConsumed = typeof total === 'number' && Number.isSafeInteger(total) && total >= 0 ? total : null;
+      if (!Array.isArray(data.choices) || data.choices.length !== 1 || !isJsonObject(data.choices[0])) {
+        throw failure('AI_INVALID_RESPONSE_STRUCTURE', 'O provedor de IA retornou escolhas inválidas.');
+      }
+      const choice = data.choices[0];
+      if (!isJsonObject(choice.message)) {
+        throw failure('AI_INVALID_RESPONSE_STRUCTURE', 'O provedor de IA retornou uma mensagem inválida.');
+      }
+      const message = choice.message;
+      if (message.refusal !== undefined && message.refusal !== null && typeof message.refusal !== 'string') {
+        throw failure('AI_INVALID_RESPONSE_STRUCTURE', 'O provedor de IA retornou uma mensagem inválida.');
+      }
+      if (typeof message.refusal === 'string' && message.refusal.trim()) {
+        throw failure('AI_PROMPT_REFUSED', 'A solicitação foi recusada pelo modelo de IA por diretrizes de segurança.');
+      }
+      if (choice.finish_reason === 'length' || choice.finish_reason === 'content_filter') {
+        throw failure('AI_INCOMPLETE_RESPONSE', 'A resposta do provedor de IA está incompleta e não pode ser aplicada.');
+      }
+      if (choice.finish_reason !== 'stop') {
+        throw failure('AI_INVALID_RESPONSE_STRUCTURE', 'O provedor de IA não retornou uma proposta concluída.');
+      }
+      if (message.role !== undefined && message.role !== 'assistant') {
+        throw failure('AI_INVALID_RESPONSE_STRUCTURE', 'O provedor de IA retornou uma mensagem inválida.');
+      }
+      if (message.content === null || message.content === undefined || message.content === '') {
+        throw failure('AI_EMPTY_RESPONSE', 'O modelo de IA retornou uma resposta vazia.');
+      }
+      if (typeof message.content !== 'string') {
+        throw failure('AI_INVALID_RESPONSE_STRUCTURE', 'O provedor de IA retornou um conteúdo inválido.');
       }
 
-      const tokensConsumed = data.usage?.total_tokens ?? 0;
-
-      return {
-        draft: parsed.workflow as any,
-        reasoning: parsed.reasoning || `Proposta arquitetada com OpenAI ${this.model}.`,
-        warnings: Array.isArray(parsed.warnings) ? parsed.warnings : [],
-        modelUsed: `openai/${this.model}`,
-        tokensConsumed,
-      };
+      let parsed: unknown;
+      try {
+        parsed = JSON.parse(message.content);
+      } catch {
+        throw failure('AI_INVALID_JSON_RESPONSE', 'A resposta do modelo de IA não pôde ser interpretada como JSON.');
+      }
+      let proposal: ReturnType<typeof parseWorkflowProposal>;
+      try {
+        proposal = parseWorkflowProposal(parsed);
+      } catch {
+        throw failure('AI_INVALID_WORKFLOW_RESPONSE', 'A proposta retornada possui estrutura ou configuração inválida.');
+      }
+      return { ...proposal, modelUsed: `openai/${this.model}`, tokensConsumed };
     } catch (err: unknown) {
       if (err instanceof BadRequestException) {
         throw err;
       }
       if (err && typeof err === 'object' && (err as { name?: string }).name === 'AbortError') {
-        throw new BadRequestException({
-          code: 'AI_REQUEST_TIMEOUT',
-          message: 'A requisição para o provedor de IA expirou após o tempo limite.',
-        });
+        throw failure('AI_REQUEST_TIMEOUT', 'A requisição para o provedor de IA expirou após o tempo limite.');
       }
-      throw new BadRequestException({
-        code: 'AI_REQUEST_FAILED',
-        message: 'Falha inesperada ao comunicar com o provedor de IA.',
-      });
+      throw failure('AI_REQUEST_FAILED', 'Falha inesperada ao comunicar com o provedor de IA.');
     } finally {
       if (timeoutHandle) {
         clearTimeout(timeoutHandle);

@@ -1,0 +1,14 @@
+ts-jest[config] (WARN) message TS151002: Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+FAIL apps/api/src/ai/ai-generator.validation.spec.ts
+  ● Test suite failed to run
+
+    apps/api/src/ai/ai-generator.validation.spec.ts:122:12 - error TS18048: 'result.warnings' is possibly 'undefined'.
+
+    122     expect(result.warnings.some((warning) => warning.includes(field) && warning.includes('Nó 2'))).toBe(true);
+                   ~~~~~~~~~~~~~~~
+
+Test Suites: 1 failed, 1 total
+Tests:       0 total
+Snapshots:   0 total
+Time:        16.511 s
+Ran all test suites within paths "apps/api/src/ai/ai-generator.validation.spec.ts".

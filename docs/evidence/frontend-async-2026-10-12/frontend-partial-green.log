@@ -1,0 +1,38 @@
+(node:20572) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:20572) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+✔ history: falha do consumo preserva a listagem que respondeu com sucesso (71.5015ms)
+✔ history: falha da listagem preserva consumo obtido e distingue erro de lista vazia (17.3867ms)
+✔ history: carregar contexto cancelado após getToken não dispara consultas (12.6958ms)
+✔ history: resposta E1 atrasada não substitui seleção mais recente E2 (15.4845ms)
+✔ history: finally de uma seleção antiga não encerra loading da seleção atual (13.7543ms)
+✔ history: contexto Alpha→Beta→Alpha invalida a resposta da geração anterior (14.4326ms)
+✔ history: rejeição antiga não escreve erro na nova organização (12.8496ms)
+✔ history: fechar o modal invalida a inspeção pendente (9.6172ms)
+✔ history: troca de contexto durante getToken evita consultar recurso com sessão nova (10.683ms)
+✔ history: erro da inspeção atual preserva a mensagem do servidor (12.7118ms)
+✔ editor: trocar contexto limpa isReviewing enquanto a operação anterior aguarda token (18.1428ms)
+✔ editor: trocar contexto limpa isPublishing enquanto a operação anterior aguarda token (14.4736ms)
+✔ editor: trocar contexto limpa isDeactivating enquanto a operação anterior aguarda token (11.4512ms)
+✔ editor: feedback da simulação respeita status FAILED (11.2817ms)
+✔ editor: feedback da simulação respeita status COMPLETED (14.919ms)
+✔ editor: handler de aplicar proposta bloqueia mutação enquanto revisão está pendente (12.3958ms)
+✔ editor: reviewWorkflow não aplica resposta de revisão local anterior (10.4931ms)
+✔ editor: reviewWorkflow não envia mutação após trocar contexto durante getToken (12.6429ms)
+✔ editor: activateWorkflow não aplica resposta de revisão local anterior (18.767ms)
+✔ editor: activateWorkflow não envia mutação após trocar contexto durante getToken (11.088ms)
+✔ ApiClient sanitiza URL e codifica identificadores com caracteres especiais (53.0288ms)
+✔ ApiClient propaga mensagens de erro estruturadas da API em caso de 400 ou 403 (2.9255ms)
+✔ Mapeamento dos 6 nós do catálogo do MVP para o canvas XYFlow (5.9771ms)
+✔ Validação de simulação de workflow com dados sintéticos no cliente (15.41ms)
+✔ ApiClient serializa requisições de simulação e ciclo de vida com integridade de headers e payload (2.6702ms)
+✔ Invariantes estáticas de prevenção de condições de corrida e feedback acessível no frontend (1.247ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 26
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 842.6363
+

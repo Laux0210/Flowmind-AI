@@ -1,0 +1,43 @@
+{
+  "checkedAtUtc": "2026-10-15T18:20:46.550826+00:00",
+  "scope": "Real React component/hook compiled from current sources, in isolated local fixture; synthetic identity/catalog/fetch; fixture CSS; not full Next/Clerk/Postgres integration",
+  "browser": "Brave",
+  "origin": "http://127.0.0.1:54797",
+  "sourceHashes": {
+    "apps/web/src/components/workflows/node-parameter-editor.tsx": "d62c1879b6e71b5c488efe3168db61c2e369dc7fb18df36c7d47624cd69b5898",
+    "apps/web/src/lib/workflow-editing.ts": "a76b1f93013cad1f32c93934da0433df8abfe259c65b74f3802b342a990aa099",
+    "apps/web/src/lib/use-resource-catalog.ts": "e86438260ce77c9a796fec943f2fe39e704283b11d3bae3e229a94cf6e61115b",
+    "apps/web/src/lib/api-client.ts": "8809984db532ad298e77be7a63cc0da14559aee613735852f90a55813bea4fd3"
+  },
+  "bundleSha256": "3c3b00fa194bab52ca9f821430b819b7067dd121f47baaf011efb402318bb28a",
+  "observed": {
+    "organization": "Organização: alpha",
+    "status": "Catálogo: ready",
+    "selectedModel": "model-alpha",
+    "prompt": "Texto pendente preservado no navegador",
+    "promptHasFocus": true,
+    "options": [
+      "Não informado",
+      "Modelo alpha autorizado"
+    ],
+    "applied": {
+      "inputPromptTemplate": "Texto pendente preservado no navegador",
+      "modelRef": "model-alpha"
+    },
+    "consoleErrors": []
+  },
+  "verifiedInteractions": [
+    "pending fields preserved after catalog arrival",
+    "organization change via keyboard updates visible authorized option",
+    "authorized model selection and application",
+    "deferred stale responses do not replace current model",
+    "load error disables selector and preserves current reference",
+    "valid empty catalog differs from error",
+    "Tab moves focus from select to analysis textarea"
+  ],
+  "screenshot": "Captured and displayed in CUA session; no screenshot file exported",
+  "fullEditorBrowserValidated": false,
+  "mobileLayoutValidated": false,
+  "realIdentityOrServicesValidated": false,
+  "ownedServerStopped": true
+}

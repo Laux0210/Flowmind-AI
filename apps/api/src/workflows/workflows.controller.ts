@@ -99,10 +99,11 @@ export class WorkflowsController {
   @Post(':id/simulate')
   async simulate(
     @CurrentOrg() orgId: string,
+    @CurrentUser() userId: string,
     @Param('id') id: string,
     @Body() dto: SimulateWorkflowDto,
   ): Promise<ApiResponse<SimulateWorkflowResponse>> {
-    const data = await this.workflowsService.simulate(orgId, id, dto);
+    const data = await this.workflowsService.simulate(orgId, id, dto, userId);
     return {
       success: true,
       data,

@@ -1,0 +1,29 @@
+{
+  "recordedAtUtc": "2026-10-13T22:51:11.607531+00:00",
+  "reviewer": "/root/audit_concurrent_backend",
+  "mode": "independent_read_only_no_test_rerun",
+  "approvalRecovered": false,
+  "codeReverted": false,
+  "evidence": [
+    "six S2b unit tests; service case exercises review, not activation",
+    "resource validation called in review/publish, generation and simulation",
+    "ResourceResolver uses fixed Map descriptors, no DB/secret lookup",
+    "concurrent pending allowed with requireComplete=false, rejected with true"
+  ],
+  "risks": [
+    "orgId optional treats descriptor as shared",
+    "nonexistent and foreign resource have distinct public error codes",
+    "modelo-a-aprovar and flowmind-default accepted in complete validation",
+    "convergence policy not shared uniformly with simulation"
+  ],
+  "limits": "local tests/read-only review do not approve architecture/model or prove real tenant/secret/revocation services",
+  "principalChangesOnly": [
+    "ForbiddenException test shim",
+    "three type-only imports"
+  ],
+  "sourceHashes": {
+    "apps/api/src/engine/workflow-reference.validation.ts": "15d515d3a8cda29c3b8b743c777902e18ba6e178cd43ab4fb05d751999bf4621",
+    "apps/api/src/engine/resource-resolver.ts": "5170d8cb49555e8609739251d6c66ca2b1b46228812476a1facfe2751985d3cf",
+    "packages/contracts/src/resources.ts": "f63749f3a283b7db3bbcb4e3e631d75035b315b6bb1f2e82402e864ec26292ce"
+  }
+}

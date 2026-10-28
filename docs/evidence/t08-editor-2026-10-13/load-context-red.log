@@ -1,0 +1,73 @@
+(node:20584) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ configuração pendente impede salvar uma definição anterior à edição do usuário (99.1536ms)
+(node:20584) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+✔ resposta de salvamento obsoleta não substitui novas alterações nem escreve feedback de erro (47.009ms)
+✔ parâmetros de e-mail editados preservam IDs, referências e campos não alterados (71.0613ms)
+✔ valores JSON da condição preservam número, array e booleano (0.7283ms)
+✔ JSON inválido e campos desconhecidos não substituem a configuração (0.7455ms)
+✔ aliases existentes de mensagem e mapeamento são preservados ao editar outro campo (0.8181ms)
+✔ draft incompleto continua editável e ausência de opcionais não injeta defaults (0.2918ms)
+✔ edições de parâmetros/posições/conexões são negadas em REVIEWED (0.5118ms)
+✔ edições de parâmetros/posições/conexões são negadas em PUBLISHED (0.142ms)
+✔ edições de parâmetros/posições/conexões são negadas em ARCHIVED (0.2435ms)
+✔ movimentação persiste coordenadas finitas sem mudar configuração ou arestas (0.6837ms)
+✔ conexões condicionais preservam os handles usados pelo motor (0.3126ms)
+✔ ciclo, auto-conexão, nó ausente e conexão repetida são recusados antes de mudar o grafo (0.3257ms)
+✔ remoção de conexão preserva nós e demais IDs, sem resolver convergências (0.2759ms)
+✔ formulários abrangem os seis tipos e conservam ausência versus valores JSON (0.2343ms)
+✔ arestas exibidas no canvas mantêm sourceHandle e targetHandle sem normalização (24.6011ms)
+✔ edição aplicada marca dirty, avança revisão e invalida resultado anterior (39.8498ms)
+✔ edição não altera o workflow durante saving (26.8949ms)
+✔ edição não altera o workflow durante reviewing (23.824ms)
+✔ edição não altera o workflow durante publishing (31.8992ms)
+✔ edição não altera o workflow durante deactivating (29.7932ms)
+✔ edição não altera o workflow durante simulating (31.5961ms)
+✔ edição não altera o workflow durante generatingAi (20.4851ms)
+✔ duas movimentações antes de renderizar preservam as duas alterações (20.6798ms)
+✔ edição com contexto Alpha→Beta→Alpha anterior é descartada (17.6425ms)
+✔ rascunho local de parâmetros impede trocar etapa, mover ou aplicar conexões (15.8064ms)
+✔ conectar e remover pela interface altera somente as arestas pertinentes (16.5841ms)
+✔ editar e salvar no mesmo snapshot usa a definição recente da referência (25.5967ms)
+✔ edição antes de render bloqueia simulação, revisão e ativação do snapshot antigo (20.7398ms)
+✔ proposta aplicada e editada antes de render mantém os nós da proposta (19.1396ms)
+✔ REVIEWED recebido impede editar antes de renderizar o novo estado (21.4438ms)
+✔ PUBLISHED recebido impede editar antes de renderizar o novo estado (32.4134ms)
+✖ falha de carregamento do contexto anterior não altera erro ou loading atuais (31.9694ms)
+✔ handles padrão e nomeado default têm chaves distintas no componente real (43.0495ms)
+✔ efeito real do nó solicita atualização dos bounds dos handles após render (10.1784ms)
+✔ formulário real de trigger_form renderiza labels, valores escapados e bloqueio de edição (39.1443ms)
+✔ formulário real de ai_analyze_intent renderiza labels, valores escapados e bloqueio de edição (11.8595ms)
+✔ formulário real de internal_record renderiza labels, valores escapados e bloqueio de edição (12.9789ms)
+✔ formulário real de send_email renderiza labels, valores escapados e bloqueio de edição (19.4115ms)
+✔ formulário real de condition renderiza labels, valores escapados e bloqueio de edição (17.4233ms)
+✔ formulário real de http_request renderiza labels, valores escapados e bloqueio de edição (10.553ms)
+ℹ tests 41
+ℹ suites 0
+ℹ pass 40
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1184.9742
+
+✖ failing tests:
+
+test at tests\regression\workflow-editing.test.mjs:255:1
+✖ falha de carregamento do contexto anterior não altera erro ou loading atuais (31.9694ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'Não foi possível carregar esta automação.'
+  - null
+  
+      at TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:262:10)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'Não foi possível carregar esta automação.',
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

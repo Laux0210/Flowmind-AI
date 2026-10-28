@@ -1,0 +1,1019 @@
+
+> @flowmind/api@0.1.0 test
+> node --experimental-vm-modules ../../node_modules/jest/bin/jest.js --runInBand resource-tenant-security.spec.ts resource-resolver.spec.ts workflow-container.spec.ts
+
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151002: [0mUsing hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+(node:26180) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+FAIL src/engine/resource-tenant-security.spec.ts (21.378 s)
+  ● SEC05 — credential › nega recurso com organização ausente/inválida undefined
+
+    expect(received).toBeInstanceOf(expected)
+
+    Expected constructor: BadRequestException
+
+    Received value has no prototype
+    Received value: undefined
+
+       7 |   let caught: unknown;
+       8 |   try { operation(); } catch (error) { caught = error; }
+    >  9 |   expect(caught).toBeInstanceOf(BadRequestException);
+         |                  ^
+      10 |   const error = caught as BadRequestException;
+      11 |   return { status: error.getStatus(), body: error.getResponse() };
+      12 | }
+
+      at rejected (src/engine/resource-tenant-security.spec.ts:9:18)
+      at src/engine/resource-tenant-security.spec.ts:30:12
+
+  ● SEC05 — credential › nega recurso com organização ausente/inválida null
+
+    expect(received).toBeInstanceOf(expected)
+
+    Expected constructor: BadRequestException
+
+    Received value has no prototype
+    Received value: undefined
+
+       7 |   let caught: unknown;
+       8 |   try { operation(); } catch (error) { caught = error; }
+    >  9 |   expect(caught).toBeInstanceOf(BadRequestException);
+         |                  ^
+      10 |   const error = caught as BadRequestException;
+      11 |   return { status: error.getStatus(), body: error.getResponse() };
+      12 | }
+
+      at rejected (src/engine/resource-tenant-security.spec.ts:9:18)
+      at src/engine/resource-tenant-security.spec.ts:30:12
+
+  ● SEC05 — credential › nega recurso com organização ausente/inválida ""
+
+    expect(received).toBeInstanceOf(expected)
+
+    Expected constructor: BadRequestException
+
+    Received value has no prototype
+    Received value: undefined
+
+       7 |   let caught: unknown;
+       8 |   try { operation(); } catch (error) { caught = error; }
+    >  9 |   expect(caught).toBeInstanceOf(BadRequestException);
+         |                  ^
+      10 |   const error = caught as BadRequestException;
+      11 |   return { status: error.getStatus(), body: error.getResponse() };
+      12 | }
+
+      at rejected (src/engine/resource-tenant-security.spec.ts:9:18)
+      at src/engine/resource-tenant-security.spec.ts:30:12
+
+  ● SEC05 — credential › nega recurso com organização ausente/inválida " "
+
+    expect(received).toMatchObject(expected)
+
+    - Expected  - 1
+    + Received  + 1
+
+      Object {
+        "body": Object {
+    -     "code": "RESOURCE_NOT_FOUND",
+    +     "code": "RESOURCE_CROSS_TENANT_FORBIDDEN",
+        },
+        "status": 400,
+      }
+
+      28 |       { id: 'private_unscoped', type, orgId, name: 'PRIVATE_RESOURCE_NAME', status: 'ACTIVE' } as ResourceDescriptor,
+      29 |     ]);
+    > 30 |     expect(rejected(() => resolver[method]('org_alpha', 'private_unscoped'))).toMatchObject({
+         |                                                                               ^
+      31 |       status: 400, body: { code: 'RESOURCE_NOT_FOUND' },
+      32 |     });
+      33 |   });
+
+      at src/engine/resource-tenant-security.spec.ts:30:79
+
+  ● SEC05 — credential › nega recurso com organização ausente/inválida 0
+
+    expect(received).toBeInstanceOf(expected)
+
+    Expected constructor: BadRequestException
+
+    Received value has no prototype
+    Received value: undefined
+
+       7 |   let caught: unknown;
+       8 |   try { operation(); } catch (error) { caught = error; }
+    >  9 |   expect(caught).toBeInstanceOf(BadRequestException);
+         |                  ^
+      10 |   const error = caught as BadRequestException;
+      11 |   return { status: error.getStatus(), body: error.getResponse() };
+      12 | }
+
+      at rejected (src/engine/resource-tenant-security.spec.ts:9:18)
+      at src/engine/resource-tenant-security.spec.ts:30:12
+
+  ● SEC05 — credential › nega recurso com organização ausente/inválida {}
+
+    expect(received).toMatchObject(expected)
+
+    - Expected  - 1
+    + Received  + 1
+
+      Object {
+        "body": Object {
+    -     "code": "RESOURCE_NOT_FOUND",
+    +     "code": "RESOURCE_CROSS_TENANT_FORBIDDEN",
+        },
+        "status": 400,
+      }
+
+      28 |       { id: 'private_unscoped', type, orgId, name: 'PRIVATE_RESOURCE_NAME', status: 'ACTIVE' } as ResourceDescriptor,
+      29 |     ]);
+    > 30 |     expect(rejected(() => resolver[method]('org_alpha', 'private_unscoped'))).toMatchObject({
+         |                                                                               ^
+      31 |       status: 400, body: { code: 'RESOURCE_NOT_FOUND' },
+      32 |     });
+      33 |   });
+
+      at src/engine/resource-tenant-security.spec.ts:30:79
+
+  ● SEC05 — credential › nega contexto de organização inválido undefined mesmo se o cadastro repetir esse valor
+
+    expect(received).toBeInstanceOf(expected)
+
+    Expected constructor: BadRequestException
+
+    Received value has no prototype
+    Received value: undefined
+
+       7 |   let caught: unknown;
+       8 |   try { operation(); } catch (error) { caught = error; }
+    >  9 |   expect(caught).toBeInstanceOf(BadRequestException);
+         |                  ^
+      10 |   const error = caught as BadRequestException;
+      11 |   return { status: error.getStatus(), body: error.getResponse() };
+      12 | }
+
+      at rejected (src/engine/resource-tenant-security.spec.ts:9:18)
+      at src/engine/resource-tenant-security.spec.ts:39:12
+
+  ● SEC05 — credential › nega contexto de organização inválido null mesmo se o cadastro repetir esse valor
+
+    expect(received).toBeInstanceOf(expected)
+
+    Expected constructor: BadRequestException
+
+    Received value has no prototype
+    Received value: undefined
+
+       7 |   let caught: unknown;
+       8 |   try { operation(); } catch (error) { caught = error; }
+    >  9 |   expect(caught).toBeInstanceOf(BadRequestException);
+         |                  ^
+      10 |   const error = caught as BadRequestException;
+      11 |   return { status: error.getStatus(), body: error.getResponse() };
+      12 | }
+
+      at rejected (src/engine/resource-tenant-security.spec.ts:9:18)
+      at src/engine/resource-tenant-security.spec.ts:39:12
+
+  ● SEC05 — credential › nega contexto de organização inválido "" mesmo se o cadastro repetir esse valor
+
+    expect(received).toBeInstanceOf(expected)
+
+    Expected constructor: BadRequestException
+
+    Received value has no prototype
+    Received value: undefined
+
+       7 |   let caught: unknown;
+       8 |   try { operation(); } catch (error) { caught = error; }
+    >  9 |   expect(caught).toBeInstanceOf(BadRequestException);
+         |                  ^
+      10 |   const error = caught as BadRequestException;
+      11 |   return { status: error.getStatus(), body: error.getResponse() };
+      12 | }
+
+      at rejected (src/engine/resource-tenant-security.spec.ts:9:18)
+      at src/engine/resource-tenant-security.spec.ts:39:12
+
+  ● SEC05 — credential › nega contexto de organização inválido " " mesmo se o cadastro repetir esse valor
+
+    expect(received).toBeInstanceOf(expected)
+
+    Expected constructor: BadRequestException
+
+    Received value has no prototype
+    Received value: undefined
+
+       7 |   let caught: unknown;
+       8 |   try { operation(); } catch (error) { caught = error; }
+    >  9 |   expect(caught).toBeInstanceOf(BadRequestException);
+         |                  ^
+      10 |   const error = caught as BadRequestException;
+      11 |   return { status: error.getStatus(), body: error.getResponse() };
+      12 | }
+
+      at rejected (src/engine/resource-tenant-security.spec.ts:9:18)
+      at src/engine/resource-tenant-security.spec.ts:39:12
+
+  ● SEC05 — credential › nega contexto de organização inválido 0 mesmo se o cadastro repetir esse valor
+
+    expect(received).toBeInstanceOf(expected)
+
+    Expected constructor: BadRequestException
+
+    Received value has no prototype
+    Received value: undefined
+
+       7 |   let caught: unknown;
+       8 |   try { operation(); } catch (error) { caught = error; }
+    >  9 |   expect(caught).toBeInstanceOf(BadRequestException);
+         |                  ^
+      10 |   const error = caught as BadRequestException;
+      11 |   return { status: error.getStatus(), body: error.getResponse() };
+      12 | }
+
+      at rejected (src/engine/resource-tenant-security.spec.ts:9:18)
+      at src/engine/resource-tenant-security.spec.ts:39:12
+
+  ● SEC05 — credential › nega contexto de organização inválido {} mesmo se o cadastro repetir esse valor
+
+    expect(received).toBeInstanceOf(expected)
+
+    Expected constructor: BadRequestException
+
+    Received value has no prototype
+    Received value: undefined
+
+       7 |   let caught: unknown;
+       8 |   try { operation(); } catch (error) { caught = error; }
+    >  9 |   expect(caught).toBeInstanceOf(BadRequestException);
+         |                  ^
+      10 |   const error = caught as BadRequestException;
+      11 |   return { status: error.getStatus(), body: error.getResponse() };
+      12 | }
+
+      at rejected (src/engine/resource-tenant-security.spec.ts:9:18)
+      at src/engine/resource-tenant-security.spec.ts:39:12
+
+  ● SEC05 — credential › não distingue recurso inexistente, alheio, alheio inativo/revogado, sem organização ou de outro tipo
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 2
+    + Received  + 2
+
+      Object {
+        "body": Object {
+    -     "code": "RESOURCE_NOT_FOUND",
+    -     "message": "Credencial 'unknown_private_ref' não encontrada.",
+    +     "code": "RESOURCE_CROSS_TENANT_FORBIDDEN",
+    +     "message": "Acesso negado: a credencial 'foreign_active' não pertence à organização do workflow.",
+        },
+        "status": 400,
+      }
+
+      54 |     for (const ref of ['foreign_active', 'foreign_inactive', 'foreign_revoked', 'unscoped', 'wrong_type']) {
+      55 |       const result = rejected(() => resolver[method]('org_alpha', ref));
+    > 56 |       expect(result).toEqual(absent);
+         |                      ^
+      57 |       const serialized = JSON.stringify(result);
+      58 |       for (const privateValue of [ref, 'org_alpha', 'org_beta', 'PRIVATE_RESOURCE_NAME']) {
+      59 |         expect(serialized).not.toContain(privateValue);
+
+      at Object.<anonymous> (src/engine/resource-tenant-security.spec.ts:56:22)
+
+  ● SEC05 — form › nega recurso com organização ausente/inválida undefined
+
+    expect(received).toBeInstanceOf(expected)
+
+    Expected constructor: BadRequestException
+
+    Received value has no prototype
+    Received value: undefined
+
+       7 |   let caught: unknown;
+       8 |   try { operation(); } catch (error) { caught = error; }
+    >  9 |   expect(caught).toBeInstanceOf(BadRequestException);
+         |                  ^
+      10 |   const error = caught as BadRequestException;
+      11 |   return { status: error.getStatus(), body: error.getResponse() };
+      12 | }
+
+      at rejected (src/engine/resource-tenant-security.spec.ts:9:18)
+      at src/engine/resource-tenant-security.spec.ts:30:12
+
+  ● SEC05 — form › nega recurso com organização ausente/inválida null
+
+    expect(received).toBeInstanceOf(expected)
+
+    Expected constructor: BadRequestException
+
+    Received value has no prototype
+    Received value: undefined
+
+       7 |   let caught: unknown;
+       8 |   try { operation(); } catch (error) { caught = error; }
+    >  9 |   expect(caught).toBeInstanceOf(BadRequestException);
+         |                  ^
+      10 |   const error = caught as BadRequestException;
+      11 |   return { status: error.getStatus(), body: error.getResponse() };
+      12 | }
+
+      at rejected (src/engine/resource-tenant-security.spec.ts:9:18)
+      at src/engine/resource-tenant-security.spec.ts:30:12
+
+  ● SEC05 — form › nega recurso com organização ausente/inválida ""
+
+    expect(received).toBeInstanceOf(expected)
+
+    Expected constructor: BadRequestException
+
+    Received value has no prototype
+    Received value: undefined
+
+       7 |   let caught: unknown;
+       8 |   try { operation(); } catch (error) { caught = error; }
+    >  9 |   expect(caught).toBeInstanceOf(BadRequestException);
+         |                  ^
+      10 |   const error = caught as BadRequestException;
+      11 |   return { status: error.getStatus(), body: error.getResponse() };
+      12 | }
+
+      at rejected (src/engine/resource-tenant-security.spec.ts:9:18)
+      at src/engine/resource-tenant-security.spec.ts:30:12
+
+  ● SEC05 — form › nega recurso com organização ausente/inválida " "
+
+    expect(received).toMatchObject(expected)
+
+    - Expected  - 1
+    + Received  + 1
+
+      Object {
+        "body": Object {
+    -     "code": "RESOURCE_NOT_FOUND",
+    +     "code": "RESOURCE_CROSS_TENANT_FORBIDDEN",
+        },
+        "status": 400,
+      }
+
+      28 |       { id: 'private_unscoped', type, orgId, name: 'PRIVATE_RESOURCE_NAME', status: 'ACTIVE' } as ResourceDescriptor,
+      29 |     ]);
+    > 30 |     expect(rejected(() => resolver[method]('org_alpha', 'private_unscoped'))).toMatchObject({
+         |                                                                               ^
+      31 |       status: 400, body: { code: 'RESOURCE_NOT_FOUND' },
+      32 |     });
+      33 |   });
+
+      at src/engine/resource-tenant-security.spec.ts:30:79
+
+  ● SEC05 — form › nega recurso com organização ausente/inválida 0
+
+    expect(received).toBeInstanceOf(expected)
+
+    Expected constructor: BadRequestException
+
+    Received value has no prototype
+    Received value: undefined
+
+       7 |   let caught: unknown;
+       8 |   try { operation(); } catch (error) { caught = error; }
+    >  9 |   expect(caught).toBeInstanceOf(BadRequestException);
+         |                  ^
+      10 |   const error = caught as BadRequestException;
+      11 |   return { status: error.getStatus(), body: error.getResponse() };
+      12 | }
+
+      at rejected (src/engine/resource-tenant-security.spec.ts:9:18)
+      at src/engine/resource-tenant-security.spec.ts:30:12
+
+  ● SEC05 — form › nega recurso com organização ausente/inválida {}
+
+    expect(received).toMatchObject(expected)
+
+    - Expected  - 1
+    + Received  + 1
+
+      Object {
+        "body": Object {
+    -     "code": "RESOURCE_NOT_FOUND",
+    +     "code": "RESOURCE_CROSS_TENANT_FORBIDDEN",
+        },
+        "status": 400,
+      }
+
+      28 |       { id: 'private_unscoped', type, orgId, name: 'PRIVATE_RESOURCE_NAME', status: 'ACTIVE' } as ResourceDescriptor,
+      29 |     ]);
+    > 30 |     expect(rejected(() => resolver[method]('org_alpha', 'private_unscoped'))).toMatchObject({
+         |                                                                               ^
+      31 |       status: 400, body: { code: 'RESOURCE_NOT_FOUND' },
+      32 |     });
+      33 |   });
+
+      at src/engine/resource-tenant-security.spec.ts:30:79
+
+  ● SEC05 — form › nega contexto de organização inválido undefined mesmo se o cadastro repetir esse valor
+
+    expect(received).toBeInstanceOf(expected)
+
+    Expected constructor: BadRequestException
+
+    Received value has no prototype
+    Received value: undefined
+
+       7 |   let caught: unknown;
+       8 |   try { operation(); } catch (error) { caught = error; }
+    >  9 |   expect(caught).toBeInstanceOf(BadRequestException);
+         |                  ^
+      10 |   const error = caught as BadRequestException;
+      11 |   return { status: error.getStatus(), body: error.getResponse() };
+      12 | }
+
+      at rejected (src/engine/resource-tenant-security.spec.ts:9:18)
+      at src/engine/resource-tenant-security.spec.ts:39:12
+
+  ● SEC05 — form › nega contexto de organização inválido null mesmo se o cadastro repetir esse valor
+
+    expect(received).toBeInstanceOf(expected)
+
+    Expected constructor: BadRequestException
+
+    Received value has no prototype
+    Received value: undefined
+
+       7 |   let caught: unknown;
+       8 |   try { operation(); } catch (error) { caught = error; }
+    >  9 |   expect(caught).toBeInstanceOf(BadRequestException);
+         |                  ^
+      10 |   const error = caught as BadRequestException;
+      11 |   return { status: error.getStatus(), body: error.getResponse() };
+      12 | }
+
+      at rejected (src/engine/resource-tenant-security.spec.ts:9:18)
+      at src/engine/resource-tenant-security.spec.ts:39:12
+
+  ● SEC05 — form › nega contexto de organização inválido "" mesmo se o cadastro repetir esse valor
+
+    expect(received).toBeInstanceOf(expected)
+
+    Expected constructor: BadRequestException
+
+    Received value has no prototype
+    Received value: undefined
+
+       7 |   let caught: unknown;
+       8 |   try { operation(); } catch (error) { caught = error; }
+    >  9 |   expect(caught).toBeInstanceOf(BadRequestException);
+         |                  ^
+      10 |   const error = caught as BadRequestException;
+      11 |   return { status: error.getStatus(), body: error.getResponse() };
+      12 | }
+
+      at rejected (src/engine/resource-tenant-security.spec.ts:9:18)
+      at src/engine/resource-tenant-security.spec.ts:39:12
+
+  ● SEC05 — form › nega contexto de organização inválido " " mesmo se o cadastro repetir esse valor
+
+    expect(received).toBeInstanceOf(expected)
+
+    Expected constructor: BadRequestException
+
+    Received value has no prototype
+    Received value: undefined
+
+       7 |   let caught: unknown;
+       8 |   try { operation(); } catch (error) { caught = error; }
+    >  9 |   expect(caught).toBeInstanceOf(BadRequestException);
+         |                  ^
+      10 |   const error = caught as BadRequestException;
+      11 |   return { status: error.getStatus(), body: error.getResponse() };
+      12 | }
+
+      at rejected (src/engine/resource-tenant-security.spec.ts:9:18)
+      at src/engine/resource-tenant-security.spec.ts:39:12
+
+  ● SEC05 — form › nega contexto de organização inválido 0 mesmo se o cadastro repetir esse valor
+
+    expect(received).toBeInstanceOf(expected)
+
+    Expected constructor: BadRequestException
+
+    Received value has no prototype
+    Received value: undefined
+
+       7 |   let caught: unknown;
+       8 |   try { operation(); } catch (error) { caught = error; }
+    >  9 |   expect(caught).toBeInstanceOf(BadRequestException);
+         |                  ^
+      10 |   const error = caught as BadRequestException;
+      11 |   return { status: error.getStatus(), body: error.getResponse() };
+      12 | }
+
+      at rejected (src/engine/resource-tenant-security.spec.ts:9:18)
+      at src/engine/resource-tenant-security.spec.ts:39:12
+
+  ● SEC05 — form › nega contexto de organização inválido {} mesmo se o cadastro repetir esse valor
+
+    expect(received).toBeInstanceOf(expected)
+
+    Expected constructor: BadRequestException
+
+    Received value has no prototype
+    Received value: undefined
+
+       7 |   let caught: unknown;
+       8 |   try { operation(); } catch (error) { caught = error; }
+    >  9 |   expect(caught).toBeInstanceOf(BadRequestException);
+         |                  ^
+      10 |   const error = caught as BadRequestException;
+      11 |   return { status: error.getStatus(), body: error.getResponse() };
+      12 | }
+
+      at rejected (src/engine/resource-tenant-security.spec.ts:9:18)
+      at src/engine/resource-tenant-security.spec.ts:39:12
+
+  ● SEC05 — form › não distingue recurso inexistente, alheio, alheio inativo/revogado, sem organização ou de outro tipo
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 2
+    + Received  + 2
+
+      Object {
+        "body": Object {
+    -     "code": "RESOURCE_NOT_FOUND",
+    -     "message": "Formulário 'unknown_private_ref' não encontrado.",
+    +     "code": "RESOURCE_CROSS_TENANT_FORBIDDEN",
+    +     "message": "Acesso negado: o formulário 'foreign_active' não pertence à organização do workflow.",
+        },
+        "status": 400,
+      }
+
+      54 |     for (const ref of ['foreign_active', 'foreign_inactive', 'foreign_revoked', 'unscoped', 'wrong_type']) {
+      55 |       const result = rejected(() => resolver[method]('org_alpha', ref));
+    > 56 |       expect(result).toEqual(absent);
+         |                      ^
+      57 |       const serialized = JSON.stringify(result);
+      58 |       for (const privateValue of [ref, 'org_alpha', 'org_beta', 'PRIVATE_RESOURCE_NAME']) {
+      59 |         expect(serialized).not.toContain(privateValue);
+
+      at Object.<anonymous> (src/engine/resource-tenant-security.spec.ts:56:22)
+
+  ● SEC05 — erro público na validação de workflow › mantém erro único indistinguível para credencial alheia e inexistente
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 4
+    + Received  + 4
+
+      Object {
+        "body": Object {
+    -     "code": "RESOURCE_NOT_FOUND",
+    +     "code": "RESOURCE_CROSS_TENANT_FORBIDDEN",
+          "issues": Array [
+            Object {
+    -         "code": "RESOURCE_NOT_FOUND",
+    +         "code": "RESOURCE_CROSS_TENANT_FORBIDDEN",
+              "field": "credentialRef",
+    -         "message": "Credencial 'unknown_private_ref' não encontrada.",
+    +         "message": "Acesso negado: a credencial 'cred_beta_http' não pertence à organização do workflow.",
+              "nodeId": "http",
+              "nodeIndex": 1,
+            },
+          ],
+    -     "message": "Credencial 'unknown_private_ref' não encontrada.",
+    +     "message": "Acesso negado: a credencial 'cred_beta_http' não pertence à organização do workflow.",
+        },
+        "status": 400,
+      }
+
+      88 |     const foreign = rejected(() => validateWorkflowResources(workflow('cred_beta_http')));
+      89 |     const absent = rejected(() => validateWorkflowResources(workflow('unknown_private_ref')));
+    > 90 |     expect(foreign).toEqual(absent);
+         |                     ^
+      91 |     expect(foreign).toMatchObject({ status: 400, body: { code: 'RESOURCE_NOT_FOUND' } });
+      92 |     expect(JSON.stringify(foreign)).not.toContain('cred_beta_http');
+      93 |   });
+
+      at Object.<anonymous> (src/engine/resource-tenant-security.spec.ts:90:21)
+
+  ● SEC05 — erro público na validação de workflow › mantém lista de issues indistinguível para vários recursos alheios e inexistentes
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 4
+    + Received  + 4
+
+    @@ -1,20 +1,20 @@
+      Object {
+        "body": Object {
+          "code": "WORKFLOW_RESOURCE_ERROR",
+          "issues": Array [
+            Object {
+    -         "code": "RESOURCE_NOT_FOUND",
+    +         "code": "RESOURCE_CROSS_TENANT_FORBIDDEN",
+              "field": "formId",
+    -         "message": "Formulário 'unknown_form_ref' não encontrado.",
+    +         "message": "Acesso negado: o formulário 'form_beta_contact' não pertence à organização do workflow.",
+              "nodeId": "form",
+              "nodeIndex": 0,
+            },
+            Object {
+    -         "code": "RESOURCE_NOT_FOUND",
+    +         "code": "RESOURCE_CROSS_TENANT_FORBIDDEN",
+              "field": "credentialRef",
+    -         "message": "Credencial 'unknown_credential_ref' não encontrada.",
+    +         "message": "Acesso negado: a credencial 'cred_beta_http' não pertence à organização do workflow.",
+              "nodeId": "http",
+              "nodeIndex": 1,
+            },
+          ],
+          "message": "Erros de validação ou autorização de recursos na definição do workflow.",
+
+       96 |     const foreign = rejected(() => validateWorkflowResources(workflow('cred_beta_http', 'form_beta_contact')));
+       97 |     const absent = rejected(() => validateWorkflowResources(workflow('unknown_credential_ref', 'unknown_form_ref')));
+    >  98 |     expect(foreign).toEqual(absent);
+          |                     ^
+       99 |     expect(foreign).toMatchObject({ status: 400, body: { code: 'WORKFLOW_RESOURCE_ERROR' } });
+      100 |     const body = foreign.body as { issues: Array<{ code: string }> };
+      101 |     expect(body.issues).toHaveLength(2);
+
+      at Object.<anonymous> (src/engine/resource-tenant-security.spec.ts:98:21)
+
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151002: [0mUsing hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+[Nest] 26180  - 13/10/2026, 20:06:21     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Workflow Recursos' [ID: wf_resource_test]
+[Nest] 26180  - 13/10/2026, 20:06:21     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Workflow Recursos' [ID: wf_resource_test]
+[Nest] 26180  - 13/10/2026, 20:06:21     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Workflow Recursos' [ID: wf_resource_test]
+FAIL src/engine/resource-resolver.spec.ts
+  ● T03-S3 — Resolução e validação de recursos por organização › ResourceResolver › rejeita credencial pertencente a outra organização (cross-tenant)
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "RESOURCE_NOT_FOUND"
+    Received: "RESOURCE_CROSS_TENANT_FORBIDDEN"
+
+      116 |       } catch (err: any) {
+      117 |         expect(err).toBeInstanceOf(BadRequestException);
+    > 118 |         expect(err.getResponse().code).toBe('RESOURCE_NOT_FOUND');
+          |                                        ^
+      119 |       }
+      120 |     });
+      121 |
+
+      at Object.<anonymous> (src/engine/resource-resolver.spec.ts:118:40)
+
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151002: [0mUsing hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+FAIL src/auth/workflow-container.spec.ts (8.74 s)
+  ● T06/T14 — container Nest (memory) › SEC05 — recursos da organização alpha › review não distingue credencial alheia e inexistente e não escreve
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "RESOURCE_NOT_FOUND"
+    Received: "RESOURCE_CROSS_TENANT_FORBIDDEN"
+
+      448 |       const foreign = await request('POST', `/workflows/wf_${org}/${action}`, `${org}:admin`);
+      449 |       expect(foreign.status).toBe(400);
+    > 450 |       expect(foreign.body.code).toBe('RESOURCE_NOT_FOUND');
+          |                                 ^
+      451 |       expect(row).toEqual(before);
+      452 |       row.nodes[1].config.credentialRef = 'unknown_private_credential';
+      453 |       const absent = await request('POST', `/workflows/wf_${org}/${action}`, `${org}:admin`);
+
+      at src/auth/workflow-container.spec.ts:450:33
+
+  ● T06/T14 — container Nest (memory) › SEC05 — recursos da organização alpha › activate não distingue credencial alheia e inexistente e não escreve
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "RESOURCE_NOT_FOUND"
+    Received: "RESOURCE_CROSS_TENANT_FORBIDDEN"
+
+      448 |       const foreign = await request('POST', `/workflows/wf_${org}/${action}`, `${org}:admin`);
+      449 |       expect(foreign.status).toBe(400);
+    > 450 |       expect(foreign.body.code).toBe('RESOURCE_NOT_FOUND');
+          |                                 ^
+      451 |       expect(row).toEqual(before);
+      452 |       row.nodes[1].config.credentialRef = 'unknown_private_credential';
+      453 |       const absent = await request('POST', `/workflows/wf_${org}/${action}`, `${org}:admin`);
+
+      at src/auth/workflow-container.spec.ts:450:33
+
+  ● T06/T14 — container Nest (memory) › SEC05 — recursos da organização alpha › review não distingue formulário alheio e inexistente e não escreve
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "RESOURCE_NOT_FOUND"
+    Received: "RESOURCE_CROSS_TENANT_FORBIDDEN"
+
+      465 |       const foreign = await request('POST', `/workflows/wf_${org}/${action}`, `${org}:admin`);
+      466 |       expect(foreign.status).toBe(400);
+    > 467 |       expect(foreign.body.code).toBe('RESOURCE_NOT_FOUND');
+          |                                 ^
+      468 |       expect(row).toEqual(before);
+      469 |       row.nodes[0].config.formId = 'unknown_private_form';
+      470 |       const absent = await request('POST', `/workflows/wf_${org}/${action}`, `${org}:admin`);
+
+      at src/auth/workflow-container.spec.ts:467:33
+
+  ● T06/T14 — container Nest (memory) › SEC05 — recursos da organização alpha › activate não distingue formulário alheio e inexistente e não escreve
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "RESOURCE_NOT_FOUND"
+    Received: "RESOURCE_CROSS_TENANT_FORBIDDEN"
+
+      465 |       const foreign = await request('POST', `/workflows/wf_${org}/${action}`, `${org}:admin`);
+      466 |       expect(foreign.status).toBe(400);
+    > 467 |       expect(foreign.body.code).toBe('RESOURCE_NOT_FOUND');
+          |                                 ^
+      468 |       expect(row).toEqual(before);
+      469 |       row.nodes[0].config.formId = 'unknown_private_form';
+      470 |       const absent = await request('POST', `/workflows/wf_${org}/${action}`, `${org}:admin`);
+
+      at src/auth/workflow-container.spec.ts:467:33
+
+  ● T06/T14 — container Nest (memory) › SEC05 — recursos da organização alpha › revisa e ativa somente com formulário e credencial próprios
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "org_alpha"
+    Received: undefined
+
+      484 |       expect(active.status).toBe(201); expect(active.body.data.workflow.status).toBe('PUBLISHED');
+      485 |       expect(snapshots).toHaveLength(1);
+    > 486 |       expect(snapshots[0].orgId).toBe(`org_${org}`);
+          |                                  ^
+      487 |       expect(rows.get(`wf_${org === 'alpha' ? 'beta' : 'alpha'}`).status).toBe('DRAFT');
+      488 |     });
+      489 |   });
+
+      at Object.<anonymous> (src/auth/workflow-container.spec.ts:486:34)
+
+  ● T06/T14 — container Nest (memory) › SEC05 — recursos da organização beta › review não distingue credencial alheia e inexistente e não escreve
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "RESOURCE_NOT_FOUND"
+    Received: "RESOURCE_CROSS_TENANT_FORBIDDEN"
+
+      448 |       const foreign = await request('POST', `/workflows/wf_${org}/${action}`, `${org}:admin`);
+      449 |       expect(foreign.status).toBe(400);
+    > 450 |       expect(foreign.body.code).toBe('RESOURCE_NOT_FOUND');
+          |                                 ^
+      451 |       expect(row).toEqual(before);
+      452 |       row.nodes[1].config.credentialRef = 'unknown_private_credential';
+      453 |       const absent = await request('POST', `/workflows/wf_${org}/${action}`, `${org}:admin`);
+
+      at src/auth/workflow-container.spec.ts:450:33
+
+  ● T06/T14 — container Nest (memory) › SEC05 — recursos da organização beta › activate não distingue credencial alheia e inexistente e não escreve
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "RESOURCE_NOT_FOUND"
+    Received: "RESOURCE_CROSS_TENANT_FORBIDDEN"
+
+      448 |       const foreign = await request('POST', `/workflows/wf_${org}/${action}`, `${org}:admin`);
+      449 |       expect(foreign.status).toBe(400);
+    > 450 |       expect(foreign.body.code).toBe('RESOURCE_NOT_FOUND');
+          |                                 ^
+      451 |       expect(row).toEqual(before);
+      452 |       row.nodes[1].config.credentialRef = 'unknown_private_credential';
+      453 |       const absent = await request('POST', `/workflows/wf_${org}/${action}`, `${org}:admin`);
+
+      at src/auth/workflow-container.spec.ts:450:33
+
+  ● T06/T14 — container Nest (memory) › SEC05 — recursos da organização beta › review não distingue formulário alheio e inexistente e não escreve
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "RESOURCE_NOT_FOUND"
+    Received: "RESOURCE_CROSS_TENANT_FORBIDDEN"
+
+      465 |       const foreign = await request('POST', `/workflows/wf_${org}/${action}`, `${org}:admin`);
+      466 |       expect(foreign.status).toBe(400);
+    > 467 |       expect(foreign.body.code).toBe('RESOURCE_NOT_FOUND');
+          |                                 ^
+      468 |       expect(row).toEqual(before);
+      469 |       row.nodes[0].config.formId = 'unknown_private_form';
+      470 |       const absent = await request('POST', `/workflows/wf_${org}/${action}`, `${org}:admin`);
+
+      at src/auth/workflow-container.spec.ts:467:33
+
+  ● T06/T14 — container Nest (memory) › SEC05 — recursos da organização beta › activate não distingue formulário alheio e inexistente e não escreve
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "RESOURCE_NOT_FOUND"
+    Received: "RESOURCE_CROSS_TENANT_FORBIDDEN"
+
+      465 |       const foreign = await request('POST', `/workflows/wf_${org}/${action}`, `${org}:admin`);
+      466 |       expect(foreign.status).toBe(400);
+    > 467 |       expect(foreign.body.code).toBe('RESOURCE_NOT_FOUND');
+          |                                 ^
+      468 |       expect(row).toEqual(before);
+      469 |       row.nodes[0].config.formId = 'unknown_private_form';
+      470 |       const absent = await request('POST', `/workflows/wf_${org}/${action}`, `${org}:admin`);
+
+      at src/auth/workflow-container.spec.ts:467:33
+
+  ● T06/T14 — container Nest (memory) › SEC05 — recursos da organização beta › revisa e ativa somente com formulário e credencial próprios
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "org_beta"
+    Received: undefined
+
+      484 |       expect(active.status).toBe(201); expect(active.body.data.workflow.status).toBe('PUBLISHED');
+      485 |       expect(snapshots).toHaveLength(1);
+    > 486 |       expect(snapshots[0].orgId).toBe(`org_${org}`);
+          |                                  ^
+      487 |       expect(rows.get(`wf_${org === 'alpha' ? 'beta' : 'alpha'}`).status).toBe('DRAFT');
+      488 |     });
+      489 |   });
+
+      at Object.<anonymous> (src/auth/workflow-container.spec.ts:486:34)
+
+  ● T06/T14 — container Nest (tcp) › SEC05 — recursos da organização alpha › review não distingue credencial alheia e inexistente e não escreve
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "RESOURCE_NOT_FOUND"
+    Received: "RESOURCE_CROSS_TENANT_FORBIDDEN"
+
+      448 |       const foreign = await request('POST', `/workflows/wf_${org}/${action}`, `${org}:admin`);
+      449 |       expect(foreign.status).toBe(400);
+    > 450 |       expect(foreign.body.code).toBe('RESOURCE_NOT_FOUND');
+          |                                 ^
+      451 |       expect(row).toEqual(before);
+      452 |       row.nodes[1].config.credentialRef = 'unknown_private_credential';
+      453 |       const absent = await request('POST', `/workflows/wf_${org}/${action}`, `${org}:admin`);
+
+      at src/auth/workflow-container.spec.ts:450:33
+
+  ● T06/T14 — container Nest (tcp) › SEC05 — recursos da organização alpha › activate não distingue credencial alheia e inexistente e não escreve
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "RESOURCE_NOT_FOUND"
+    Received: "RESOURCE_CROSS_TENANT_FORBIDDEN"
+
+      448 |       const foreign = await request('POST', `/workflows/wf_${org}/${action}`, `${org}:admin`);
+      449 |       expect(foreign.status).toBe(400);
+    > 450 |       expect(foreign.body.code).toBe('RESOURCE_NOT_FOUND');
+          |                                 ^
+      451 |       expect(row).toEqual(before);
+      452 |       row.nodes[1].config.credentialRef = 'unknown_private_credential';
+      453 |       const absent = await request('POST', `/workflows/wf_${org}/${action}`, `${org}:admin`);
+
+      at src/auth/workflow-container.spec.ts:450:33
+
+  ● T06/T14 — container Nest (tcp) › SEC05 — recursos da organização alpha › review não distingue formulário alheio e inexistente e não escreve
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "RESOURCE_NOT_FOUND"
+    Received: "RESOURCE_CROSS_TENANT_FORBIDDEN"
+
+      465 |       const foreign = await request('POST', `/workflows/wf_${org}/${action}`, `${org}:admin`);
+      466 |       expect(foreign.status).toBe(400);
+    > 467 |       expect(foreign.body.code).toBe('RESOURCE_NOT_FOUND');
+          |                                 ^
+      468 |       expect(row).toEqual(before);
+      469 |       row.nodes[0].config.formId = 'unknown_private_form';
+      470 |       const absent = await request('POST', `/workflows/wf_${org}/${action}`, `${org}:admin`);
+
+      at src/auth/workflow-container.spec.ts:467:33
+
+  ● T06/T14 — container Nest (tcp) › SEC05 — recursos da organização alpha › activate não distingue formulário alheio e inexistente e não escreve
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "RESOURCE_NOT_FOUND"
+    Received: "RESOURCE_CROSS_TENANT_FORBIDDEN"
+
+      465 |       const foreign = await request('POST', `/workflows/wf_${org}/${action}`, `${org}:admin`);
+      466 |       expect(foreign.status).toBe(400);
+    > 467 |       expect(foreign.body.code).toBe('RESOURCE_NOT_FOUND');
+          |                                 ^
+      468 |       expect(row).toEqual(before);
+      469 |       row.nodes[0].config.formId = 'unknown_private_form';
+      470 |       const absent = await request('POST', `/workflows/wf_${org}/${action}`, `${org}:admin`);
+
+      at src/auth/workflow-container.spec.ts:467:33
+
+  ● T06/T14 — container Nest (tcp) › SEC05 — recursos da organização alpha › revisa e ativa somente com formulário e credencial próprios
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "org_alpha"
+    Received: undefined
+
+      484 |       expect(active.status).toBe(201); expect(active.body.data.workflow.status).toBe('PUBLISHED');
+      485 |       expect(snapshots).toHaveLength(1);
+    > 486 |       expect(snapshots[0].orgId).toBe(`org_${org}`);
+          |                                  ^
+      487 |       expect(rows.get(`wf_${org === 'alpha' ? 'beta' : 'alpha'}`).status).toBe('DRAFT');
+      488 |     });
+      489 |   });
+
+      at Object.<anonymous> (src/auth/workflow-container.spec.ts:486:34)
+
+  ● T06/T14 — container Nest (tcp) › SEC05 — recursos da organização beta › review não distingue credencial alheia e inexistente e não escreve
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "RESOURCE_NOT_FOUND"
+    Received: "RESOURCE_CROSS_TENANT_FORBIDDEN"
+
+      448 |       const foreign = await request('POST', `/workflows/wf_${org}/${action}`, `${org}:admin`);
+      449 |       expect(foreign.status).toBe(400);
+    > 450 |       expect(foreign.body.code).toBe('RESOURCE_NOT_FOUND');
+          |                                 ^
+      451 |       expect(row).toEqual(before);
+      452 |       row.nodes[1].config.credentialRef = 'unknown_private_credential';
+      453 |       const absent = await request('POST', `/workflows/wf_${org}/${action}`, `${org}:admin`);
+
+      at src/auth/workflow-container.spec.ts:450:33
+
+  ● T06/T14 — container Nest (tcp) › SEC05 — recursos da organização beta › activate não distingue credencial alheia e inexistente e não escreve
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "RESOURCE_NOT_FOUND"
+    Received: "RESOURCE_CROSS_TENANT_FORBIDDEN"
+
+      448 |       const foreign = await request('POST', `/workflows/wf_${org}/${action}`, `${org}:admin`);
+      449 |       expect(foreign.status).toBe(400);
+    > 450 |       expect(foreign.body.code).toBe('RESOURCE_NOT_FOUND');
+          |                                 ^
+      451 |       expect(row).toEqual(before);
+      452 |       row.nodes[1].config.credentialRef = 'unknown_private_credential';
+      453 |       const absent = await request('POST', `/workflows/wf_${org}/${action}`, `${org}:admin`);
+
+      at src/auth/workflow-container.spec.ts:450:33
+
+  ● T06/T14 — container Nest (tcp) › SEC05 — recursos da organização beta › review não distingue formulário alheio e inexistente e não escreve
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "RESOURCE_NOT_FOUND"
+    Received: "RESOURCE_CROSS_TENANT_FORBIDDEN"
+
+      465 |       const foreign = await request('POST', `/workflows/wf_${org}/${action}`, `${org}:admin`);
+      466 |       expect(foreign.status).toBe(400);
+    > 467 |       expect(foreign.body.code).toBe('RESOURCE_NOT_FOUND');
+          |                                 ^
+      468 |       expect(row).toEqual(before);
+      469 |       row.nodes[0].config.formId = 'unknown_private_form';
+      470 |       const absent = await request('POST', `/workflows/wf_${org}/${action}`, `${org}:admin`);
+
+      at src/auth/workflow-container.spec.ts:467:33
+
+  ● T06/T14 — container Nest (tcp) › SEC05 — recursos da organização beta › activate não distingue formulário alheio e inexistente e não escreve
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "RESOURCE_NOT_FOUND"
+    Received: "RESOURCE_CROSS_TENANT_FORBIDDEN"
+
+      465 |       const foreign = await request('POST', `/workflows/wf_${org}/${action}`, `${org}:admin`);
+      466 |       expect(foreign.status).toBe(400);
+    > 467 |       expect(foreign.body.code).toBe('RESOURCE_NOT_FOUND');
+          |                                 ^
+      468 |       expect(row).toEqual(before);
+      469 |       row.nodes[0].config.formId = 'unknown_private_form';
+      470 |       const absent = await request('POST', `/workflows/wf_${org}/${action}`, `${org}:admin`);
+
+      at src/auth/workflow-container.spec.ts:467:33
+
+  ● T06/T14 — container Nest (tcp) › SEC05 — recursos da organização beta › revisa e ativa somente com formulário e credencial próprios
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "org_beta"
+    Received: undefined
+
+      484 |       expect(active.status).toBe(201); expect(active.body.data.workflow.status).toBe('PUBLISHED');
+      485 |       expect(snapshots).toHaveLength(1);
+    > 486 |       expect(snapshots[0].orgId).toBe(`org_${org}`);
+          |                                  ^
+      487 |       expect(rows.get(`wf_${org === 'alpha' ? 'beta' : 'alpha'}`).status).toBe('DRAFT');
+      488 |     });
+      489 |   });
+
+      at Object.<anonymous> (src/auth/workflow-container.spec.ts:486:34)
+
+Test Suites: 3 failed, 3 total
+Tests:       49 failed, 87 passed, 136 total
+Snapshots:   0 total
+Time:        33.874 s
+Ran all test suites matching resource-tenant-security.spec.ts|resource-resolver.spec.ts|workflow-container.spec.ts.
+npm error Lifecycle script `test` failed with error:
+npm error code 1
+npm error path C:\Users\jv883\Documents\Codex\FlowMind-AI\Flowmind-AI\apps\api
+npm error workspace @flowmind/api@0.1.0
+npm error location C:\Users\jv883\Documents\Codex\FlowMind-AI\Flowmind-AI\apps\api
+npm error command failed
+npm error command C:\Windows\system32\cmd.exe /d /s /c node --experimental-vm-modules ../../node_modules/jest/bin/jest.js --runInBand resource-tenant-security.spec.ts resource-resolver.spec.ts workflow-container.spec.ts

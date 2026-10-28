@@ -1,0 +1,48 @@
+ts-jest[config] (WARN) message TS151002: Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) message TS151002: Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) message TS151002: Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+(node:12624) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+FAIL apps/api/src/auth/workflow-container.spec.ts
+  ● T06 — container Nest e requisições em memória › readiness responde 503 com banco indisponível e oculta detalhes internos
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 503
+    Received: 200
+
+      154 |     prisma.$queryRaw.mockRejectedValue(new Error('db_private_fixture'));
+      155 |     const result = await request('GET', '/health/ready');
+    > 156 |     expect(result.status).toBe(503); expect(result.body).toMatchObject({ status: 'not_ready', database: 'unavailable' });
+          |                           ^
+      157 |     expect(JSON.stringify(result.body)).not.toContain('db_private_fixture');
+      158 |   });
+      159 |
+
+      at Object.<anonymous> (src/auth/workflow-container.spec.ts:156:27)
+
+ts-jest[config] (WARN) message TS151002: Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+FAIL apps/api/src/health/health.controller.spec.ts
+  ● HealthController (T15 — Liveness & Readiness Probes) › deve negar readiness com 503 quando o banco falha, sem divulgar o erro SQL
+
+    expect(received).rejects.toThrow()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"database": "degraded_in_memory_fallback", "status": "ready", "timestamp": "2026-10-12T16:29:37.231Z"}
+
+      35 |   it('deve negar readiness com 503 quando o banco falha, sem divulgar o erro SQL', async () => {
+      36 |     prismaMock.$queryRaw.mockRejectedValue(new Error('db_private_fixture'));
+    > 37 |     await expect(controller.checkReadiness()).rejects.toThrow(ServiceUnavailableException);
+         |           ^
+      38 |     try { await controller.checkReadiness(); } catch (error) {
+      39 |       expect((error as ServiceUnavailableException).getStatus()).toBe(503);
+      40 |       expect((error as ServiceUnavailableException).getResponse()).toMatchObject({ status: 'not_ready', database: 'unavailable' });
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at Object.<anonymous> (src/health/health.controller.spec.ts:37:11)
+
+Test Suites: 2 failed, 2 total
+Tests:       2 failed, 8 skipped, 4 passed, 14 total
+Snapshots:   0 total
+Time:        3.318 s
+Ran all test suites within paths "apps/api/src/health/health.controller.spec.ts", "apps/api/src/auth/workflow-container.spec.ts".

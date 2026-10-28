@@ -1,3 +1,4 @@
+import crypto from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { stripTypeScriptTypes } from 'node:module';
 import { dirname, resolve, sep } from 'node:path';
@@ -6,8 +7,8 @@ import { createContext, SourceTextModule, SyntheticModule } from 'node:vm';
 
 const root = fileURLToPath(new URL('../../', import.meta.url));
 
-// Executa as classes reais sem instalar dependências. Somente @Injectable()
-// é retirado; DI/metadados do Nest e typecheck não são verificados aqui.
+// Executa classes sem instalar dependências; retira decorators de classe/parâmetro.
+// DI/metadados do Nest e typecheck não são verificados por este adaptador.
 export async function loadTypeScript(entry, { clerk = {}, env = {}, modules = {}, fetch = () => { throw new Error('Rede bloqueada nos testes'); } } = {}) {
   const logs = [];
   class HttpException extends Error {
@@ -40,9 +41,11 @@ export async function loadTypeScript(entry, { clerk = {}, env = {}, modules = {}
     }, { context, identifier });
   }
   const nest = synthetic('@nestjs/common', {
-    Injectable: () => () => {}, Logger,
-    UnauthorizedException: HttpException, BadRequestException: HttpException,
+    Injectable: () => () => {}, Inject: () => () => {}, Optional: () => () => {}, Logger, HttpException,
+    HttpException,
+    UnauthorizedException: HttpException, BadRequestException: HttpException, ForbiddenException: HttpException,
     NotFoundException: HttpException, ConflictException: HttpException,
+    ServiceUnavailableException: HttpException,
   });
   const cryptoModule = synthetic('node:crypto', {
     timingSafeEqual: (a, b) => {
@@ -51,6 +54,8 @@ export async function loadTypeScript(entry, { clerk = {}, env = {}, modules = {}
       for (let i = 0; i < a.length; i++) diff |= a[i] ^ b[i];
       return diff === 0;
     },
+    createHmac: crypto.createHmac,
+    randomUUID: crypto.randomUUID,
   });
   const sdk = synthetic('@clerk/backend', { createClerkClient: () => clerk });
 
@@ -67,7 +72,8 @@ export async function loadTypeScript(entry, { clerk = {}, env = {}, modules = {}
       cache.set(path, stub);
       return stub;
     }
-    const source = readFileSync(path, 'utf8').replace(/^@Injectable\(\)\s*$/gm, '');
+    const source = readFileSync(path, 'utf8').replace(/^@Injectable\(\)\s*$/gm, '')
+      .replace(/@(?:Optional|Inject)\([^)]*\)\s*/g, '');
     const module = new SourceTextModule(stripTypeScriptTypes(source), {
       context, identifier: path,
       importModuleDynamically: async (specifier) => {
@@ -80,11 +86,17 @@ export async function loadTypeScript(entry, { clerk = {}, env = {}, modules = {}
     cache.set(path, module);
     return module;
   }
-  const module = sourceModule(resolve(root, entry));
+  const entryModule = sourceModule(resolve(root, entry));
+  const fixtureModule = sourceModule(resolve(root, 'apps/api/test/resource-fixtures.ts'));
+  // O wrapper injeta somente utilitários de teste no mesmo contexto VM das classes reais.
+  const wrapperId = resolve(root, 'test-resource-wrapper');
+  const module = new SourceTextModule('export * from "entry"; export { createTestResourceResolver, createTestResourceCatalog } from "test-fixtures";', { context, identifier: wrapperId });
   await module.link((specifier, parent) => {
+    if (parent.identifier === wrapperId && specifier === 'entry') return entryModule;
+    if (parent.identifier === wrapperId && specifier === 'test-fixtures') return fixtureModule;
     if (specifier === '@nestjs/common') return nest;
     if (specifier === 'node:crypto' || specifier === 'crypto') return cryptoModule;
-    if (specifier === '@flowmind/contracts') return sourceModule(resolve(root, 'packages/contracts/src/workflow.ts'));
+    if (specifier === '@flowmind/contracts') return sourceModule(resolve(root, 'packages/contracts/src/index.ts'));
     if (!specifier.startsWith('.')) throw new Error(`Importação externa bloqueada: ${specifier}`);
     return sourceModule(resolve(dirname(parent.identifier), `${specifier}.ts`));
   });

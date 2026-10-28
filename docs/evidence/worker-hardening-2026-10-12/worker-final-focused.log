@@ -1,0 +1,27 @@
+
+> @flowmind/api@0.1.0 test
+> node --experimental-vm-modules ../../node_modules/jest/bin/jest.js --runInBand --runTestsByPath src/worker/worker.service.spec.ts src/worker/worker-bootstrap.spec.ts src/worker/worker-container.spec.ts
+
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151002: [0mUsing hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+[Nest] 22524  - 12/10/2026, 22:38:30   ERROR [WorkflowEngineService] Falha no nó form (trigger_form): Campo obrigatório ausente na submissão do formulário: name
+[Nest] 22524  - 12/10/2026, 22:38:30   ERROR [WorkflowEngineService] Falha no nó form (trigger_form): Campo obrigatório ausente na submissão do formulário: name
+(node:22524) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+[Nest] 22524  - 12/10/2026, 22:38:30     LOG [WorkerBootstrap] Inicializando FlowMind AI Background Worker (sem portas HTTP)...
+[Nest] 22524  - 12/10/2026, 22:38:30     LOG [WorkerBootstrap] Processo do worker inicializado em standby; consumo de fila indisponível.
+[Nest] 22524  - 12/10/2026, 22:38:30    WARN [WorkerService] Consumidor de fila não implementado. Worker permanece em standby.
+[Nest] 22524  - 12/10/2026, 22:38:30     LOG [WorkerService] Encerrando WorkerService em standby.
+[Nest] 22524  - 12/10/2026, 22:38:30    WARN [WorkerService] Consumidor de fila não implementado. Worker permanece em standby.
+[Nest] 22524  - 12/10/2026, 22:38:30     LOG [WorkerService] Processando simulação [Job: job_123] para workflow [ID: wf_worker_1] org [org_test]
+[Nest] 22524  - 12/10/2026, 22:38:30     LOG [WorkerService] Simulação [Job: job_123] concluída com status COMPLETED [ExecutionId: exec_recorded_job_1]
+[Nest] 22524  - 12/10/2026, 22:38:30     LOG [WorkerService] Processando simulação [Job: job_404] para workflow [ID: wf_missing] org [org_test]
+[Nest] 22524  - 12/10/2026, 22:38:30     LOG [WorkerService] Processando simulação [Job: job_mutable] para workflow [ID: wf_worker_1] org [org_test]
+[Nest] 22524  - 12/10/2026, 22:38:30     LOG [WorkerService] Simulação [Job: job_mutable] concluída com status COMPLETED [ExecutionId: exec_recorded_job_1]
+[Nest] 22524  - 12/10/2026, 22:38:30     LOG [WorkerService] Processando simulação [Job: job_cross] para workflow [ID: wf_worker_1] org [org_test]
+[Nest] 22524  - 12/10/2026, 22:38:30     LOG [WorkerService] Processando simulação [Job: job_storage] para workflow [ID: wf_worker_1] org [org_test]
+
+Test Suites: 3 passed, 3 total
+Tests:       22 passed, 22 total
+Snapshots:   0 total
+Time:        3.798 s, estimated 4 s
+Ran all test suites within paths "src/worker/worker.service.spec.ts", "src/worker/worker-bootstrap.spec.ts", "src/worker/worker-container.spec.ts".

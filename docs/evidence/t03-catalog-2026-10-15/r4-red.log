@@ -1,0 +1,223 @@
+(node:14072) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:14072) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+✖ catálogo no cliente exige token antes de qualquer rede (67.9262ms)
+✖ cliente consulta recursos com Bearer e filtro, sem tenant fornecido pelo cliente (5.762ms)
+✖ lista pública vazia é sucesso explícito (7.0006ms)
+✖ cliente não transforma catálogo malformado/privado em recursos utilizáveis: null (5.574ms)
+✖ cliente não transforma catálogo malformado/privado em recursos utilizáveis: {} (4.9226ms)
+✖ cliente não transforma catálogo malformado/privado em recursos utilizáveis: [{"id":"test-model","type":"unknown","name":"Modelo <script>teste</script>","status":"ACTIVE"}] (6.2483ms)
+✖ cliente não transforma catálogo malformado/privado em recursos utilizáveis: [{"id":"test-model","type":"ai_model","name":"Modelo <script>teste</script>","status":"REVOKED"}] (5.6774ms)
+✖ cliente não transforma catálogo malformado/privado em recursos utilizáveis: [{"id":"test-model","type":"ai_model","name":"Modelo <script>teste</script>","status":"ACTIVE","providerModelId":"private"}] (4.7241ms)
+✖ falha HTTP do catálogo permanece falha (5.8836ms)
+✖ token tardio de um contexto anterior não inicia uma consulta (1.3405ms)
+✖ A→B→A descarta sucesso e erro antigos sem apagar a lista atual (0.4997ms)
+✖ troca de contexto esconde recursos anteriores antes do novo efeito terminar (0.3905ms)
+✖ mesma organização com nova carga não aceita resultado da carga anterior (0.4093ms)
+✖ catálogo vazio e falha têm estados distintos; erro não expõe detalhe privado (0.3103ms)
+✖ select real conserva referência antiga e escapa nomes do catálogo em SSR (152.6914ms)
+✖ chegada do catálogo preserva parâmetros pendentes e aplica somente mudanças do usuário (41.985ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 0
+ℹ fail 16
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 667.6642
+
+✖ failing tests:
+
+test at tests\regression\resource-catalog.test.mjs:22:1
+✖ catálogo no cliente exige token antes de qualquer rede (67.9262ms)
+  TypeError: api.listResources is not a function
+      at TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/resource-catalog.test.mjs:24:28)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+test at tests\regression\resource-catalog.test.mjs:27:1
+✖ cliente consulta recursos com Bearer e filtro, sem tenant fornecido pelo cliente (5.762ms)
+  TypeError: api.listResources is not a function
+      at TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/resource-catalog.test.mjs:29:28)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\resource-catalog.test.mjs:35:1
+✖ lista pública vazia é sucesso explícito (7.0006ms)
+  TypeError: (intermediate value).api.listResources is not a function
+      at TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/resource-catalog.test.mjs:36:46)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\resource-catalog.test.mjs:39:3
+✖ cliente não transforma catálogo malformado/privado em recursos utilizáveis: null (5.574ms)
+  TypeError: (intermediate value).api.listResources is not a function
+      at TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/resource-catalog.test.mjs:40:51)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\resource-catalog.test.mjs:39:3
+✖ cliente não transforma catálogo malformado/privado em recursos utilizáveis: {} (4.9226ms)
+  TypeError: (intermediate value).api.listResources is not a function
+      at TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/resource-catalog.test.mjs:40:51)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\resource-catalog.test.mjs:39:3
+✖ cliente não transforma catálogo malformado/privado em recursos utilizáveis: [{"id":"test-model","type":"unknown","name":"Modelo <script>teste</script>","status":"ACTIVE"}] (6.2483ms)
+  TypeError: (intermediate value).api.listResources is not a function
+      at TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/resource-catalog.test.mjs:40:51)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\resource-catalog.test.mjs:39:3
+✖ cliente não transforma catálogo malformado/privado em recursos utilizáveis: [{"id":"test-model","type":"ai_model","name":"Modelo <script>teste</script>","status":"REVOKED"}] (5.6774ms)
+  TypeError: (intermediate value).api.listResources is not a function
+      at TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/resource-catalog.test.mjs:40:51)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\resource-catalog.test.mjs:39:3
+✖ cliente não transforma catálogo malformado/privado em recursos utilizáveis: [{"id":"test-model","type":"ai_model","name":"Modelo <script>teste</script>","status":"ACTIVE","providerModelId":"private"}] (4.7241ms)
+  TypeError: (intermediate value).api.listResources is not a function
+      at TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/resource-catalog.test.mjs:40:51)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\resource-catalog.test.mjs:43:1
+✖ falha HTTP do catálogo permanece falha (5.8836ms)
+  TypeError: (intermediate value).api.listResources is not a function
+      at TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/resource-catalog.test.mjs:44:52)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\resource-catalog.test.mjs:90:1
+✖ token tardio de um contexto anterior não inicia uma consulta (1.3405ms)
+  Error: ENOENT: no such file or directory, open 'C:\Users\jv883\Documents\Codex\FlowMind-AI\Flowmind-AI\apps\web\src\lib\use-resource-catalog.ts'
+      at readFileSync (node:fs:483:20)
+      at compiledModule (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/resource-catalog.test.mjs:76:18)
+      at catalogHook (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/resource-catalog.test.mjs:87:18)
+      at TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/resource-catalog.test.mjs:93:13)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    errno: -4058,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: 'C:\\Users\\jv883\\Documents\\Codex\\FlowMind-AI\\Flowmind-AI\\apps\\web\\src\\lib\\use-resource-catalog.ts'
+  }
+
+test at tests\regression\resource-catalog.test.mjs:100:1
+✖ A→B→A descarta sucesso e erro antigos sem apagar a lista atual (0.4997ms)
+  Error: ENOENT: no such file or directory, open 'C:\Users\jv883\Documents\Codex\FlowMind-AI\Flowmind-AI\apps\web\src\lib\use-resource-catalog.ts'
+      at readFileSync (node:fs:483:20)
+      at compiledModule (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/resource-catalog.test.mjs:76:18)
+      at catalogHook (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/resource-catalog.test.mjs:87:18)
+      at TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/resource-catalog.test.mjs:103:13)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    errno: -4058,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: 'C:\\Users\\jv883\\Documents\\Codex\\FlowMind-AI\\Flowmind-AI\\apps\\web\\src\\lib\\use-resource-catalog.ts'
+  }
+
+test at tests\regression\resource-catalog.test.mjs:112:1
+✖ troca de contexto esconde recursos anteriores antes do novo efeito terminar (0.3905ms)
+  Error: ENOENT: no such file or directory, open 'C:\Users\jv883\Documents\Codex\FlowMind-AI\Flowmind-AI\apps\web\src\lib\use-resource-catalog.ts'
+      at readFileSync (node:fs:483:20)
+      at compiledModule (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/resource-catalog.test.mjs:76:18)
+      at catalogHook (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/resource-catalog.test.mjs:87:18)
+      at TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/resource-catalog.test.mjs:114:13)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    errno: -4058,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: 'C:\\Users\\jv883\\Documents\\Codex\\FlowMind-AI\\Flowmind-AI\\apps\\web\\src\\lib\\use-resource-catalog.ts'
+  }
+
+test at tests\regression\resource-catalog.test.mjs:120:1
+✖ mesma organização com nova carga não aceita resultado da carga anterior (0.4093ms)
+  Error: ENOENT: no such file or directory, open 'C:\Users\jv883\Documents\Codex\FlowMind-AI\Flowmind-AI\apps\web\src\lib\use-resource-catalog.ts'
+      at readFileSync (node:fs:483:20)
+      at compiledModule (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/resource-catalog.test.mjs:76:18)
+      at catalogHook (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/resource-catalog.test.mjs:87:18)
+      at TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/resource-catalog.test.mjs:122:13)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    errno: -4058,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: 'C:\\Users\\jv883\\Documents\\Codex\\FlowMind-AI\\Flowmind-AI\\apps\\web\\src\\lib\\use-resource-catalog.ts'
+  }
+
+test at tests\regression\resource-catalog.test.mjs:128:1
+✖ catálogo vazio e falha têm estados distintos; erro não expõe detalhe privado (0.3103ms)
+  Error: ENOENT: no such file or directory, open 'C:\Users\jv883\Documents\Codex\FlowMind-AI\Flowmind-AI\apps\web\src\lib\use-resource-catalog.ts'
+      at readFileSync (node:fs:483:20)
+      at compiledModule (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/resource-catalog.test.mjs:76:18)
+      at catalogHook (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/resource-catalog.test.mjs:87:18)
+      at TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/resource-catalog.test.mjs:130:14)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    errno: -4058,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: 'C:\\Users\\jv883\\Documents\\Codex\\FlowMind-AI\\Flowmind-AI\\apps\\web\\src\\lib\\use-resource-catalog.ts'
+  }
+
+test at tests\regression\resource-catalog.test.mjs:145:1
+✖ select real conserva referência antiga e escapa nomes do catálogo em SSR (152.6914ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /<select/. Input:
+  
+  '<form aria-label="Parâmetros de Análise" class="space-y-3"><h3 class="text-sm font-semibold text-slate-900">Configurar etapa</h3><p class="text-xs text-slate-500 break-words">Análise · ai_analyze_intent</p><fieldset class="space-y-3 disabled:opacity-60"><div><label for="_R_0_-name" class="block text-xs font-medium text-slate-700">Nome da etapa</label><input id="_R_0_-name" required="" class="mt-1 w-full rounded-lg border border-slate-300 p-2 text-sm focus-visible:outline-indigo-600" value="Análise"/></div><div><label for="_R_0_-field-0" class="block text-xs font-medium text-slate-700">Referência do modelo</label><textarea id="_R_0_-field-0" rows="2" class="mt-1 w-full resize-y rounded-lg border border-slate-300 p-2 text-xs focus-visible:outline-indigo-600">legacy-model</textarea></div><div><label for="_R_0_-field-1" class="block text-xs font-medium text-slate-700">Mensagem para análise</label><textarea id="_R_0_-field-1" rows="2" class="mt-1 w-full resize-y rounded-lg border border-slate-300 p-2 text-xs focus-visible:outline-indigo-600">Mensagem anterior</textarea></div><div><label for="_R_0_-field-2" class="block text-xs font-medium text-slate-700">Instruções</label><textarea id="_R_0_-field-2" rows="2" class="mt-1 w-full resize-y rounded-lg border border-slate-300 p-2 text-xs focus-visible:outline-indigo-600"></textarea></div><div class="grid grid-cols-2 gap-2"><div><label for="_R_0_-x" class="block text-xs font-medium text-slate-700">Posição X</label><input id="_R_0_-x" type="number" step="any" required="" class="mt-1 w-full rounded-lg border border-slate-300 p-2 text-sm focus-visible:outline-indigo-600" value="0"/></div><div><label for="_R_0_-y" class="block text-xs font-medium text-slate-700">Posição Y</label><input id="_R_0_-y" type="number" step="any" required="" class="mt-1 w-full rounded-lg border border-slate-300 p-2 text-sm focus-visible:outline-indigo-600" value="0"/></div></div><div class="flex flex-wrap gap-2"><button type="submit" disabled="" class="rounded-lg bg-indigo-600 px-3 py-2 text-xs font-semibold text-white disabled:opacity-40 focus-visible:outline-indigo-600">Aplicar à etapa</button><button type="button" disabled="" class="rounded-lg border border-slate-300 px-3 py-2 text-xs text-slate-700 disabled:opacity-40 focus-visible:outline-indigo-600">Descartar alterações</button></div></fieldset></form>'
+  
+      at TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/resource-catalog.test.mjs:150:10)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '<form aria-label="Parâmetros de Análise" class="space-y-3"><h3 class="text-sm font-semibold text-slate-900">Configurar etapa</h3><p class="text-xs text-slate-500 break-words">Análise · ai_analyze_intent</p><fieldset class="space-y-3 disabled:opacity-60"><div><label for="_R_0_-name" class="block text-xs font-medium text-slate-700">Nome da etapa</label><input id="_R_0_-name" required="" class="mt-1 w-full rounded-lg border border-slate-300 p-2 text-sm focus-visible:outline-indigo-600" value="Análise"/></div><div><label for="_R_0_-field-0" class="block text-xs font-medium text-slate-700">Referência do modelo</label><textarea id="_R_0_-field-0" rows="2" class="mt-1 w-full resize-y rounded-lg border border-slate-300 p-2 text-xs focus-visible:outline-indigo-600">legacy-model</textarea></div><div><label for="_R_0_-field-1" class="block text-xs font-medium text-slate-700">Mensagem para análise</label><textarea id="_R_0_-field-1" rows="2" class="mt-1 w-full resize-y rounded-lg border border-slate-300 p-2 text-xs focus-visible:outline-indigo-600">Mensagem anterior</textarea></div><div><label for="_R_0_-field-2" class="block text-xs font-medium text-slate-700">Instruções</label><textarea id="_R_0_-field-2" rows="2" class="mt-1 w-full resize-y rounded-lg border border-slate-300 p-2 text-xs focus-visible:outline-indigo-600"></textarea></div><div class="grid grid-cols-2 gap-2"><div><label for="_R_0_-x" class="block text-xs font-medium text-slate-700">Posição X</label><input id="_R_0_-x" type="number" step="any" required="" class="mt-1 w-full rounded-lg border border-slate-300 p-2 text-sm focus-visible:outline-indigo-600" value="0"/></div><div><label for="_R_0_-y" class="block text-xs font-medium text-slate-700">Posição Y</label><input id="_R_0_-y" type="number" step="any" required="" class="mt-1 w-full rounded-lg border border-slate-300 p-2 text-sm focus-visible:outline-indigo-600" value="0"/></div></div><div class="flex flex-wrap gap-2"><button type="submit" disabled="" class="rounded-lg bg-indigo-600 px-3 py-2 text-xs font-semibold text-white disabled:opacity-40 focus-visible:outline-indigo-600">Aplicar à etapa</button><button type="button" disabled="" class="rounded-lg border border-slate-300 px-3 py-2 text-xs text-slate-700 disabled:opacity-40 focus-visible:outline-indigo-600">Descartar alterações</button></div></fieldset></form>',
+    expected: /<select/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests\regression\resource-catalog.test.mjs:153:1
+✖ chegada do catálogo preserva parâmetros pendentes e aplica somente mudanças do usuário (41.985ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + undefined
+  - 'Texto ainda não aplicado'
+  
+      at TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/resource-catalog.test.mjs:167:10)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 'Texto ainda não aplicado',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

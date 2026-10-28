@@ -1,0 +1,19 @@
+{
+  "checkedAtUtc": "2026-10-13T08:37:51.659Z",
+  "connector": "obsidian",
+  "notes": [
+    {
+      "path": "FlowMind-AI/Flowmind-AI/docs/MEMORIA.md",
+      "matchesCanonicalFile": true,
+      "canonicalFileSha256": "89ffe4b453642d18f73a0a8852fd77d378067954b71b9d29f4905ef837c00ed3",
+      "comparison": "content equality after CRLF normalization"
+    },
+    {
+      "path": "FlowMind-AI/Flowmind-AI/plan.md",
+      "matchesCanonicalFile": true,
+      "canonicalFileSha256": "1ea883215bb65ba0aded5a2a64d053fe83a80fedf91c3238949bf934687d6bbd",
+      "comparison": "content equality after CRLF normalization"
+    }
+  ],
+  "allMatch": true
+}

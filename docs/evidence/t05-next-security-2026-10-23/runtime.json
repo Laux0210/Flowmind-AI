@@ -1,0 +1,30 @@
+{
+  "checkedAtUtc": "2026-10-23T15:14:35.477Z",
+  "origin": "http://localhost:58121",
+  "scope": "Production build runtime, no cookies or login; no API/DB writes",
+  "results": [
+    {
+      "route": "/",
+      "status": 200,
+      "redirect": null
+    },
+    {
+      "route": "/sign-in",
+      "status": 200,
+      "redirect": null
+    },
+    {
+      "route": "/sign-up",
+      "status": 200,
+      "redirect": null
+    },
+    {
+      "route": "/dashboard",
+      "status": 307,
+      "redirect": {
+        "host": "modest-mite-1393.accounts.dev",
+        "path": "/sign-in"
+      }
+    }
+  ]
+}

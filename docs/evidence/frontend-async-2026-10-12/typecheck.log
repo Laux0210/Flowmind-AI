@@ -1,0 +1,21 @@
+
+> flowmind-ai@0.1.0 typecheck
+> node scripts/run-checks.mjs typecheck
+
+
+> @flowmind/contracts@0.1.0 build
+> tsc
+
+
+> @flowmind/api@0.1.0 typecheck
+> tsc --project tsconfig.json --noEmit
+
+
+> @flowmind/api@0.1.0 typecheck:test
+> tsc --project tsconfig.spec.json --noEmit
+
+
+> @flowmind/web@0.1.0 typecheck
+> tsc --noEmit
+
+

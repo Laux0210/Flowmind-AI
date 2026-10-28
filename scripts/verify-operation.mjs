@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 
-console.log('--- Verificação de Prontidão Operacional (T15) ---');
+console.log('--- Checagens estáticas de configuração operacional (T15) ---');
 
 // 1. Validação do template de variáveis de ambiente (.env.example)
 const envExamplePath = path.resolve('.env.example');
@@ -27,10 +27,10 @@ for (const envVar of requiredVars) {
   );
 }
 
-// Garantir que não há segredos reais commitados em .env.example
+// Verificação limitada destes prefixos no template; não é uma auditoria de segredos.
 assert.ok(!envExampleContent.includes('sk_live_'), 'Nenhum segredo de produção do Clerk deve constar em .env.example');
 assert.ok(!envExampleContent.includes('sk-proj-'), 'Nenhuma chave real da OpenAI deve constar em .env.example');
-console.log('✔ .env.example validado com sucesso (sem segredos expostos).');
+console.log('✔ Variáveis e prefixos restritos conferidos em .env.example.');
 
 // 2. Validação do Docker Compose para infraestrutura local
 const dockerComposePath = path.resolve('docker-compose.yml');
@@ -40,7 +40,7 @@ const dockerComposeContent = fs.readFileSync(dockerComposePath, 'utf-8');
 assert.ok(dockerComposeContent.includes('postgres:'), 'docker-compose.yml deve conter serviço postgres');
 assert.ok(dockerComposeContent.includes('redis:'), 'docker-compose.yml deve conter serviço redis');
 assert.ok(dockerComposeContent.includes('healthcheck:'), 'docker-compose.yml deve conter healthchecks');
-console.log('✔ docker-compose.yml validado com sucesso (PostgreSQL e Redis com healthchecks).');
+console.log('✔ Declarações de PostgreSQL, Redis e healthchecks encontradas no Compose.');
 
 // 3. Validação do Pipeline de CI (.github/workflows/ci.yml)
 const ciPath = path.resolve('.github/workflows/ci.yml');
@@ -59,7 +59,7 @@ const requiredCiSteps = [
 for (const step of requiredCiSteps) {
   assert.ok(ciContent.includes(step), `Passo de CI ${step} deve estar configurado no pipeline`);
 }
-console.log('✔ Pipeline de CI validado com sucesso (todos os gates de qualidade ativos).');
+console.log('✔ Comandos esperados encontrados no arquivo do CI.');
 
 // 4. Validação dos Probes de Saúde (Liveness e Readiness)
 const healthControllerPath = path.resolve('apps/api/src/health/health.controller.ts');
@@ -68,6 +68,6 @@ const healthControllerContent = fs.readFileSync(healthControllerPath, 'utf-8');
 
 assert.ok(healthControllerContent.includes('checkLiveness'), 'HealthController deve implementar liveness probe');
 assert.ok(healthControllerContent.includes('checkReadiness'), 'HealthController deve implementar readiness probe');
-console.log('✔ Probes de Liveness e Readiness validados com sucesso.');
+console.log('✔ Métodos de liveness e readiness encontrados no código.');
 
-console.log('--- Prontidão Operacional: Aprovada com sucesso! ---');
+console.log('--- Checagens estáticas aprovadas. Serviços, CI remoto, restauração e integrações reais não foram exercitados. ---');

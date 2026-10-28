@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, useCallback } from 'react';
 import { useAuth } from '@clerk/nextjs';
 import Link from 'next/link';
 import { Navbar } from '@/components/navigation/navbar';
@@ -22,6 +22,10 @@ import {
   ArrowRight,
   ShieldCheck,
   ChevronRight,
+  ChevronLeft,
+  Search,
+  Filter,
+  RotateCcw,
   X,
 } from 'lucide-react';
 
@@ -29,22 +33,50 @@ export default function HistoryPage() {
   const { getToken, orgId, isLoaded } = useAuth();
   const activeOrg = useRef(orgId);
   activeOrg.current = orgId;
+  const inspectSeq = useRef(0);
+  const activeContext = useRef({ orgId });
+  if (activeContext.current.orgId !== orgId) {
+    activeContext.current = { orgId };
+    inspectSeq.current++;
+  }
   const [error, setError] = useState<string | null>(null);
+  const [inspectError, setInspectError] = useState<string | null>(null);
   const [executions, setExecutions] = useState<ExecutionListItemDto[]>([]);
   const [usage, setUsage] = useState<OrgUsageReport | null>(null);
   const [loading, setLoading] = useState(true);
+  const [executionLoadFailed, setExecutionLoadFailed] = useState(false);
   const [selectedExecution, setSelectedExecution] = useState<WorkflowExecution | null>(null);
   const [loadingDetail, setLoadingDetail] = useState(false);
+  const [inspectingId, setInspectingId] = useState<string | null>(null);
+  const [statusFilter, setStatusFilter] = useState<'ALL' | 'COMPLETED' | 'FAILED'>('ALL');
+  const [modeFilter, setModeFilter] = useState<'ALL' | 'SIMULATION' | 'LIVE'>('ALL');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 10;
+
+  const closeExecutionDetail = useCallback(() => {
+    inspectSeq.current++;
+    setSelectedExecution(null);
+    setLoadingDetail(false);
+    setInspectingId(null);
+  }, []);
 
   useEffect(() => {
     if (!isLoaded) return;
     let cancelled = false;
     setExecutions([]);
     setUsage(null);
-    setSelectedExecution(null);
+    closeExecutionDetail();
+    setCurrentPage(1);
+    setSearchQuery('');
+    setStatusFilter('ALL');
+    setModeFilter('ALL');
     setError(null);
+    setInspectError(null);
     setLoading(true);
+    setExecutionLoadFailed(false);
     if (!orgId) {
+      setExecutionLoadFailed(true);
       setError('Entre e selecione uma organização para consultar o histórico.');
       setLoading(false);
       return;
@@ -52,45 +84,112 @@ export default function HistoryPage() {
     async function loadData() {
       try {
         const token = await getToken();
-        const [execList, usageReport] = await Promise.all([
+        if (cancelled) return;
+        const [execList, usageReport] = await Promise.allSettled([
           ApiClient.listExecutions(token), ApiClient.getUsage(token),
         ]);
         if (cancelled) return;
-        setExecutions(execList);
-        setUsage(usageReport);
-      } catch {
-        if (!cancelled) setError('Não foi possível carregar o histórico e o consumo.');
+        const errors: string[] = [];
+        if (execList.status === 'fulfilled') {
+          setExecutions(execList.value);
+          setExecutionLoadFailed(false);
+        } else {
+          setExecutions([]);
+          setExecutionLoadFailed(true);
+          errors.push('Histórico indisponível.');
+        }
+        if (usageReport.status === 'fulfilled') setUsage(usageReport.value);
+        else {
+          setUsage(null);
+          errors.push('Consumo indisponível.');
+        }
+        setError(errors.length ? errors.join(' ') : null);
+      } catch (err: unknown) {
+        if (!cancelled) {
+          setExecutionLoadFailed(true);
+          setUsage(null);
+          setError(err instanceof Error ? err.message : 'Não foi possível carregar o histórico e o consumo.');
+        }
       } finally {
         if (!cancelled) setLoading(false);
       }
     }
     loadData();
-    return () => { cancelled = true; };
-  }, [isLoaded, orgId, getToken]);
+    return () => { cancelled = true; inspectSeq.current++; };
+  }, [isLoaded, orgId, getToken, closeExecutionDetail]);
 
   useEffect(() => {
     if (!selectedExecution) return;
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
-        setSelectedExecution(null);
+        closeExecutionDetail();
       }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [selectedExecution]);
+  }, [selectedExecution, closeExecutionDetail]);
 
   const handleInspect = async (id: string) => {
+    const context = activeContext.current;
+    const seq = ++inspectSeq.current;
+    setInspectingId(id);
     setLoadingDetail(true);
     setSelectedExecution(null);
+    setInspectError(null);
     try {
-      const detail = await ApiClient.getExecution(id, await getToken());
-      if (activeOrg.current !== orgId) return;
+      const token = await getToken();
+      if (activeContext.current !== context || activeOrg.current !== orgId || seq !== inspectSeq.current) return;
+      const detail = await ApiClient.getExecution(id, token);
+      if (activeContext.current !== context || activeOrg.current !== orgId || seq !== inspectSeq.current) return;
       setSelectedExecution(detail);
-    } catch {
-      setError('Não foi possível consultar esta execução.');
+    } catch (err: unknown) {
+      if (activeContext.current === context && activeOrg.current === orgId && seq === inspectSeq.current) {
+        setInspectError(err instanceof Error ? err.message : 'Não foi possível consultar esta execução.');
+      }
     } finally {
-      setLoadingDetail(false);
+      if (activeContext.current === context && activeOrg.current === orgId && seq === inspectSeq.current) {
+        setLoadingDetail(false);
+        setInspectingId(null);
+      }
     }
+  };
+
+  const filteredExecutions = executions.filter((exec) => {
+    if (statusFilter !== 'ALL' && exec.status !== statusFilter) return false;
+    if (modeFilter !== 'ALL' && exec.mode !== modeFilter) return false;
+    if (searchQuery.trim()) {
+      const q = searchQuery.toLowerCase().trim();
+      const matchId = exec.id.toLowerCase().includes(q);
+      const matchName = (exec.workflowName || '').toLowerCase().includes(q);
+      const matchWfId = exec.workflowId.toLowerCase().includes(q);
+      const matchTrigger = (exec.triggeredBy || '').toLowerCase().includes(q);
+      if (!matchId && !matchName && !matchWfId && !matchTrigger) return false;
+    }
+    return true;
+  });
+
+  const modeCounts = {
+    ALL: executions.length,
+    SIMULATION: executions.filter((e) => e.mode === 'SIMULATION').length,
+    LIVE: executions.filter((e) => e.mode === 'LIVE').length,
+  };
+
+  const statusCounts = {
+    ALL: executions.length,
+    COMPLETED: executions.filter((e) => e.status === 'COMPLETED').length,
+    FAILED: executions.filter((e) => e.status === 'FAILED').length,
+  };
+
+  const isFiltered = statusFilter !== 'ALL' || modeFilter !== 'ALL' || searchQuery.trim().length > 0;
+  const totalPages = Math.max(1, Math.ceil(filteredExecutions.length / pageSize));
+  const safePage = Math.min(Math.max(1, currentPage), totalPages);
+  const paginatedExecutions = filteredExecutions.slice((safePage - 1) * pageSize, safePage * pageSize);
+
+  const handleResetFilters = () => {
+    setStatusFilter('ALL');
+    setModeFilter('ALL');
+    setSearchQuery('');
+    setCurrentPage(1);
   };
 
   return (
@@ -99,13 +198,30 @@ export default function HistoryPage() {
 
       <main className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 flex-1">
         {error && <p role="alert" className="mb-4 text-sm text-red-700">{error}</p>}
+        {inspectError && (
+          <div
+            role="alert"
+            aria-live="polite"
+            className="mb-4 p-4 rounded-xl border bg-red-50 text-red-800 border-red-200 text-xs font-semibold flex items-center justify-between"
+          >
+            <span>{inspectError}</span>
+            <button
+              type="button"
+              onClick={() => setInspectError(null)}
+              className="p-1 hover:bg-black/5 rounded transition text-slate-500 hover:text-slate-800"
+              aria-label="Fechar erro de inspeção"
+            >
+              ✕
+            </button>
+          </div>
+        )}
         {/* Cabeçalho */}
         <div className="pb-6 border-b border-slate-200 mb-8">
           <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
             Histórico de Execuções e Consumo
           </h1>
           <p className="text-sm text-slate-500 mt-1">
-            Acompanhe o registro de execuções das suas automações e a utilização dos recursos contratados.
+            Acompanhe o registro de execuções das suas automações e a utilização dos recursos.
           </p>
         </div>
 
@@ -120,19 +236,24 @@ export default function HistoryPage() {
             </div>
             <div className="flex items-baseline space-x-2">
               <span className="text-3xl font-extrabold text-slate-900">
-                {usage?.totalExecutions || 0}
+                {usage?.totalExecutions ?? '—'}
               </span>
               <span className="text-xs text-slate-400">
-                / {usage?.maxExecutionsQuota ?? '—'} ({usage?.usagePercentage || 0}%)
+                / {usage?.maxExecutionsQuota ?? '—'} ({usage?.usagePercentage ?? '—'}%)
               </span>
             </div>
             {/* Barra de Progresso */}
-            <div className="w-full bg-slate-100 rounded-full h-2 mt-4 overflow-hidden">
+            {usage && <div className="w-full bg-slate-100 rounded-full h-2 mt-4 overflow-hidden">
               <div
                 className="bg-indigo-600 h-2 rounded-full transition-all duration-500"
                 style={{ width: `${Math.min(100, usage?.usagePercentage || 0)}%` }}
               />
-            </div>
+            </div>}
+            <p className="text-[11px] text-slate-400 mt-2">
+              {usage?.totalSimulations !== undefined
+                ? `${usage.totalSimulations} simulações registradas (isentas de cota).`
+                : 'Cota mensal aplicável a execuções ativas.'}
+            </p>
           </div>
 
           <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
@@ -144,43 +265,127 @@ export default function HistoryPage() {
             </div>
             <div className="flex items-baseline space-x-2">
               <span className="text-3xl font-extrabold text-slate-900">
-                {usage?.estimatedTokensConsumed?.toLocaleString('pt-BR') || 0}
+                {usage?.estimatedTokensConsumed?.toLocaleString('pt-BR') ?? '—'}
               </span>
               <span className="text-xs text-slate-400">tokens</span>
             </div>
             <p className="text-[11px] text-slate-400 mt-4">
-              Baseado nas classificações e análises inteligentes processadas no mês.
+              {usage?.estimatedTokensConsumed == null
+                ? 'Consumo de tokens ainda não disponível.'
+                : 'Estimativa de consumo de tokens no período.'}
             </p>
           </div>
 
           <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
             <div className="flex items-center justify-between mb-2">
               <span className="text-xs font-bold uppercase tracking-wider text-slate-500">
-                Conformidade & Limites
+                Limite de Execuções
               </span>
               <ShieldCheck className="w-5 h-5 text-emerald-600" />
             </div>
             <div className="flex items-center space-x-2">
-              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800">
-                ✓ Quota em Dia
+              <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold ${!usage
+                ? 'bg-slate-100 text-slate-600' : usage.isLimitReached ? 'bg-red-100 text-red-800' : 'bg-emerald-100 text-emerald-800'}`}>
+                {!usage ? 'Consumo indisponível' : usage.isLimitReached ? 'Limite atingido' : 'Dentro do limite'}
               </span>
             </div>
             <p className="text-[11px] text-slate-400 mt-4">
-              Período ativo: <strong className="text-slate-600 font-mono">{usage?.billingPeriod || 'Corrente'}</strong>
+              Período ativo: <strong className="text-slate-600 font-mono">{usage?.billingPeriod ?? '—'}</strong>
             </p>
           </div>
         </div>
 
-        {/* Tabela de Histórico de Execuções */}
+        {/* Tabela de Histórico de Execuções com Filtros e Paginação */}
         <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-          <div className="p-5 border-b border-slate-100 flex items-center justify-between">
+          <div className="p-5 border-b border-slate-100 flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div className="flex items-center space-x-2">
               <Clock className="w-4 h-4 text-indigo-600" />
               <h2 className="text-base font-bold text-slate-900">Execuções Recentes</h2>
+              <span className="text-xs text-slate-400 font-medium">
+                ({filteredExecutions.length}{isFiltered ? ` de ${executions.length}` : ''})
+              </span>
             </div>
-            <span className="text-xs text-slate-400 font-medium">
-              {executions.length} execuções registradas
-            </span>
+
+            {/* Controles de Filtro e Busca */}
+            <div className="flex flex-wrap items-center gap-2">
+              {/* Campo de Busca */}
+              <div className="relative">
+                <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+                <input
+                  type="search"
+                  placeholder="Buscar por nome, ID ou autor..."
+                  value={searchQuery}
+                  onChange={(e) => {
+                    setSearchQuery(e.target.value);
+                    setCurrentPage(1);
+                  }}
+                  className="pl-8 pr-3 py-1.5 text-xs border border-slate-200 rounded-lg w-48 sm:w-60 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                />
+              </div>
+
+              {/* Seletor de Modo */}
+              <div className="flex items-center bg-slate-100 p-0.5 rounded-lg text-xs">
+                <button
+                  type="button"
+                  onClick={() => { setModeFilter('ALL'); setCurrentPage(1); }}
+                  className={`px-2.5 py-1 rounded-md font-medium transition ${modeFilter === 'ALL' ? 'bg-white text-slate-900 shadow-sm font-semibold' : 'text-slate-500 hover:text-slate-800'}`}
+                >
+                  Todos ({modeCounts.ALL})
+                </button>
+                <button
+                  type="button"
+                  onClick={() => { setModeFilter('SIMULATION'); setCurrentPage(1); }}
+                  className={`px-2.5 py-1 rounded-md font-medium transition ${modeFilter === 'SIMULATION' ? 'bg-white text-indigo-600 shadow-sm font-semibold' : 'text-slate-500 hover:text-slate-800'}`}
+                >
+                  Simulação ({modeCounts.SIMULATION})
+                </button>
+                <button
+                  type="button"
+                  onClick={() => { setModeFilter('LIVE'); setCurrentPage(1); }}
+                  className={`px-2.5 py-1 rounded-md font-medium transition ${modeFilter === 'LIVE' ? 'bg-white text-emerald-600 shadow-sm font-semibold' : 'text-slate-500 hover:text-slate-800'}`}
+                >
+                  Live ({modeCounts.LIVE})
+                </button>
+              </div>
+
+              {/* Seletor de Status */}
+              <div className="flex items-center bg-slate-100 p-0.5 rounded-lg text-xs">
+                <button
+                  type="button"
+                  onClick={() => { setStatusFilter('ALL'); setCurrentPage(1); }}
+                  className={`px-2 py-1 rounded-md font-medium transition ${statusFilter === 'ALL' ? 'bg-white text-slate-900 shadow-sm font-semibold' : 'text-slate-500 hover:text-slate-800'}`}
+                >
+                  Status: Todos
+                </button>
+                <button
+                  type="button"
+                  onClick={() => { setStatusFilter('COMPLETED'); setCurrentPage(1); }}
+                  className={`px-2 py-1 rounded-md font-medium transition ${statusFilter === 'COMPLETED' ? 'bg-white text-emerald-700 shadow-sm font-semibold' : 'text-slate-500 hover:text-slate-800'}`}
+                >
+                  Sucesso ({statusCounts.COMPLETED})
+                </button>
+                <button
+                  type="button"
+                  onClick={() => { setStatusFilter('FAILED'); setCurrentPage(1); }}
+                  className={`px-2 py-1 rounded-md font-medium transition ${statusFilter === 'FAILED' ? 'bg-white text-red-700 shadow-sm font-semibold' : 'text-slate-500 hover:text-slate-800'}`}
+                >
+                  Falha ({statusCounts.FAILED})
+                </button>
+              </div>
+
+              {/* Botão de Limpar Filtros */}
+              {isFiltered && (
+                <button
+                  type="button"
+                  onClick={handleResetFilters}
+                  className="inline-flex items-center space-x-1 px-2 py-1 text-xs text-slate-500 hover:text-slate-800 hover:bg-slate-100 rounded-lg transition"
+                  title="Limpar todos os filtros"
+                >
+                  <RotateCcw className="w-3 h-3" />
+                  <span>Limpar</span>
+                </button>
+              )}
+            </div>
           </div>
 
           {loading ? (
@@ -188,9 +393,25 @@ export default function HistoryPage() {
               <div className="w-8 h-8 border-4 border-indigo-600 border-t-transparent rounded-full animate-spin mx-auto mb-3" />
               <p className="text-sm text-slate-500">Carregando histórico...</p>
             </div>
+          ) : executionLoadFailed ? (
+            <div className="py-16 text-center text-red-700">
+              Não foi possível carregar as execuções.
+            </div>
           ) : executions.length === 0 ? (
             <div className="py-16 text-center text-slate-500">
               Nenhuma execução registrada até o momento.
+            </div>
+          ) : filteredExecutions.length === 0 ? (
+            <div className="py-16 text-center text-slate-500 space-y-3">
+              <p className="text-sm">Nenhuma execução encontrada para os filtros selecionados.</p>
+              <button
+                type="button"
+                onClick={handleResetFilters}
+                className="inline-flex items-center space-x-1.5 px-3 py-1.5 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 text-xs font-semibold rounded-lg transition"
+              >
+                <RotateCcw className="w-3.5 h-3.5" />
+                <span>Restaurar visualização completa</span>
+              </button>
             </div>
           ) : (
             <div className="overflow-x-auto">
@@ -221,7 +442,7 @@ export default function HistoryPage() {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100 bg-white">
-                  {executions.map((exec) => (
+                  {paginatedExecutions.map((exec) => (
                     <tr key={exec.id} className="hover:bg-slate-50/80 transition">
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="text-xs font-bold text-slate-900">
@@ -232,7 +453,7 @@ export default function HistoryPage() {
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <span className="px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-100 text-slate-700 font-mono">
+                        <span className={`px-2 py-0.5 rounded text-[10px] font-semibold font-mono ${exec.mode === 'SIMULATION' ? 'bg-indigo-50 text-indigo-700 border border-indigo-200' : 'bg-emerald-50 text-emerald-700 border border-emerald-200'}`}>
                           {exec.mode}
                         </span>
                       </td>
@@ -264,9 +485,10 @@ export default function HistoryPage() {
                       <td className="px-6 py-4 whitespace-nowrap text-right">
                         <button
                           onClick={() => handleInspect(exec.id)}
-                          className="inline-flex items-center space-x-1 px-3 py-1.5 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 text-xs font-semibold rounded-lg transition"
+                          disabled={loadingDetail && inspectingId === exec.id}
+                          className="inline-flex items-center space-x-1 px-3 py-1.5 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 text-xs font-semibold rounded-lg transition disabled:opacity-50"
                         >
-                          <span>Inspecionar</span>
+                          <span>{loadingDetail && inspectingId === exec.id ? 'Carregando…' : 'Inspecionar'}</span>
                           <ChevronRight className="w-3 h-3" />
                         </button>
                       </td>
@@ -274,6 +496,38 @@ export default function HistoryPage() {
                   ))}
                 </tbody>
               </table>
+
+              {/* Paginação */}
+              <div className="px-6 py-3 border-t border-slate-100 flex items-center justify-between bg-slate-50/50 text-xs text-slate-500">
+                <span>
+                  Mostrando {filteredExecutions.length === 0 ? 0 : (safePage - 1) * pageSize + 1} a {Math.min(safePage * pageSize, filteredExecutions.length)} de {filteredExecutions.length} execuções
+                </span>
+                <div className="flex items-center space-x-2">
+                  <button
+                    type="button"
+                    onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+                    disabled={safePage <= 1}
+                    className="inline-flex items-center space-x-1 px-2.5 py-1 rounded border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 disabled:opacity-40 disabled:pointer-events-none transition"
+                    aria-label="Página anterior"
+                  >
+                    <ChevronLeft className="w-3.5 h-3.5" />
+                    <span>Anterior</span>
+                  </button>
+                  <span className="font-medium text-slate-700 px-1">
+                    Página {safePage} de {totalPages}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
+                    disabled={safePage >= totalPages}
+                    className="inline-flex items-center space-x-1 px-2.5 py-1 rounded border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 disabled:opacity-40 disabled:pointer-events-none transition"
+                    aria-label="Próxima página"
+                  >
+                    <span>Próxima</span>
+                    <ChevronRight className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+              </div>
             </div>
           )}
         </div>
@@ -297,7 +551,7 @@ export default function HistoryPage() {
                   </p>
                 </div>
                 <button
-                  onClick={() => setSelectedExecution(null)}
+                  onClick={closeExecutionDetail}
                   className="p-2 text-slate-400 hover:text-slate-600 rounded-lg hover:bg-slate-100 transition"
                   aria-label="Fechar detalhes da execução"
                 >
@@ -349,7 +603,7 @@ export default function HistoryPage() {
 
               <div className="pt-4 border-t border-slate-100 flex justify-end">
                 <button
-                  onClick={() => setSelectedExecution(null)}
+                  onClick={closeExecutionDetail}
                   className="px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-100 rounded-lg transition"
                 >
                   Fechar

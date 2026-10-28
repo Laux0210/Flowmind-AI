@@ -1,0 +1,132 @@
+
+> flowmind-ai@0.1.0 test:regression
+> node --experimental-vm-modules --test tests/regression/security.test.mjs tests/regression/simulation.test.mjs tests/regression/generation-client.test.mjs tests/regression/persistence.test.mjs tests/regression/toolchain.test.mjs tests/regression/ui-workflow.test.mjs tests/regression/triggers.test.mjs tests/regression/executions.test.mjs tests/regression/full-journey.test.mjs
+
+(node:13396) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:13396) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+✔ ExecutionsService: isolamento estrito entre organizações (SEC01 e SEC04) (249.2764ms)
+✔ ExecutionsService: sanitiza segredos e tokens nos dados gravados (21.7758ms)
+✔ UsageLimitsService: barra execução quando limite de quota mensal for atingido (77.2859ms)
+(node:11484) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:11484) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+✔ T14 — C01: Jornada completa com formulário, IA, registro e e-mail (Pedido Completo) (509.2497ms)
+✔ T14 — C02: Preservação de ambiguidades em dúvidas gerais sem pontuação comercial (17.9505ms)
+✔ T14 — C03: Interrupção imediata antes de efeitos colaterais com payload incompleto (102.9068ms)
+✔ T14 — Matriz de Isolamento Multi-tenant (SEC01–SEC04, SEC09) (56.2553ms)
+✔ T14 — Segurança: Proteção contra SSRF e sanitização profunda de credenciais (16.629ms)
+✔ T14 — Presença estática de atributos de acessibilidade (não comprova WCAG) (2.1494ms)
+(node:27228) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:27228) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+✔ template gera rascunho compatível com o motor, sem modelo/tokens fictícios (293.5843ms)
+✔ gerador rejeita condição não interpretada em vez de criar score comercial (65.2954ms)
+✔ gerador aceita caso como substantivo e rejeita caso condicional (36.9959ms)
+✔ gerador sinaliza HTTP sem destino escolhido e nunca executa comandos (17.6478ms)
+✔ ApiClient rejeita todas as operações sem token, antes da rede (45.7699ms)
+✔ ApiClient propaga HTTP 401 sem inventar workflows ou geração (8.2999ms)
+✔ ApiClient propaga HTTP 404 sem inventar workflows ou geração (5.9813ms)
+✔ ApiClient propaga HTTP 500 sem inventar workflows ou geração (3.3892ms)
+✔ ApiClient envia Bearer real e PUT de atualização compatível com o controller (6.4538ms)
+✔ ApiClient envia POST correto para rotas de ciclo de vida (review, activate, deactivate) (3.6774ms)
+✔ ApiClient envia DELETE correto para exclusão de workflow e aceita HTTP 204 (6.0507ms)
+✔ OpenAiStructuredClient gera draft com JSON Schema estrito e trata recusa (refusal) (14.7362ms)
+✔ AiGeneratorService suporta cliente de IA customizado via injeção mantendo validação DAG (50.5562ms)
+(node:20456) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:20456) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+✔ CRUD consulta fonte persistente e isola operações entre organizações com adaptador fake (282.6006ms)
+✔ falha do banco não vira sucesso em memória em nenhuma operação (28.4086ms)
+✔ consulta não retorna cópia obsoleta depois de remoção na fonte (102.167ms)
+✔ edição de versão publicada fica bloqueada até contrato de novas revisões (19.9175ms)
+✔ exclusão de versão publicada fica bloqueada exigindo desativação prévia (59.6837ms)
+(node:8064) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:8064) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+✔ token sintético passa pela verificação do SDK e é rejeitado em test (256.0745ms)
+✔ token sintético passa pela verificação do SDK e é rejeitado em development (9.6011ms)
+✔ token sintético passa pela verificação do SDK e é rejeitado em production (3.7583ms)
+✔ utiliza os campos normalizados de toAuth (18.7986ms)
+✔ rejeita sessão sem userId (5.4905ms)
+✔ rejeita sessão sem sessionId (40.2967ms)
+✔ rejeita sessão sem orgId (5.2617ms)
+✔ erros e logs não revelam mensagem interna do provedor (16.7016ms)
+✔ ausência de chave e ausência de token falham antes de chamar SDK (22.2665ms)
+✔ chave pública exigida pelo SDK declarado também é obrigatória (6.0536ms)
+✔ guard rejeita cabeçalhos ausentes, duplicados ou com partes extras (12.9436ms)
+✔ guard usa somente a organização resolvida pelo serviço (15.9041ms)
+✔ exige APIs de sessão e membership e persistência, sem permissões por omissão (88.0552ms)
+✔ sessão vigente precisa pertencer ao usuário e ao identificador autenticado (6.4912ms)
+✔ sessão revogada ou expirada falha antes da sincronização (13.2031ms)
+✔ consulta membership pelo usuário e usa papel vigente em vez do papel antigo do token (4.2728ms)
+✔ membership ausente, alheia, sem papel ou com papel desconhecido não autoriza (48.5579ms)
+✔ organização confirmada no provedor é espelhada antes de conceder acesso (11.0864ms)
+✔ falhas de consulta ou upsert impedem acesso e ocultam detalhes internos (15.6243ms)
+✔ remoção do vínculo depois de uma requisição válida é verificada novamente (4.4341ms)
+(node:23404) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:23404) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+✔ C01 percorre a jornada com efeitos simulados e sem classificação comercial (425.9831ms)
+✔ C02: template com ambiguidades conserva sua interpolação na prévia (25.0154ms)
+✔ C03 falha no gatilho antes dos efeitos com email undefined (24.3344ms)
+✔ C03 falha no gatilho antes dos efeitos com email "" (24.7834ms)
+✔ C03 falha no gatilho antes dos efeitos com email "   " (39.4373ms)
+✔ C03 falha no gatilho antes dos efeitos com email "invalid" (17.6169ms)
+✔ C03 falha no gatilho antes dos efeitos com email 123 (14.0347ms)
+✔ campos distintos e aliases não preenchem dados obrigatórios ausentes (14.6706ms)
+✔ referência antiga falha explicitamente em vez de produzir valor vazio (15.7681ms)
+✔ DAG rejeita ciclos, gatilho divergente e nós desconectados (32.7492ms)
+✔ schema ausente ou de outra versão impede a simulação (17.6093ms)
+✔ executores de simulação rejeitam LIVE sem afirmar efeitos reais (3.871ms)
+✔ motor suporta ramificação e convergência (OR-Join), executando nó convergente (20.266ms)
+✔ interpolação resolve variáveis de internal_record para nós downstream e avalia starts_with (12.0859ms)
+✔ build compila contratos antes da API e da web (857.7975ms)
+✔ falha de um consumidor interrompe o pipeline e preserva código de saída (353.1631ms)
+✔ linter de conformidade e segurança valida arquivos e conclui com sucesso (150.7868ms)
+(node:21136) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:21136) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+✔ WebhooksService: dispara workflow PUBLISHED e deduplica chamadas idênticas via idempotencyKey (272.6318ms)
+✔ WebhooksService: bloqueia disparo de workflow em estado DRAFT (90.0573ms)
+✔ WebhooksService: valida assinatura timing-safe e rejeita token incorreto (24.2849ms)
+✔ WebhooksService: rejeita payload inválido ou chave de idempotência em branco (11.8385ms)
+✔ SchedulerService: valida cron com limites numéricos e rejeita valores fora da faixa (6.5783ms)
+✔ SchedulerService: valida timezone IANA e bloqueia execuções concorrentes simultâneas (70.6234ms)
+(node:21828) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:21828) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+✔ history: falha do consumo preserva a listagem que respondeu com sucesso (188.3607ms)
+✔ history: falha da listagem preserva consumo obtido e distingue erro de lista vazia (34.2081ms)
+✔ history: carregar contexto cancelado após getToken não dispara consultas (23.213ms)
+✔ history: resposta E1 atrasada não substitui seleção mais recente E2 (28.1404ms)
+✔ history: finally de uma seleção antiga não encerra loading da seleção atual (17.0772ms)
+✔ history: contexto Alpha→Beta→Alpha invalida a resposta da geração anterior (17.9674ms)
+✔ history: rejeição antiga não escreve erro na nova organização (22.3805ms)
+✔ history: fechar o modal invalida a inspeção pendente (15.0233ms)
+✔ history: troca de contexto durante getToken evita consultar recurso com sessão nova (13.9662ms)
+✔ history: erro da inspeção atual preserva a mensagem do servidor (20.0307ms)
+✔ editor: trocar contexto limpa isReviewing enquanto a operação anterior aguarda token (31.9899ms)
+✔ editor: trocar contexto limpa isPublishing enquanto a operação anterior aguarda token (20.3706ms)
+✔ editor: trocar contexto limpa isDeactivating enquanto a operação anterior aguarda token (20.609ms)
+✔ editor: feedback da simulação respeita status FAILED (17.7128ms)
+✔ editor: feedback da simulação respeita status COMPLETED (16.0533ms)
+✔ editor: handler de aplicar proposta bloqueia mutação enquanto revisão está pendente (23.9107ms)
+✔ editor: reviewWorkflow não aplica resposta de revisão local anterior (14.9437ms)
+✔ editor: reviewWorkflow não envia mutação após trocar contexto durante getToken (17.5735ms)
+✔ editor: activateWorkflow não aplica resposta de revisão local anterior (22.8527ms)
+✔ editor: activateWorkflow não envia mutação após trocar contexto durante getToken (16.3155ms)
+✔ ApiClient sanitiza URL e codifica identificadores com caracteres especiais (70.6455ms)
+✔ ApiClient propaga mensagens de erro estruturadas da API em caso de 400 ou 403 (3.8744ms)
+✔ Mapeamento dos 6 nós do catálogo do MVP para o canvas XYFlow (6.4387ms)
+✔ Validação de simulação de workflow com dados sintéticos no cliente (19.5046ms)
+✔ ApiClient serializa requisições de simulação e ciclo de vida com integridade de headers e payload (2.7751ms)
+✔ Invariantes estáticas de prevenção de condições de corrida e feedback acessível no frontend (1.2557ms)
+ℹ tests 96
+ℹ suites 0
+ℹ pass 96
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2062.5177

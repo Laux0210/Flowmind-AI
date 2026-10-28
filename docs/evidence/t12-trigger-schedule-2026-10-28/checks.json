@@ -1,0 +1,40 @@
+{
+  "checkedAt": "2026-10-28T23:38:22.597Z",
+  "inputs": 179,
+  "checks": [
+    {
+      "command": "lint",
+      "exit": 0
+    },
+    {
+      "command": "typecheck",
+      "exit": 0
+    },
+    {
+      "command": "test",
+      "exit": 0
+    },
+    {
+      "command": "test:regression",
+      "exit": 0
+    },
+    {
+      "command": "prisma:validate",
+      "exit": 0
+    },
+    {
+      "command": "build",
+      "exit": 0
+    },
+    {
+      "command": "check:api-artifact",
+      "exit": 0
+    },
+    {
+      "command": "check:operation",
+      "exit": 0
+    }
+  ],
+  "changed": [],
+  "realIntegration": false
+}

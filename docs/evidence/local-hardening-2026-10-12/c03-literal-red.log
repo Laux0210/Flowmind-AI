@@ -1,0 +1,47 @@
+
+> @flowmind/api@0.1.0 test
+> node --experimental-vm-modules ../../node_modules/jest/bin/jest.js --runInBand --runTestsByPath src/engine/workflow-validation.spec.ts
+
+[Nest] 29348  - 12/10/2026, 13:50:10     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Fixture' [ID: wf_c03]
+[Nest] 29348  - 12/10/2026, 13:50:10     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Fixture' [ID: wf_c03]
+[Nest] 29348  - 12/10/2026, 13:50:10     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Fixture' [ID: wf_c03]
+[Nest] 29348  - 12/10/2026, 13:50:10     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Fixture' [ID: wf_c03]
+[Nest] 29348  - 12/10/2026, 13:50:10     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Fixture' [ID: wf_c03]
+
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151002: [0mUsing hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+[Nest] 29348  - 12/10/2026, 13:50:10   ERROR [WorkflowEngineService] Falha no nó mail (send_email): Destinatário de e-mail ausente ou com formato inválido.
+[Nest] 29348  - 12/10/2026, 13:50:10   ERROR [WorkflowEngineService] Falha no nó form (trigger_form): Campo obrigatório ausente na submissão do formulário: email
+[Nest] 29348  - 12/10/2026, 13:50:10   ERROR [WorkflowEngineService] Falha no nó form (trigger_form): E-mail inválido na submissão do formulário
+(node:29348) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+FAIL src/engine/workflow-validation.spec.ts
+  ● C03 — validação de definição antes da simulação › destinatário literal inválido rejeita a definição antes de executar nós
+
+    expect(received).rejects.toThrow()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"executionId": "sim_1791823810423_l7d7s1", "nodeResults": [{"completedAt": "2026-10-12T16:50:10.424Z", "inputs": {"requiredFields": ["name", "message"]}, "nodeId": "form", "nodeType": "trigger_form", "outputs": {"contact_email": "pessoa@example.test", "contact_name": "Pessoa", "message_text": "Fixture", "submission_id": "sub_1791823810424_pr6r2", "submitted_at": "2026-10-12T16:50:10.424Z"}, "startedAt": "2026-10-12T16:50:10.423Z", "status": "SUCCESS"}, {"completedAt": "2026-10-12T16:50:10.424Z", "inputs": {"fieldMappings": {"name": "Pessoa"}}, "nodeId": "record", "nodeType": "internal_record", "outputs": {"ai_intent": undefined, "ai_summary": undefined, "ambiguities": undefined, "email": undefined, "name": "Pessoa", "raw_message": undefined, "record_id": "sim_record_1791823810424_n9ojk", "simulated_at": "2026-10-12T16:50:10.424Z", "status": "simulated"}, "startedAt": "2026-10-12T16:50:10.424Z", "status": "SUCCESS"}, {"completedAt": "2026-10-12T16:50:10.424Z", "error": {"code": "NODE_EXECUTION_FAILED", "message": "Destinatário de e-mail ausente ou com formato inválido."}, "inputs": {"bodyTemplate": "Fixture", "subject": "Fixture", "to": "destino-invalido"}, "nodeId": "mail", "nodeType": "send_email", "startedAt": "2026-10-12T16:50:10.424Z", "status": "FAILED"}], "status": "FAILED", "totalDurationMs": 1}
+
+      43 |     const record = jest.spyOn(NodeExecutors, 'executeInternalRecord');
+      44 |     const mail = jest.spyOn(NodeExecutors, 'executeSendEmail');
+    > 45 |     await expect(new WorkflowEngineService().simulate(definition, {
+         |           ^
+      46 |       name: 'Pessoa', email: 'pessoa@example.test', message: 'Fixture',
+      47 |     })).rejects.toThrow(/Destinatário/);
+      48 |     expect(form).not.toHaveBeenCalled(); expect(record).not.toHaveBeenCalled(); expect(mail).not.toHaveBeenCalled();
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at Object.<anonymous> (src/engine/workflow-validation.spec.ts:45:11)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 4 passed, 5 total
+Snapshots:   0 total
+Time:        2.29 s
+Ran all test suites within paths "src/engine/workflow-validation.spec.ts".
+npm error Lifecycle script `test` failed with error:
+npm error code 1
+npm error path C:\Users\jv883\Documents\Codex\FlowMind-AI\Flowmind-AI\apps\api
+npm error workspace @flowmind/api@0.1.0
+npm error location C:\Users\jv883\Documents\Codex\FlowMind-AI\Flowmind-AI\apps\api
+npm error command failed
+npm error command C:\Windows\system32\cmd.exe /d /s /c node --experimental-vm-modules ../../node_modules/jest/bin/jest.js --runInBand --runTestsByPath src/engine/workflow-validation.spec.ts

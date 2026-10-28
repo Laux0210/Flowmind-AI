@@ -1,0 +1,362 @@
+
+> @flowmind/api@0.1.0 test
+> node --experimental-vm-modules ../../node_modules/jest/bin/jest.js --runInBand --runTestsByPath src/executions/executions.hardening.spec.ts src/auth/workflow-container.spec.ts src/health/health.controller.spec.ts
+
+
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151002: [0mUsing hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151002: [0mUsing hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+(node:25096) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151002: [0mUsing hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151002: [0mUsing hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151002: [0mUsing hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151002: [0mUsing hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+FAIL src/auth/workflow-container.spec.ts
+  ● T06 — container Nest e requisições em memória › histórico e consumo usam prefixo único e sessão da organização ativa
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 200
+    Received: 404
+
+      185 |     for (const org of ['alpha', 'beta']) {
+      186 |       const list = await request('GET', '/executions', `${org}:member`);
+    > 187 |       expect(list.status).toBe(200);
+          |                           ^
+      188 |       expect(list.body.data.map((row: any) => row.id)).toEqual([`exec_${org}`]);
+      189 |       const detail = await request('GET', `/executions/exec_${org}`, `${org}:member`);
+      190 |       expect(detail.status).toBe(200); expect(detail.body.data.orgId).toBe(`org_${org}`);
+
+      at Object.<anonymous> (src/auth/workflow-container.spec.ts:187:27)
+
+  ● T06 — container Nest e requisições em memória › histórico nega acesso cruzado e exige autenticação
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 401
+    Received: 404
+
+      196 |
+      197 |   it('histórico nega acesso cruzado e exige autenticação', async () => {
+    > 198 |     expect((await request('GET', '/executions')).status).toBe(401);
+          |                                                          ^
+      199 |     expect((await request('GET', '/executions/exec_beta', 'alpha:member')).status).toBe(404);
+      200 |     expect((await request('GET', '/executions/exec_alpha', 'beta:member')).status).toBe(404);
+      201 |   });
+
+      at Object.<anonymous> (src/auth/workflow-container.spec.ts:198:58)
+
+  ● T06 — container Nest e requisições em memória › indisponibilidade de /executions responde 503 sem detalhes internos
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 503
+    Received: 404
+
+      205 |       prisma.workflowExecution[method as keyof typeof prisma.workflowExecution].mockRejectedValue(new Error('private_db_fixture'));
+      206 |       const result = await request('GET', path, 'alpha:member');
+    > 207 |       expect(result.status).toBe(503); expect(JSON.stringify(result.body)).not.toContain('private_db_fixture');
+          |                             ^
+      208 |     },
+      209 |   );
+      210 |
+
+      at src/auth/workflow-container.spec.ts:207:29
+
+  ● T06 — container Nest e requisições em memória › indisponibilidade de /executions/exec_alpha responde 503 sem detalhes internos
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 503
+    Received: 404
+
+      205 |       prisma.workflowExecution[method as keyof typeof prisma.workflowExecution].mockRejectedValue(new Error('private_db_fixture'));
+      206 |       const result = await request('GET', path, 'alpha:member');
+    > 207 |       expect(result.status).toBe(503); expect(JSON.stringify(result.body)).not.toContain('private_db_fixture');
+          |                             ^
+      208 |     },
+      209 |   );
+      210 |
+
+      at src/auth/workflow-container.spec.ts:207:29
+
+  ● T06 — container Nest e requisições em memória › indisponibilidade de /executions/usage responde 503 sem detalhes internos
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 503
+    Received: 404
+
+      205 |       prisma.workflowExecution[method as keyof typeof prisma.workflowExecution].mockRejectedValue(new Error('private_db_fixture'));
+      206 |       const result = await request('GET', path, 'alpha:member');
+    > 207 |       expect(result.status).toBe(503); expect(JSON.stringify(result.body)).not.toContain('private_db_fixture');
+          |                             ^
+      208 |     },
+      209 |   );
+      210 |
+
+      at src/auth/workflow-container.spec.ts:207:29
+
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151002: [0mUsing hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+FAIL src/executions/executions.hardening.spec.ts
+  ● T13 — persistência, isolamento e proteção de dados (storage sintético) › nega registro org_alpha/wf_beta antes de consumir ou gravar
+
+    expect(received).rejects.toThrow()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"completedAt": "2026-10-12T16:37:54.242Z", "id": "exec_1791823074242_ubo34", "mode": "SIMULATION", "nodeResults": [], "orgId": "org_alpha", "startedAt": "2026-10-12T16:37:54.242Z", "status": "COMPLETED", "triggeredBy": "fixture_user", "workflowId": "wf_beta", "workflowVersion": 1}
+
+      47 |   it.each([['org_alpha', 'wf_beta'], ['org_beta', 'wf_alpha'], ['org_alpha', 'missing']])(
+      48 |     'nega registro %s/%s antes de consumir ou gravar', async (org, workflow) => {
+    > 49 |       await expect(record(service, org, workflow)).rejects.toThrow(NotFoundException);
+         |             ^
+      50 |       expect(prisma.workflowExecution.count).not.toHaveBeenCalled();
+      51 |       expect(prisma.workflowExecution.create).not.toHaveBeenCalled();
+      52 |     },
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/executions/executions.hardening.spec.ts:49:13
+
+  ● T13 — persistência, isolamento e proteção de dados (storage sintético) › nega registro org_beta/wf_alpha antes de consumir ou gravar
+
+    expect(received).rejects.toThrow()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"completedAt": "2026-10-12T16:37:54.246Z", "id": "exec_1791823074246_26t3d", "mode": "SIMULATION", "nodeResults": [], "orgId": "org_beta", "startedAt": "2026-10-12T16:37:54.246Z", "status": "COMPLETED", "triggeredBy": "fixture_user", "workflowId": "wf_alpha", "workflowVersion": 1}
+
+      47 |   it.each([['org_alpha', 'wf_beta'], ['org_beta', 'wf_alpha'], ['org_alpha', 'missing']])(
+      48 |     'nega registro %s/%s antes de consumir ou gravar', async (org, workflow) => {
+    > 49 |       await expect(record(service, org, workflow)).rejects.toThrow(NotFoundException);
+         |             ^
+      50 |       expect(prisma.workflowExecution.count).not.toHaveBeenCalled();
+      51 |       expect(prisma.workflowExecution.create).not.toHaveBeenCalled();
+      52 |     },
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/executions/executions.hardening.spec.ts:49:13
+
+  ● T13 — persistência, isolamento e proteção de dados (storage sintético) › nega registro org_alpha/missing antes de consumir ou gravar
+
+    expect(received).rejects.toThrow()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"completedAt": "2026-10-12T16:37:54.247Z", "id": "exec_1791823074247_8jv1z", "mode": "SIMULATION", "nodeResults": [], "orgId": "org_alpha", "startedAt": "2026-10-12T16:37:54.247Z", "status": "COMPLETED", "triggeredBy": "fixture_user", "workflowId": "missing", "workflowVersion": 1}
+
+      47 |   it.each([['org_alpha', 'wf_beta'], ['org_beta', 'wf_alpha'], ['org_alpha', 'missing']])(
+      48 |     'nega registro %s/%s antes de consumir ou gravar', async (org, workflow) => {
+    > 49 |       await expect(record(service, org, workflow)).rejects.toThrow(NotFoundException);
+         |             ^
+      50 |       expect(prisma.workflowExecution.count).not.toHaveBeenCalled();
+      51 |       expect(prisma.workflowExecution.create).not.toHaveBeenCalled();
+      52 |     },
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/executions/executions.hardening.spec.ts:49:13
+
+  ● T13 — persistência, isolamento e proteção de dados (storage sintético) › indisponibilidade na consulta do workflow nega registro sem consumir
+
+    expect(received).rejects.toThrow()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"completedAt": "2026-10-12T16:37:54.247Z", "id": "exec_1791823074247_9da7p", "mode": "SIMULATION", "nodeResults": [], "orgId": "org_alpha", "startedAt": "2026-10-12T16:37:54.247Z", "status": "COMPLETED", "triggeredBy": "fixture_user", "workflowId": "wf_alpha", "workflowVersion": 1}
+
+      55 |   it('indisponibilidade na consulta do workflow nega registro sem consumir', async () => {
+      56 |     prisma.workflow.findFirst.mockRejectedValue(new Error('private_db_fixture'));
+    > 57 |     await expect(record(service)).rejects.toThrow(ServiceUnavailableException);
+         |           ^
+      58 |     expect(prisma.workflowExecution.count).not.toHaveBeenCalled();
+      59 |     expect(prisma.workflowExecution.create).not.toHaveBeenCalled();
+      60 |   });
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at Object.<anonymous> (src/executions/executions.hardening.spec.ts:57:11)
+
+  ● T13 — persistência, isolamento e proteção de dados (storage sintético) › falha de gravação retorna indisponibilidade e não deixa consumo fantasma
+
+    expect(received).rejects.toThrow()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"completedAt": "2026-10-12T16:37:54.248Z", "id": "exec_1791823074248_68hkl", "mode": "SIMULATION", "nodeResults": [], "orgId": "org_alpha", "startedAt": "2026-10-12T16:37:54.248Z", "status": "COMPLETED", "triggeredBy": "fixture_user", "workflowId": "wf_alpha", "workflowVersion": 1}
+
+      62 |   it('falha de gravação retorna indisponibilidade e não deixa consumo fantasma', async () => {
+      63 |     prisma.workflowExecution.create.mockRejectedValue(new Error('private_db_fixture'));
+    > 64 |     await expect(record(service)).rejects.toThrow(ServiceUnavailableException);
+         |           ^
+      65 |     expect((await usage.getOrgUsageReport('org_alpha')).totalExecutions).toBe(0);
+      66 |     expect(await service.listExecutions('org_alpha')).toEqual([]);
+      67 |   });
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at Object.<anonymous> (src/executions/executions.hardening.spec.ts:64:11)
+
+  ● T13 — persistência, isolamento e proteção de dados (storage sintético) › falha em findMany retorna indisponibilidade e não usa memória
+
+    expect(received).rejects.toThrow()
+
+    Received promise resolved instead of rejected
+    Resolved to value: []
+
+      71 |     prisma.workflowExecution[method].mockRejectedValue(new Error('private_db_fixture'));
+      72 |     const operation = method === 'findMany' ? service.listExecutions('org_alpha') : service.getExecutionById('org_alpha', execution.id);
+    > 73 |     await expect(operation).rejects.toThrow(ServiceUnavailableException);
+         |           ^
+      74 |   });
+      75 |
+      76 |   it('falha de contagem nega novo registro e relatório, sem gravar', async () => {
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/executions/executions.hardening.spec.ts:73:11
+
+  ● T13 — persistência, isolamento e proteção de dados (storage sintético) › falha em findFirst retorna indisponibilidade e não usa memória
+
+    expect(received).rejects.toThrow(expected)
+
+    Expected constructor: ServiceUnavailableException
+    Received constructor: NotFoundException
+
+    Received message: "Execução não encontrada para a organização ativa."
+
+          192 |
+          193 |       if (!found) {
+        > 194 |         throw new NotFoundException({
+              |               ^
+          195 |           code: 'EXECUTION_NOT_FOUND',
+          196 |           message: 'Execução não encontrada para a organização ativa.',
+          197 |         });
+
+      at ExecutionsService.getExecutionById (src/executions/executions.service.ts:194:15)
+      at src/executions/executions.hardening.spec.ts:73:5
+      at Object.toThrow (../../node_modules/expect/build/index.js:2155:20)
+      at src/executions/executions.hardening.spec.ts:73:37
+
+  ● T13 — persistência, isolamento e proteção de dados (storage sintético) › falha de contagem nega novo registro e relatório, sem gravar
+
+    expect(received).rejects.toThrow()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"completedAt": "2026-10-12T16:37:54.251Z", "id": "exec_1791823074251_fzitt", "mode": "SIMULATION", "nodeResults": [], "orgId": "org_alpha", "startedAt": "2026-10-12T16:37:54.251Z", "status": "COMPLETED", "triggeredBy": "fixture_user", "workflowId": "wf_alpha", "workflowVersion": 1}
+
+      76 |   it('falha de contagem nega novo registro e relatório, sem gravar', async () => {
+      77 |     prisma.workflowExecution.count.mockRejectedValue(new Error('private_db_fixture'));
+    > 78 |     await expect(record(service)).rejects.toThrow(ServiceUnavailableException);
+         |           ^
+      79 |     await expect(usage.getOrgUsageReport('org_alpha')).rejects.toThrow(ServiceUnavailableException);
+      80 |     expect(prisma.workflowExecution.create).not.toHaveBeenCalled();
+      81 |   });
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at Object.<anonymous> (src/executions/executions.hardening.spec.ts:78:11)
+
+  ● T13 — persistência, isolamento e proteção de dados (storage sintético) › uma associação inconsistente não revela nome nem detalhe de workflow alheio
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 15
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "completedAt": "2026-10-12T16:37:54.251Z",
+    +     "durationMs": 0,
+    +     "id": "exec_corrupt",
+    +     "mode": undefined,
+    +     "nodeCount": 0,
+    +     "startedAt": "2026-10-12T16:37:54.251Z",
+    +     "status": undefined,
+    +     "triggeredBy": undefined,
+    +     "workflowId": "wf_beta",
+    +     "workflowName": "Beta",
+    +     "workflowVersion": undefined,
+    +   },
+    + ]
+
+      84 |     executions.push({ id: 'exec_corrupt', orgId: 'org_alpha', workflowId: 'wf_beta', workflow: workflows[1],
+      85 |       startedAt: new Date(), completedAt: new Date(), nodeResults: [] });
+    > 86 |     expect(await service.listExecutions('org_alpha')).toEqual([]);
+         |                                                       ^
+      87 |     await expect(service.getExecutionById('org_alpha', 'exec_corrupt')).rejects.toThrow(NotFoundException);
+      88 |   });
+      89 |
+
+      at Object.<anonymous> (src/executions/executions.hardening.spec.ts:86:55)
+
+  ● T13 — persistência, isolamento e proteção de dados (storage sintético) › duas reservas simultâneas na mesma instância não autorizam a última vaga duas vezes
+
+    expect(received).toHaveLength(expected)
+
+    Expected length: 1
+    Received length: 2
+    Received array:  [{"status": "fulfilled", "value": undefined}, {"status": "fulfilled", "value": undefined}]
+
+      93 |       usage.checkAndConsumeExecution('org_alpha'), usage.checkAndConsumeExecution('org_alpha'),
+      94 |     ]);
+    > 95 |     expect(results.filter((result) => result.status === 'fulfilled')).toHaveLength(1);
+         |                                                                       ^
+      96 |     const failure = results.find((result) => result.status === 'rejected') as PromiseRejectedResult;
+      97 |     expect(failure.reason).toBeInstanceOf(BadRequestException);
+      98 |   });
+
+      at Object.<anonymous> (src/executions/executions.hardening.spec.ts:95:71)
+
+  ● T13 — persistência, isolamento e proteção de dados (storage sintético) › o cache de um mês não bloqueia o mês seguinte
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 0
+    Received: 1000
+
+      104 |       await usage.checkAndConsumeExecution('org_alpha');
+      105 |       jest.setSystemTime(new Date(2026, 10, 1)); prisma.workflowExecution.count.mockResolvedValue(0);
+    > 106 |       expect((await usage.getOrgUsageReport('org_alpha')).totalExecutions).toBe(0);
+          |                                                                            ^
+      107 |       await expect(usage.checkAndConsumeExecution('org_alpha')).resolves.toBeDefined();
+      108 |     } finally { jest.useRealTimers(); }
+      109 |   });
+
+      at Object.<anonymous> (src/executions/executions.hardening.spec.ts:106:76)
+
+  ● T13 — persistência, isolamento e proteção de dados (storage sintético) › tokens sem medição permanecem desconhecidos, sem multiplicador inventado
+
+    expect(received).toBeNull()
+
+    Received: 60000
+
+      111 |   it('tokens sem medição permanecem desconhecidos, sem multiplicador inventado', async () => {
+      112 |     prisma.workflowExecution.count.mockResolvedValue(250);
+    > 113 |     expect((await usage.getOrgUsageReport('org_alpha')).estimatedTokensConsumed).toBeNull();
+          |                                                                                  ^
+      114 |   });
+      115 |
+      116 |   it('sanitiza estruturas e strings com aspas sem corromper JSON nem modificar a entrada', () => {
+
+      at Object.<anonymous> (src/executions/executions.hardening.spec.ts:113:82)
+
+  ● T13 — persistência, isolamento e proteção de dados (storage sintético) › sanitiza estruturas e strings com aspas sem corromper JSON nem modificar a entrada
+
+    SyntaxError: Expected ',' or '}' after property value in JSON at position 25 (line 1 column 26)
+        at JSON.parse (<anonymous>)
+
+       98 |       );
+       99 |
+    > 100 |     return JSON.parse(sanitized) as T;
+          |                 ^
+      101 |   }
+      102 | }
+      103 |
+
+      at UsageLimitsService.sanitizeSensitiveData (src/executions/usage-limits.service.ts:100:17)
+      at Object.<anonymous> (src/executions/executions.hardening.spec.ts:120:38)
+
+Test Suites: 2 failed, 1 passed, 3 total
+Tests:       18 failed, 15 passed, 33 total
+Snapshots:   0 total
+Time:        3.809 s
+Ran all test suites within paths "src/executions/executions.hardening.spec.ts", "src/auth/workflow-container.spec.ts", "src/health/health.controller.spec.ts".
+npm error Lifecycle script `test` failed with error:
+npm error code 1
+npm error path C:\Users\jv883\Documents\Codex\FlowMind-AI\Flowmind-AI\apps\api
+npm error workspace @flowmind/api@0.1.0
+npm error location C:\Users\jv883\Documents\Codex\FlowMind-AI\Flowmind-AI\apps\api
+npm error command failed
+npm error command C:\Windows\system32\cmd.exe /d /s /c node --experimental-vm-modules ../../node_modules/jest/bin/jest.js --runInBand --runTestsByPath src/executions/executions.hardening.spec.ts src/auth/workflow-container.spec.ts src/health/health.controller.spec.ts

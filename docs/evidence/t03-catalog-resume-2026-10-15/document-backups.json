@@ -1,0 +1,50 @@
+{
+  "checkedAtUtc": "2026-10-15T18:56:47.402085+00:00",
+  "files": [
+    {
+      "source": "docs/MEMORIA.md",
+      "backup": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-resume-20261015-bc07_qhq\\before-close\\docs\\MEMORIA.md",
+      "sha256": "9c3fb6c69505a2b445f9767aa097f7bbe7068fd70ad07b3c61840dadafbb25d6"
+    },
+    {
+      "source": "plan.md",
+      "backup": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-resume-20261015-bc07_qhq\\before-close\\plan.md",
+      "sha256": "4acdef68d2826c9909c9cdff643b569d1d69d1aa3b8ba07ef42ae39ff5544de0"
+    },
+    {
+      "source": "docs/VALIDATION_T03_CATALOG_2026-10-15.md",
+      "backup": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-resume-20261015-bc07_qhq\\before-close\\docs\\VALIDATION_T03_CATALOG_2026-10-15.md",
+      "sha256": "d759aee016f56d427ab67e8673a583a6d290e17c01f613955d867416160e2edd"
+    },
+    {
+      "source": "docs/T03_RESOURCE_IMPLEMENTATION_PLAN.md",
+      "backup": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-resume-20261015-bc07_qhq\\before-close\\docs\\T03_RESOURCE_IMPLEMENTATION_PLAN.md",
+      "sha256": "0b51aa0271d476c5ee2d058ec934c36a52dc1de4867a02bab72487e4bd1251b6"
+    },
+    {
+      "source": "README.md",
+      "backup": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-resume-20261015-bc07_qhq\\before-close\\README.md",
+      "sha256": "ed746c82d9fdaf099e17c4a1e73ccb50bb6ebd01508a7c8b0b991d6c7e4f4815"
+    },
+    {
+      "source": "docs/QA_SECURITY_MATRIX.md",
+      "backup": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-resume-20261015-bc07_qhq\\before-close\\docs\\QA_SECURITY_MATRIX.md",
+      "sha256": "253eff0cadbbfc36ab7774415c8173f5b8e4b85718a27ef3dee46a19ec899168"
+    },
+    {
+      "source": "docs/PROJECT_CONTEXT.md",
+      "backup": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-resume-20261015-bc07_qhq\\before-close\\docs\\PROJECT_CONTEXT.md",
+      "sha256": "1f99c305a354414f1096fb4b3aaf4f6f519d64980ab282516dc5ea196b5c10ab"
+    },
+    {
+      "source": "docs/AI_MEMORY.md",
+      "backup": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-resume-20261015-bc07_qhq\\before-close\\docs\\AI_MEMORY.md",
+      "sha256": "bf866b537fb08e3311071d608e8d2e68c8e4780f0103105f712cf908e33c4ccf"
+    },
+    {
+      "source": "docs/archive/CONCURRENT_CATALOG_REPORTS_2026-10-15.md",
+      "backup": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-resume-20261015-bc07_qhq\\before-close\\docs\\archive\\CONCURRENT_CATALOG_REPORTS_2026-10-15.md",
+      "sha256": "205243a590a8ef6567fc096a806657187daa92926820a4f582bb02edafd59184"
+    }
+  ]
+}

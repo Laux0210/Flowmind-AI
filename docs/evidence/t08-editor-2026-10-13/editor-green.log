@@ -1,0 +1,44 @@
+(node:26052) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ configuração pendente impede salvar uma definição anterior à edição do usuário (90.6553ms)
+(node:26052) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+✔ resposta de salvamento obsoleta não substitui novas alterações nem escreve feedback de erro (38.0355ms)
+✔ parâmetros de e-mail editados preservam IDs, referências e campos não alterados (70.8813ms)
+✔ valores JSON da condição preservam número, array e booleano (0.5601ms)
+✔ JSON inválido e campos desconhecidos não substituem a configuração (0.8531ms)
+✔ aliases existentes de mensagem e mapeamento são preservados ao editar outro campo (0.4711ms)
+✔ draft incompleto continua editável e ausência de opcionais não injeta defaults (0.2879ms)
+✔ edições de parâmetros/posições/conexões são negadas em REVIEWED (0.6043ms)
+✔ edições de parâmetros/posições/conexões são negadas em PUBLISHED (0.2237ms)
+✔ edições de parâmetros/posições/conexões são negadas em ARCHIVED (0.4607ms)
+✔ movimentação persiste coordenadas finitas sem mudar configuração ou arestas (0.3793ms)
+✔ conexões condicionais preservam os handles usados pelo motor (0.3098ms)
+✔ ciclo, auto-conexão, nó ausente e conexão repetida são recusados antes de mudar o grafo (0.2909ms)
+✔ remoção de conexão preserva nós e demais IDs, sem resolver convergências (0.1936ms)
+✔ formulários abrangem os seis tipos e conservam ausência versus valores JSON (0.2956ms)
+✔ arestas exibidas no canvas mantêm sourceHandle e targetHandle sem normalização (26.1006ms)
+✔ edição aplicada marca dirty, avança revisão e invalida resultado anterior (31.4888ms)
+✔ edição não altera o workflow durante saving (18.3619ms)
+✔ edição não altera o workflow durante reviewing (19.7641ms)
+✔ edição não altera o workflow durante publishing (16.3793ms)
+✔ edição não altera o workflow durante deactivating (22.6302ms)
+✔ edição não altera o workflow durante simulating (16.502ms)
+✔ edição não altera o workflow durante generatingAi (17.8077ms)
+✔ duas movimentações antes de renderizar preservam as duas alterações (24.197ms)
+✔ edição com contexto Alpha→Beta→Alpha anterior é descartada (15.1663ms)
+✔ rascunho local de parâmetros impede trocar etapa, mover ou aplicar conexões (13.3986ms)
+✔ conectar e remover pela interface altera somente as arestas pertinentes (13.943ms)
+✔ formulário real de trigger_form renderiza labels, valores escapados e bloqueio de edição (176.7235ms)
+✔ formulário real de ai_analyze_intent renderiza labels, valores escapados e bloqueio de edição (24.7594ms)
+✔ formulário real de internal_record renderiza labels, valores escapados e bloqueio de edição (14.3746ms)
+✔ formulário real de send_email renderiza labels, valores escapados e bloqueio de edição (13.7033ms)
+✔ formulário real de condition renderiza labels, valores escapados e bloqueio de edição (14.1133ms)
+✔ formulário real de http_request renderiza labels, valores escapados e bloqueio de edição (25.8294ms)
+ℹ tests 33
+ℹ suites 0
+ℹ pass 33
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1118.7605

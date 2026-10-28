@@ -1,0 +1,13 @@
+{
+  "checkedAtUtc": "2026-10-13T23:11:12.659054+00:00",
+  "requestId": 133,
+  "method": "tools/call",
+  "tool": "memory_status",
+  "workspace": "flowmind-ai",
+  "project": "flowmind-ai",
+  "exitCode": 2,
+  "result": null,
+  "diagnostic": "{\"connectionError\": \"ConnectionRefusedError\", \"method\": \"tools/call\"}",
+  "transferred": false,
+  "automaticCaptureVerified": false
+}

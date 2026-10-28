@@ -7,13 +7,17 @@ export const WORKFLOW_SCHEMA_VERSION = '1.0.0' as const;
 
 export type WorkflowStatus = 'DRAFT' | 'REVIEWED' | 'PUBLISHED' | 'ARCHIVED';
 
-export type NodeType =
-  | 'trigger_form'
-  | 'ai_analyze_intent'
-  | 'internal_record'
-  | 'send_email'
-  | 'condition'
-  | 'http_request';
+export const WORKFLOW_NODE_TYPES = [
+  'trigger_form',
+  'trigger_schedule',
+  'ai_analyze_intent',
+  'internal_record',
+  'send_email',
+  'condition',
+  'http_request',
+] as const;
+
+export type NodeType = typeof WORKFLOW_NODE_TYPES[number];
 
 export interface NodePosition {
   x: number;

@@ -1,0 +1,26 @@
+{
+  "reviewedAtUtc": "2026-10-13T21:27:41.138132+00:00",
+  "reviewer": "/root/review_t14_http",
+  "scope": "read-only delta against exact backup; no suites executed by reviewer",
+  "source": "apps/api/src/auth/workflow-container.spec.ts",
+  "sourceSha256": "a4af2838f51557ec301d50fc837e6fc5e8ed754e3ea06dd15225ae0483537273",
+  "baselineSha256": "7f99423f4d8ef886b0df3ef28c62e9e4b63bab5b4c58f152c117b428e0d7f0d6",
+  "verdict": "no_material_findings",
+  "materialFindings": [],
+  "casesPreserved": 30,
+  "transports": [
+    "memory_streams",
+    "http_tcp_loopback"
+  ],
+  "excluded": [
+    "real Clerk/JWT/PostgreSQL",
+    "production/browser/accessibility/remote CI",
+    "approval of quota and business policies"
+  ],
+  "evidenceRead": [
+    "focused-http.log",
+    "jest.log",
+    "../../T14_HTTP_CHECKS_2026-10-13.json"
+  ],
+  "summary": "Native fetch reaches the Nest loopback listener; fixture closures are separate; redirects refused; app.close awaited and mocks restored in finally."
+}

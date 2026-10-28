@@ -1,7 +1,9 @@
-import { NotFoundException } from '@nestjs/common';
+import { createTestResourceResolver } from '../../test/resource-fixtures';
+import { NotFoundException, ServiceUnavailableException } from '@nestjs/common';
 import { WorkflowsService } from './workflows.service';
 import { PrismaService } from '../prisma/prisma.service';
 import { WorkflowEngineService } from '../engine/workflow-engine.service';
+import { ExecutionsService } from '../executions/executions.service';
 
 describe('WorkflowsService (Multi-tenant Security & CRUD Tests)', () => {
   let service: WorkflowsService;
@@ -56,7 +58,21 @@ describe('WorkflowsService (Multi-tenant Security & CRUD Tests)', () => {
         nodeResults: [],
       }),
     } as unknown as WorkflowEngineService;
-    service = new WorkflowsService(mockPrisma, mockEngine);
+    const defaultMockExecutionsService = {
+      recordExecution: jest.fn().mockImplementation((orgId, workflowId, workflowVersion, mode, status, userId, nodeResults, startedAt, completedAt, executionId) => Promise.resolve({
+        id: executionId || 'mock_exec_123',
+        orgId,
+        workflowId,
+        workflowVersion,
+        mode,
+        status,
+        triggeredBy: userId,
+        nodeResults,
+        startedAt,
+        completedAt,
+      })),
+    } as unknown as ExecutionsService;
+    service = new WorkflowsService(mockPrisma, mockEngine, createTestResourceResolver(), defaultMockExecutionsService);
   });
 
 
@@ -235,5 +251,71 @@ describe('WorkflowsService (Multi-tenant Security & CRUD Tests)', () => {
       await expect(service.publish('org_beta', wfAlpha.id, 'user_hacker')).rejects.toThrow(NotFoundException);
     });
   });
-});
 
+  describe('Simulação integrada ao histórico e auditoria (T09/T13)', () => {
+    it('deve registrar a simulação no histórico com o ID correspondente e o userId autenticado', async () => {
+      const mockExecutionsService = {
+        recordExecution: jest.fn().mockResolvedValue({
+          id: 'sim_12345_test',
+          orgId: 'org_alpha',
+          workflowId: 'wf_test_1',
+          workflowVersion: 1,
+          mode: 'SIMULATION',
+          status: 'COMPLETED',
+          triggeredBy: 'user_operator_1',
+          nodeResults: [],
+          startedAt: new Date().toISOString(),
+          completedAt: new Date().toISOString(),
+        }),
+      } as unknown as ExecutionsService;
+
+      const serviceWithHistory = new WorkflowsService(mockPrisma, mockEngine, createTestResourceResolver(), mockExecutionsService);
+      const wf = await serviceWithHistory.create('org_alpha', { name: 'Workflow Simulação' });
+
+      const response = await serviceWithHistory.simulate(
+        'org_alpha',
+        wf.id,
+        { initialPayload: { message: 'teste' } },
+        'user_operator_1',
+      );
+
+      expect(response).toBeDefined();
+      expect(response.executionId).toBe('sim_12345_test');
+      expect(mockExecutionsService.recordExecution).toHaveBeenCalledWith(
+        'org_alpha',
+        wf.id,
+        1,
+        'SIMULATION',
+        'COMPLETED',
+        'user_operator_1',
+        expect.any(Array),
+        expect.any(String),
+        expect.any(String),
+        'mock_exec_123',
+      );
+    });
+
+    it('deve aplicar falha estrita (503) se o storage de histórico falhar durante a simulação', async () => {
+      const failingExecutionsService = {
+        recordExecution: jest.fn().mockRejectedValue(
+          new ServiceUnavailableException({
+            code: 'EXECUTION_STORAGE_UNAVAILABLE',
+            message: 'O histórico de execuções está temporariamente indisponível.',
+          }),
+        ),
+      } as unknown as ExecutionsService;
+
+      const serviceWithFailingHistory = new WorkflowsService(mockPrisma, mockEngine, createTestResourceResolver(), failingExecutionsService);
+      const wf = await serviceWithFailingHistory.create('org_alpha', { name: 'Workflow Falha Storage' });
+
+      await expect(
+        serviceWithFailingHistory.simulate(
+          'org_alpha',
+          wf.id,
+          { initialPayload: {} },
+          'user_operator_1',
+        ),
+      ).rejects.toThrow(ServiceUnavailableException);
+    });
+  });
+});

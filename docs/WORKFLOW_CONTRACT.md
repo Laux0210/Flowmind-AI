@@ -1,6 +1,11 @@
 # FlowMind AI — especificação dos contratos de workflows e nós (T03)
 
 Status: **Consolidado e implementado** em `@flowmind/contracts` e `@flowmind/api` em 12/10/2026 (rodada R07).  
+Alcance: consolidação formal e protótipo local; schemas completos de configuração, referências e autorização de recursos ainda não têm aceite. A [revisão T03/T10 de 13/10](T03_NODE_SCHEMA_REVIEW.md) registra lacunas reproduzidas e as guardas locais de catálogo/identidades; não promove estes exemplos candidatos a regras aprovadas.
+
+Atualização local S1: [config declarativa e valores resolvidos](VALIDATION_T03_CONFIG_2026-10-13.md) recebem guardas compartilhadas, preservando defaults/aliases existentes. Conteúdo/campos finais, referências/disponibilidade e recursos ainda exigem seu próprio aceite.
+Atualização S2a: [produtores, precedência, saídas declaradas e tipos conhecidos](VALIDATION_T03_REFERENCE_2026-10-13.md) são validados em revisão/ativação/simulação. Campos opcionais, JSON dinâmico, disponibilidade entre ramos e recursos ainda não recebem garantia; OR-Join não foi aprovado por esta correção.
+Atualizações posteriores: [geração/avisos/consumo](VALIDATION_T10_PROPOSAL_2026-10-13.md) integrados localmente; [destinatário/replyTo literal](VALIDATION_T03_EMAIL_2026-10-13.md) alinhados ao executor. Draft com pendências não equivale a definição apta a revisar. [Convergência](T03_AVAILABILITY_PROPOSAL.md) e [recursos](T03_RESOURCE_PROPOSAL.md) permanecem propostas.
 Responsável pela governança: Agente Principal.  
 Áreas integradas: `@flowmind/contracts`, `@flowmind/api`, `@flowmind/web`.
 
@@ -259,7 +264,7 @@ Tipos de webhook/agendamento e configurações de cada nó ainda serão concilia
 
 ## 4. Semântica de Validação do Grafo (DAG Engine)
 
-Validação proposta antes de aceitar definição válida, revisar formalmente, ativar ou executar. Não há validador implementado; o schema parcial acima não comprova estas regras:
+Validação requerida antes de aceitar definição válida, revisar formalmente, ativar ou executar. Existem DagValidator, precedência na simulação e controles de destinatário; ainda não implementam todas as regras abaixo. O schema parcial não comprova validação de config/referências/recursos. [Cobertura atual e pendências](T03_NODE_SCHEMA_REVIEW.md).
 
 1. **Validação Estrutural:**
    - O grafo contém exatamente 1 nó onde `type` inicia com `trigger_`.

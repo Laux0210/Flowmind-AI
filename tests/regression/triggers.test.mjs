@@ -5,6 +5,10 @@ import { loadTypeScript } from './load-typescript.mjs';
 const webhooksServicePath = 'apps/api/src/triggers/webhooks.service.ts';
 const schedulerServicePath = 'apps/api/src/triggers/scheduler.service.ts';
 
+function authenticatedTrigger(service, workflow, payload, headers = {}, expectedSecret = 'fixture_server_secret') {
+  return service.handleWebhookTrigger(workflow, payload, { signature: expectedSecret, ...headers }, expectedSecret);
+}
+
 function createMockPublishedWorkflow() {
   return {
     schemaVersion: '1.0.0',
@@ -43,13 +47,13 @@ test('WebhooksService: dispara workflow PUBLISHED e deduplica chamadas idêntica
   const payload = { name: 'Lead Teste', email: 'lead@example.test' };
 
   // Primeira execução
-  const res1 = await service.handleWebhookTrigger(wf, payload, { idempotencyKey: 'idemp_reg_99' });
+  const res1 = await authenticatedTrigger(service, wf, payload, { idempotencyKey: 'idemp_reg_99' });
   assert.equal(res1.status, 'COMPLETED');
   assert.equal(res1.idempotentReplay, false);
   assert.equal(simulateCalls, 1);
 
   // Segunda execução com a mesma chave: não chama o motor novamente
-  const res2 = await service.handleWebhookTrigger(wf, payload, { idempotencyKey: 'idemp_reg_99' });
+  const res2 = await authenticatedTrigger(service, wf, payload, { idempotencyKey: 'idemp_reg_99' });
   assert.equal(res2.status, 'COMPLETED');
   assert.equal(res2.idempotentReplay, true);
   assert.equal(res2.executionId, res1.executionId);
@@ -63,7 +67,7 @@ test('WebhooksService: bloqueia disparo de workflow em estado DRAFT', async () =
   const draftWf = { ...createMockPublishedWorkflow(), status: 'DRAFT' };
 
   await assert.rejects(
-    service.handleWebhookTrigger(draftWf, { name: 'Lead' }, {}),
+    authenticatedTrigger(service, draftWf, { name: 'Lead' }, {}),
     (err) => err.response?.code === 'WORKFLOW_NOT_PUBLISHED',
   );
 });
@@ -77,12 +81,12 @@ test('WebhooksService: valida assinatura timing-safe e rejeita token incorreto',
 
   // Assinatura inválida
   await assert.rejects(
-    service.handleWebhookTrigger(wf, { name: 'Lead' }, { signature: 'wrong_secret' }, secret),
+    authenticatedTrigger(service, wf, { name: 'Lead' }, { signature: 'wrong_secret' }, secret),
     (err) => err.response?.code === 'INVALID_WEBHOOK_SIGNATURE',
   );
 
   // Assinatura válida
-  const okRes = await service.handleWebhookTrigger(
+  const okRes = await authenticatedTrigger(service,
     wf,
     { name: 'Lead' },
     { signature: secret },
@@ -98,12 +102,12 @@ test('WebhooksService: rejeita payload inválido ou chave de idempotência em br
   const wf = createMockPublishedWorkflow();
 
   await assert.rejects(
-    service.handleWebhookTrigger(wf, null, {}),
+    authenticatedTrigger(service, wf, null, {}),
     (err) => err.response?.code === 'INVALID_WEBHOOK_PAYLOAD',
   );
 
   await assert.rejects(
-    service.handleWebhookTrigger(wf, { name: 'Lead' }, { idempotencyKey: '   ' }),
+    authenticatedTrigger(service, wf, { name: 'Lead' }, { idempotencyKey: '   ' }),
     (err) => err.response?.code === 'INVALID_IDEMPOTENCY_KEY',
   );
 });
@@ -135,7 +139,8 @@ test('SchedulerService: valida timezone IANA e bloqueia execuções concorrentes
     enabled: true,
   });
   assert.equal(validRun.isValid, true);
-  assert.ok(validRun.nextExecutionAt);
+  assert.equal(validRun.nextExecutionAt, undefined);
+  assert.match(validRun.error, /indisponível/);
 
   const invalidTzRun = scheduler.calculateNextRun({
     cronExpression: '0 9 * * 1-5',

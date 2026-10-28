@@ -1,0 +1,102 @@
+(node:1468) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:1468) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+✖ history: falha do consumo preserva a listagem que respondeu com sucesso (66.1612ms)
+✖ history: falha da listagem preserva consumo obtido e distingue erro de lista vazia (16.1329ms)
+✖ history: carregar contexto cancelado após getToken não dispara consultas (52.9647ms)
+✔ history: resposta E1 atrasada não substitui seleção mais recente E2 (48.0939ms)
+✔ history: finally de uma seleção antiga não encerra loading da seleção atual (23.8563ms)
+✔ history: contexto Alpha→Beta→Alpha invalida a resposta da geração anterior (18.3594ms)
+✔ history: rejeição antiga não escreve erro na nova organização (12.8886ms)
+✔ history: fechar o modal invalida a inspeção pendente (19.8561ms)
+✔ history: troca de contexto durante getToken evita consultar recurso com sessão nova (20.3759ms)
+✔ history: erro da inspeção atual preserva a mensagem do servidor (8.679ms)
+✔ editor: trocar contexto limpa isReviewing enquanto a operação anterior aguarda token (20.2503ms)
+✔ editor: trocar contexto limpa isPublishing enquanto a operação anterior aguarda token (17.2899ms)
+✔ editor: trocar contexto limpa isDeactivating enquanto a operação anterior aguarda token (13.1096ms)
+✔ editor: feedback da simulação respeita status FAILED (13.6685ms)
+✔ editor: feedback da simulação respeita status COMPLETED (11.9737ms)
+✔ editor: handler de aplicar proposta bloqueia mutação enquanto revisão está pendente (18.8594ms)
+✔ editor: reviewWorkflow não aplica resposta de revisão local anterior (13.5631ms)
+✔ editor: reviewWorkflow não envia mutação após trocar contexto durante getToken (12.6155ms)
+✔ editor: activateWorkflow não aplica resposta de revisão local anterior (19.9897ms)
+✔ editor: activateWorkflow não envia mutação após trocar contexto durante getToken (12.8358ms)
+✔ ApiClient sanitiza URL e codifica identificadores com caracteres especiais (64.1948ms)
+✔ ApiClient propaga mensagens de erro estruturadas da API em caso de 400 ou 403 (2.3327ms)
+✔ Mapeamento dos 6 nós do catálogo do MVP para o canvas XYFlow (5.88ms)
+✔ Validação de simulação de workflow com dados sintéticos no cliente (17.9965ms)
+✔ ApiClient serializa requisições de simulação e ciclo de vida com integridade de headers e payload (2.8969ms)
+✔ Invariantes estáticas de prevenção de condições de corrida e feedback acessível no frontend (1.2193ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 23
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 899.7931
+
+✖ failing tests:
+
+test at tests\regression\ui-workflow.test.mjs:28:1
+✖ history: falha do consumo preserva a listagem que respondeu com sucesso (66.1612ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + undefined
+  - [
+  -   {
+  -     id: 'exec_alpha'
+  -   }
+  - ]
+  
+      at TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/ui-workflow.test.mjs:35:10)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: [ { id: 'exec_alpha' } ],
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests\regression\ui-workflow.test.mjs:39:1
+✖ history: falha da listagem preserva consumo obtido e distingue erro de lista vazia (16.1329ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + undefined
+  - {
+  -   orgId: 'org_alpha',
+  -   totalExecutions: 12
+  - }
+  
+      at TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/ui-workflow.test.mjs:45:39)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: { orgId: 'org_alpha', totalExecutions: 12 },
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests\regression\ui-workflow.test.mjs:49:1
+✖ history: carregar contexto cancelado após getToken não dispara consultas (52.9647ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  2 !== 0
+  
+      at TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/ui-workflow.test.mjs:56:55)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+

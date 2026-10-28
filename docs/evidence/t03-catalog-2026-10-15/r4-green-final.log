@@ -1,0 +1,27 @@
+(node:10572) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:10572) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+✔ catálogo no cliente exige token antes de qualquer rede (53.9908ms)
+✔ cliente consulta recursos com Bearer e filtro, sem tenant fornecido pelo cliente (4.8611ms)
+✔ lista pública vazia é sucesso explícito (4.7931ms)
+✔ cliente não transforma catálogo malformado/privado em recursos utilizáveis: null (4.4675ms)
+✔ cliente não transforma catálogo malformado/privado em recursos utilizáveis: {} (4.6718ms)
+✔ cliente não transforma catálogo malformado/privado em recursos utilizáveis: [{"id":"test-model","type":"unknown","name":"Modelo <script>teste</script>","status":"ACTIVE"}] (5.0084ms)
+✔ cliente não transforma catálogo malformado/privado em recursos utilizáveis: [{"id":"test-model","type":"ai_model","name":"Modelo <script>teste</script>","status":"REVOKED"}] (4.597ms)
+✔ cliente não transforma catálogo malformado/privado em recursos utilizáveis: [{"id":"test-model","type":"ai_model","name":"Modelo <script>teste</script>","status":"ACTIVE","providerModelId":"private"}] (4.3869ms)
+✔ falha HTTP do catálogo permanece falha (4.1867ms)
+✔ token tardio de um contexto anterior não inicia uma consulta (65.1996ms)
+✔ A→B→A descarta sucesso e erro antigos sem apagar a lista atual (13.9351ms)
+✔ troca de contexto esconde recursos anteriores antes do novo efeito terminar (8.7826ms)
+✔ mesma organização com nova carga não aceita resultado da carga anterior (7.6367ms)
+✔ catálogo vazio e falha têm estados distintos; erro não expõe detalhe privado (12.3538ms)
+✔ select real conserva referência antiga e escapa nomes do catálogo em SSR (59.8062ms)
+✔ chegada do catálogo preserva parâmetros pendentes e aplica somente mudanças do usuário (27.5256ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 590.2608

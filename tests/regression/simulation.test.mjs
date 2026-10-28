@@ -26,7 +26,7 @@ function workflow() {
 }
 async function simulate(definition, payload) {
   const { exports } = await loadTypeScript(engineFile);
-  return new exports.WorkflowEngineService().simulate(definition, payload);
+  return new exports.WorkflowEngineService(exports.createTestResourceResolver()).simulate(definition, payload);
 }
 
 test('C01 percorre a jornada com efeitos simulados e sem classificação comercial', async () => {
@@ -78,10 +78,11 @@ test('campos distintos e aliases não preenchem dados obrigatórios ausentes', a
 test('referência antiga falha explicitamente em vez de produzir valor vazio', async () => {
   const definition = workflow();
   definition.nodes[2].config.fieldMappings.ai_intent = '{{ai.interest_level}}';
-  const result = await simulate(definition, { name: 'Teste', email: 'teste@example.test', message: 'Olá' });
-  assert.equal(result.status, 'FAILED');
-  assert.match(result.nodeResults.at(-1).error.message, /interest_level/);
-  assert.equal(result.nodeResults.some((node) => node.nodeId === 'email'), false);
+  await assert.rejects(
+    simulate(definition, { name: 'Teste', email: 'teste@example.test', message: 'Olá' }),
+    (error) => error.getResponse().code === 'WORKFLOW_INVALID_REFERENCE' &&
+      error.getResponse().issues.some((issue) => issue.code === 'OUTPUT_NOT_DECLARED'),
+  );
 });
 
 test('DAG rejeita ciclos, gatilho divergente e nós desconectados', async () => {
@@ -120,9 +121,9 @@ test('motor suporta ramificação e convergência (OR-Join), executando nó conv
     nodes: [
       { id: 'form', type: 'trigger_form', config: { requiredFields: ['name', 'email', 'message'] } },
       { id: 'cond', type: 'condition', config: { leftOperand: '{{form.contact_name}}', operator: 'equals', rightOperand: 'VIP' } },
-      { id: 'vip_branch', type: 'send_email', config: { to: 'vip@example.test', subject: 'VIP' } },
+      { id: 'vip_branch', type: 'send_email', config: { to: 'vip@example.test', subject: 'VIP', bodyTemplate: 'Fixture do ramo VIP' } },
       { id: 'common_branch', type: 'internal_record', config: { fieldMappings: { name: '{{form.contact_name}}', email: '{{form.contact_email}}' } } },
-      { id: 'join_node', type: 'send_email', config: { to: '{{form.contact_email}}', subject: 'Confirmado' } },
+      { id: 'join_node', type: 'send_email', config: { to: '{{form.contact_email}}', subject: 'Confirmado', bodyTemplate: 'Fixture da convergência' } },
     ],
     edges: [
       { id: 'e1', sourceNodeId: 'form', targetNodeId: 'cond' },

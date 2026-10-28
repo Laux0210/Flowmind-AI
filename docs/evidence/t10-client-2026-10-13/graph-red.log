@@ -1,0 +1,52 @@
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151002: [0mUsing hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+(node:26184) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+FAIL apps/api/src/ai/openai-structured-client.hardening.spec.ts
+  ● T10 — integridade da resposta e consumo do provedor › preserva uso em grafo rejeitado e não publica IDs privados do rascunho
+
+    expect(received).toMatchObject(expected)
+
+    - Expected  - 2
+    + Received  + 3
+
+      Object {
+    -   "code": "AI_INVALID_WORKFLOW_RESPONSE",
+    -   "tokensConsumed": 24,
+    +   "error": "Bad Request",
+    +   "message": "ID de nó duplicado detectado: TEST_ONLY_PRIVATE_PROVIDER_DETAIL",
+    +   "statusCode": 400,
+      }
+
+      44 |   expect(error).toBeInstanceOf(BadRequestException);
+      45 |   const response = (error as BadRequestException).getResponse();
+    > 46 |   expect(response).toMatchObject({ code, tokensConsumed: tokens });
+         |                    ^
+      47 |   expect(JSON.stringify(response)).not.toContain(privateMarker);
+      48 | }
+      49 |
+
+      at rejected (src/ai/openai-structured-client.hardening.spec.ts:46:20)
+      at Object.<anonymous> (src/ai/openai-structured-client.hardening.spec.ts:163:5)
+
+  ● T10 — integridade da resposta e consumo do provedor › mantém uso disponível na avaliação de grafo rejeitado
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "AI_INVALID_WORKFLOW_RESPONSE"
+    Received: "AI_EVALUATION_FAILED"
+
+      172 |     const scenario = AI_EVALUATION_DATASET.find((entry) => entry.id === 'IA07')!;
+      173 |     const response = await new AiEvaluator().evaluateScenario(scenario, clientFor(envelope(value)));
+    > 174 |     expect(response.error).toBe('AI_INVALID_WORKFLOW_RESPONSE');
+          |                            ^
+      175 |     expect(response.tokensConsumed).toBe(24);
+      176 |     expect(response.rubricScore).toBeNull();
+      177 |   });
+
+      at Object.<anonymous> (src/ai/openai-structured-client.hardening.spec.ts:174:28)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 51 skipped, 53 total
+Snapshots:   0 total
+Time:        3.522 s
+Ran all test suites within paths "C:\Users\jv883\Documents\Codex\FlowMind-AI\Flowmind-AI\apps\api\src\ai\openai-structured-client.hardening.spec.ts".

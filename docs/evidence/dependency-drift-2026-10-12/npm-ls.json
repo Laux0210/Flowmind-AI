@@ -1,0 +1,37 @@
+{
+  "version": "0.1.0",
+  "name": "flowmind-ai",
+  "dependencies": {
+    "@flowmind/api": {
+      "version": "0.1.0",
+      "resolved": "file:../../apps/api",
+      "overridden": false,
+      "dependencies": {
+        "prisma": {
+          "version": "7.10.0",
+          "resolved": "https://registry.npmjs.org/prisma/-/prisma-7.10.0.tgz",
+          "overridden": false,
+          "dependencies": {
+            "@prisma/config": {
+              "version": "7.10.0",
+              "resolved": "https://registry.npmjs.org/@prisma/config/-/config-7.10.0.tgz",
+              "overridden": false,
+              "dependencies": {
+                "deepmerge-ts": {
+                  "version": "8.0.2",
+                  "resolved": "https://registry.npmjs.org/deepmerge-ts/-/deepmerge-ts-8.0.2.tgz",
+                  "overridden": true
+                }
+              }
+            },
+            "mysql2": {
+              "version": "3.24.5",
+              "resolved": "https://registry.npmjs.org/mysql2/-/mysql2-3.24.5.tgz",
+              "overridden": true
+            }
+          }
+        }
+      }
+    }
+  }
+}

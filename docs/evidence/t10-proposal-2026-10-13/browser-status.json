@@ -1,0 +1,16 @@
+{
+  "recordedAtUtc": "2026-10-13T16:18:43.842Z",
+  "scope": "browser validation of isolated warning list",
+  "firstAttempt": {
+    "browser": "iab",
+    "error": "Browser is not available: iab"
+  },
+  "inventory": {
+    "apps": [],
+    "browsers": []
+  },
+  "status": "NOT_EXERCISED",
+  "reactLifecycleProven": false,
+  "layoutFocusAccessibilityProven": false,
+  "temporaryLocalPreviewServerStopped": true
+}

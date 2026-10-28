@@ -1,0 +1,32 @@
+{
+  "verifiedAtUtc": "2026-10-23T04:12:38.019Z",
+  "scope": "T03-S2b local validation and internal_record mapping precedence; no real services, external AI or migrations",
+  "newTests": {
+    "redFailed": 3,
+    "redPassed": 3,
+    "greenPassed": 6
+  },
+  "jest": {
+    "tests": 779,
+    "passed": 779,
+    "suites": 40,
+    "success": true
+  },
+  "regressions": {
+    "passed": 202,
+    "failed": 0
+  },
+  "staticExits": {
+    "types": 0,
+    "testTypes": 0,
+    "lint": 0
+  },
+  "sourceSnapshot": {
+    "files": 118,
+    "changed": [],
+    "stable": true
+  },
+  "backupPath": "C:/Users/jv883/AppData/Local/Temp/flowmind-s2b-fallback-20261023-010839",
+  "concurrentChanges": "Existing S2b code/tests preserved; concurrent two schema-code expectations corrected by their author before final run",
+  "review": "Self review of scoped source and tests; graph freshness gaps checked directly in source, no complete security audit"
+}

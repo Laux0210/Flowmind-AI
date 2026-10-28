@@ -84,7 +84,7 @@ test('T14 — C01: Jornada completa com formulário, IA, registro e e-mail (Pedi
   const { exports: limitsModule } = await loadTypeScript(limitsFile);
 
   // 1. Proposta gerada por IA a partir de linguagem natural
-  const aiGenerator = new aiModule.AiGeneratorService();
+  const aiGenerator = new aiModule.AiGeneratorService(aiModule.createTestResourceResolver());
   const proposal = await aiGenerator.generateFromNaturalLanguage(
     { prompt: 'Quando formulário for enviado, resuma mensagem e identifique intenção e ambiguidades com IA, registre internamente e envie e-mail.' },
     orgAlpha,
@@ -93,7 +93,7 @@ test('T14 — C01: Jornada completa com formulário, IA, registro e e-mail (Pedi
   assert.equal(proposal.workflow.nodes.length, 4);
 
   // 2. Execução da simulação com dados do Caso C01
-  const engine = new engineModule.WorkflowEngineService();
+  const engine = new engineModule.WorkflowEngineService(engineModule.createTestResourceResolver());
   const c01Payload = {
     name: 'Carlos Proposta',
     email: 'carlos.empresa@example.test',
@@ -130,6 +130,8 @@ test('T14 — C01: Jornada completa com formulário, IA, registro e e-mail (Pedi
 
   // 3. Persistência de histórico isolado
   const prismaFake = {
+    workflow: { findFirst: async ({ where }) =>
+      where.id === 'wf_journey_c01' && where.orgId === orgAlpha ? { id: where.id, orgId: orgAlpha } : null },
     workflowExecution: {
       create: async ({ data }) => ({ ...data, id: 'exec_c01_001', createdAt: new Date() }),
       count: async () => 1,
@@ -154,7 +156,7 @@ test('T14 — C01: Jornada completa com formulário, IA, registro e e-mail (Pedi
 
 test('T14 — C02: Preservação de ambiguidades em dúvidas gerais sem pontuação comercial', async () => {
   const { exports: engineModule } = await loadTypeScript(engineFile);
-  const engine = new engineModule.WorkflowEngineService();
+  const engine = new engineModule.WorkflowEngineService(engineModule.createTestResourceResolver());
 
   const c02Payload = {
     name: 'Mariana Dúvidas',
@@ -175,7 +177,7 @@ test('T14 — C02: Preservação de ambiguidades em dúvidas gerais sem pontuaç
 
 test('T14 — C03: Interrupção imediata antes de efeitos colaterais com payload incompleto', async () => {
   const { exports: engineModule } = await loadTypeScript(engineFile);
-  const engine = new engineModule.WorkflowEngineService();
+  const engine = new engineModule.WorkflowEngineService(engineModule.createTestResourceResolver());
 
   const incompletePayloads = [
     { name: 'Sem Email', message: 'Falta email' },
@@ -194,6 +196,212 @@ test('T14 — C03: Interrupção imediata antes de efeitos colaterais com payloa
     assert.equal(result.nodeResults.some((n) => n.nodeId === 'record'), false);
     assert.equal(result.nodeResults.some((n) => n.nodeId === 'email'), false);
   }
+});
+
+test('T14 — Governança e ciclo de vida: DRAFT -> bloqueio de convergência -> bloqueio de modelo pending -> REVIEWED -> PUBLISHED com snapshot -> simulação registrada', async () => {
+  const { exports: workflowsModule } = await loadTypeScript(workflowsFile);
+  const { exports: engineModule } = await loadTypeScript(engineFile);
+  const { exports: executionsModule } = await loadTypeScript(executionsFile);
+  const { exports: limitsModule } = await loadTypeScript(limitsFile);
+
+  const store = new Map();
+  const versions = [];
+  const executions = [];
+
+  const prismaMock = {
+    $transaction: async (fn) => fn(prismaMock),
+    workflow: {
+      create: async ({ data }) => {
+        const item = {
+          ...data,
+          id: 'wf_gov_native_c03',
+          version: 1,
+          status: 'DRAFT',
+          reviewedBy: null,
+          reviewedAt: null,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        };
+        store.set(item.id, item);
+        return item;
+      },
+      findFirst: async ({ where }) => {
+        const item = store.get(where.id);
+        return item?.orgId === where.orgId ? { ...item } : null;
+      },
+      updateMany: async ({ where, data }) => {
+        const item = store.get(where.id);
+        if (!item || item.orgId !== where.orgId) return { count: 0 };
+        Object.assign(item, data, { updatedAt: new Date() });
+        return { count: 1 };
+      },
+    },
+    workflowVersion: {
+      create: async ({ data }) => {
+        const snap = { ...data, id: 'wv_snap_001', publishedAt: new Date() };
+        versions.push(snap);
+        return snap;
+      },
+    },
+    workflowExecution: {
+      create: async ({ data }) => {
+        const exec = {
+          ...data,
+          id: data.id || 'exec_native_001',
+          startedAt: data.startedAt instanceof Date ? data.startedAt : new Date(data.startedAt),
+          completedAt: data.completedAt ? (data.completedAt instanceof Date ? data.completedAt : new Date(data.completedAt)) : null,
+          createdAt: new Date(),
+        };
+        executions.push(exec);
+        return exec;
+      },
+      findMany: async ({ where, take }) => {
+        return executions
+          .filter((r) => r.orgId === where.orgId && (!where.workflowId || r.workflowId === where.workflowId))
+          .slice(0, take ?? 50)
+          .map((r) => ({ ...r, workflow: { name: store.get(r.workflowId)?.name } }));
+      },
+      findFirst: async ({ where }) => {
+        return executions.find((r) => r.id === where.id && r.orgId === where.orgId) ?? null;
+      },
+      count: async ({ where }) => {
+        return executions.filter((r) => r.orgId === where.orgId && (!where.mode || r.mode === where.mode)).length;
+      },
+    },
+  };
+
+  const engine = new engineModule.WorkflowEngineService(engineModule.createTestResourceResolver());
+  const limitsService = new limitsModule.UsageLimitsService(prismaMock);
+  const executionsService = new executionsModule.ExecutionsService(prismaMock, limitsService);
+  const workflowsService = new workflowsModule.WorkflowsService(
+    prismaMock,
+    engine,
+    workflowsModule.createTestResourceResolver(),
+    executionsService,
+  );
+
+  // 1. Criação no estado DRAFT
+  const created = await workflowsService.create(orgAlpha, { name: 'Workflow de Governança Nativo' });
+  assert.equal(created.status, 'DRAFT');
+
+  // 2. Negativa de convergência (inDegree > 1)
+  const convergingNodes = [
+    { id: 'trig', type: 'trigger_form', label: 'Form', position: { x: 0, y: 0 }, config: { requiredFields: ['name', 'email', 'message'] } },
+    { id: 'step_a', type: 'internal_record', label: 'A', position: { x: 100, y: -50 }, config: { fieldMappings: { name: '{{trig.contact_name}}' } } },
+    { id: 'step_b', type: 'internal_record', label: 'B', position: { x: 100, y: 50 }, config: { fieldMappings: { name: '{{trig.contact_name}}' } } },
+    { id: 'join_mail', type: 'send_email', label: 'Join', position: { x: 200, y: 0 }, config: { to: '{{trig.contact_email}}', subject: 'Ok', bodyTemplate: 'Ola' } },
+  ];
+  const convergingEdges = [
+    { id: 'e1', sourceNodeId: 'trig', targetNodeId: 'step_a' },
+    { id: 'e2', sourceNodeId: 'trig', targetNodeId: 'step_b' },
+    { id: 'e3', sourceNodeId: 'step_a', targetNodeId: 'join_mail' },
+    { id: 'e4', sourceNodeId: 'step_b', targetNodeId: 'join_mail' },
+  ];
+
+  await workflowsService.update(orgAlpha, created.id, {
+    nodes: convergingNodes,
+    edges: convergingEdges,
+    triggerNodeId: 'trig',
+  });
+
+  await assert.rejects(
+    workflowsService.review(orgAlpha, created.id, 'admin_native'),
+    /convergência de múltiplos ramos|múltiplos ramos/i,
+  );
+
+  // 3. Negativa de modelo de IA pendente (T03-S3)
+  const pendingNodes = [
+    { id: 'trig', type: 'trigger_form', label: 'Form', position: { x: 0, y: 0 }, config: { requiredFields: ['name', 'email', 'message'] } },
+    { id: 'ai_node', type: 'ai_analyze_intent', label: 'AI', position: { x: 100, y: 0 }, config: { inputPromptTemplate: '{{trig.message_text}}', modelRef: 'pending' } },
+    { id: 'mail_node', type: 'send_email', label: 'Mail', position: { x: 200, y: 0 }, config: { to: '{{trig.contact_email}}', subject: 'Ok', bodyTemplate: 'Ola {{ai_node.summary}}' } },
+  ];
+  const linearEdges = [
+    { id: 'e1', sourceNodeId: 'trig', targetNodeId: 'ai_node' },
+    { id: 'e2', sourceNodeId: 'ai_node', targetNodeId: 'mail_node' },
+  ];
+
+  await workflowsService.update(orgAlpha, created.id, {
+    nodes: pendingNodes,
+    edges: linearEdges,
+    triggerNodeId: 'trig',
+  });
+
+  await assert.rejects(
+    workflowsService.review(orgAlpha, created.id, 'admin_native'),
+    /recurso|modelo|PENDING_MODEL_SELECTION|BadRequestException/i,
+  );
+
+  // 4. Correção para modelo homologado ('gpt-4o-mini') e revisão formal por Admin
+  const approvedNodes = [
+    { id: 'trig', type: 'trigger_form', label: 'Form', position: { x: 0, y: 0 }, config: { requiredFields: ['name', 'email', 'message'] } },
+    { id: 'ai_node', type: 'ai_analyze_intent', label: 'AI', position: { x: 100, y: 0 }, config: { inputPromptTemplate: '{{trig.message_text}}', modelRef: 'gpt-4o-mini' } },
+    { id: 'mail_node', type: 'send_email', label: 'Mail', position: { x: 200, y: 0 }, config: { to: '{{trig.contact_email}}', subject: 'Ok', bodyTemplate: 'Ola {{ai_node.summary}}' } },
+  ];
+
+  await workflowsService.update(orgAlpha, created.id, {
+    nodes: approvedNodes,
+    edges: linearEdges,
+    triggerNodeId: 'trig',
+  });
+
+  const reviewed = await workflowsService.review(orgAlpha, created.id, 'admin_native');
+  assert.equal(reviewed.workflow.status, 'REVIEWED');
+  assert.equal(reviewed.reviewedBy, 'admin_native');
+
+  // 5. Ativação (PUBLISHED) criando snapshot de versão imutável
+  const published = await workflowsService.publish(orgAlpha, created.id, 'admin_native');
+  assert.equal(published.workflow.status, 'PUBLISHED');
+  assert.equal(versions.length, 1);
+  assert.equal(versions[0].version, 1);
+  assert.equal(versions[0].publishedBy, 'admin_native');
+
+  // 6. Simulação do workflow ativo gerando histórico persistido
+  const simResult = await workflowsService.simulate(
+    orgAlpha,
+    created.id,
+    { initialPayload: { name: 'Lucas', email: 'lucas@example.test', message: 'Solicitação de orçamento' } },
+    'admin_native',
+  );
+
+  assert.equal(simResult.status, 'COMPLETED');
+  assert.match(simResult.executionId, /^sim_/);
+  assert.equal(executions.length, 1);
+  assert.equal(executions[0].orgId, orgAlpha);
+  assert.equal(executions[0].mode, 'SIMULATION');
+  assert.equal(executions[0].status, 'COMPLETED');
+  assert.equal(executions[0].triggeredBy, 'admin_native');
+
+  // 7. Acompanhamento no Histórico e Detalhes da Execução (T13/T14)
+  const listAlpha = await executionsService.listExecutions(orgAlpha);
+  assert.equal(listAlpha.length, 1);
+  assert.equal(listAlpha[0].id, simResult.executionId);
+  assert.equal(listAlpha[0].workflowId, created.id);
+  assert.equal(listAlpha[0].mode, 'SIMULATION');
+  assert.equal(listAlpha[0].status, 'COMPLETED');
+  assert.equal(listAlpha[0].triggeredBy, 'admin_native');
+
+  const detailAlpha = await executionsService.getExecutionById(orgAlpha, simResult.executionId);
+  assert.equal(detailAlpha.id, simResult.executionId);
+  assert.equal(detailAlpha.orgId, orgAlpha);
+  assert.equal(detailAlpha.mode, 'SIMULATION');
+  assert.equal(detailAlpha.status, 'COMPLETED');
+
+  // 8. Isolamento de histórico e auditoria entre organizações (SEC01/SEC04)
+  const listBeta = await executionsService.listExecutions(orgBeta);
+  assert.equal(listBeta.length, 0);
+
+  await assert.rejects(
+    executionsService.getExecutionById(orgBeta, simResult.executionId),
+    /não encontrada|NotFoundException/i,
+  );
+
+  // 9. Relatório de Consumo da Organização (Cota comercial LIVE intacta e simulação rastreada)
+  const reportAlpha = await limitsService.getOrgUsageReport(orgAlpha);
+  assert.equal(reportAlpha.orgId, orgAlpha);
+  assert.equal(reportAlpha.totalExecutions, 0); // Isenção de cota comercial LIVE para simulações
+  assert.equal(reportAlpha.totalSimulations, 1); // Simulação contabilizada separadamente
+  assert.equal(reportAlpha.isLimitReached, false);
+  assert.equal(reportAlpha.usagePercentage, 0);
 });
 
 test('T14 — Matriz de Isolamento Multi-tenant (SEC01–SEC04, SEC09)', async () => {
@@ -235,9 +443,14 @@ test('T14 — Matriz de Isolamento Multi-tenant (SEC01–SEC04, SEC09)', async (
   };
 
   const engineFake = { simulate: async () => ({ status: 'COMPLETED' }) };
-  const workflowsService = new workflowsModule.WorkflowsService(prismaMock, engineFake);
   const limitsService = new limitsModule.UsageLimitsService(prismaMock);
   const executionsService = new executionsModule.ExecutionsService(prismaMock, limitsService);
+  const workflowsService = new workflowsModule.WorkflowsService(
+    prismaMock,
+    engineFake,
+    workflowsModule.createTestResourceResolver(),
+    executionsService,
+  );
 
   const created = await workflowsService.create(orgAlpha, { name: 'Workflow Confidencial Alpha' });
 
@@ -309,11 +522,11 @@ test('T14 — Segurança: Proteção contra SSRF e sanitização profunda de cre
   assert.equal(sanitized.token, '[REDACTED]');
   assert.equal(sanitized.openAiKey, 'sk-[REDACTED]');
   assert.equal(sanitized.user.password, '[REDACTED]');
-  assert.equal(sanitized.user.credentials.apiKey, '[REDACTED]');
+  assert.equal(sanitized.user.credentials, '[REDACTED]');
   assert.equal(sanitized.user.name, 'Maria');
 });
 
-test('T14 — Acessibilidade e WCAG 2.1 AA: Verificação estática dos componentes de interface', () => {
+test('T14 — Presença estática de atributos de acessibilidade (não comprova WCAG)', () => {
   const webDir = path.resolve('apps/web/src');
   const dashboardContent = fs.readFileSync(path.join(webDir, 'app/dashboard/page.tsx'), 'utf-8');
   const historyContent = fs.readFileSync(path.join(webDir, 'app/history/page.tsx'), 'utf-8');

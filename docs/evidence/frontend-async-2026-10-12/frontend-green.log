@@ -1,0 +1,30 @@
+(node:2020) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2020) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+✔ history: resposta E1 atrasada não substitui seleção mais recente E2 (126.9612ms)
+✔ history: finally de uma seleção antiga não encerra loading da seleção atual (26.0034ms)
+✔ history: contexto Alpha→Beta→Alpha invalida a resposta da geração anterior (16.1605ms)
+✔ history: rejeição antiga não escreve erro na nova organização (16.3137ms)
+✔ history: fechar o modal invalida a inspeção pendente (14.1311ms)
+✔ history: troca de contexto durante getToken evita consultar recurso com sessão nova (16.4966ms)
+✔ history: erro da inspeção atual preserva a mensagem do servidor (15.1636ms)
+✔ editor: handler de aplicar proposta bloqueia mutação enquanto revisão está pendente (55.0399ms)
+✔ editor: reviewWorkflow não aplica resposta de revisão local anterior (32.8697ms)
+✔ editor: reviewWorkflow não envia mutação após trocar contexto durante getToken (20.5138ms)
+✔ editor: activateWorkflow não aplica resposta de revisão local anterior (20.4236ms)
+✔ editor: activateWorkflow não envia mutação após trocar contexto durante getToken (18.1985ms)
+✔ ApiClient sanitiza URL e codifica identificadores com caracteres especiais (74.6325ms)
+✔ ApiClient propaga mensagens de erro estruturadas da API em caso de 400 ou 403 (3.2649ms)
+✔ Mapeamento dos 6 nós do catálogo do MVP para o canvas XYFlow (7.8116ms)
+✔ Validação de simulação de workflow com dados sintéticos no cliente (17.4361ms)
+✔ ApiClient serializa requisições de simulação e ciclo de vida com integridade de headers e payload (4.2257ms)
+✔ Invariantes estáticas de prevenção de condições de corrida e feedback acessível no frontend (1.4725ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1044.0701
+

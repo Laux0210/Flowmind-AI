@@ -1,0 +1,851 @@
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151002: [0mUsing hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+[Nest] 1380  - 13/10/2026, 05:46:48   ERROR [WorkflowEngineService] Falha no nó mail (send_email): Campo de referência inexistente: form.output_inexistente
+[Nest] 1380  - 13/10/2026, 05:46:48   ERROR [WorkflowEngineService] Falha no nó mail (send_email): Campo de referência inexistente: ai.interest_level
+[Nest] 1380  - 13/10/2026, 05:46:48   ERROR [WorkflowEngineService] Falha no nó mail (send_email): Campo de referência inexistente: form.contact_name.child
+[Nest] 1380  - 13/10/2026, 05:46:48   ERROR [WorkflowEngineService] Falha no nó mail (send_email): Campo de referência inexistente: http.response_body.__proto__
+[Nest] 1380  - 13/10/2026, 05:46:48   ERROR [WorkflowEngineService] Falha no nó mail (send_email): Configuração dos nós inválida; revise os campos indicados.
+[Nest] 1380  - 13/10/2026, 05:46:48   ERROR [WorkflowEngineService] Falha no nó mail (send_email): Configuração dos nós inválida; revise os campos indicados.
+[Nest] 1380  - 13/10/2026, 05:46:48   ERROR [WorkflowEngineService] Falha no nó mail (send_email): Configuração dos nós inválida; revise os campos indicados.
+[Nest] 1380  - 13/10/2026, 05:46:48   ERROR [WorkflowEngineService] Falha no nó mail (send_email): Campo de referência inexistente: ai.ambiguities.00
+[Nest] 1380  - 13/10/2026, 05:46:48   ERROR [WorkflowEngineService] Falha no nó mail (send_email): Campo de referência inexistente: ai.ambiguities.0.child
+[Nest] 1380  - 13/10/2026, 05:46:48   ERROR [WorkflowEngineService] Falha no nó mail (send_email): Campo de referência inexistente: form.output_inexistente
+[Nest] 1380  - 13/10/2026, 05:46:48   ERROR [WorkflowEngineService] Falha no nó http (http_request): Configuração dos nós inválida; revise os campos indicados.
+[Nest] 1380  - 13/10/2026, 05:46:48   ERROR [WorkflowEngineService] Falha no nó record (internal_record): Configuração dos nós inválida; revise os campos indicados.
+[Nest] 1380  - 13/10/2026, 05:46:48   ERROR [WorkflowEngineService] Falha no nó record (internal_record): Configuração dos nós inválida; revise os campos indicados.
+(node:1380) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+FAIL apps/api/src/engine/workflow-reference.spec.ts
+  ● Referências antes de revisão/ativação › review › nega produtor inexistente antes de escrever
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"reviewedAt": "2026-10-13T08:46:48.438Z", "reviewedBy": "admin_fixture", "workflow": {"createdAt": "2026-10-13T00:00:00.000Z", "description": undefined, "edges": [{"id": "edge_0", "sourceNodeId": "form", "targetNodeId": "ai"}, {"id": "edge_1", "sourceNodeId": "ai", "targetNodeId": "record"}, {"id": "edge_2", "sourceNodeId": "record", "targetNodeId": "condition"}, {"id": "edge_3", "sourceNodeId": "condition", "targetNodeId": "http"}, {"id": "edge_4", "sourceNodeId": "http", "targetNodeId": "mail"}], "id": "wf_refs", "name": "Fixture", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"inputPromptTemplate": "{{form.message_text}}", "modelRef": "modelo-a-aprovar"}, "id": "ai", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "ai_analyze_intent"}, {"config": {"fieldMappings": {"ambiguities": "{{ai.ambiguities}}", "name": "{{form.contact_name}}"}}, "id": "record", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "internal_record"}, {"config": {"leftOperand": "{{ai.intent}}", "operator": "is_empty"}, "id": "condition", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "condition"}, {"config": {"method": "GET", "url": "https://endpoint.example.invalid"}, "id": "http", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "http_request"}, {"config": {"bodyTemplate": "{{missing.summary}}", "subject": "Fixture", "to": "{{form.contact_email}}"}, "id": "mail", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "send_email"}], "orgId": "org_fixture", "reviewedAt": "2026-10-13T08:46:48.438Z", "reviewedBy": "admin_fixture", "schemaVersion": "1.0.0", "status": "REVIEWED", "triggerNodeId": "form", "updatedAt": "2026-10-13T00:00:00.000Z", "version": 1}}
+
+      59 |     it.each(cases)('nega %s antes de escrever', async (_label, edit) => {
+      60 |       const w = definition(); edit(w); const f = serviceFixture(w, operation === 'review' ? 'DRAFT' : 'REVIEWED');
+    > 61 |       await expect(f.service[operation](w.orgId, w.id, 'admin_fixture')).rejects.toBeInstanceOf(BadRequestException);
+         |             ^
+      62 |       expect(f.workflow.updateMany).not.toHaveBeenCalled(); expect(f.workflowVersion.create).not.toHaveBeenCalled();
+      63 |     });
+      64 |   });
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/engine/workflow-reference.spec.ts:61:13
+
+  ● Referências antes de revisão/ativação › review › nega campo não declarado antes de escrever
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"reviewedAt": "2026-10-13T08:46:48.453Z", "reviewedBy": "admin_fixture", "workflow": {"createdAt": "2026-10-13T00:00:00.000Z", "description": undefined, "edges": [{"id": "edge_0", "sourceNodeId": "form", "targetNodeId": "ai"}, {"id": "edge_1", "sourceNodeId": "ai", "targetNodeId": "record"}, {"id": "edge_2", "sourceNodeId": "record", "targetNodeId": "condition"}, {"id": "edge_3", "sourceNodeId": "condition", "targetNodeId": "http"}, {"id": "edge_4", "sourceNodeId": "http", "targetNodeId": "mail"}], "id": "wf_refs", "name": "Fixture", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"inputPromptTemplate": "{{form.message_text}}", "modelRef": "modelo-a-aprovar"}, "id": "ai", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "ai_analyze_intent"}, {"config": {"fieldMappings": {"ambiguities": "{{ai.ambiguities}}", "name": "{{form.contact_name}}"}}, "id": "record", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "internal_record"}, {"config": {"leftOperand": "{{ai.intent}}", "operator": "is_empty"}, "id": "condition", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "condition"}, {"config": {"method": "GET", "url": "https://endpoint.example.invalid"}, "id": "http", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "http_request"}, {"config": {"bodyTemplate": "{{form.output_inexistente}}", "subject": "Fixture", "to": "{{form.contact_email}}"}, "id": "mail", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "send_email"}], "orgId": "org_fixture", "reviewedAt": "2026-10-13T08:46:48.453Z", "reviewedBy": "admin_fixture", "schemaVersion": "1.0.0", "status": "REVIEWED", "triggerNodeId": "form", "updatedAt": "2026-10-13T00:00:00.000Z", "version": 1}}
+
+      59 |     it.each(cases)('nega %s antes de escrever', async (_label, edit) => {
+      60 |       const w = definition(); edit(w); const f = serviceFixture(w, operation === 'review' ? 'DRAFT' : 'REVIEWED');
+    > 61 |       await expect(f.service[operation](w.orgId, w.id, 'admin_fixture')).rejects.toBeInstanceOf(BadRequestException);
+         |             ^
+      62 |       expect(f.workflow.updateMany).not.toHaveBeenCalled(); expect(f.workflowVersion.create).not.toHaveBeenCalled();
+      63 |     });
+      64 |   });
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/engine/workflow-reference.spec.ts:61:13
+
+  ● Referências antes de revisão/ativação › review › nega saída antiga de interesse antes de escrever
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"reviewedAt": "2026-10-13T08:46:48.455Z", "reviewedBy": "admin_fixture", "workflow": {"createdAt": "2026-10-13T00:00:00.000Z", "description": undefined, "edges": [{"id": "edge_0", "sourceNodeId": "form", "targetNodeId": "ai"}, {"id": "edge_1", "sourceNodeId": "ai", "targetNodeId": "record"}, {"id": "edge_2", "sourceNodeId": "record", "targetNodeId": "condition"}, {"id": "edge_3", "sourceNodeId": "condition", "targetNodeId": "http"}, {"id": "edge_4", "sourceNodeId": "http", "targetNodeId": "mail"}], "id": "wf_refs", "name": "Fixture", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"inputPromptTemplate": "{{form.message_text}}", "modelRef": "modelo-a-aprovar"}, "id": "ai", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "ai_analyze_intent"}, {"config": {"fieldMappings": {"ambiguities": "{{ai.ambiguities}}", "name": "{{form.contact_name}}"}}, "id": "record", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "internal_record"}, {"config": {"leftOperand": "{{ai.intent}}", "operator": "is_empty"}, "id": "condition", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "condition"}, {"config": {"method": "GET", "url": "https://endpoint.example.invalid"}, "id": "http", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "http_request"}, {"config": {"bodyTemplate": "{{ai.interest_level}}", "subject": "Fixture", "to": "{{form.contact_email}}"}, "id": "mail", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "send_email"}], "orgId": "org_fixture", "reviewedAt": "2026-10-13T08:46:48.455Z", "reviewedBy": "admin_fixture", "schemaVersion": "1.0.0", "status": "REVIEWED", "triggerNodeId": "form", "updatedAt": "2026-10-13T00:00:00.000Z", "version": 1}}
+
+      59 |     it.each(cases)('nega %s antes de escrever', async (_label, edit) => {
+      60 |       const w = definition(); edit(w); const f = serviceFixture(w, operation === 'review' ? 'DRAFT' : 'REVIEWED');
+    > 61 |       await expect(f.service[operation](w.orgId, w.id, 'admin_fixture')).rejects.toBeInstanceOf(BadRequestException);
+         |             ^
+      62 |       expect(f.workflow.updateMany).not.toHaveBeenCalled(); expect(f.workflowVersion.create).not.toHaveBeenCalled();
+      63 |     });
+      64 |   });
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/engine/workflow-reference.spec.ts:61:13
+
+  ● Referências antes de revisão/ativação › review › nega auto referência antes de escrever
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"reviewedAt": "2026-10-13T08:46:48.456Z", "reviewedBy": "admin_fixture", "workflow": {"createdAt": "2026-10-13T00:00:00.000Z", "description": undefined, "edges": [{"id": "edge_0", "sourceNodeId": "form", "targetNodeId": "ai"}, {"id": "edge_1", "sourceNodeId": "ai", "targetNodeId": "record"}, {"id": "edge_2", "sourceNodeId": "record", "targetNodeId": "condition"}, {"id": "edge_3", "sourceNodeId": "condition", "targetNodeId": "http"}, {"id": "edge_4", "sourceNodeId": "http", "targetNodeId": "mail"}], "id": "wf_refs", "name": "Fixture", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"inputPromptTemplate": "{{form.message_text}}", "modelRef": "modelo-a-aprovar"}, "id": "ai", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "ai_analyze_intent"}, {"config": {"fieldMappings": {"ambiguities": "{{ai.ambiguities}}", "name": "{{form.contact_name}}"}}, "id": "record", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "internal_record"}, {"config": {"leftOperand": "{{ai.intent}}", "operator": "is_empty"}, "id": "condition", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "condition"}, {"config": {"method": "GET", "url": "https://endpoint.example.invalid"}, "id": "http", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "http_request"}, {"config": {"bodyTemplate": "{{mail.recipient}}", "subject": "Fixture", "to": "{{form.contact_email}}"}, "id": "mail", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "send_email"}], "orgId": "org_fixture", "reviewedAt": "2026-10-13T08:46:48.456Z", "reviewedBy": "admin_fixture", "schemaVersion": "1.0.0", "status": "REVIEWED", "triggerNodeId": "form", "updatedAt": "2026-10-13T00:00:00.000Z", "version": 1}}
+
+      59 |     it.each(cases)('nega %s antes de escrever', async (_label, edit) => {
+      60 |       const w = definition(); edit(w); const f = serviceFixture(w, operation === 'review' ? 'DRAFT' : 'REVIEWED');
+    > 61 |       await expect(f.service[operation](w.orgId, w.id, 'admin_fixture')).rejects.toBeInstanceOf(BadRequestException);
+         |             ^
+      62 |       expect(f.workflow.updateMany).not.toHaveBeenCalled(); expect(f.workflowVersion.create).not.toHaveBeenCalled();
+      63 |     });
+      64 |   });
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/engine/workflow-reference.spec.ts:61:13
+
+  ● Referências antes de revisão/ativação › review › nega produtor futuro no prompt antes de escrever
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"reviewedAt": "2026-10-13T08:46:48.457Z", "reviewedBy": "admin_fixture", "workflow": {"createdAt": "2026-10-13T00:00:00.000Z", "description": undefined, "edges": [{"id": "edge_0", "sourceNodeId": "form", "targetNodeId": "ai"}, {"id": "edge_1", "sourceNodeId": "ai", "targetNodeId": "record"}, {"id": "edge_2", "sourceNodeId": "record", "targetNodeId": "condition"}, {"id": "edge_3", "sourceNodeId": "condition", "targetNodeId": "http"}, {"id": "edge_4", "sourceNodeId": "http", "targetNodeId": "mail"}], "id": "wf_refs", "name": "Fixture", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"inputPromptTemplate": "{{http.response_body}}", "modelRef": "modelo-a-aprovar"}, "id": "ai", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "ai_analyze_intent"}, {"config": {"fieldMappings": {"ambiguities": "{{ai.ambiguities}}", "name": "{{form.contact_name}}"}}, "id": "record", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "internal_record"}, {"config": {"leftOperand": "{{ai.intent}}", "operator": "is_empty"}, "id": "condition", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "condition"}, {"config": {"method": "GET", "url": "https://endpoint.example.invalid"}, "id": "http", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "http_request"}, {"config": {"bodyTemplate": "{{ai.summary}}", "subject": "Fixture", "to": "{{form.contact_email}}"}, "id": "mail", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "send_email"}], "orgId": "org_fixture", "reviewedAt": "2026-10-13T08:46:48.457Z", "reviewedBy": "admin_fixture", "schemaVersion": "1.0.0", "status": "REVIEWED", "triggerNodeId": "form", "updatedAt": "2026-10-13T00:00:00.000Z", "version": 1}}
+
+      59 |     it.each(cases)('nega %s antes de escrever', async (_label, edit) => {
+      60 |       const w = definition(); edit(w); const f = serviceFixture(w, operation === 'review' ? 'DRAFT' : 'REVIEWED');
+    > 61 |       await expect(f.service[operation](w.orgId, w.id, 'admin_fixture')).rejects.toBeInstanceOf(BadRequestException);
+         |             ^
+      62 |       expect(f.workflow.updateMany).not.toHaveBeenCalled(); expect(f.workflowVersion.create).not.toHaveBeenCalled();
+      63 |     });
+      64 |   });
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/engine/workflow-reference.spec.ts:61:13
+
+  ● Referências antes de revisão/ativação › review › nega subcampo de string antes de escrever
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"reviewedAt": "2026-10-13T08:46:48.458Z", "reviewedBy": "admin_fixture", "workflow": {"createdAt": "2026-10-13T00:00:00.000Z", "description": undefined, "edges": [{"id": "edge_0", "sourceNodeId": "form", "targetNodeId": "ai"}, {"id": "edge_1", "sourceNodeId": "ai", "targetNodeId": "record"}, {"id": "edge_2", "sourceNodeId": "record", "targetNodeId": "condition"}, {"id": "edge_3", "sourceNodeId": "condition", "targetNodeId": "http"}, {"id": "edge_4", "sourceNodeId": "http", "targetNodeId": "mail"}], "id": "wf_refs", "name": "Fixture", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"inputPromptTemplate": "{{form.message_text}}", "modelRef": "modelo-a-aprovar"}, "id": "ai", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "ai_analyze_intent"}, {"config": {"fieldMappings": {"ambiguities": "{{ai.ambiguities}}", "name": "{{form.contact_name}}"}}, "id": "record", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "internal_record"}, {"config": {"leftOperand": "{{ai.intent}}", "operator": "is_empty"}, "id": "condition", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "condition"}, {"config": {"method": "GET", "url": "https://endpoint.example.invalid"}, "id": "http", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "http_request"}, {"config": {"bodyTemplate": "{{form.contact_name.child}}", "subject": "Fixture", "to": "{{form.contact_email}}"}, "id": "mail", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "send_email"}], "orgId": "org_fixture", "reviewedAt": "2026-10-13T08:46:48.458Z", "reviewedBy": "admin_fixture", "schemaVersion": "1.0.0", "status": "REVIEWED", "triggerNodeId": "form", "updatedAt": "2026-10-13T00:00:00.000Z", "version": 1}}
+
+      59 |     it.each(cases)('nega %s antes de escrever', async (_label, edit) => {
+      60 |       const w = definition(); edit(w); const f = serviceFixture(w, operation === 'review' ? 'DRAFT' : 'REVIEWED');
+    > 61 |       await expect(f.service[operation](w.orgId, w.id, 'admin_fixture')).rejects.toBeInstanceOf(BadRequestException);
+         |             ^
+      62 |       expect(f.workflow.updateMany).not.toHaveBeenCalled(); expect(f.workflowVersion.create).not.toHaveBeenCalled();
+      63 |     });
+      64 |   });
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/engine/workflow-reference.spec.ts:61:13
+
+  ● Referências antes de revisão/ativação › review › nega acesso reservado em JSON dinâmico antes de escrever
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"reviewedAt": "2026-10-13T08:46:48.459Z", "reviewedBy": "admin_fixture", "workflow": {"createdAt": "2026-10-13T00:00:00.000Z", "description": undefined, "edges": [{"id": "edge_0", "sourceNodeId": "form", "targetNodeId": "ai"}, {"id": "edge_1", "sourceNodeId": "ai", "targetNodeId": "record"}, {"id": "edge_2", "sourceNodeId": "record", "targetNodeId": "condition"}, {"id": "edge_3", "sourceNodeId": "condition", "targetNodeId": "http"}, {"id": "edge_4", "sourceNodeId": "http", "targetNodeId": "mail"}], "id": "wf_refs", "name": "Fixture", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"inputPromptTemplate": "{{form.message_text}}", "modelRef": "modelo-a-aprovar"}, "id": "ai", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "ai_analyze_intent"}, {"config": {"fieldMappings": {"ambiguities": "{{ai.ambiguities}}", "name": "{{form.contact_name}}"}}, "id": "record", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "internal_record"}, {"config": {"leftOperand": "{{ai.intent}}", "operator": "is_empty"}, "id": "condition", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "condition"}, {"config": {"method": "GET", "url": "https://endpoint.example.invalid"}, "id": "http", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "http_request"}, {"config": {"bodyTemplate": "{{http.response_body.__proto__}}", "subject": "Fixture", "to": "{{form.contact_email}}"}, "id": "mail", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "send_email"}], "orgId": "org_fixture", "reviewedAt": "2026-10-13T08:46:48.459Z", "reviewedBy": "admin_fixture", "schemaVersion": "1.0.0", "status": "REVIEWED", "triggerNodeId": "form", "updatedAt": "2026-10-13T00:00:00.000Z", "version": 1}}
+
+      59 |     it.each(cases)('nega %s antes de escrever', async (_label, edit) => {
+      60 |       const w = definition(); edit(w); const f = serviceFixture(w, operation === 'review' ? 'DRAFT' : 'REVIEWED');
+    > 61 |       await expect(f.service[operation](w.orgId, w.id, 'admin_fixture')).rejects.toBeInstanceOf(BadRequestException);
+         |             ^
+      62 |       expect(f.workflow.updateMany).not.toHaveBeenCalled(); expect(f.workflowVersion.create).not.toHaveBeenCalled();
+      63 |     });
+      64 |   });
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/engine/workflow-reference.spec.ts:61:13
+
+  ● Referências antes de revisão/ativação › review › nega boolean exato em corpo string antes de escrever
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"reviewedAt": "2026-10-13T08:46:48.460Z", "reviewedBy": "admin_fixture", "workflow": {"createdAt": "2026-10-13T00:00:00.000Z", "description": undefined, "edges": [{"id": "edge_0", "sourceNodeId": "form", "targetNodeId": "ai"}, {"id": "edge_1", "sourceNodeId": "ai", "targetNodeId": "record"}, {"id": "edge_2", "sourceNodeId": "record", "targetNodeId": "condition"}, {"id": "edge_3", "sourceNodeId": "condition", "targetNodeId": "http"}, {"id": "edge_4", "sourceNodeId": "http", "targetNodeId": "mail"}], "id": "wf_refs", "name": "Fixture", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"inputPromptTemplate": "{{form.message_text}}", "modelRef": "modelo-a-aprovar"}, "id": "ai", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "ai_analyze_intent"}, {"config": {"fieldMappings": {"ambiguities": "{{ai.ambiguities}}", "name": "{{form.contact_name}}"}}, "id": "record", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "internal_record"}, {"config": {"leftOperand": "{{ai.intent}}", "operator": "is_empty"}, "id": "condition", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "condition"}, {"config": {"method": "GET", "url": "https://endpoint.example.invalid"}, "id": "http", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "http_request"}, {"config": {"bodyTemplate": "{{condition.result}}", "subject": "Fixture", "to": "{{form.contact_email}}"}, "id": "mail", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "send_email"}], "orgId": "org_fixture", "reviewedAt": "2026-10-13T08:46:48.460Z", "reviewedBy": "admin_fixture", "schemaVersion": "1.0.0", "status": "REVIEWED", "triggerNodeId": "form", "updatedAt": "2026-10-13T00:00:00.000Z", "version": 1}}
+
+      59 |     it.each(cases)('nega %s antes de escrever', async (_label, edit) => {
+      60 |       const w = definition(); edit(w); const f = serviceFixture(w, operation === 'review' ? 'DRAFT' : 'REVIEWED');
+    > 61 |       await expect(f.service[operation](w.orgId, w.id, 'admin_fixture')).rejects.toBeInstanceOf(BadRequestException);
+         |             ^
+      62 |       expect(f.workflow.updateMany).not.toHaveBeenCalled(); expect(f.workflowVersion.create).not.toHaveBeenCalled();
+      63 |     });
+      64 |   });
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/engine/workflow-reference.spec.ts:61:13
+
+  ● Referências antes de revisão/ativação › review › nega número exato em corpo string antes de escrever
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"reviewedAt": "2026-10-13T08:46:48.461Z", "reviewedBy": "admin_fixture", "workflow": {"createdAt": "2026-10-13T00:00:00.000Z", "description": undefined, "edges": [{"id": "edge_0", "sourceNodeId": "form", "targetNodeId": "ai"}, {"id": "edge_1", "sourceNodeId": "ai", "targetNodeId": "record"}, {"id": "edge_2", "sourceNodeId": "record", "targetNodeId": "condition"}, {"id": "edge_3", "sourceNodeId": "condition", "targetNodeId": "http"}, {"id": "edge_4", "sourceNodeId": "http", "targetNodeId": "mail"}], "id": "wf_refs", "name": "Fixture", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"inputPromptTemplate": "{{form.message_text}}", "modelRef": "modelo-a-aprovar"}, "id": "ai", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "ai_analyze_intent"}, {"config": {"fieldMappings": {"ambiguities": "{{ai.ambiguities}}", "name": "{{form.contact_name}}"}}, "id": "record", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "internal_record"}, {"config": {"leftOperand": "{{ai.intent}}", "operator": "is_empty"}, "id": "condition", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "condition"}, {"config": {"method": "GET", "url": "https://endpoint.example.invalid"}, "id": "http", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "http_request"}, {"config": {"bodyTemplate": "{{http.status_code}}", "subject": "Fixture", "to": "{{form.contact_email}}"}, "id": "mail", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "send_email"}], "orgId": "org_fixture", "reviewedAt": "2026-10-13T08:46:48.461Z", "reviewedBy": "admin_fixture", "schemaVersion": "1.0.0", "status": "REVIEWED", "triggerNodeId": "form", "updatedAt": "2026-10-13T00:00:00.000Z", "version": 1}}
+
+      59 |     it.each(cases)('nega %s antes de escrever', async (_label, edit) => {
+      60 |       const w = definition(); edit(w); const f = serviceFixture(w, operation === 'review' ? 'DRAFT' : 'REVIEWED');
+    > 61 |       await expect(f.service[operation](w.orgId, w.id, 'admin_fixture')).rejects.toBeInstanceOf(BadRequestException);
+         |             ^
+      62 |       expect(f.workflow.updateMany).not.toHaveBeenCalled(); expect(f.workflowVersion.create).not.toHaveBeenCalled();
+      63 |     });
+      64 |   });
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/engine/workflow-reference.spec.ts:61:13
+
+  ● Referências antes de revisão/ativação › review › nega array exato em corpo string antes de escrever
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"reviewedAt": "2026-10-13T08:46:48.462Z", "reviewedBy": "admin_fixture", "workflow": {"createdAt": "2026-10-13T00:00:00.000Z", "description": undefined, "edges": [{"id": "edge_0", "sourceNodeId": "form", "targetNodeId": "ai"}, {"id": "edge_1", "sourceNodeId": "ai", "targetNodeId": "record"}, {"id": "edge_2", "sourceNodeId": "record", "targetNodeId": "condition"}, {"id": "edge_3", "sourceNodeId": "condition", "targetNodeId": "http"}, {"id": "edge_4", "sourceNodeId": "http", "targetNodeId": "mail"}], "id": "wf_refs", "name": "Fixture", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"inputPromptTemplate": "{{form.message_text}}", "modelRef": "modelo-a-aprovar"}, "id": "ai", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "ai_analyze_intent"}, {"config": {"fieldMappings": {"ambiguities": "{{ai.ambiguities}}", "name": "{{form.contact_name}}"}}, "id": "record", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "internal_record"}, {"config": {"leftOperand": "{{ai.intent}}", "operator": "is_empty"}, "id": "condition", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "condition"}, {"config": {"method": "GET", "url": "https://endpoint.example.invalid"}, "id": "http", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "http_request"}, {"config": {"bodyTemplate": "{{ai.ambiguities}}", "subject": "Fixture", "to": "{{form.contact_email}}"}, "id": "mail", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "send_email"}], "orgId": "org_fixture", "reviewedAt": "2026-10-13T08:46:48.462Z", "reviewedBy": "admin_fixture", "schemaVersion": "1.0.0", "status": "REVIEWED", "triggerNodeId": "form", "updatedAt": "2026-10-13T00:00:00.000Z", "version": 1}}
+
+      59 |     it.each(cases)('nega %s antes de escrever', async (_label, edit) => {
+      60 |       const w = definition(); edit(w); const f = serviceFixture(w, operation === 'review' ? 'DRAFT' : 'REVIEWED');
+    > 61 |       await expect(f.service[operation](w.orgId, w.id, 'admin_fixture')).rejects.toBeInstanceOf(BadRequestException);
+         |             ^
+      62 |       expect(f.workflow.updateMany).not.toHaveBeenCalled(); expect(f.workflowVersion.create).not.toHaveBeenCalled();
+      63 |     });
+      64 |   });
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/engine/workflow-reference.spec.ts:61:13
+
+  ● Referências antes de revisão/ativação › review › nega índice de array inválido antes de escrever
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"reviewedAt": "2026-10-13T08:46:48.463Z", "reviewedBy": "admin_fixture", "workflow": {"createdAt": "2026-10-13T00:00:00.000Z", "description": undefined, "edges": [{"id": "edge_0", "sourceNodeId": "form", "targetNodeId": "ai"}, {"id": "edge_1", "sourceNodeId": "ai", "targetNodeId": "record"}, {"id": "edge_2", "sourceNodeId": "record", "targetNodeId": "condition"}, {"id": "edge_3", "sourceNodeId": "condition", "targetNodeId": "http"}, {"id": "edge_4", "sourceNodeId": "http", "targetNodeId": "mail"}], "id": "wf_refs", "name": "Fixture", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"inputPromptTemplate": "{{form.message_text}}", "modelRef": "modelo-a-aprovar"}, "id": "ai", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "ai_analyze_intent"}, {"config": {"fieldMappings": {"ambiguities": "{{ai.ambiguities}}", "name": "{{form.contact_name}}"}}, "id": "record", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "internal_record"}, {"config": {"leftOperand": "{{ai.intent}}", "operator": "is_empty"}, "id": "condition", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "condition"}, {"config": {"method": "GET", "url": "https://endpoint.example.invalid"}, "id": "http", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "http_request"}, {"config": {"bodyTemplate": "{{ai.ambiguities.00}}", "subject": "Fixture", "to": "{{form.contact_email}}"}, "id": "mail", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "send_email"}], "orgId": "org_fixture", "reviewedAt": "2026-10-13T08:46:48.463Z", "reviewedBy": "admin_fixture", "schemaVersion": "1.0.0", "status": "REVIEWED", "triggerNodeId": "form", "updatedAt": "2026-10-13T00:00:00.000Z", "version": 1}}
+
+      59 |     it.each(cases)('nega %s antes de escrever', async (_label, edit) => {
+      60 |       const w = definition(); edit(w); const f = serviceFixture(w, operation === 'review' ? 'DRAFT' : 'REVIEWED');
+    > 61 |       await expect(f.service[operation](w.orgId, w.id, 'admin_fixture')).rejects.toBeInstanceOf(BadRequestException);
+         |             ^
+      62 |       expect(f.workflow.updateMany).not.toHaveBeenCalled(); expect(f.workflowVersion.create).not.toHaveBeenCalled();
+      63 |     });
+      64 |   });
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/engine/workflow-reference.spec.ts:61:13
+
+  ● Referências antes de revisão/ativação › review › nega subcampo de item string antes de escrever
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"reviewedAt": "2026-10-13T08:46:48.464Z", "reviewedBy": "admin_fixture", "workflow": {"createdAt": "2026-10-13T00:00:00.000Z", "description": undefined, "edges": [{"id": "edge_0", "sourceNodeId": "form", "targetNodeId": "ai"}, {"id": "edge_1", "sourceNodeId": "ai", "targetNodeId": "record"}, {"id": "edge_2", "sourceNodeId": "record", "targetNodeId": "condition"}, {"id": "edge_3", "sourceNodeId": "condition", "targetNodeId": "http"}, {"id": "edge_4", "sourceNodeId": "http", "targetNodeId": "mail"}], "id": "wf_refs", "name": "Fixture", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"inputPromptTemplate": "{{form.message_text}}", "modelRef": "modelo-a-aprovar"}, "id": "ai", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "ai_analyze_intent"}, {"config": {"fieldMappings": {"ambiguities": "{{ai.ambiguities}}", "name": "{{form.contact_name}}"}}, "id": "record", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "internal_record"}, {"config": {"leftOperand": "{{ai.intent}}", "operator": "is_empty"}, "id": "condition", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "condition"}, {"config": {"method": "GET", "url": "https://endpoint.example.invalid"}, "id": "http", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "http_request"}, {"config": {"bodyTemplate": "{{ai.ambiguities.0.child}}", "subject": "Fixture", "to": "{{form.contact_email}}"}, "id": "mail", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "send_email"}], "orgId": "org_fixture", "reviewedAt": "2026-10-13T08:46:48.464Z", "reviewedBy": "admin_fixture", "schemaVersion": "1.0.0", "status": "REVIEWED", "triggerNodeId": "form", "updatedAt": "2026-10-13T00:00:00.000Z", "version": 1}}
+
+      59 |     it.each(cases)('nega %s antes de escrever', async (_label, edit) => {
+      60 |       const w = definition(); edit(w); const f = serviceFixture(w, operation === 'review' ? 'DRAFT' : 'REVIEWED');
+    > 61 |       await expect(f.service[operation](w.orgId, w.id, 'admin_fixture')).rejects.toBeInstanceOf(BadRequestException);
+         |             ^
+      62 |       expect(f.workflow.updateMany).not.toHaveBeenCalled(); expect(f.workflowVersion.create).not.toHaveBeenCalled();
+      63 |     });
+      64 |   });
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/engine/workflow-reference.spec.ts:61:13
+
+  ● Referências antes de revisão/ativação › review › nega destinatário usa saída inexistente antes de escrever
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"reviewedAt": "2026-10-13T08:46:48.465Z", "reviewedBy": "admin_fixture", "workflow": {"createdAt": "2026-10-13T00:00:00.000Z", "description": undefined, "edges": [{"id": "edge_0", "sourceNodeId": "form", "targetNodeId": "ai"}, {"id": "edge_1", "sourceNodeId": "ai", "targetNodeId": "record"}, {"id": "edge_2", "sourceNodeId": "record", "targetNodeId": "condition"}, {"id": "edge_3", "sourceNodeId": "condition", "targetNodeId": "http"}, {"id": "edge_4", "sourceNodeId": "http", "targetNodeId": "mail"}], "id": "wf_refs", "name": "Fixture", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"inputPromptTemplate": "{{form.message_text}}", "modelRef": "modelo-a-aprovar"}, "id": "ai", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "ai_analyze_intent"}, {"config": {"fieldMappings": {"ambiguities": "{{ai.ambiguities}}", "name": "{{form.contact_name}}"}}, "id": "record", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "internal_record"}, {"config": {"leftOperand": "{{ai.intent}}", "operator": "is_empty"}, "id": "condition", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "condition"}, {"config": {"method": "GET", "url": "https://endpoint.example.invalid"}, "id": "http", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "http_request"}, {"config": {"bodyTemplate": "{{ai.summary}}", "subject": "Fixture", "to": "{{form.output_inexistente}}"}, "id": "mail", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "send_email"}], "orgId": "org_fixture", "reviewedAt": "2026-10-13T08:46:48.465Z", "reviewedBy": "admin_fixture", "schemaVersion": "1.0.0", "status": "REVIEWED", "triggerNodeId": "form", "updatedAt": "2026-10-13T00:00:00.000Z", "version": 1}}
+
+      59 |     it.each(cases)('nega %s antes de escrever', async (_label, edit) => {
+      60 |       const w = definition(); edit(w); const f = serviceFixture(w, operation === 'review' ? 'DRAFT' : 'REVIEWED');
+    > 61 |       await expect(f.service[operation](w.orgId, w.id, 'admin_fixture')).rejects.toBeInstanceOf(BadRequestException);
+         |             ^
+      62 |       expect(f.workflow.updateMany).not.toHaveBeenCalled(); expect(f.workflowVersion.create).not.toHaveBeenCalled();
+      63 |     });
+      64 |   });
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/engine/workflow-reference.spec.ts:61:13
+
+  ● Referências antes de revisão/ativação › review › nega boolean em header string antes de escrever
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"reviewedAt": "2026-10-13T08:46:48.465Z", "reviewedBy": "admin_fixture", "workflow": {"createdAt": "2026-10-13T00:00:00.000Z", "description": undefined, "edges": [{"id": "edge_0", "sourceNodeId": "form", "targetNodeId": "ai"}, {"id": "edge_1", "sourceNodeId": "ai", "targetNodeId": "record"}, {"id": "edge_2", "sourceNodeId": "record", "targetNodeId": "condition"}, {"id": "edge_3", "sourceNodeId": "condition", "targetNodeId": "http"}, {"id": "edge_4", "sourceNodeId": "http", "targetNodeId": "mail"}], "id": "wf_refs", "name": "Fixture", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"inputPromptTemplate": "{{form.message_text}}", "modelRef": "modelo-a-aprovar"}, "id": "ai", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "ai_analyze_intent"}, {"config": {"fieldMappings": {"ambiguities": "{{ai.ambiguities}}", "name": "{{form.contact_name}}"}}, "id": "record", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "internal_record"}, {"config": {"leftOperand": "{{ai.intent}}", "operator": "is_empty"}, "id": "condition", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "condition"}, {"config": {"headers": {"X-Fixture": "{{condition.result}}"}, "method": "GET", "url": "https://endpoint.example.invalid"}, "id": "http", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "http_request"}, {"config": {"bodyTemplate": "{{ai.summary}}", "subject": "Fixture", "to": "{{form.contact_email}}"}, "id": "mail", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "send_email"}], "orgId": "org_fixture", "reviewedAt": "2026-10-13T08:46:48.465Z", "reviewedBy": "admin_fixture", "schemaVersion": "1.0.0", "status": "REVIEWED", "triggerNodeId": "form", "updatedAt": "2026-10-13T00:00:00.000Z", "version": 1}}
+
+      59 |     it.each(cases)('nega %s antes de escrever', async (_label, edit) => {
+      60 |       const w = definition(); edit(w); const f = serviceFixture(w, operation === 'review' ? 'DRAFT' : 'REVIEWED');
+    > 61 |       await expect(f.service[operation](w.orgId, w.id, 'admin_fixture')).rejects.toBeInstanceOf(BadRequestException);
+         |             ^
+      62 |       expect(f.workflow.updateMany).not.toHaveBeenCalled(); expect(f.workflowVersion.create).not.toHaveBeenCalled();
+      63 |     });
+      64 |   });
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/engine/workflow-reference.spec.ts:61:13
+
+  ● Referências antes de revisão/ativação › review › nega número em campo de registro string antes de escrever
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"reviewedAt": "2026-10-13T08:46:48.466Z", "reviewedBy": "admin_fixture", "workflow": {"createdAt": "2026-10-13T00:00:00.000Z", "description": undefined, "edges": [{"id": "edge_0", "sourceNodeId": "form", "targetNodeId": "ai"}, {"id": "edge_1", "sourceNodeId": "ai", "targetNodeId": "record"}, {"id": "edge_2", "sourceNodeId": "record", "targetNodeId": "condition"}, {"id": "edge_3", "sourceNodeId": "condition", "targetNodeId": "http"}, {"id": "edge_4", "sourceNodeId": "http", "targetNodeId": "mail"}], "id": "wf_refs", "name": "Fixture", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"inputPromptTemplate": "{{form.message_text}}", "modelRef": "modelo-a-aprovar"}, "id": "ai", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "ai_analyze_intent"}, {"config": {"fieldMappings": {"name": "Fixture", "raw_message": "{{ai.tokens_consumed}}"}}, "id": "record", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "internal_record"}, {"config": {"leftOperand": "{{ai.intent}}", "operator": "is_empty"}, "id": "condition", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "condition"}, {"config": {"method": "GET", "url": "https://endpoint.example.invalid"}, "id": "http", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "http_request"}, {"config": {"bodyTemplate": "{{ai.summary}}", "subject": "Fixture", "to": "{{form.contact_email}}"}, "id": "mail", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "send_email"}], "orgId": "org_fixture", "reviewedAt": "2026-10-13T08:46:48.466Z", "reviewedBy": "admin_fixture", "schemaVersion": "1.0.0", "status": "REVIEWED", "triggerNodeId": "form", "updatedAt": "2026-10-13T00:00:00.000Z", "version": 1}}
+
+      59 |     it.each(cases)('nega %s antes de escrever', async (_label, edit) => {
+      60 |       const w = definition(); edit(w); const f = serviceFixture(w, operation === 'review' ? 'DRAFT' : 'REVIEWED');
+    > 61 |       await expect(f.service[operation](w.orgId, w.id, 'admin_fixture')).rejects.toBeInstanceOf(BadRequestException);
+         |             ^
+      62 |       expect(f.workflow.updateMany).not.toHaveBeenCalled(); expect(f.workflowVersion.create).not.toHaveBeenCalled();
+      63 |     });
+      64 |   });
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/engine/workflow-reference.spec.ts:61:13
+
+  ● Referências antes de revisão/ativação › review › nega número em elemento de ambiguidades antes de escrever
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"reviewedAt": "2026-10-13T08:46:48.467Z", "reviewedBy": "admin_fixture", "workflow": {"createdAt": "2026-10-13T00:00:00.000Z", "description": undefined, "edges": [{"id": "edge_0", "sourceNodeId": "form", "targetNodeId": "ai"}, {"id": "edge_1", "sourceNodeId": "ai", "targetNodeId": "record"}, {"id": "edge_2", "sourceNodeId": "record", "targetNodeId": "condition"}, {"id": "edge_3", "sourceNodeId": "condition", "targetNodeId": "http"}, {"id": "edge_4", "sourceNodeId": "http", "targetNodeId": "mail"}], "id": "wf_refs", "name": "Fixture", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"inputPromptTemplate": "{{form.message_text}}", "modelRef": "modelo-a-aprovar"}, "id": "ai", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "ai_analyze_intent"}, {"config": {"fieldMappings": {"ambiguities": ["{{ai.tokens_consumed}}"], "name": "Fixture"}}, "id": "record", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "internal_record"}, {"config": {"leftOperand": "{{ai.intent}}", "operator": "is_empty"}, "id": "condition", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "condition"}, {"config": {"method": "GET", "url": "https://endpoint.example.invalid"}, "id": "http", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "http_request"}, {"config": {"bodyTemplate": "{{ai.summary}}", "subject": "Fixture", "to": "{{form.contact_email}}"}, "id": "mail", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "send_email"}], "orgId": "org_fixture", "reviewedAt": "2026-10-13T08:46:48.467Z", "reviewedBy": "admin_fixture", "schemaVersion": "1.0.0", "status": "REVIEWED", "triggerNodeId": "form", "updatedAt": "2026-10-13T00:00:00.000Z", "version": 1}}
+
+      59 |     it.each(cases)('nega %s antes de escrever', async (_label, edit) => {
+      60 |       const w = definition(); edit(w); const f = serviceFixture(w, operation === 'review' ? 'DRAFT' : 'REVIEWED');
+    > 61 |       await expect(f.service[operation](w.orgId, w.id, 'admin_fixture')).rejects.toBeInstanceOf(BadRequestException);
+         |             ^
+      62 |       expect(f.workflow.updateMany).not.toHaveBeenCalled(); expect(f.workflowVersion.create).not.toHaveBeenCalled();
+      63 |     });
+      64 |   });
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/engine/workflow-reference.spec.ts:61:13
+
+  ● Referências antes de revisão/ativação › publish › nega produtor inexistente antes de escrever
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"publishedAt": "2026-10-13T08:46:48.468Z", "versionSnapshot": {"edges": [{"id": "edge_0", "sourceNodeId": "form", "targetNodeId": "ai"}, {"id": "edge_1", "sourceNodeId": "ai", "targetNodeId": "record"}, {"id": "edge_2", "sourceNodeId": "record", "targetNodeId": "condition"}, {"id": "edge_3", "sourceNodeId": "condition", "targetNodeId": "http"}, {"id": "edge_4", "sourceNodeId": "http", "targetNodeId": "mail"}], "id": "snapshot", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"inputPromptTemplate": "{{form.message_text}}", "modelRef": "modelo-a-aprovar"}, "id": "ai", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "ai_analyze_intent"}, {"config": {"fieldMappings": {"ambiguities": "{{ai.ambiguities}}", "name": "{{form.contact_name}}"}}, "id": "record", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "internal_record"}, {"config": {"leftOperand": "{{ai.intent}}", "operator": "is_empty"}, "id": "condition", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "condition"}, {"config": {"method": "GET", "url": "https://endpoint.example.invalid"}, "id": "http", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "http_request"}, {"config": {"bodyTemplate": "{{missing.summary}}", "subject": "Fixture", "to": "{{form.contact_email}}"}, "id": "mail", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "send_email"}], "publishedAt": "2026-10-13T08:46:48.468Z", "publishedBy": "admin_fixture", "schemaVersion": "1.0.0", "triggerNodeId": "form", "version": 1, "workflowId": "wf_refs"}, "workflow": {"createdAt": "2026-10-13T00:00:00.000Z", "description": undefined, "edges": [{"id": "edge_0", "sourceNodeId": "form", "targetNodeId": "ai"}, {"id": "edge_1", "sourceNodeId": "ai", "targetNodeId": "record"}, {"id": "edge_2", "sourceNodeId": "record", "targetNodeId": "condition"}, {"id": "edge_3", "sourceNodeId": "condition", "targetNodeId": "http"}, {"id": "edge_4", "sourceNodeId": "http", "targetNodeId": "mail"}], "id": "wf_refs", "name": "Fixture", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"inputPromptTemplate": "{{form.message_text}}", "modelRef": "modelo-a-aprovar"}, "id": "ai", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "ai_analyze_intent"}, {"config": {"fieldMappings": {"ambiguities": "{{ai.ambiguities}}", "name": "{{form.contact_name}}"}}, "id": "record", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "internal_record"}, {"config": {"leftOperand": "{{ai.intent}}", "operator": "is_empty"}, "id": "condition", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "condition"}, {"config": {"method": "GET", "url": "https://endpoint.example.invalid"}, "id": "http", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "http_request"}, {"config": {"bodyTemplate": "{{missing.summary}}", "subject": "Fixture", "to": "{{form.contact_email}}"}, "id": "mail", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "send_email"}], "orgId": "org_fixture", "reviewedAt": "2026-10-13T00:00:00.000Z", "reviewedBy": "admin_fixture", "schemaVersion": "1.0.0", "status": "PUBLISHED", "triggerNodeId": "form", "updatedAt": "2026-10-13T00:00:00.000Z", "version": 1}}
+
+      59 |     it.each(cases)('nega %s antes de escrever', async (_label, edit) => {
+      60 |       const w = definition(); edit(w); const f = serviceFixture(w, operation === 'review' ? 'DRAFT' : 'REVIEWED');
+    > 61 |       await expect(f.service[operation](w.orgId, w.id, 'admin_fixture')).rejects.toBeInstanceOf(BadRequestException);
+         |             ^
+      62 |       expect(f.workflow.updateMany).not.toHaveBeenCalled(); expect(f.workflowVersion.create).not.toHaveBeenCalled();
+      63 |     });
+      64 |   });
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/engine/workflow-reference.spec.ts:61:13
+
+  ● Referências antes de revisão/ativação › publish › nega campo não declarado antes de escrever
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"publishedAt": "2026-10-13T08:46:48.470Z", "versionSnapshot": {"edges": [{"id": "edge_0", "sourceNodeId": "form", "targetNodeId": "ai"}, {"id": "edge_1", "sourceNodeId": "ai", "targetNodeId": "record"}, {"id": "edge_2", "sourceNodeId": "record", "targetNodeId": "condition"}, {"id": "edge_3", "sourceNodeId": "condition", "targetNodeId": "http"}, {"id": "edge_4", "sourceNodeId": "http", "targetNodeId": "mail"}], "id": "snapshot", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"inputPromptTemplate": "{{form.message_text}}", "modelRef": "modelo-a-aprovar"}, "id": "ai", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "ai_analyze_intent"}, {"config": {"fieldMappings": {"ambiguities": "{{ai.ambiguities}}", "name": "{{form.contact_name}}"}}, "id": "record", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "internal_record"}, {"config": {"leftOperand": "{{ai.intent}}", "operator": "is_empty"}, "id": "condition", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "condition"}, {"config": {"method": "GET", "url": "https://endpoint.example.invalid"}, "id": "http", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "http_request"}, {"config": {"bodyTemplate": "{{form.output_inexistente}}", "subject": "Fixture", "to": "{{form.contact_email}}"}, "id": "mail", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "send_email"}], "publishedAt": "2026-10-13T08:46:48.470Z", "publishedBy": "admin_fixture", "schemaVersion": "1.0.0", "triggerNodeId": "form", "version": 1, "workflowId": "wf_refs"}, "workflow": {"createdAt": "2026-10-13T00:00:00.000Z", "description": undefined, "edges": [{"id": "edge_0", "sourceNodeId": "form", "targetNodeId": "ai"}, {"id": "edge_1", "sourceNodeId": "ai", "targetNodeId": "record"}, {"id": "edge_2", "sourceNodeId": "record", "targetNodeId": "condition"}, {"id": "edge_3", "sourceNodeId": "condition", "targetNodeId": "http"}, {"id": "edge_4", "sourceNodeId": "http", "targetNodeId": "mail"}], "id": "wf_refs", "name": "Fixture", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"inputPromptTemplate": "{{form.message_text}}", "modelRef": "modelo-a-aprovar"}, "id": "ai", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "ai_analyze_intent"}, {"config": {"fieldMappings": {"ambiguities": "{{ai.ambiguities}}", "name": "{{form.contact_name}}"}}, "id": "record", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "internal_record"}, {"config": {"leftOperand": "{{ai.intent}}", "operator": "is_empty"}, "id": "condition", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "condition"}, {"config": {"method": "GET", "url": "https://endpoint.example.invalid"}, "id": "http", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "http_request"}, {"config": {"bodyTemplate": "{{form.output_inexistente}}", "subject": "Fixture", "to": "{{form.contact_email}}"}, "id": "mail", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "send_email"}], "orgId": "org_fixture", "reviewedAt": "2026-10-13T00:00:00.000Z", "reviewedBy": "admin_fixture", "schemaVersion": "1.0.0", "status": "PUBLISHED", "triggerNodeId": "form", "updatedAt": "2026-10-13T00:00:00.000Z", "version": 1}}
+
+      59 |     it.each(cases)('nega %s antes de escrever', async (_label, edit) => {
+      60 |       const w = definition(); edit(w); const f = serviceFixture(w, operation === 'review' ? 'DRAFT' : 'REVIEWED');
+    > 61 |       await expect(f.service[operation](w.orgId, w.id, 'admin_fixture')).rejects.toBeInstanceOf(BadRequestException);
+         |             ^
+      62 |       expect(f.workflow.updateMany).not.toHaveBeenCalled(); expect(f.workflowVersion.create).not.toHaveBeenCalled();
+      63 |     });
+      64 |   });
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/engine/workflow-reference.spec.ts:61:13
+
+  ● Referências antes de revisão/ativação › publish › nega saída antiga de interesse antes de escrever
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"publishedAt": "2026-10-13T08:46:48.471Z", "versionSnapshot": {"edges": [{"id": "edge_0", "sourceNodeId": "form", "targetNodeId": "ai"}, {"id": "edge_1", "sourceNodeId": "ai", "targetNodeId": "record"}, {"id": "edge_2", "sourceNodeId": "record", "targetNodeId": "condition"}, {"id": "edge_3", "sourceNodeId": "condition", "targetNodeId": "http"}, {"id": "edge_4", "sourceNodeId": "http", "targetNodeId": "mail"}], "id": "snapshot", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"inputPromptTemplate": "{{form.message_text}}", "modelRef": "modelo-a-aprovar"}, "id": "ai", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "ai_analyze_intent"}, {"config": {"fieldMappings": {"ambiguities": "{{ai.ambiguities}}", "name": "{{form.contact_name}}"}}, "id": "record", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "internal_record"}, {"config": {"leftOperand": "{{ai.intent}}", "operator": "is_empty"}, "id": "condition", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "condition"}, {"config": {"method": "GET", "url": "https://endpoint.example.invalid"}, "id": "http", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "http_request"}, {"config": {"bodyTemplate": "{{ai.interest_level}}", "subject": "Fixture", "to": "{{form.contact_email}}"}, "id": "mail", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "send_email"}], "publishedAt": "2026-10-13T08:46:48.471Z", "publishedBy": "admin_fixture", "schemaVersion": "1.0.0", "triggerNodeId": "form", "version": 1, "workflowId": "wf_refs"}, "workflow": {"createdAt": "2026-10-13T00:00:00.000Z", "description": undefined, "edges": [{"id": "edge_0", "sourceNodeId": "form", "targetNodeId": "ai"}, {"id": "edge_1", "sourceNodeId": "ai", "targetNodeId": "record"}, {"id": "edge_2", "sourceNodeId": "record", "targetNodeId": "condition"}, {"id": "edge_3", "sourceNodeId": "condition", "targetNodeId": "http"}, {"id": "edge_4", "sourceNodeId": "http", "targetNodeId": "mail"}], "id": "wf_refs", "name": "Fixture", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"inputPromptTemplate": "{{form.message_text}}", "modelRef": "modelo-a-aprovar"}, "id": "ai", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "ai_analyze_intent"}, {"config": {"fieldMappings": {"ambiguities": "{{ai.ambiguities}}", "name": "{{form.contact_name}}"}}, "id": "record", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "internal_record"}, {"config": {"leftOperand": "{{ai.intent}}", "operator": "is_empty"}, "id": "condition", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "condition"}, {"config": {"method": "GET", "url": "https://endpoint.example.invalid"}, "id": "http", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "http_request"}, {"config": {"bodyTemplate": "{{ai.interest_level}}", "subject": "Fixture", "to": "{{form.contact_email}}"}, "id": "mail", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "send_email"}], "orgId": "org_fixture", "reviewedAt": "2026-10-13T00:00:00.000Z", "reviewedBy": "admin_fixture", "schemaVersion": "1.0.0", "status": "PUBLISHED", "triggerNodeId": "form", "updatedAt": "2026-10-13T00:00:00.000Z", "version": 1}}
+
+      59 |     it.each(cases)('nega %s antes de escrever', async (_label, edit) => {
+      60 |       const w = definition(); edit(w); const f = serviceFixture(w, operation === 'review' ? 'DRAFT' : 'REVIEWED');
+    > 61 |       await expect(f.service[operation](w.orgId, w.id, 'admin_fixture')).rejects.toBeInstanceOf(BadRequestException);
+         |             ^
+      62 |       expect(f.workflow.updateMany).not.toHaveBeenCalled(); expect(f.workflowVersion.create).not.toHaveBeenCalled();
+      63 |     });
+      64 |   });
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/engine/workflow-reference.spec.ts:61:13
+
+  ● Referências antes de revisão/ativação › publish › nega auto referência antes de escrever
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"publishedAt": "2026-10-13T08:46:48.472Z", "versionSnapshot": {"edges": [{"id": "edge_0", "sourceNodeId": "form", "targetNodeId": "ai"}, {"id": "edge_1", "sourceNodeId": "ai", "targetNodeId": "record"}, {"id": "edge_2", "sourceNodeId": "record", "targetNodeId": "condition"}, {"id": "edge_3", "sourceNodeId": "condition", "targetNodeId": "http"}, {"id": "edge_4", "sourceNodeId": "http", "targetNodeId": "mail"}], "id": "snapshot", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"inputPromptTemplate": "{{form.message_text}}", "modelRef": "modelo-a-aprovar"}, "id": "ai", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "ai_analyze_intent"}, {"config": {"fieldMappings": {"ambiguities": "{{ai.ambiguities}}", "name": "{{form.contact_name}}"}}, "id": "record", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "internal_record"}, {"config": {"leftOperand": "{{ai.intent}}", "operator": "is_empty"}, "id": "condition", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "condition"}, {"config": {"method": "GET", "url": "https://endpoint.example.invalid"}, "id": "http", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "http_request"}, {"config": {"bodyTemplate": "{{mail.recipient}}", "subject": "Fixture", "to": "{{form.contact_email}}"}, "id": "mail", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "send_email"}], "publishedAt": "2026-10-13T08:46:48.472Z", "publishedBy": "admin_fixture", "schemaVersion": "1.0.0", "triggerNodeId": "form", "version": 1, "workflowId": "wf_refs"}, "workflow": {"createdAt": "2026-10-13T00:00:00.000Z", "description": undefined, "edges": [{"id": "edge_0", "sourceNodeId": "form", "targetNodeId": "ai"}, {"id": "edge_1", "sourceNodeId": "ai", "targetNodeId": "record"}, {"id": "edge_2", "sourceNodeId": "record", "targetNodeId": "condition"}, {"id": "edge_3", "sourceNodeId": "condition", "targetNodeId": "http"}, {"id": "edge_4", "sourceNodeId": "http", "targetNodeId": "mail"}], "id": "wf_refs", "name": "Fixture", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"inputPromptTemplate": "{{form.message_text}}", "modelRef": "modelo-a-aprovar"}, "id": "ai", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "ai_analyze_intent"}, {"config": {"fieldMappings": {"ambiguities": "{{ai.ambiguities}}", "name": "{{form.contact_name}}"}}, "id": "record", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "internal_record"}, {"config": {"leftOperand": "{{ai.intent}}", "operator": "is_empty"}, "id": "condition", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "condition"}, {"config": {"method": "GET", "url": "https://endpoint.example.invalid"}, "id": "http", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "http_request"}, {"config": {"bodyTemplate": "{{mail.recipient}}", "subject": "Fixture", "to": "{{form.contact_email}}"}, "id": "mail", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "send_email"}], "orgId": "org_fixture", "reviewedAt": "2026-10-13T00:00:00.000Z", "reviewedBy": "admin_fixture", "schemaVersion": "1.0.0", "status": "PUBLISHED", "triggerNodeId": "form", "updatedAt": "2026-10-13T00:00:00.000Z", "version": 1}}
+
+      59 |     it.each(cases)('nega %s antes de escrever', async (_label, edit) => {
+      60 |       const w = definition(); edit(w); const f = serviceFixture(w, operation === 'review' ? 'DRAFT' : 'REVIEWED');
+    > 61 |       await expect(f.service[operation](w.orgId, w.id, 'admin_fixture')).rejects.toBeInstanceOf(BadRequestException);
+         |             ^
+      62 |       expect(f.workflow.updateMany).not.toHaveBeenCalled(); expect(f.workflowVersion.create).not.toHaveBeenCalled();
+      63 |     });
+      64 |   });
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/engine/workflow-reference.spec.ts:61:13
+
+  ● Referências antes de revisão/ativação › publish › nega produtor futuro no prompt antes de escrever
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"publishedAt": "2026-10-13T08:46:48.473Z", "versionSnapshot": {"edges": [{"id": "edge_0", "sourceNodeId": "form", "targetNodeId": "ai"}, {"id": "edge_1", "sourceNodeId": "ai", "targetNodeId": "record"}, {"id": "edge_2", "sourceNodeId": "record", "targetNodeId": "condition"}, {"id": "edge_3", "sourceNodeId": "condition", "targetNodeId": "http"}, {"id": "edge_4", "sourceNodeId": "http", "targetNodeId": "mail"}], "id": "snapshot", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"inputPromptTemplate": "{{http.response_body}}", "modelRef": "modelo-a-aprovar"}, "id": "ai", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "ai_analyze_intent"}, {"config": {"fieldMappings": {"ambiguities": "{{ai.ambiguities}}", "name": "{{form.contact_name}}"}}, "id": "record", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "internal_record"}, {"config": {"leftOperand": "{{ai.intent}}", "operator": "is_empty"}, "id": "condition", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "condition"}, {"config": {"method": "GET", "url": "https://endpoint.example.invalid"}, "id": "http", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "http_request"}, {"config": {"bodyTemplate": "{{ai.summary}}", "subject": "Fixture", "to": "{{form.contact_email}}"}, "id": "mail", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "send_email"}], "publishedAt": "2026-10-13T08:46:48.473Z", "publishedBy": "admin_fixture", "schemaVersion": "1.0.0", "triggerNodeId": "form", "version": 1, "workflowId": "wf_refs"}, "workflow": {"createdAt": "2026-10-13T00:00:00.000Z", "description": undefined, "edges": [{"id": "edge_0", "sourceNodeId": "form", "targetNodeId": "ai"}, {"id": "edge_1", "sourceNodeId": "ai", "targetNodeId": "record"}, {"id": "edge_2", "sourceNodeId": "record", "targetNodeId": "condition"}, {"id": "edge_3", "sourceNodeId": "condition", "targetNodeId": "http"}, {"id": "edge_4", "sourceNodeId": "http", "targetNodeId": "mail"}], "id": "wf_refs", "name": "Fixture", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"inputPromptTemplate": "{{http.response_body}}", "modelRef": "modelo-a-aprovar"}, "id": "ai", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "ai_analyze_intent"}, {"config": {"fieldMappings": {"ambiguities": "{{ai.ambiguities}}", "name": "{{form.contact_name}}"}}, "id": "record", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "internal_record"}, {"config": {"leftOperand": "{{ai.intent}}", "operator": "is_empty"}, "id": "condition", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "condition"}, {"config": {"method": "GET", "url": "https://endpoint.example.invalid"}, "id": "http", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "http_request"}, {"config": {"bodyTemplate": "{{ai.summary}}", "subject": "Fixture", "to": "{{form.contact_email}}"}, "id": "mail", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "send_email"}], "orgId": "org_fixture", "reviewedAt": "2026-10-13T00:00:00.000Z", "reviewedBy": "admin_fixture", "schemaVersion": "1.0.0", "status": "PUBLISHED", "triggerNodeId": "form", "updatedAt": "2026-10-13T00:00:00.000Z", "version": 1}}
+
+      59 |     it.each(cases)('nega %s antes de escrever', async (_label, edit) => {
+      60 |       const w = definition(); edit(w); const f = serviceFixture(w, operation === 'review' ? 'DRAFT' : 'REVIEWED');
+    > 61 |       await expect(f.service[operation](w.orgId, w.id, 'admin_fixture')).rejects.toBeInstanceOf(BadRequestException);
+         |             ^
+      62 |       expect(f.workflow.updateMany).not.toHaveBeenCalled(); expect(f.workflowVersion.create).not.toHaveBeenCalled();
+      63 |     });
+      64 |   });
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/engine/workflow-reference.spec.ts:61:13
+
+  ● Referências antes de revisão/ativação › publish › nega subcampo de string antes de escrever
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"publishedAt": "2026-10-13T08:46:48.474Z", "versionSnapshot": {"edges": [{"id": "edge_0", "sourceNodeId": "form", "targetNodeId": "ai"}, {"id": "edge_1", "sourceNodeId": "ai", "targetNodeId": "record"}, {"id": "edge_2", "sourceNodeId": "record", "targetNodeId": "condition"}, {"id": "edge_3", "sourceNodeId": "condition", "targetNodeId": "http"}, {"id": "edge_4", "sourceNodeId": "http", "targetNodeId": "mail"}], "id": "snapshot", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"inputPromptTemplate": "{{form.message_text}}", "modelRef": "modelo-a-aprovar"}, "id": "ai", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "ai_analyze_intent"}, {"config": {"fieldMappings": {"ambiguities": "{{ai.ambiguities}}", "name": "{{form.contact_name}}"}}, "id": "record", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "internal_record"}, {"config": {"leftOperand": "{{ai.intent}}", "operator": "is_empty"}, "id": "condition", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "condition"}, {"config": {"method": "GET", "url": "https://endpoint.example.invalid"}, "id": "http", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "http_request"}, {"config": {"bodyTemplate": "{{form.contact_name.child}}", "subject": "Fixture", "to": "{{form.contact_email}}"}, "id": "mail", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "send_email"}], "publishedAt": "2026-10-13T08:46:48.474Z", "publishedBy": "admin_fixture", "schemaVersion": "1.0.0", "triggerNodeId": "form", "version": 1, "workflowId": "wf_refs"}, "workflow": {"createdAt": "2026-10-13T00:00:00.000Z", "description": undefined, "edges": [{"id": "edge_0", "sourceNodeId": "form", "targetNodeId": "ai"}, {"id": "edge_1", "sourceNodeId": "ai", "targetNodeId": "record"}, {"id": "edge_2", "sourceNodeId": "record", "targetNodeId": "condition"}, {"id": "edge_3", "sourceNodeId": "condition", "targetNodeId": "http"}, {"id": "edge_4", "sourceNodeId": "http", "targetNodeId": "mail"}], "id": "wf_refs", "name": "Fixture", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"inputPromptTemplate": "{{form.message_text}}", "modelRef": "modelo-a-aprovar"}, "id": "ai", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "ai_analyze_intent"}, {"config": {"fieldMappings": {"ambiguities": "{{ai.ambiguities}}", "name": "{{form.contact_name}}"}}, "id": "record", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "internal_record"}, {"config": {"leftOperand": "{{ai.intent}}", "operator": "is_empty"}, "id": "condition", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "condition"}, {"config": {"method": "GET", "url": "https://endpoint.example.invalid"}, "id": "http", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "http_request"}, {"config": {"bodyTemplate": "{{form.contact_name.child}}", "subject": "Fixture", "to": "{{form.contact_email}}"}, "id": "mail", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "send_email"}], "orgId": "org_fixture", "reviewedAt": "2026-10-13T00:00:00.000Z", "reviewedBy": "admin_fixture", "schemaVersion": "1.0.0", "status": "PUBLISHED", "triggerNodeId": "form", "updatedAt": "2026-10-13T00:00:00.000Z", "version": 1}}
+
+      59 |     it.each(cases)('nega %s antes de escrever', async (_label, edit) => {
+      60 |       const w = definition(); edit(w); const f = serviceFixture(w, operation === 'review' ? 'DRAFT' : 'REVIEWED');
+    > 61 |       await expect(f.service[operation](w.orgId, w.id, 'admin_fixture')).rejects.toBeInstanceOf(BadRequestException);
+         |             ^
+      62 |       expect(f.workflow.updateMany).not.toHaveBeenCalled(); expect(f.workflowVersion.create).not.toHaveBeenCalled();
+      63 |     });
+      64 |   });
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/engine/workflow-reference.spec.ts:61:13
+
+  ● Referências antes de revisão/ativação › publish › nega acesso reservado em JSON dinâmico antes de escrever
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"publishedAt": "2026-10-13T08:46:48.474Z", "versionSnapshot": {"edges": [{"id": "edge_0", "sourceNodeId": "form", "targetNodeId": "ai"}, {"id": "edge_1", "sourceNodeId": "ai", "targetNodeId": "record"}, {"id": "edge_2", "sourceNodeId": "record", "targetNodeId": "condition"}, {"id": "edge_3", "sourceNodeId": "condition", "targetNodeId": "http"}, {"id": "edge_4", "sourceNodeId": "http", "targetNodeId": "mail"}], "id": "snapshot", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"inputPromptTemplate": "{{form.message_text}}", "modelRef": "modelo-a-aprovar"}, "id": "ai", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "ai_analyze_intent"}, {"config": {"fieldMappings": {"ambiguities": "{{ai.ambiguities}}", "name": "{{form.contact_name}}"}}, "id": "record", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "internal_record"}, {"config": {"leftOperand": "{{ai.intent}}", "operator": "is_empty"}, "id": "condition", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "condition"}, {"config": {"method": "GET", "url": "https://endpoint.example.invalid"}, "id": "http", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "http_request"}, {"config": {"bodyTemplate": "{{http.response_body.__proto__}}", "subject": "Fixture", "to": "{{form.contact_email}}"}, "id": "mail", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "send_email"}], "publishedAt": "2026-10-13T08:46:48.474Z", "publishedBy": "admin_fixture", "schemaVersion": "1.0.0", "triggerNodeId": "form", "version": 1, "workflowId": "wf_refs"}, "workflow": {"createdAt": "2026-10-13T00:00:00.000Z", "description": undefined, "edges": [{"id": "edge_0", "sourceNodeId": "form", "targetNodeId": "ai"}, {"id": "edge_1", "sourceNodeId": "ai", "targetNodeId": "record"}, {"id": "edge_2", "sourceNodeId": "record", "targetNodeId": "condition"}, {"id": "edge_3", "sourceNodeId": "condition", "targetNodeId": "http"}, {"id": "edge_4", "sourceNodeId": "http", "targetNodeId": "mail"}], "id": "wf_refs", "name": "Fixture", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"inputPromptTemplate": "{{form.message_text}}", "modelRef": "modelo-a-aprovar"}, "id": "ai", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "ai_analyze_intent"}, {"config": {"fieldMappings": {"ambiguities": "{{ai.ambiguities}}", "name": "{{form.contact_name}}"}}, "id": "record", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "internal_record"}, {"config": {"leftOperand": "{{ai.intent}}", "operator": "is_empty"}, "id": "condition", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "condition"}, {"config": {"method": "GET", "url": "https://endpoint.example.invalid"}, "id": "http", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "http_request"}, {"config": {"bodyTemplate": "{{http.response_body.__proto__}}", "subject": "Fixture", "to": "{{form.contact_email}}"}, "id": "mail", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "send_email"}], "orgId": "org_fixture", "reviewedAt": "2026-10-13T00:00:00.000Z", "reviewedBy": "admin_fixture", "schemaVersion": "1.0.0", "status": "PUBLISHED", "triggerNodeId": "form", "updatedAt": "2026-10-13T00:00:00.000Z", "version": 1}}
+
+      59 |     it.each(cases)('nega %s antes de escrever', async (_label, edit) => {
+      60 |       const w = definition(); edit(w); const f = serviceFixture(w, operation === 'review' ? 'DRAFT' : 'REVIEWED');
+    > 61 |       await expect(f.service[operation](w.orgId, w.id, 'admin_fixture')).rejects.toBeInstanceOf(BadRequestException);
+         |             ^
+      62 |       expect(f.workflow.updateMany).not.toHaveBeenCalled(); expect(f.workflowVersion.create).not.toHaveBeenCalled();
+      63 |     });
+      64 |   });
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/engine/workflow-reference.spec.ts:61:13
+
+  ● Referências antes de revisão/ativação › publish › nega boolean exato em corpo string antes de escrever
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"publishedAt": "2026-10-13T08:46:48.475Z", "versionSnapshot": {"edges": [{"id": "edge_0", "sourceNodeId": "form", "targetNodeId": "ai"}, {"id": "edge_1", "sourceNodeId": "ai", "targetNodeId": "record"}, {"id": "edge_2", "sourceNodeId": "record", "targetNodeId": "condition"}, {"id": "edge_3", "sourceNodeId": "condition", "targetNodeId": "http"}, {"id": "edge_4", "sourceNodeId": "http", "targetNodeId": "mail"}], "id": "snapshot", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"inputPromptTemplate": "{{form.message_text}}", "modelRef": "modelo-a-aprovar"}, "id": "ai", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "ai_analyze_intent"}, {"config": {"fieldMappings": {"ambiguities": "{{ai.ambiguities}}", "name": "{{form.contact_name}}"}}, "id": "record", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "internal_record"}, {"config": {"leftOperand": "{{ai.intent}}", "operator": "is_empty"}, "id": "condition", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "condition"}, {"config": {"method": "GET", "url": "https://endpoint.example.invalid"}, "id": "http", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "http_request"}, {"config": {"bodyTemplate": "{{condition.result}}", "subject": "Fixture", "to": "{{form.contact_email}}"}, "id": "mail", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "send_email"}], "publishedAt": "2026-10-13T08:46:48.475Z", "publishedBy": "admin_fixture", "schemaVersion": "1.0.0", "triggerNodeId": "form", "version": 1, "workflowId": "wf_refs"}, "workflow": {"createdAt": "2026-10-13T00:00:00.000Z", "description": undefined, "edges": [{"id": "edge_0", "sourceNodeId": "form", "targetNodeId": "ai"}, {"id": "edge_1", "sourceNodeId": "ai", "targetNodeId": "record"}, {"id": "edge_2", "sourceNodeId": "record", "targetNodeId": "condition"}, {"id": "edge_3", "sourceNodeId": "condition", "targetNodeId": "http"}, {"id": "edge_4", "sourceNodeId": "http", "targetNodeId": "mail"}], "id": "wf_refs", "name": "Fixture", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"inputPromptTemplate": "{{form.message_text}}", "modelRef": "modelo-a-aprovar"}, "id": "ai", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "ai_analyze_intent"}, {"config": {"fieldMappings": {"ambiguities": "{{ai.ambiguities}}", "name": "{{form.contact_name}}"}}, "id": "record", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "internal_record"}, {"config": {"leftOperand": "{{ai.intent}}", "operator": "is_empty"}, "id": "condition", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "condition"}, {"config": {"method": "GET", "url": "https://endpoint.example.invalid"}, "id": "http", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "http_request"}, {"config": {"bodyTemplate": "{{condition.result}}", "subject": "Fixture", "to": "{{form.contact_email}}"}, "id": "mail", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "send_email"}], "orgId": "org_fixture", "reviewedAt": "2026-10-13T00:00:00.000Z", "reviewedBy": "admin_fixture", "schemaVersion": "1.0.0", "status": "PUBLISHED", "triggerNodeId": "form", "updatedAt": "2026-10-13T00:00:00.000Z", "version": 1}}
+
+      59 |     it.each(cases)('nega %s antes de escrever', async (_label, edit) => {
+      60 |       const w = definition(); edit(w); const f = serviceFixture(w, operation === 'review' ? 'DRAFT' : 'REVIEWED');
+    > 61 |       await expect(f.service[operation](w.orgId, w.id, 'admin_fixture')).rejects.toBeInstanceOf(BadRequestException);
+         |             ^
+      62 |       expect(f.workflow.updateMany).not.toHaveBeenCalled(); expect(f.workflowVersion.create).not.toHaveBeenCalled();
+      63 |     });
+      64 |   });
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/engine/workflow-reference.spec.ts:61:13
+
+  ● Referências antes de revisão/ativação › publish › nega número exato em corpo string antes de escrever
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"publishedAt": "2026-10-13T08:46:48.476Z", "versionSnapshot": {"edges": [{"id": "edge_0", "sourceNodeId": "form", "targetNodeId": "ai"}, {"id": "edge_1", "sourceNodeId": "ai", "targetNodeId": "record"}, {"id": "edge_2", "sourceNodeId": "record", "targetNodeId": "condition"}, {"id": "edge_3", "sourceNodeId": "condition", "targetNodeId": "http"}, {"id": "edge_4", "sourceNodeId": "http", "targetNodeId": "mail"}], "id": "snapshot", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"inputPromptTemplate": "{{form.message_text}}", "modelRef": "modelo-a-aprovar"}, "id": "ai", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "ai_analyze_intent"}, {"config": {"fieldMappings": {"ambiguities": "{{ai.ambiguities}}", "name": "{{form.contact_name}}"}}, "id": "record", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "internal_record"}, {"config": {"leftOperand": "{{ai.intent}}", "operator": "is_empty"}, "id": "condition", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "condition"}, {"config": {"method": "GET", "url": "https://endpoint.example.invalid"}, "id": "http", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "http_request"}, {"config": {"bodyTemplate": "{{http.status_code}}", "subject": "Fixture", "to": "{{form.contact_email}}"}, "id": "mail", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "send_email"}], "publishedAt": "2026-10-13T08:46:48.476Z", "publishedBy": "admin_fixture", "schemaVersion": "1.0.0", "triggerNodeId": "form", "version": 1, "workflowId": "wf_refs"}, "workflow": {"createdAt": "2026-10-13T00:00:00.000Z", "description": undefined, "edges": [{"id": "edge_0", "sourceNodeId": "form", "targetNodeId": "ai"}, {"id": "edge_1", "sourceNodeId": "ai", "targetNodeId": "record"}, {"id": "edge_2", "sourceNodeId": "record", "targetNodeId": "condition"}, {"id": "edge_3", "sourceNodeId": "condition", "targetNodeId": "http"}, {"id": "edge_4", "sourceNodeId": "http", "targetNodeId": "mail"}], "id": "wf_refs", "name": "Fixture", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"inputPromptTemplate": "{{form.message_text}}", "modelRef": "modelo-a-aprovar"}, "id": "ai", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "ai_analyze_intent"}, {"config": {"fieldMappings": {"ambiguities": "{{ai.ambiguities}}", "name": "{{form.contact_name}}"}}, "id": "record", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "internal_record"}, {"config": {"leftOperand": "{{ai.intent}}", "operator": "is_empty"}, "id": "condition", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "condition"}, {"config": {"method": "GET", "url": "https://endpoint.example.invalid"}, "id": "http", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "http_request"}, {"config": {"bodyTemplate": "{{http.status_code}}", "subject": "Fixture", "to": "{{form.contact_email}}"}, "id": "mail", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "send_email"}], "orgId": "org_fixture", "reviewedAt": "2026-10-13T00:00:00.000Z", "reviewedBy": "admin_fixture", "schemaVersion": "1.0.0", "status": "PUBLISHED", "triggerNodeId": "form", "updatedAt": "2026-10-13T00:00:00.000Z", "version": 1}}
+
+      59 |     it.each(cases)('nega %s antes de escrever', async (_label, edit) => {
+      60 |       const w = definition(); edit(w); const f = serviceFixture(w, operation === 'review' ? 'DRAFT' : 'REVIEWED');
+    > 61 |       await expect(f.service[operation](w.orgId, w.id, 'admin_fixture')).rejects.toBeInstanceOf(BadRequestException);
+         |             ^
+      62 |       expect(f.workflow.updateMany).not.toHaveBeenCalled(); expect(f.workflowVersion.create).not.toHaveBeenCalled();
+      63 |     });
+      64 |   });
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/engine/workflow-reference.spec.ts:61:13
+
+  ● Referências antes de revisão/ativação › publish › nega array exato em corpo string antes de escrever
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"publishedAt": "2026-10-13T08:46:48.477Z", "versionSnapshot": {"edges": [{"id": "edge_0", "sourceNodeId": "form", "targetNodeId": "ai"}, {"id": "edge_1", "sourceNodeId": "ai", "targetNodeId": "record"}, {"id": "edge_2", "sourceNodeId": "record", "targetNodeId": "condition"}, {"id": "edge_3", "sourceNodeId": "condition", "targetNodeId": "http"}, {"id": "edge_4", "sourceNodeId": "http", "targetNodeId": "mail"}], "id": "snapshot", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"inputPromptTemplate": "{{form.message_text}}", "modelRef": "modelo-a-aprovar"}, "id": "ai", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "ai_analyze_intent"}, {"config": {"fieldMappings": {"ambiguities": "{{ai.ambiguities}}", "name": "{{form.contact_name}}"}}, "id": "record", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "internal_record"}, {"config": {"leftOperand": "{{ai.intent}}", "operator": "is_empty"}, "id": "condition", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "condition"}, {"config": {"method": "GET", "url": "https://endpoint.example.invalid"}, "id": "http", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "http_request"}, {"config": {"bodyTemplate": "{{ai.ambiguities}}", "subject": "Fixture", "to": "{{form.contact_email}}"}, "id": "mail", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "send_email"}], "publishedAt": "2026-10-13T08:46:48.477Z", "publishedBy": "admin_fixture", "schemaVersion": "1.0.0", "triggerNodeId": "form", "version": 1, "workflowId": "wf_refs"}, "workflow": {"createdAt": "2026-10-13T00:00:00.000Z", "description": undefined, "edges": [{"id": "edge_0", "sourceNodeId": "form", "targetNodeId": "ai"}, {"id": "edge_1", "sourceNodeId": "ai", "targetNodeId": "record"}, {"id": "edge_2", "sourceNodeId": "record", "targetNodeId": "condition"}, {"id": "edge_3", "sourceNodeId": "condition", "targetNodeId": "http"}, {"id": "edge_4", "sourceNodeId": "http", "targetNodeId": "mail"}], "id": "wf_refs", "name": "Fixture", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"inputPromptTemplate": "{{form.message_text}}", "modelRef": "modelo-a-aprovar"}, "id": "ai", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "ai_analyze_intent"}, {"config": {"fieldMappings": {"ambiguities": "{{ai.ambiguities}}", "name": "{{form.contact_name}}"}}, "id": "record", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "internal_record"}, {"config": {"leftOperand": "{{ai.intent}}", "operator": "is_empty"}, "id": "condition", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "condition"}, {"config": {"method": "GET", "url": "https://endpoint.example.invalid"}, "id": "http", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "http_request"}, {"config": {"bodyTemplate": "{{ai.ambiguities}}", "subject": "Fixture", "to": "{{form.contact_email}}"}, "id": "mail", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "send_email"}], "orgId": "org_fixture", "reviewedAt": "2026-10-13T00:00:00.000Z", "reviewedBy": "admin_fixture", "schemaVersion": "1.0.0", "status": "PUBLISHED", "triggerNodeId": "form", "updatedAt": "2026-10-13T00:00:00.000Z", "version": 1}}
+
+      59 |     it.each(cases)('nega %s antes de escrever', async (_label, edit) => {
+      60 |       const w = definition(); edit(w); const f = serviceFixture(w, operation === 'review' ? 'DRAFT' : 'REVIEWED');
+    > 61 |       await expect(f.service[operation](w.orgId, w.id, 'admin_fixture')).rejects.toBeInstanceOf(BadRequestException);
+         |             ^
+      62 |       expect(f.workflow.updateMany).not.toHaveBeenCalled(); expect(f.workflowVersion.create).not.toHaveBeenCalled();
+      63 |     });
+      64 |   });
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/engine/workflow-reference.spec.ts:61:13
+
+  ● Referências antes de revisão/ativação › publish › nega índice de array inválido antes de escrever
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"publishedAt": "2026-10-13T08:46:48.478Z", "versionSnapshot": {"edges": [{"id": "edge_0", "sourceNodeId": "form", "targetNodeId": "ai"}, {"id": "edge_1", "sourceNodeId": "ai", "targetNodeId": "record"}, {"id": "edge_2", "sourceNodeId": "record", "targetNodeId": "condition"}, {"id": "edge_3", "sourceNodeId": "condition", "targetNodeId": "http"}, {"id": "edge_4", "sourceNodeId": "http", "targetNodeId": "mail"}], "id": "snapshot", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"inputPromptTemplate": "{{form.message_text}}", "modelRef": "modelo-a-aprovar"}, "id": "ai", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "ai_analyze_intent"}, {"config": {"fieldMappings": {"ambiguities": "{{ai.ambiguities}}", "name": "{{form.contact_name}}"}}, "id": "record", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "internal_record"}, {"config": {"leftOperand": "{{ai.intent}}", "operator": "is_empty"}, "id": "condition", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "condition"}, {"config": {"method": "GET", "url": "https://endpoint.example.invalid"}, "id": "http", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "http_request"}, {"config": {"bodyTemplate": "{{ai.ambiguities.00}}", "subject": "Fixture", "to": "{{form.contact_email}}"}, "id": "mail", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "send_email"}], "publishedAt": "2026-10-13T08:46:48.478Z", "publishedBy": "admin_fixture", "schemaVersion": "1.0.0", "triggerNodeId": "form", "version": 1, "workflowId": "wf_refs"}, "workflow": {"createdAt": "2026-10-13T00:00:00.000Z", "description": undefined, "edges": [{"id": "edge_0", "sourceNodeId": "form", "targetNodeId": "ai"}, {"id": "edge_1", "sourceNodeId": "ai", "targetNodeId": "record"}, {"id": "edge_2", "sourceNodeId": "record", "targetNodeId": "condition"}, {"id": "edge_3", "sourceNodeId": "condition", "targetNodeId": "http"}, {"id": "edge_4", "sourceNodeId": "http", "targetNodeId": "mail"}], "id": "wf_refs", "name": "Fixture", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"inputPromptTemplate": "{{form.message_text}}", "modelRef": "modelo-a-aprovar"}, "id": "ai", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "ai_analyze_intent"}, {"config": {"fieldMappings": {"ambiguities": "{{ai.ambiguities}}", "name": "{{form.contact_name}}"}}, "id": "record", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "internal_record"}, {"config": {"leftOperand": "{{ai.intent}}", "operator": "is_empty"}, "id": "condition", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "condition"}, {"config": {"method": "GET", "url": "https://endpoint.example.invalid"}, "id": "http", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "http_request"}, {"config": {"bodyTemplate": "{{ai.ambiguities.00}}", "subject": "Fixture", "to": "{{form.contact_email}}"}, "id": "mail", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "send_email"}], "orgId": "org_fixture", "reviewedAt": "2026-10-13T00:00:00.000Z", "reviewedBy": "admin_fixture", "schemaVersion": "1.0.0", "status": "PUBLISHED", "triggerNodeId": "form", "updatedAt": "2026-10-13T00:00:00.000Z", "version": 1}}
+
+      59 |     it.each(cases)('nega %s antes de escrever', async (_label, edit) => {
+      60 |       const w = definition(); edit(w); const f = serviceFixture(w, operation === 'review' ? 'DRAFT' : 'REVIEWED');
+    > 61 |       await expect(f.service[operation](w.orgId, w.id, 'admin_fixture')).rejects.toBeInstanceOf(BadRequestException);
+         |             ^
+      62 |       expect(f.workflow.updateMany).not.toHaveBeenCalled(); expect(f.workflowVersion.create).not.toHaveBeenCalled();
+      63 |     });
+      64 |   });
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/engine/workflow-reference.spec.ts:61:13
+
+  ● Referências antes de revisão/ativação › publish › nega subcampo de item string antes de escrever
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"publishedAt": "2026-10-13T08:46:48.480Z", "versionSnapshot": {"edges": [{"id": "edge_0", "sourceNodeId": "form", "targetNodeId": "ai"}, {"id": "edge_1", "sourceNodeId": "ai", "targetNodeId": "record"}, {"id": "edge_2", "sourceNodeId": "record", "targetNodeId": "condition"}, {"id": "edge_3", "sourceNodeId": "condition", "targetNodeId": "http"}, {"id": "edge_4", "sourceNodeId": "http", "targetNodeId": "mail"}], "id": "snapshot", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"inputPromptTemplate": "{{form.message_text}}", "modelRef": "modelo-a-aprovar"}, "id": "ai", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "ai_analyze_intent"}, {"config": {"fieldMappings": {"ambiguities": "{{ai.ambiguities}}", "name": "{{form.contact_name}}"}}, "id": "record", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "internal_record"}, {"config": {"leftOperand": "{{ai.intent}}", "operator": "is_empty"}, "id": "condition", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "condition"}, {"config": {"method": "GET", "url": "https://endpoint.example.invalid"}, "id": "http", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "http_request"}, {"config": {"bodyTemplate": "{{ai.ambiguities.0.child}}", "subject": "Fixture", "to": "{{form.contact_email}}"}, "id": "mail", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "send_email"}], "publishedAt": "2026-10-13T08:46:48.480Z", "publishedBy": "admin_fixture", "schemaVersion": "1.0.0", "triggerNodeId": "form", "version": 1, "workflowId": "wf_refs"}, "workflow": {"createdAt": "2026-10-13T00:00:00.000Z", "description": undefined, "edges": [{"id": "edge_0", "sourceNodeId": "form", "targetNodeId": "ai"}, {"id": "edge_1", "sourceNodeId": "ai", "targetNodeId": "record"}, {"id": "edge_2", "sourceNodeId": "record", "targetNodeId": "condition"}, {"id": "edge_3", "sourceNodeId": "condition", "targetNodeId": "http"}, {"id": "edge_4", "sourceNodeId": "http", "targetNodeId": "mail"}], "id": "wf_refs", "name": "Fixture", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"inputPromptTemplate": "{{form.message_text}}", "modelRef": "modelo-a-aprovar"}, "id": "ai", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "ai_analyze_intent"}, {"config": {"fieldMappings": {"ambiguities": "{{ai.ambiguities}}", "name": "{{form.contact_name}}"}}, "id": "record", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "internal_record"}, {"config": {"leftOperand": "{{ai.intent}}", "operator": "is_empty"}, "id": "condition", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "condition"}, {"config": {"method": "GET", "url": "https://endpoint.example.invalid"}, "id": "http", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "http_request"}, {"config": {"bodyTemplate": "{{ai.ambiguities.0.child}}", "subject": "Fixture", "to": "{{form.contact_email}}"}, "id": "mail", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "send_email"}], "orgId": "org_fixture", "reviewedAt": "2026-10-13T00:00:00.000Z", "reviewedBy": "admin_fixture", "schemaVersion": "1.0.0", "status": "PUBLISHED", "triggerNodeId": "form", "updatedAt": "2026-10-13T00:00:00.000Z", "version": 1}}
+
+      59 |     it.each(cases)('nega %s antes de escrever', async (_label, edit) => {
+      60 |       const w = definition(); edit(w); const f = serviceFixture(w, operation === 'review' ? 'DRAFT' : 'REVIEWED');
+    > 61 |       await expect(f.service[operation](w.orgId, w.id, 'admin_fixture')).rejects.toBeInstanceOf(BadRequestException);
+         |             ^
+      62 |       expect(f.workflow.updateMany).not.toHaveBeenCalled(); expect(f.workflowVersion.create).not.toHaveBeenCalled();
+      63 |     });
+      64 |   });
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/engine/workflow-reference.spec.ts:61:13
+
+  ● Referências antes de revisão/ativação › publish › nega destinatário usa saída inexistente antes de escrever
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"publishedAt": "2026-10-13T08:46:48.481Z", "versionSnapshot": {"edges": [{"id": "edge_0", "sourceNodeId": "form", "targetNodeId": "ai"}, {"id": "edge_1", "sourceNodeId": "ai", "targetNodeId": "record"}, {"id": "edge_2", "sourceNodeId": "record", "targetNodeId": "condition"}, {"id": "edge_3", "sourceNodeId": "condition", "targetNodeId": "http"}, {"id": "edge_4", "sourceNodeId": "http", "targetNodeId": "mail"}], "id": "snapshot", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"inputPromptTemplate": "{{form.message_text}}", "modelRef": "modelo-a-aprovar"}, "id": "ai", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "ai_analyze_intent"}, {"config": {"fieldMappings": {"ambiguities": "{{ai.ambiguities}}", "name": "{{form.contact_name}}"}}, "id": "record", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "internal_record"}, {"config": {"leftOperand": "{{ai.intent}}", "operator": "is_empty"}, "id": "condition", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "condition"}, {"config": {"method": "GET", "url": "https://endpoint.example.invalid"}, "id": "http", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "http_request"}, {"config": {"bodyTemplate": "{{ai.summary}}", "subject": "Fixture", "to": "{{form.output_inexistente}}"}, "id": "mail", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "send_email"}], "publishedAt": "2026-10-13T08:46:48.481Z", "publishedBy": "admin_fixture", "schemaVersion": "1.0.0", "triggerNodeId": "form", "version": 1, "workflowId": "wf_refs"}, "workflow": {"createdAt": "2026-10-13T00:00:00.000Z", "description": undefined, "edges": [{"id": "edge_0", "sourceNodeId": "form", "targetNodeId": "ai"}, {"id": "edge_1", "sourceNodeId": "ai", "targetNodeId": "record"}, {"id": "edge_2", "sourceNodeId": "record", "targetNodeId": "condition"}, {"id": "edge_3", "sourceNodeId": "condition", "targetNodeId": "http"}, {"id": "edge_4", "sourceNodeId": "http", "targetNodeId": "mail"}], "id": "wf_refs", "name": "Fixture", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"inputPromptTemplate": "{{form.message_text}}", "modelRef": "modelo-a-aprovar"}, "id": "ai", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "ai_analyze_intent"}, {"config": {"fieldMappings": {"ambiguities": "{{ai.ambiguities}}", "name": "{{form.contact_name}}"}}, "id": "record", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "internal_record"}, {"config": {"leftOperand": "{{ai.intent}}", "operator": "is_empty"}, "id": "condition", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "condition"}, {"config": {"method": "GET", "url": "https://endpoint.example.invalid"}, "id": "http", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "http_request"}, {"config": {"bodyTemplate": "{{ai.summary}}", "subject": "Fixture", "to": "{{form.output_inexistente}}"}, "id": "mail", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "send_email"}], "orgId": "org_fixture", "reviewedAt": "2026-10-13T00:00:00.000Z", "reviewedBy": "admin_fixture", "schemaVersion": "1.0.0", "status": "PUBLISHED", "triggerNodeId": "form", "updatedAt": "2026-10-13T00:00:00.000Z", "version": 1}}
+
+      59 |     it.each(cases)('nega %s antes de escrever', async (_label, edit) => {
+      60 |       const w = definition(); edit(w); const f = serviceFixture(w, operation === 'review' ? 'DRAFT' : 'REVIEWED');
+    > 61 |       await expect(f.service[operation](w.orgId, w.id, 'admin_fixture')).rejects.toBeInstanceOf(BadRequestException);
+         |             ^
+      62 |       expect(f.workflow.updateMany).not.toHaveBeenCalled(); expect(f.workflowVersion.create).not.toHaveBeenCalled();
+      63 |     });
+      64 |   });
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/engine/workflow-reference.spec.ts:61:13
+
+  ● Referências antes de revisão/ativação › publish › nega boolean em header string antes de escrever
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"publishedAt": "2026-10-13T08:46:48.482Z", "versionSnapshot": {"edges": [{"id": "edge_0", "sourceNodeId": "form", "targetNodeId": "ai"}, {"id": "edge_1", "sourceNodeId": "ai", "targetNodeId": "record"}, {"id": "edge_2", "sourceNodeId": "record", "targetNodeId": "condition"}, {"id": "edge_3", "sourceNodeId": "condition", "targetNodeId": "http"}, {"id": "edge_4", "sourceNodeId": "http", "targetNodeId": "mail"}], "id": "snapshot", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"inputPromptTemplate": "{{form.message_text}}", "modelRef": "modelo-a-aprovar"}, "id": "ai", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "ai_analyze_intent"}, {"config": {"fieldMappings": {"ambiguities": "{{ai.ambiguities}}", "name": "{{form.contact_name}}"}}, "id": "record", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "internal_record"}, {"config": {"leftOperand": "{{ai.intent}}", "operator": "is_empty"}, "id": "condition", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "condition"}, {"config": {"headers": {"X-Fixture": "{{condition.result}}"}, "method": "GET", "url": "https://endpoint.example.invalid"}, "id": "http", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "http_request"}, {"config": {"bodyTemplate": "{{ai.summary}}", "subject": "Fixture", "to": "{{form.contact_email}}"}, "id": "mail", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "send_email"}], "publishedAt": "2026-10-13T08:46:48.482Z", "publishedBy": "admin_fixture", "schemaVersion": "1.0.0", "triggerNodeId": "form", "version": 1, "workflowId": "wf_refs"}, "workflow": {"createdAt": "2026-10-13T00:00:00.000Z", "description": undefined, "edges": [{"id": "edge_0", "sourceNodeId": "form", "targetNodeId": "ai"}, {"id": "edge_1", "sourceNodeId": "ai", "targetNodeId": "record"}, {"id": "edge_2", "sourceNodeId": "record", "targetNodeId": "condition"}, {"id": "edge_3", "sourceNodeId": "condition", "targetNodeId": "http"}, {"id": "edge_4", "sourceNodeId": "http", "targetNodeId": "mail"}], "id": "wf_refs", "name": "Fixture", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"inputPromptTemplate": "{{form.message_text}}", "modelRef": "modelo-a-aprovar"}, "id": "ai", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "ai_analyze_intent"}, {"config": {"fieldMappings": {"ambiguities": "{{ai.ambiguities}}", "name": "{{form.contact_name}}"}}, "id": "record", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "internal_record"}, {"config": {"leftOperand": "{{ai.intent}}", "operator": "is_empty"}, "id": "condition", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "condition"}, {"config": {"headers": {"X-Fixture": "{{condition.result}}"}, "method": "GET", "url": "https://endpoint.example.invalid"}, "id": "http", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "http_request"}, {"config": {"bodyTemplate": "{{ai.summary}}", "subject": "Fixture", "to": "{{form.contact_email}}"}, "id": "mail", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "send_email"}], "orgId": "org_fixture", "reviewedAt": "2026-10-13T00:00:00.000Z", "reviewedBy": "admin_fixture", "schemaVersion": "1.0.0", "status": "PUBLISHED", "triggerNodeId": "form", "updatedAt": "2026-10-13T00:00:00.000Z", "version": 1}}
+
+      59 |     it.each(cases)('nega %s antes de escrever', async (_label, edit) => {
+      60 |       const w = definition(); edit(w); const f = serviceFixture(w, operation === 'review' ? 'DRAFT' : 'REVIEWED');
+    > 61 |       await expect(f.service[operation](w.orgId, w.id, 'admin_fixture')).rejects.toBeInstanceOf(BadRequestException);
+         |             ^
+      62 |       expect(f.workflow.updateMany).not.toHaveBeenCalled(); expect(f.workflowVersion.create).not.toHaveBeenCalled();
+      63 |     });
+      64 |   });
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/engine/workflow-reference.spec.ts:61:13
+
+  ● Referências antes de revisão/ativação › publish › nega número em campo de registro string antes de escrever
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"publishedAt": "2026-10-13T08:46:48.483Z", "versionSnapshot": {"edges": [{"id": "edge_0", "sourceNodeId": "form", "targetNodeId": "ai"}, {"id": "edge_1", "sourceNodeId": "ai", "targetNodeId": "record"}, {"id": "edge_2", "sourceNodeId": "record", "targetNodeId": "condition"}, {"id": "edge_3", "sourceNodeId": "condition", "targetNodeId": "http"}, {"id": "edge_4", "sourceNodeId": "http", "targetNodeId": "mail"}], "id": "snapshot", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"inputPromptTemplate": "{{form.message_text}}", "modelRef": "modelo-a-aprovar"}, "id": "ai", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "ai_analyze_intent"}, {"config": {"fieldMappings": {"name": "Fixture", "raw_message": "{{ai.tokens_consumed}}"}}, "id": "record", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "internal_record"}, {"config": {"leftOperand": "{{ai.intent}}", "operator": "is_empty"}, "id": "condition", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "condition"}, {"config": {"method": "GET", "url": "https://endpoint.example.invalid"}, "id": "http", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "http_request"}, {"config": {"bodyTemplate": "{{ai.summary}}", "subject": "Fixture", "to": "{{form.contact_email}}"}, "id": "mail", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "send_email"}], "publishedAt": "2026-10-13T08:46:48.483Z", "publishedBy": "admin_fixture", "schemaVersion": "1.0.0", "triggerNodeId": "form", "version": 1, "workflowId": "wf_refs"}, "workflow": {"createdAt": "2026-10-13T00:00:00.000Z", "description": undefined, "edges": [{"id": "edge_0", "sourceNodeId": "form", "targetNodeId": "ai"}, {"id": "edge_1", "sourceNodeId": "ai", "targetNodeId": "record"}, {"id": "edge_2", "sourceNodeId": "record", "targetNodeId": "condition"}, {"id": "edge_3", "sourceNodeId": "condition", "targetNodeId": "http"}, {"id": "edge_4", "sourceNodeId": "http", "targetNodeId": "mail"}], "id": "wf_refs", "name": "Fixture", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"inputPromptTemplate": "{{form.message_text}}", "modelRef": "modelo-a-aprovar"}, "id": "ai", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "ai_analyze_intent"}, {"config": {"fieldMappings": {"name": "Fixture", "raw_message": "{{ai.tokens_consumed}}"}}, "id": "record", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "internal_record"}, {"config": {"leftOperand": "{{ai.intent}}", "operator": "is_empty"}, "id": "condition", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "condition"}, {"config": {"method": "GET", "url": "https://endpoint.example.invalid"}, "id": "http", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "http_request"}, {"config": {"bodyTemplate": "{{ai.summary}}", "subject": "Fixture", "to": "{{form.contact_email}}"}, "id": "mail", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "send_email"}], "orgId": "org_fixture", "reviewedAt": "2026-10-13T00:00:00.000Z", "reviewedBy": "admin_fixture", "schemaVersion": "1.0.0", "status": "PUBLISHED", "triggerNodeId": "form", "updatedAt": "2026-10-13T00:00:00.000Z", "version": 1}}
+
+      59 |     it.each(cases)('nega %s antes de escrever', async (_label, edit) => {
+      60 |       const w = definition(); edit(w); const f = serviceFixture(w, operation === 'review' ? 'DRAFT' : 'REVIEWED');
+    > 61 |       await expect(f.service[operation](w.orgId, w.id, 'admin_fixture')).rejects.toBeInstanceOf(BadRequestException);
+         |             ^
+      62 |       expect(f.workflow.updateMany).not.toHaveBeenCalled(); expect(f.workflowVersion.create).not.toHaveBeenCalled();
+      63 |     });
+      64 |   });
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/engine/workflow-reference.spec.ts:61:13
+
+  ● Referências antes de revisão/ativação › publish › nega número em elemento de ambiguidades antes de escrever
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"publishedAt": "2026-10-13T08:46:48.484Z", "versionSnapshot": {"edges": [{"id": "edge_0", "sourceNodeId": "form", "targetNodeId": "ai"}, {"id": "edge_1", "sourceNodeId": "ai", "targetNodeId": "record"}, {"id": "edge_2", "sourceNodeId": "record", "targetNodeId": "condition"}, {"id": "edge_3", "sourceNodeId": "condition", "targetNodeId": "http"}, {"id": "edge_4", "sourceNodeId": "http", "targetNodeId": "mail"}], "id": "snapshot", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"inputPromptTemplate": "{{form.message_text}}", "modelRef": "modelo-a-aprovar"}, "id": "ai", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "ai_analyze_intent"}, {"config": {"fieldMappings": {"ambiguities": ["{{ai.tokens_consumed}}"], "name": "Fixture"}}, "id": "record", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "internal_record"}, {"config": {"leftOperand": "{{ai.intent}}", "operator": "is_empty"}, "id": "condition", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "condition"}, {"config": {"method": "GET", "url": "https://endpoint.example.invalid"}, "id": "http", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "http_request"}, {"config": {"bodyTemplate": "{{ai.summary}}", "subject": "Fixture", "to": "{{form.contact_email}}"}, "id": "mail", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "send_email"}], "publishedAt": "2026-10-13T08:46:48.484Z", "publishedBy": "admin_fixture", "schemaVersion": "1.0.0", "triggerNodeId": "form", "version": 1, "workflowId": "wf_refs"}, "workflow": {"createdAt": "2026-10-13T00:00:00.000Z", "description": undefined, "edges": [{"id": "edge_0", "sourceNodeId": "form", "targetNodeId": "ai"}, {"id": "edge_1", "sourceNodeId": "ai", "targetNodeId": "record"}, {"id": "edge_2", "sourceNodeId": "record", "targetNodeId": "condition"}, {"id": "edge_3", "sourceNodeId": "condition", "targetNodeId": "http"}, {"id": "edge_4", "sourceNodeId": "http", "targetNodeId": "mail"}], "id": "wf_refs", "name": "Fixture", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"inputPromptTemplate": "{{form.message_text}}", "modelRef": "modelo-a-aprovar"}, "id": "ai", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "ai_analyze_intent"}, {"config": {"fieldMappings": {"ambiguities": ["{{ai.tokens_consumed}}"], "name": "Fixture"}}, "id": "record", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "internal_record"}, {"config": {"leftOperand": "{{ai.intent}}", "operator": "is_empty"}, "id": "condition", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "condition"}, {"config": {"method": "GET", "url": "https://endpoint.example.invalid"}, "id": "http", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "http_request"}, {"config": {"bodyTemplate": "{{ai.summary}}", "subject": "Fixture", "to": "{{form.contact_email}}"}, "id": "mail", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "send_email"}], "orgId": "org_fixture", "reviewedAt": "2026-10-13T00:00:00.000Z", "reviewedBy": "admin_fixture", "schemaVersion": "1.0.0", "status": "PUBLISHED", "triggerNodeId": "form", "updatedAt": "2026-10-13T00:00:00.000Z", "version": 1}}
+
+      59 |     it.each(cases)('nega %s antes de escrever', async (_label, edit) => {
+      60 |       const w = definition(); edit(w); const f = serviceFixture(w, operation === 'review' ? 'DRAFT' : 'REVIEWED');
+    > 61 |       await expect(f.service[operation](w.orgId, w.id, 'admin_fixture')).rejects.toBeInstanceOf(BadRequestException);
+         |             ^
+      62 |       expect(f.workflow.updateMany).not.toHaveBeenCalled(); expect(f.workflowVersion.create).not.toHaveBeenCalled();
+      63 |     });
+      64 |   });
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/engine/workflow-reference.spec.ts:61:13
+
+  ● Referências antes de revisão/ativação › erro não divulga produtor/campo privados inexistentes
+
+    expect(received).toBeInstanceOf(expected)
+
+    Expected constructor: BadRequestException
+
+    Received value has no prototype
+    Received value: undefined
+
+      68 |     let error: unknown;
+      69 |     try { await f.service.review(w.orgId, w.id, 'admin_fixture'); } catch (caught) { error = caught; }
+    > 70 |     expect(error).toBeInstanceOf(BadRequestException);
+         |                   ^
+      71 |     expect(JSON.stringify((error as BadRequestException).getResponse())).not.toMatch(/private-fixture|private-field/);
+      72 |   });
+      73 | });
+
+      at Object.<anonymous> (src/engine/workflow-reference.spec.ts:70:19)
+
+  ● Referências antes da execução › nega campo não declarado antes do primeiro nó
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"executionId": "sim_1791881208487_0mt4bc", "nodeResults": [{"completedAt": "2026-10-13T08:46:48.488Z", "inputs": {}, "nodeId": "form", "nodeType": "trigger_form", "outputs": {"contact_email": "contato@example.test", "contact_name": "Fixture", "message_text": "Fixture", "submission_id": "sub_1791881208488_vxdxe", "submitted_at": "2026-10-13T08:46:48.488Z"}, "startedAt": "2026-10-13T08:46:48.488Z", "status": "SUCCESS"}, {"completedAt": "2026-10-13T08:46:48.488Z", "inputs": {"inputPromptTemplate": "Fixture", "modelRef": "modelo-a-aprovar"}, "nodeId": "ai", "nodeType": "ai_analyze_intent", "outputs": {"ambiguities": ["A intenção não foi inferida; confirme-a antes de ativar o fluxo."], "intent": "Não determinada: análise de IA simulada.", "model_used": "simulated", "summary": "Mensagem recebida (simulação): Fixture", "tokens_consumed": 0}, "startedAt": "2026-10-13T08:46:48.488Z", "status": "SUCCESS"}, {"completedAt": "2026-10-13T08:46:48.488Z", "inputs": {"fieldMappings": {"ambiguities": ["A intenção não foi inferida; confirme-a antes de ativar o fluxo."], "name": "Fixture"}}, "nodeId": "record", "nodeType": "internal_record", "outputs": {"ai_intent": undefined, "ai_summary": undefined, "ambiguities": ["A intenção não foi inferida; confirme-a antes de ativar o fluxo."], "email": undefined, "name": "Fixture", "raw_message": undefined, "record_id": "sim_record_1791881208488_cs6al", "simulated_at": "2026-10-13T08:46:48.488Z", "status": "simulated"}, "startedAt": "2026-10-13T08:46:48.488Z", "status": "SUCCESS"}, {"completedAt": "2026-10-13T08:46:48.489Z", "inputs": {"leftOperand": "Não determinada: análise de IA simulada.", "operator": "is_empty"}, "nodeId": "condition", "nodeType": "condition", "outputs": {"evaluated_at": "2026-10-13T08:46:48.488Z", "result": false}, "startedAt": "2026-10-13T08:46:48.488Z", "status": "SUCCESS"}, {"completedAt": "2026-10-13T08:46:48.489Z", "inputs": {"method": "GET", "url": "https://endpoint.example.invalid"}, "nodeId": "http", "nodeType": "http_request", "outputs": {"duration_ms": 12, "response_body": {"method": "GET", "simulated": true, "target_url": "https://endpoint.example.invalid", "timestamp": "2026-10-13T08:46:48.489Z"}, "status_code": 200}, "startedAt": "2026-10-13T08:46:48.489Z", "status": "SUCCESS"}, {"completedAt": "2026-10-13T08:46:48.489Z", "error": {"code": "NODE_EXECUTION_FAILED", "message": "Campo de referência inexistente: form.output_inexistente"}, "inputs": {"bodyTemplate": "{{form.output_inexistente}}", "subject": "Fixture", "to": "{{form.contact_email}}"}, "nodeId": "mail", "nodeType": "send_email", "startedAt": "2026-10-13T08:46:48.489Z", "status": "FAILED"}], "status": "FAILED", "totalDurationMs": 2}
+
+      78 |     const w = definition(); edit(w); jest.spyOn(Logger.prototype, 'log').mockImplementation(() => {});
+      79 |     const form = jest.spyOn(NodeExecutors, 'executeTriggerForm');
+    > 80 |     await expect(new WorkflowEngineService().simulate(w, { name: 'Fixture', email: 'contato@example.test', message: 'Fixture' }))
+         |           ^
+      81 |       .rejects.toBeInstanceOf(BadRequestException);
+      82 |     expect(form).not.toHaveBeenCalled();
+      83 |   });
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/engine/workflow-reference.spec.ts:80:11
+
+  ● Referências antes da execução › nega saída antiga de interesse antes do primeiro nó
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"executionId": "sim_1791881208490_cc3oxy", "nodeResults": [{"completedAt": "2026-10-13T08:46:48.491Z", "inputs": {}, "nodeId": "form", "nodeType": "trigger_form", "outputs": {"contact_email": "contato@example.test", "contact_name": "Fixture", "message_text": "Fixture", "submission_id": "sub_1791881208491_cn4nx", "submitted_at": "2026-10-13T08:46:48.491Z"}, "startedAt": "2026-10-13T08:46:48.490Z", "status": "SUCCESS"}, {"completedAt": "2026-10-13T08:46:48.491Z", "inputs": {"inputPromptTemplate": "Fixture", "modelRef": "modelo-a-aprovar"}, "nodeId": "ai", "nodeType": "ai_analyze_intent", "outputs": {"ambiguities": ["A intenção não foi inferida; confirme-a antes de ativar o fluxo."], "intent": "Não determinada: análise de IA simulada.", "model_used": "simulated", "summary": "Mensagem recebida (simulação): Fixture", "tokens_consumed": 0}, "startedAt": "2026-10-13T08:46:48.491Z", "status": "SUCCESS"}, {"completedAt": "2026-10-13T08:46:48.491Z", "inputs": {"fieldMappings": {"ambiguities": ["A intenção não foi inferida; confirme-a antes de ativar o fluxo."], "name": "Fixture"}}, "nodeId": "record", "nodeType": "internal_record", "outputs": {"ai_intent": undefined, "ai_summary": undefined, "ambiguities": ["A intenção não foi inferida; confirme-a antes de ativar o fluxo."], "email": undefined, "name": "Fixture", "raw_message": undefined, "record_id": "sim_record_1791881208491_h14xx", "simulated_at": "2026-10-13T08:46:48.491Z", "status": "simulated"}, "startedAt": "2026-10-13T08:46:48.491Z", "status": "SUCCESS"}, {"completedAt": "2026-10-13T08:46:48.491Z", "inputs": {"leftOperand": "Não determinada: análise de IA simulada.", "operator": "is_empty"}, "nodeId": "condition", "nodeType": "condition", "outputs": {"evaluated_at": "2026-10-13T08:46:48.491Z", "result": false}, "startedAt": "2026-10-13T08:46:48.491Z", "status": "SUCCESS"}, {"completedAt": "2026-10-13T08:46:48.491Z", "inputs": {"method": "GET", "url": "https://endpoint.example.invalid"}, "nodeId": "http", "nodeType": "http_request", "outputs": {"duration_ms": 12, "response_body": {"method": "GET", "simulated": true, "target_url": "https://endpoint.example.invalid", "timestamp": "2026-10-13T08:46:48.491Z"}, "status_code": 200}, "startedAt": "2026-10-13T08:46:48.491Z", "status": "SUCCESS"}, {"completedAt": "2026-10-13T08:46:48.491Z", "error": {"code": "NODE_EXECUTION_FAILED", "message": "Campo de referência inexistente: ai.interest_level"}, "inputs": {"bodyTemplate": "{{ai.interest_level}}", "subject": "Fixture", "to": "{{form.contact_email}}"}, "nodeId": "mail", "nodeType": "send_email", "startedAt": "2026-10-13T08:46:48.491Z", "status": "FAILED"}], "status": "FAILED", "totalDurationMs": 1}
+
+      78 |     const w = definition(); edit(w); jest.spyOn(Logger.prototype, 'log').mockImplementation(() => {});
+      79 |     const form = jest.spyOn(NodeExecutors, 'executeTriggerForm');
+    > 80 |     await expect(new WorkflowEngineService().simulate(w, { name: 'Fixture', email: 'contato@example.test', message: 'Fixture' }))
+         |           ^
+      81 |       .rejects.toBeInstanceOf(BadRequestException);
+      82 |     expect(form).not.toHaveBeenCalled();
+      83 |   });
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/engine/workflow-reference.spec.ts:80:11
+
+  ● Referências antes da execução › nega subcampo de string antes do primeiro nó
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"executionId": "sim_1791881208493_9xb1c1", "nodeResults": [{"completedAt": "2026-10-13T08:46:48.493Z", "inputs": {}, "nodeId": "form", "nodeType": "trigger_form", "outputs": {"contact_email": "contato@example.test", "contact_name": "Fixture", "message_text": "Fixture", "submission_id": "sub_1791881208493_kfoxe", "submitted_at": "2026-10-13T08:46:48.493Z"}, "startedAt": "2026-10-13T08:46:48.493Z", "status": "SUCCESS"}, {"completedAt": "2026-10-13T08:46:48.493Z", "inputs": {"inputPromptTemplate": "Fixture", "modelRef": "modelo-a-aprovar"}, "nodeId": "ai", "nodeType": "ai_analyze_intent", "outputs": {"ambiguities": ["A intenção não foi inferida; confirme-a antes de ativar o fluxo."], "intent": "Não determinada: análise de IA simulada.", "model_used": "simulated", "summary": "Mensagem recebida (simulação): Fixture", "tokens_consumed": 0}, "startedAt": "2026-10-13T08:46:48.493Z", "status": "SUCCESS"}, {"completedAt": "2026-10-13T08:46:48.493Z", "inputs": {"fieldMappings": {"ambiguities": ["A intenção não foi inferida; confirme-a antes de ativar o fluxo."], "name": "Fixture"}}, "nodeId": "record", "nodeType": "internal_record", "outputs": {"ai_intent": undefined, "ai_summary": undefined, "ambiguities": ["A intenção não foi inferida; confirme-a antes de ativar o fluxo."], "email": undefined, "name": "Fixture", "raw_message": undefined, "record_id": "sim_record_1791881208493_dgv4u", "simulated_at": "2026-10-13T08:46:48.493Z", "status": "simulated"}, "startedAt": "2026-10-13T08:46:48.493Z", "status": "SUCCESS"}, {"completedAt": "2026-10-13T08:46:48.493Z", "inputs": {"leftOperand": "Não determinada: análise de IA simulada.", "operator": "is_empty"}, "nodeId": "condition", "nodeType": "condition", "outputs": {"evaluated_at": "2026-10-13T08:46:48.493Z", "result": false}, "startedAt": "2026-10-13T08:46:48.493Z", "status": "SUCCESS"}, {"completedAt": "2026-10-13T08:46:48.493Z", "inputs": {"method": "GET", "url": "https://endpoint.example.invalid"}, "nodeId": "http", "nodeType": "http_request", "outputs": {"duration_ms": 12, "response_body": {"method": "GET", "simulated": true, "target_url": "https://endpoint.example.invalid", "timestamp": "2026-10-13T08:46:48.493Z"}, "status_code": 200}, "startedAt": "2026-10-13T08:46:48.493Z", "status": "SUCCESS"}, {"completedAt": "2026-10-13T08:46:48.493Z", "error": {"code": "NODE_EXECUTION_FAILED", "message": "Campo de referência inexistente: form.contact_name.child"}, "inputs": {"bodyTemplate": "{{form.contact_name.child}}", "subject": "Fixture", "to": "{{form.contact_email}}"}, "nodeId": "mail", "nodeType": "send_email", "startedAt": "2026-10-13T08:46:48.493Z", "status": "FAILED"}], "status": "FAILED", "totalDurationMs": 0}
+
+      78 |     const w = definition(); edit(w); jest.spyOn(Logger.prototype, 'log').mockImplementation(() => {});
+      79 |     const form = jest.spyOn(NodeExecutors, 'executeTriggerForm');
+    > 80 |     await expect(new WorkflowEngineService().simulate(w, { name: 'Fixture', email: 'contato@example.test', message: 'Fixture' }))
+         |           ^
+      81 |       .rejects.toBeInstanceOf(BadRequestException);
+      82 |     expect(form).not.toHaveBeenCalled();
+      83 |   });
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/engine/workflow-reference.spec.ts:80:11
+
+  ● Referências antes da execução › nega acesso reservado em JSON dinâmico antes do primeiro nó
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"executionId": "sim_1791881208494_wuu6th", "nodeResults": [{"completedAt": "2026-10-13T08:46:48.494Z", "inputs": {}, "nodeId": "form", "nodeType": "trigger_form", "outputs": {"contact_email": "contato@example.test", "contact_name": "Fixture", "message_text": "Fixture", "submission_id": "sub_1791881208494_urw54", "submitted_at": "2026-10-13T08:46:48.494Z"}, "startedAt": "2026-10-13T08:46:48.494Z", "status": "SUCCESS"}, {"completedAt": "2026-10-13T08:46:48.494Z", "inputs": {"inputPromptTemplate": "Fixture", "modelRef": "modelo-a-aprovar"}, "nodeId": "ai", "nodeType": "ai_analyze_intent", "outputs": {"ambiguities": ["A intenção não foi inferida; confirme-a antes de ativar o fluxo."], "intent": "Não determinada: análise de IA simulada.", "model_used": "simulated", "summary": "Mensagem recebida (simulação): Fixture", "tokens_consumed": 0}, "startedAt": "2026-10-13T08:46:48.494Z", "status": "SUCCESS"}, {"completedAt": "2026-10-13T08:46:48.494Z", "inputs": {"fieldMappings": {"ambiguities": ["A intenção não foi inferida; confirme-a antes de ativar o fluxo."], "name": "Fixture"}}, "nodeId": "record", "nodeType": "internal_record", "outputs": {"ai_intent": undefined, "ai_summary": undefined, "ambiguities": ["A intenção não foi inferida; confirme-a antes de ativar o fluxo."], "email": undefined, "name": "Fixture", "raw_message": undefined, "record_id": "sim_record_1791881208494_ydj4w", "simulated_at": "2026-10-13T08:46:48.494Z", "status": "simulated"}, "startedAt": "2026-10-13T08:46:48.494Z", "status": "SUCCESS"}, {"completedAt": "2026-10-13T08:46:48.494Z", "inputs": {"leftOperand": "Não determinada: análise de IA simulada.", "operator": "is_empty"}, "nodeId": "condition", "nodeType": "condition", "outputs": {"evaluated_at": "2026-10-13T08:46:48.494Z", "result": false}, "startedAt": "2026-10-13T08:46:48.494Z", "status": "SUCCESS"}, {"completedAt": "2026-10-13T08:46:48.494Z", "inputs": {"method": "GET", "url": "https://endpoint.example.invalid"}, "nodeId": "http", "nodeType": "http_request", "outputs": {"duration_ms": 12, "response_body": {"method": "GET", "simulated": true, "target_url": "https://endpoint.example.invalid", "timestamp": "2026-10-13T08:46:48.494Z"}, "status_code": 200}, "startedAt": "2026-10-13T08:46:48.494Z", "status": "SUCCESS"}, {"completedAt": "2026-10-13T08:46:48.494Z", "error": {"code": "NODE_EXECUTION_FAILED", "message": "Campo de referência inexistente: http.response_body.__proto__"}, "inputs": {"bodyTemplate": "{{http.response_body.__proto__}}", "subject": "Fixture", "to": "{{form.contact_email}}"}, "nodeId": "mail", "nodeType": "send_email", "startedAt": "2026-10-13T08:46:48.494Z", "status": "FAILED"}], "status": "FAILED", "totalDurationMs": 0}
+
+      78 |     const w = definition(); edit(w); jest.spyOn(Logger.prototype, 'log').mockImplementation(() => {});
+      79 |     const form = jest.spyOn(NodeExecutors, 'executeTriggerForm');
+    > 80 |     await expect(new WorkflowEngineService().simulate(w, { name: 'Fixture', email: 'contato@example.test', message: 'Fixture' }))
+         |           ^
+      81 |       .rejects.toBeInstanceOf(BadRequestException);
+      82 |     expect(form).not.toHaveBeenCalled();
+      83 |   });
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/engine/workflow-reference.spec.ts:80:11
+
+  ● Referências antes da execução › nega boolean exato em corpo string antes do primeiro nó
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"executionId": "sim_1791881208495_r08pc8", "nodeResults": [{"completedAt": "2026-10-13T08:46:48.495Z", "inputs": {}, "nodeId": "form", "nodeType": "trigger_form", "outputs": {"contact_email": "contato@example.test", "contact_name": "Fixture", "message_text": "Fixture", "submission_id": "sub_1791881208495_n1w57", "submitted_at": "2026-10-13T08:46:48.495Z"}, "startedAt": "2026-10-13T08:46:48.495Z", "status": "SUCCESS"}, {"completedAt": "2026-10-13T08:46:48.495Z", "inputs": {"inputPromptTemplate": "Fixture", "modelRef": "modelo-a-aprovar"}, "nodeId": "ai", "nodeType": "ai_analyze_intent", "outputs": {"ambiguities": ["A intenção não foi inferida; confirme-a antes de ativar o fluxo."], "intent": "Não determinada: análise de IA simulada.", "model_used": "simulated", "summary": "Mensagem recebida (simulação): Fixture", "tokens_consumed": 0}, "startedAt": "2026-10-13T08:46:48.495Z", "status": "SUCCESS"}, {"completedAt": "2026-10-13T08:46:48.495Z", "inputs": {"fieldMappings": {"ambiguities": ["A intenção não foi inferida; confirme-a antes de ativar o fluxo."], "name": "Fixture"}}, "nodeId": "record", "nodeType": "internal_record", "outputs": {"ai_intent": undefined, "ai_summary": undefined, "ambiguities": ["A intenção não foi inferida; confirme-a antes de ativar o fluxo."], "email": undefined, "name": "Fixture", "raw_message": undefined, "record_id": "sim_record_1791881208495_vnb8o", "simulated_at": "2026-10-13T08:46:48.495Z", "status": "simulated"}, "startedAt": "2026-10-13T08:46:48.495Z", "status": "SUCCESS"}, {"completedAt": "2026-10-13T08:46:48.495Z", "inputs": {"leftOperand": "Não determinada: análise de IA simulada.", "operator": "is_empty"}, "nodeId": "condition", "nodeType": "condition", "outputs": {"evaluated_at": "2026-10-13T08:46:48.495Z", "result": false}, "startedAt": "2026-10-13T08:46:48.495Z", "status": "SUCCESS"}, {"completedAt": "2026-10-13T08:46:48.495Z", "inputs": {"method": "GET", "url": "https://endpoint.example.invalid"}, "nodeId": "http", "nodeType": "http_request", "outputs": {"duration_ms": 12, "response_body": {"method": "GET", "simulated": true, "target_url": "https://endpoint.example.invalid", "timestamp": "2026-10-13T08:46:48.495Z"}, "status_code": 200}, "startedAt": "2026-10-13T08:46:48.495Z", "status": "SUCCESS"}, {"completedAt": "2026-10-13T08:46:48.495Z", "error": {"code": "NODE_EXECUTION_FAILED", "message": "Configuração dos nós inválida; revise os campos indicados."}, "inputs": {"bodyTemplate": "{{condition.result}}", "subject": "Fixture", "to": "{{form.contact_email}}"}, "nodeId": "mail", "nodeType": "send_email", "startedAt": "2026-10-13T08:46:48.495Z", "status": "FAILED"}], "status": "FAILED", "totalDurationMs": 0}
+
+      78 |     const w = definition(); edit(w); jest.spyOn(Logger.prototype, 'log').mockImplementation(() => {});
+      79 |     const form = jest.spyOn(NodeExecutors, 'executeTriggerForm');
+    > 80 |     await expect(new WorkflowEngineService().simulate(w, { name: 'Fixture', email: 'contato@example.test', message: 'Fixture' }))
+         |           ^
+      81 |       .rejects.toBeInstanceOf(BadRequestException);
+      82 |     expect(form).not.toHaveBeenCalled();
+      83 |   });
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/engine/workflow-reference.spec.ts:80:11
+
+  ● Referências antes da execução › nega número exato em corpo string antes do primeiro nó
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"executionId": "sim_1791881208496_1u04jh", "nodeResults": [{"completedAt": "2026-10-13T08:46:48.496Z", "inputs": {}, "nodeId": "form", "nodeType": "trigger_form", "outputs": {"contact_email": "contato@example.test", "contact_name": "Fixture", "message_text": "Fixture", "submission_id": "sub_1791881208496_8zkab", "submitted_at": "2026-10-13T08:46:48.496Z"}, "startedAt": "2026-10-13T08:46:48.496Z", "status": "SUCCESS"}, {"completedAt": "2026-10-13T08:46:48.496Z", "inputs": {"inputPromptTemplate": "Fixture", "modelRef": "modelo-a-aprovar"}, "nodeId": "ai", "nodeType": "ai_analyze_intent", "outputs": {"ambiguities": ["A intenção não foi inferida; confirme-a antes de ativar o fluxo."], "intent": "Não determinada: análise de IA simulada.", "model_used": "simulated", "summary": "Mensagem recebida (simulação): Fixture", "tokens_consumed": 0}, "startedAt": "2026-10-13T08:46:48.496Z", "status": "SUCCESS"}, {"completedAt": "2026-10-13T08:46:48.496Z", "inputs": {"fieldMappings": {"ambiguities": ["A intenção não foi inferida; confirme-a antes de ativar o fluxo."], "name": "Fixture"}}, "nodeId": "record", "nodeType": "internal_record", "outputs": {"ai_intent": undefined, "ai_summary": undefined, "ambiguities": ["A intenção não foi inferida; confirme-a antes de ativar o fluxo."], "email": undefined, "name": "Fixture", "raw_message": undefined, "record_id": "sim_record_1791881208496_t9gpu", "simulated_at": "2026-10-13T08:46:48.496Z", "status": "simulated"}, "startedAt": "2026-10-13T08:46:48.496Z", "status": "SUCCESS"}, {"completedAt": "2026-10-13T08:46:48.496Z", "inputs": {"leftOperand": "Não determinada: análise de IA simulada.", "operator": "is_empty"}, "nodeId": "condition", "nodeType": "condition", "outputs": {"evaluated_at": "2026-10-13T08:46:48.496Z", "result": false}, "startedAt": "2026-10-13T08:46:48.496Z", "status": "SUCCESS"}, {"completedAt": "2026-10-13T08:46:48.496Z", "inputs": {"method": "GET", "url": "https://endpoint.example.invalid"}, "nodeId": "http", "nodeType": "http_request", "outputs": {"duration_ms": 12, "response_body": {"method": "GET", "simulated": true, "target_url": "https://endpoint.example.invalid", "timestamp": "2026-10-13T08:46:48.496Z"}, "status_code": 200}, "startedAt": "2026-10-13T08:46:48.496Z", "status": "SUCCESS"}, {"completedAt": "2026-10-13T08:46:48.496Z", "error": {"code": "NODE_EXECUTION_FAILED", "message": "Configuração dos nós inválida; revise os campos indicados."}, "inputs": {"bodyTemplate": "{{http.status_code}}", "subject": "Fixture", "to": "{{form.contact_email}}"}, "nodeId": "mail", "nodeType": "send_email", "startedAt": "2026-10-13T08:46:48.496Z", "status": "FAILED"}], "status": "FAILED", "totalDurationMs": 0}
+
+      78 |     const w = definition(); edit(w); jest.spyOn(Logger.prototype, 'log').mockImplementation(() => {});
+      79 |     const form = jest.spyOn(NodeExecutors, 'executeTriggerForm');
+    > 80 |     await expect(new WorkflowEngineService().simulate(w, { name: 'Fixture', email: 'contato@example.test', message: 'Fixture' }))
+         |           ^
+      81 |       .rejects.toBeInstanceOf(BadRequestException);
+      82 |     expect(form).not.toHaveBeenCalled();
+      83 |   });
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/engine/workflow-reference.spec.ts:80:11
+
+  ● Referências antes da execução › nega array exato em corpo string antes do primeiro nó
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"executionId": "sim_1791881208497_fsc3oe", "nodeResults": [{"completedAt": "2026-10-13T08:46:48.497Z", "inputs": {}, "nodeId": "form", "nodeType": "trigger_form", "outputs": {"contact_email": "contato@example.test", "contact_name": "Fixture", "message_text": "Fixture", "submission_id": "sub_1791881208497_roz9s", "submitted_at": "2026-10-13T08:46:48.497Z"}, "startedAt": "2026-10-13T08:46:48.497Z", "status": "SUCCESS"}, {"completedAt": "2026-10-13T08:46:48.497Z", "inputs": {"inputPromptTemplate": "Fixture", "modelRef": "modelo-a-aprovar"}, "nodeId": "ai", "nodeType": "ai_analyze_intent", "outputs": {"ambiguities": ["A intenção não foi inferida; confirme-a antes de ativar o fluxo."], "intent": "Não determinada: análise de IA simulada.", "model_used": "simulated", "summary": "Mensagem recebida (simulação): Fixture", "tokens_consumed": 0}, "startedAt": "2026-10-13T08:46:48.497Z", "status": "SUCCESS"}, {"completedAt": "2026-10-13T08:46:48.497Z", "inputs": {"fieldMappings": {"ambiguities": ["A intenção não foi inferida; confirme-a antes de ativar o fluxo."], "name": "Fixture"}}, "nodeId": "record", "nodeType": "internal_record", "outputs": {"ai_intent": undefined, "ai_summary": undefined, "ambiguities": ["A intenção não foi inferida; confirme-a antes de ativar o fluxo."], "email": undefined, "name": "Fixture", "raw_message": undefined, "record_id": "sim_record_1791881208497_tiq33", "simulated_at": "2026-10-13T08:46:48.497Z", "status": "simulated"}, "startedAt": "2026-10-13T08:46:48.497Z", "status": "SUCCESS"}, {"completedAt": "2026-10-13T08:46:48.497Z", "inputs": {"leftOperand": "Não determinada: análise de IA simulada.", "operator": "is_empty"}, "nodeId": "condition", "nodeType": "condition", "outputs": {"evaluated_at": "2026-10-13T08:46:48.497Z", "result": false}, "startedAt": "2026-10-13T08:46:48.497Z", "status": "SUCCESS"}, {"completedAt": "2026-10-13T08:46:48.497Z", "inputs": {"method": "GET", "url": "https://endpoint.example.invalid"}, "nodeId": "http", "nodeType": "http_request", "outputs": {"duration_ms": 12, "response_body": {"method": "GET", "simulated": true, "target_url": "https://endpoint.example.invalid", "timestamp": "2026-10-13T08:46:48.497Z"}, "status_code": 200}, "startedAt": "2026-10-13T08:46:48.497Z", "status": "SUCCESS"}, {"completedAt": "2026-10-13T08:46:48.497Z", "error": {"code": "NODE_EXECUTION_FAILED", "message": "Configuração dos nós inválida; revise os campos indicados."}, "inputs": {"bodyTemplate": "{{ai.ambiguities}}", "subject": "Fixture", "to": "{{form.contact_email}}"}, "nodeId": "mail", "nodeType": "send_email", "startedAt": "2026-10-13T08:46:48.497Z", "status": "FAILED"}], "status": "FAILED", "totalDurationMs": 0}
+
+      78 |     const w = definition(); edit(w); jest.spyOn(Logger.prototype, 'log').mockImplementation(() => {});
+      79 |     const form = jest.spyOn(NodeExecutors, 'executeTriggerForm');
+    > 80 |     await expect(new WorkflowEngineService().simulate(w, { name: 'Fixture', email: 'contato@example.test', message: 'Fixture' }))
+         |           ^
+      81 |       .rejects.toBeInstanceOf(BadRequestException);
+      82 |     expect(form).not.toHaveBeenCalled();
+      83 |   });
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/engine/workflow-reference.spec.ts:80:11
+
+  ● Referências antes da execução › nega índice de array inválido antes do primeiro nó
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"executionId": "sim_1791881208498_bln9xw", "nodeResults": [{"completedAt": "2026-10-13T08:46:48.498Z", "inputs": {}, "nodeId": "form", "nodeType": "trigger_form", "outputs": {"contact_email": "contato@example.test", "contact_name": "Fixture", "message_text": "Fixture", "submission_id": "sub_1791881208498_jic1m", "submitted_at": "2026-10-13T08:46:48.498Z"}, "startedAt": "2026-10-13T08:46:48.498Z", "status": "SUCCESS"}, {"completedAt": "2026-10-13T08:46:48.498Z", "inputs": {"inputPromptTemplate": "Fixture", "modelRef": "modelo-a-aprovar"}, "nodeId": "ai", "nodeType": "ai_analyze_intent", "outputs": {"ambiguities": ["A intenção não foi inferida; confirme-a antes de ativar o fluxo."], "intent": "Não determinada: análise de IA simulada.", "model_used": "simulated", "summary": "Mensagem recebida (simulação): Fixture", "tokens_consumed": 0}, "startedAt": "2026-10-13T08:46:48.498Z", "status": "SUCCESS"}, {"completedAt": "2026-10-13T08:46:48.498Z", "inputs": {"fieldMappings": {"ambiguities": ["A intenção não foi inferida; confirme-a antes de ativar o fluxo."], "name": "Fixture"}}, "nodeId": "record", "nodeType": "internal_record", "outputs": {"ai_intent": undefined, "ai_summary": undefined, "ambiguities": ["A intenção não foi inferida; confirme-a antes de ativar o fluxo."], "email": undefined, "name": "Fixture", "raw_message": undefined, "record_id": "sim_record_1791881208498_jb4cj", "simulated_at": "2026-10-13T08:46:48.498Z", "status": "simulated"}, "startedAt": "2026-10-13T08:46:48.498Z", "status": "SUCCESS"}, {"completedAt": "2026-10-13T08:46:48.498Z", "inputs": {"leftOperand": "Não determinada: análise de IA simulada.", "operator": "is_empty"}, "nodeId": "condition", "nodeType": "condition", "outputs": {"evaluated_at": "2026-10-13T08:46:48.498Z", "result": false}, "startedAt": "2026-10-13T08:46:48.498Z", "status": "SUCCESS"}, {"completedAt": "2026-10-13T08:46:48.498Z", "inputs": {"method": "GET", "url": "https://endpoint.example.invalid"}, "nodeId": "http", "nodeType": "http_request", "outputs": {"duration_ms": 12, "response_body": {"method": "GET", "simulated": true, "target_url": "https://endpoint.example.invalid", "timestamp": "2026-10-13T08:46:48.498Z"}, "status_code": 200}, "startedAt": "2026-10-13T08:46:48.498Z", "status": "SUCCESS"}, {"completedAt": "2026-10-13T08:46:48.498Z", "error": {"code": "NODE_EXECUTION_FAILED", "message": "Campo de referência inexistente: ai.ambiguities.00"}, "inputs": {"bodyTemplate": "{{ai.ambiguities.00}}", "subject": "Fixture", "to": "{{form.contact_email}}"}, "nodeId": "mail", "nodeType": "send_email", "startedAt": "2026-10-13T08:46:48.498Z", "status": "FAILED"}], "status": "FAILED", "totalDurationMs": 0}
+
+      78 |     const w = definition(); edit(w); jest.spyOn(Logger.prototype, 'log').mockImplementation(() => {});
+      79 |     const form = jest.spyOn(NodeExecutors, 'executeTriggerForm');
+    > 80 |     await expect(new WorkflowEngineService().simulate(w, { name: 'Fixture', email: 'contato@example.test', message: 'Fixture' }))
+         |           ^
+      81 |       .rejects.toBeInstanceOf(BadRequestException);
+      82 |     expect(form).not.toHaveBeenCalled();
+      83 |   });
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/engine/workflow-reference.spec.ts:80:11
+
+  ● Referências antes da execução › nega subcampo de item string antes do primeiro nó
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"executionId": "sim_1791881208499_osujn4", "nodeResults": [{"completedAt": "2026-10-13T08:46:48.499Z", "inputs": {}, "nodeId": "form", "nodeType": "trigger_form", "outputs": {"contact_email": "contato@example.test", "contact_name": "Fixture", "message_text": "Fixture", "submission_id": "sub_1791881208499_3bgc8", "submitted_at": "2026-10-13T08:46:48.499Z"}, "startedAt": "2026-10-13T08:46:48.499Z", "status": "SUCCESS"}, {"completedAt": "2026-10-13T08:46:48.499Z", "inputs": {"inputPromptTemplate": "Fixture", "modelRef": "modelo-a-aprovar"}, "nodeId": "ai", "nodeType": "ai_analyze_intent", "outputs": {"ambiguities": ["A intenção não foi inferida; confirme-a antes de ativar o fluxo."], "intent": "Não determinada: análise de IA simulada.", "model_used": "simulated", "summary": "Mensagem recebida (simulação): Fixture", "tokens_consumed": 0}, "startedAt": "2026-10-13T08:46:48.499Z", "status": "SUCCESS"}, {"completedAt": "2026-10-13T08:46:48.499Z", "inputs": {"fieldMappings": {"ambiguities": ["A intenção não foi inferida; confirme-a antes de ativar o fluxo."], "name": "Fixture"}}, "nodeId": "record", "nodeType": "internal_record", "outputs": {"ai_intent": undefined, "ai_summary": undefined, "ambiguities": ["A intenção não foi inferida; confirme-a antes de ativar o fluxo."], "email": undefined, "name": "Fixture", "raw_message": undefined, "record_id": "sim_record_1791881208499_hegxa", "simulated_at": "2026-10-13T08:46:48.499Z", "status": "simulated"}, "startedAt": "2026-10-13T08:46:48.499Z", "status": "SUCCESS"}, {"completedAt": "2026-10-13T08:46:48.499Z", "inputs": {"leftOperand": "Não determinada: análise de IA simulada.", "operator": "is_empty"}, "nodeId": "condition", "nodeType": "condition", "outputs": {"evaluated_at": "2026-10-13T08:46:48.499Z", "result": false}, "startedAt": "2026-10-13T08:46:48.499Z", "status": "SUCCESS"}, {"completedAt": "2026-10-13T08:46:48.499Z", "inputs": {"method": "GET", "url": "https://endpoint.example.invalid"}, "nodeId": "http", "nodeType": "http_request", "outputs": {"duration_ms": 12, "response_body": {"method": "GET", "simulated": true, "target_url": "https://endpoint.example.invalid", "timestamp": "2026-10-13T08:46:48.499Z"}, "status_code": 200}, "startedAt": "2026-10-13T08:46:48.499Z", "status": "SUCCESS"}, {"completedAt": "2026-10-13T08:46:48.499Z", "error": {"code": "NODE_EXECUTION_FAILED", "message": "Campo de referência inexistente: ai.ambiguities.0.child"}, "inputs": {"bodyTemplate": "{{ai.ambiguities.0.child}}", "subject": "Fixture", "to": "{{form.contact_email}}"}, "nodeId": "mail", "nodeType": "send_email", "startedAt": "2026-10-13T08:46:48.499Z", "status": "FAILED"}], "status": "FAILED", "totalDurationMs": 0}
+
+      78 |     const w = definition(); edit(w); jest.spyOn(Logger.prototype, 'log').mockImplementation(() => {});
+      79 |     const form = jest.spyOn(NodeExecutors, 'executeTriggerForm');
+    > 80 |     await expect(new WorkflowEngineService().simulate(w, { name: 'Fixture', email: 'contato@example.test', message: 'Fixture' }))
+         |           ^
+      81 |       .rejects.toBeInstanceOf(BadRequestException);
+      82 |     expect(form).not.toHaveBeenCalled();
+      83 |   });
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/engine/workflow-reference.spec.ts:80:11
+
+  ● Referências antes da execução › nega destinatário usa saída inexistente antes do primeiro nó
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"executionId": "sim_1791881208500_tfmsue", "nodeResults": [{"completedAt": "2026-10-13T08:46:48.500Z", "inputs": {}, "nodeId": "form", "nodeType": "trigger_form", "outputs": {"contact_email": "contato@example.test", "contact_name": "Fixture", "message_text": "Fixture", "submission_id": "sub_1791881208500_npfjh", "submitted_at": "2026-10-13T08:46:48.500Z"}, "startedAt": "2026-10-13T08:46:48.500Z", "status": "SUCCESS"}, {"completedAt": "2026-10-13T08:46:48.500Z", "inputs": {"inputPromptTemplate": "Fixture", "modelRef": "modelo-a-aprovar"}, "nodeId": "ai", "nodeType": "ai_analyze_intent", "outputs": {"ambiguities": ["A intenção não foi inferida; confirme-a antes de ativar o fluxo."], "intent": "Não determinada: análise de IA simulada.", "model_used": "simulated", "summary": "Mensagem recebida (simulação): Fixture", "tokens_consumed": 0}, "startedAt": "2026-10-13T08:46:48.500Z", "status": "SUCCESS"}, {"completedAt": "2026-10-13T08:46:48.500Z", "inputs": {"fieldMappings": {"ambiguities": ["A intenção não foi inferida; confirme-a antes de ativar o fluxo."], "name": "Fixture"}}, "nodeId": "record", "nodeType": "internal_record", "outputs": {"ai_intent": undefined, "ai_summary": undefined, "ambiguities": ["A intenção não foi inferida; confirme-a antes de ativar o fluxo."], "email": undefined, "name": "Fixture", "raw_message": undefined, "record_id": "sim_record_1791881208500_4gdpi", "simulated_at": "2026-10-13T08:46:48.500Z", "status": "simulated"}, "startedAt": "2026-10-13T08:46:48.500Z", "status": "SUCCESS"}, {"completedAt": "2026-10-13T08:46:48.500Z", "inputs": {"leftOperand": "Não determinada: análise de IA simulada.", "operator": "is_empty"}, "nodeId": "condition", "nodeType": "condition", "outputs": {"evaluated_at": "2026-10-13T08:46:48.500Z", "result": false}, "startedAt": "2026-10-13T08:46:48.500Z", "status": "SUCCESS"}, {"completedAt": "2026-10-13T08:46:48.500Z", "inputs": {"method": "GET", "url": "https://endpoint.example.invalid"}, "nodeId": "http", "nodeType": "http_request", "outputs": {"duration_ms": 12, "response_body": {"method": "GET", "simulated": true, "target_url": "https://endpoint.example.invalid", "timestamp": "2026-10-13T08:46:48.500Z"}, "status_code": 200}, "startedAt": "2026-10-13T08:46:48.500Z", "status": "SUCCESS"}, {"completedAt": "2026-10-13T08:46:48.500Z", "error": {"code": "NODE_EXECUTION_FAILED", "message": "Campo de referência inexistente: form.output_inexistente"}, "inputs": {"bodyTemplate": "{{ai.summary}}", "subject": "Fixture", "to": "{{form.output_inexistente}}"}, "nodeId": "mail", "nodeType": "send_email", "startedAt": "2026-10-13T08:46:48.500Z", "status": "FAILED"}], "status": "FAILED", "totalDurationMs": 0}
+
+      78 |     const w = definition(); edit(w); jest.spyOn(Logger.prototype, 'log').mockImplementation(() => {});
+      79 |     const form = jest.spyOn(NodeExecutors, 'executeTriggerForm');
+    > 80 |     await expect(new WorkflowEngineService().simulate(w, { name: 'Fixture', email: 'contato@example.test', message: 'Fixture' }))
+         |           ^
+      81 |       .rejects.toBeInstanceOf(BadRequestException);
+      82 |     expect(form).not.toHaveBeenCalled();
+      83 |   });
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/engine/workflow-reference.spec.ts:80:11
+
+  ● Referências antes da execução › nega boolean em header string antes do primeiro nó
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"executionId": "sim_1791881208501_ttq061", "nodeResults": [{"completedAt": "2026-10-13T08:46:48.501Z", "inputs": {}, "nodeId": "form", "nodeType": "trigger_form", "outputs": {"contact_email": "contato@example.test", "contact_name": "Fixture", "message_text": "Fixture", "submission_id": "sub_1791881208501_1cnn2", "submitted_at": "2026-10-13T08:46:48.501Z"}, "startedAt": "2026-10-13T08:46:48.501Z", "status": "SUCCESS"}, {"completedAt": "2026-10-13T08:46:48.501Z", "inputs": {"inputPromptTemplate": "Fixture", "modelRef": "modelo-a-aprovar"}, "nodeId": "ai", "nodeType": "ai_analyze_intent", "outputs": {"ambiguities": ["A intenção não foi inferida; confirme-a antes de ativar o fluxo."], "intent": "Não determinada: análise de IA simulada.", "model_used": "simulated", "summary": "Mensagem recebida (simulação): Fixture", "tokens_consumed": 0}, "startedAt": "2026-10-13T08:46:48.501Z", "status": "SUCCESS"}, {"completedAt": "2026-10-13T08:46:48.502Z", "inputs": {"fieldMappings": {"ambiguities": ["A intenção não foi inferida; confirme-a antes de ativar o fluxo."], "name": "Fixture"}}, "nodeId": "record", "nodeType": "internal_record", "outputs": {"ai_intent": undefined, "ai_summary": undefined, "ambiguities": ["A intenção não foi inferida; confirme-a antes de ativar o fluxo."], "email": undefined, "name": "Fixture", "raw_message": undefined, "record_id": "sim_record_1791881208502_6oik5", "simulated_at": "2026-10-13T08:46:48.502Z", "status": "simulated"}, "startedAt": "2026-10-13T08:46:48.501Z", "status": "SUCCESS"}, {"completedAt": "2026-10-13T08:46:48.502Z", "inputs": {"leftOperand": "Não determinada: análise de IA simulada.", "operator": "is_empty"}, "nodeId": "condition", "nodeType": "condition", "outputs": {"evaluated_at": "2026-10-13T08:46:48.502Z", "result": false}, "startedAt": "2026-10-13T08:46:48.502Z", "status": "SUCCESS"}, {"completedAt": "2026-10-13T08:46:48.502Z", "error": {"code": "NODE_EXECUTION_FAILED", "message": "Configuração dos nós inválida; revise os campos indicados."}, "inputs": {"headers": {"X-Fixture": "{{condition.result}}"}, "method": "GET", "url": "https://endpoint.example.invalid"}, "nodeId": "http", "nodeType": "http_request", "startedAt": "2026-10-13T08:46:48.502Z", "status": "FAILED"}], "status": "FAILED", "totalDurationMs": 1}
+
+      78 |     const w = definition(); edit(w); jest.spyOn(Logger.prototype, 'log').mockImplementation(() => {});
+      79 |     const form = jest.spyOn(NodeExecutors, 'executeTriggerForm');
+    > 80 |     await expect(new WorkflowEngineService().simulate(w, { name: 'Fixture', email: 'contato@example.test', message: 'Fixture' }))
+         |           ^
+      81 |       .rejects.toBeInstanceOf(BadRequestException);
+      82 |     expect(form).not.toHaveBeenCalled();
+      83 |   });
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/engine/workflow-reference.spec.ts:80:11
+
+  ● Referências antes da execução › nega número em campo de registro string antes do primeiro nó
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"executionId": "sim_1791881208503_v6wcyx", "nodeResults": [{"completedAt": "2026-10-13T08:46:48.503Z", "inputs": {}, "nodeId": "form", "nodeType": "trigger_form", "outputs": {"contact_email": "contato@example.test", "contact_name": "Fixture", "message_text": "Fixture", "submission_id": "sub_1791881208503_e9llv", "submitted_at": "2026-10-13T08:46:48.503Z"}, "startedAt": "2026-10-13T08:46:48.503Z", "status": "SUCCESS"}, {"completedAt": "2026-10-13T08:46:48.503Z", "inputs": {"inputPromptTemplate": "Fixture", "modelRef": "modelo-a-aprovar"}, "nodeId": "ai", "nodeType": "ai_analyze_intent", "outputs": {"ambiguities": ["A intenção não foi inferida; confirme-a antes de ativar o fluxo."], "intent": "Não determinada: análise de IA simulada.", "model_used": "simulated", "summary": "Mensagem recebida (simulação): Fixture", "tokens_consumed": 0}, "startedAt": "2026-10-13T08:46:48.503Z", "status": "SUCCESS"}, {"completedAt": "2026-10-13T08:46:48.503Z", "error": {"code": "NODE_EXECUTION_FAILED", "message": "Configuração dos nós inválida; revise os campos indicados."}, "inputs": {"fieldMappings": {"name": "Fixture", "raw_message": "{{ai.tokens_consumed}}"}}, "nodeId": "record", "nodeType": "internal_record", "startedAt": "2026-10-13T08:46:48.503Z", "status": "FAILED"}], "status": "FAILED", "totalDurationMs": 0}
+
+      78 |     const w = definition(); edit(w); jest.spyOn(Logger.prototype, 'log').mockImplementation(() => {});
+      79 |     const form = jest.spyOn(NodeExecutors, 'executeTriggerForm');
+    > 80 |     await expect(new WorkflowEngineService().simulate(w, { name: 'Fixture', email: 'contato@example.test', message: 'Fixture' }))
+         |           ^
+      81 |       .rejects.toBeInstanceOf(BadRequestException);
+      82 |     expect(form).not.toHaveBeenCalled();
+      83 |   });
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/engine/workflow-reference.spec.ts:80:11
+
+  ● Referências antes da execução › nega número em elemento de ambiguidades antes do primeiro nó
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"executionId": "sim_1791881208504_mgyrbh", "nodeResults": [{"completedAt": "2026-10-13T08:46:48.504Z", "inputs": {}, "nodeId": "form", "nodeType": "trigger_form", "outputs": {"contact_email": "contato@example.test", "contact_name": "Fixture", "message_text": "Fixture", "submission_id": "sub_1791881208504_wm4wh", "submitted_at": "2026-10-13T08:46:48.504Z"}, "startedAt": "2026-10-13T08:46:48.504Z", "status": "SUCCESS"}, {"completedAt": "2026-10-13T08:46:48.504Z", "inputs": {"inputPromptTemplate": "Fixture", "modelRef": "modelo-a-aprovar"}, "nodeId": "ai", "nodeType": "ai_analyze_intent", "outputs": {"ambiguities": ["A intenção não foi inferida; confirme-a antes de ativar o fluxo."], "intent": "Não determinada: análise de IA simulada.", "model_used": "simulated", "summary": "Mensagem recebida (simulação): Fixture", "tokens_consumed": 0}, "startedAt": "2026-10-13T08:46:48.504Z", "status": "SUCCESS"}, {"completedAt": "2026-10-13T08:46:48.504Z", "error": {"code": "NODE_EXECUTION_FAILED", "message": "Configuração dos nós inválida; revise os campos indicados."}, "inputs": {"fieldMappings": {"ambiguities": ["{{ai.tokens_consumed}}"], "name": "Fixture"}}, "nodeId": "record", "nodeType": "internal_record", "startedAt": "2026-10-13T08:46:48.504Z", "status": "FAILED"}], "status": "FAILED", "totalDurationMs": 0}
+
+      78 |     const w = definition(); edit(w); jest.spyOn(Logger.prototype, 'log').mockImplementation(() => {});
+      79 |     const form = jest.spyOn(NodeExecutors, 'executeTriggerForm');
+    > 80 |     await expect(new WorkflowEngineService().simulate(w, { name: 'Fixture', email: 'contato@example.test', message: 'Fixture' }))
+         |           ^
+      81 |       .rejects.toBeInstanceOf(BadRequestException);
+      82 |     expect(form).not.toHaveBeenCalled();
+      83 |   });
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/engine/workflow-reference.spec.ts:80:11
+
+Test Suites: 1 failed, 1 total
+Tests:       46 failed, 4 passed, 50 total
+Snapshots:   0 total
+Time:        3.105 s
+Ran all test suites within paths "C:\Users\jv883\Documents\Codex\FlowMind-AI\Flowmind-AI\apps\api\src\engine\workflow-reference.spec.ts".

@@ -1,0 +1,17 @@
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151002: [0mUsing hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151002: [0mUsing hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+(node:23288) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+[Nest] 23288  - 28/10/2026, 20:37:43    WARN [ScheduleTickConsumer] Disparo do agendamento [b50e5b97-5c67-4dae-95dc-8d5cf947339c] pulado: execução anterior ainda em andamento.
+[Nest] 23288  - 28/10/2026, 20:37:43     LOG [ScheduleTickConsumer] Agendamento [a0aa48e1-d8c2-4b50-adbd-6519158c5ec4] pausado: workflow não está ativado.
+[Nest] 23288  - 28/10/2026, 20:37:44     LOG [WorkerService] Processando simulação [Job: org_sc_a_1793230663419_qdpkt-3468f986-94a3-43bf-99f0-d71e6d8e2120-v2-sch-8ae27f0c-337a-4d65-94a2-72358e811979-1792845000000] para workflow [ID: 3468f986-94a3-43bf-99f0-d71e6d8e2120] org [org_sc_a_1793230663419_qdpkt]
+[Nest] 23288  - 28/10/2026, 20:37:44     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Agendado' [ID: 3468f986-94a3-43bf-99f0-d71e6d8e2120]
+[Nest] 23288  - 28/10/2026, 20:37:44     LOG [WorkerService] Simulação [Job: org_sc_a_1793230663419_qdpkt-3468f986-94a3-43bf-99f0-d71e6d8e2120-v2-sch-8ae27f0c-337a-4d65-94a2-72358e811979-1792845000000] concluída com status COMPLETED [ExecutionId: sim_1793230664206_ymt3jv]
+Test Suites: 1 passed, 1 total
+Tests:       9 passed, 9 total
+Snapshots:   0 total
+Time:        4.199 s, estimated 9 s
+Ran all test suites within paths "apps/api/src/qa/schedule-integration.spec.ts".
+Jest did not exit one second after the test run has completed.
+
+'This usually means that there are asynchronous operations that weren't stopped in your tests. Consider running Jest with `--detectOpenHandles` to troubleshoot this issue.

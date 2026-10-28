@@ -1,3 +1,4 @@
+import { createTestResourceResolver } from '../../test/resource-fixtures';
 import { BadRequestException } from '@nestjs/common';
 import { AiGeneratorService } from './ai-generator.service';
 
@@ -6,7 +7,7 @@ describe('AiGeneratorService (T10 — Geração Estruturada por IA)', () => {
   const mockOrgId = 'org_test_123';
 
   beforeEach(() => {
-    service = new AiGeneratorService();
+    service = new AiGeneratorService(createTestResourceResolver());
   });
 
   it('deve gerar a jornada de referência completa a partir de prompt em linguagem natural', async () => {
@@ -114,7 +115,7 @@ describe('AiGeneratorService (T10 — Geração Estruturada por IA)', () => {
       }),
     };
 
-    const customService = new AiGeneratorService(mockAiClient as any);
+    const customService = new AiGeneratorService(createTestResourceResolver(), mockAiClient as any);
     const result = await customService.generateFromNaturalLanguage(
       { prompt: 'Fluxo customizado para teste de injeção' },
       mockOrgId,

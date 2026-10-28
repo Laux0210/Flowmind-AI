@@ -1,0 +1,25 @@
+{
+  "verifiedAtUtc": "2026-10-23T04:01:39.5939895Z",
+  "scope": "Compose config only; no containers, pulls or migrations",
+  "missingPasswordRejected": true,
+  "syntheticConfigValid": true,
+  "loopbackBindingsOnly": true,
+  "services": [
+    "postgres",
+    "redis"
+  ],
+  "images": [
+    "postgres:16-alpine",
+    "redis:7-alpine"
+  ],
+  "persistentVolumes": [
+    "postgres_data",
+    "redis_data"
+  ],
+  "composeVersion": "Docker Compose version v5.5.1",
+  "virtualizationFirmwareEnabled": false,
+  "hypervisorPresent": false,
+  "backupPath": "C:/Users/jv883/AppData/Local/Temp/flowmind-infra-20261023-010106",
+  "pendingManifestEntriesVerified": 33,
+  "pendingManifestHashesValid": true
+}

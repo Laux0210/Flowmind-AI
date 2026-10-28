@@ -1,0 +1,10 @@
+{
+  "origin": "http://127.0.0.1:63073",
+  "pid": 27744,
+  "output": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-webhook-qa-kbyxeb",
+  "sourceHashes": {
+    "apps/web/src/components/workflows/webhook-panel.tsx": "a2663c31011b51e787a85fa2193156e878289adf8cb2ec74b0c7f35d0e06c382",
+    "apps/web/src/lib/api-client.ts": "81249e37089c35d270d1cdeb4b58a2609d1e3e69e98597a928c42d7559cc8628"
+  },
+  "scope": "Real WebhookPanel and ApiClient; synthetic auth/HTTP state, A response held for stale-context verification"
+}

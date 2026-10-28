@@ -43,3 +43,6 @@ Thumbs.db
 .tools/
 apps/api/src/generated/prisma/
 *.tsbuildinfo
+
+# Clerk CLI local claim credentials
+.clerk/

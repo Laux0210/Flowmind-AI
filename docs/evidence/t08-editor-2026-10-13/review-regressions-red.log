@@ -1,0 +1,145 @@
+(node:17792) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ configuração pendente impede salvar uma definição anterior à edição do usuário (92.6865ms)
+(node:17792) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+✔ resposta de salvamento obsoleta não substitui novas alterações nem escreve feedback de erro (34.6157ms)
+✔ parâmetros de e-mail editados preservam IDs, referências e campos não alterados (64.0439ms)
+✔ valores JSON da condição preservam número, array e booleano (0.5988ms)
+✔ JSON inválido e campos desconhecidos não substituem a configuração (1.0273ms)
+✔ aliases existentes de mensagem e mapeamento são preservados ao editar outro campo (0.422ms)
+✔ draft incompleto continua editável e ausência de opcionais não injeta defaults (0.2126ms)
+✔ edições de parâmetros/posições/conexões são negadas em REVIEWED (0.609ms)
+✔ edições de parâmetros/posições/conexões são negadas em PUBLISHED (0.1713ms)
+✔ edições de parâmetros/posições/conexões são negadas em ARCHIVED (0.2257ms)
+✔ movimentação persiste coordenadas finitas sem mudar configuração ou arestas (0.3758ms)
+✔ conexões condicionais preservam os handles usados pelo motor (0.3567ms)
+✔ ciclo, auto-conexão, nó ausente e conexão repetida são recusados antes de mudar o grafo (0.2981ms)
+✔ remoção de conexão preserva nós e demais IDs, sem resolver convergências (0.2102ms)
+✔ formulários abrangem os seis tipos e conservam ausência versus valores JSON (0.2076ms)
+✔ arestas exibidas no canvas mantêm sourceHandle e targetHandle sem normalização (21.8775ms)
+✔ edição aplicada marca dirty, avança revisão e invalida resultado anterior (37.3413ms)
+✔ edição não altera o workflow durante saving (21.2912ms)
+✔ edição não altera o workflow durante reviewing (22.3092ms)
+✔ edição não altera o workflow durante publishing (28.1084ms)
+✔ edição não altera o workflow durante deactivating (29.6614ms)
+✔ edição não altera o workflow durante simulating (31.4386ms)
+✔ edição não altera o workflow durante generatingAi (23.0533ms)
+✔ duas movimentações antes de renderizar preservam as duas alterações (20.8673ms)
+✔ edição com contexto Alpha→Beta→Alpha anterior é descartada (15.1587ms)
+✔ rascunho local de parâmetros impede trocar etapa, mover ou aplicar conexões (15.328ms)
+✔ conectar e remover pela interface altera somente as arestas pertinentes (15.9631ms)
+✖ editar e salvar no mesmo snapshot usa a definição recente da referência (19.3978ms)
+✖ edição antes de render bloqueia simulação, revisão e ativação do snapshot antigo (15.1115ms)
+✖ proposta aplicada e editada antes de render mantém os nós da proposta (15.4109ms)
+✖ handles padrão e nomeado default têm chaves distintas no componente real (102.8339ms)
+✖ efeito real do nó solicita atualização dos bounds dos handles após render (9.4588ms)
+✔ formulário real de trigger_form renderiza labels, valores escapados e bloqueio de edição (41.145ms)
+✔ formulário real de ai_analyze_intent renderiza labels, valores escapados e bloqueio de edição (11.059ms)
+✔ formulário real de internal_record renderiza labels, valores escapados e bloqueio de edição (10.6949ms)
+✔ formulário real de send_email renderiza labels, valores escapados e bloqueio de edição (22.9709ms)
+✔ formulário real de condition renderiza labels, valores escapados e bloqueio de edição (19.0195ms)
+✔ formulário real de http_request renderiza labels, valores escapados e bloqueio de edição (10.85ms)
+ℹ tests 38
+ℹ suites 0
+ℹ pass 33
+ℹ fail 5
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1107.8279
+
+✖ failing tests:
+
+test at tests\regression\workflow-editing.test.mjs:213:1
+✖ editar e salvar no mesmo snapshot usa a definição recente da referência (19.3978ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'Contato'
+  - 'Assunto recente'
+  
+      at TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:217:10)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'Contato',
+    expected: 'Assunto recente',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests\regression\workflow-editing.test.mjs:221:1
+✖ edição antes de render bloqueia simulação, revisão e ativação do snapshot antigo (15.1115ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /salve/i. Input:
+  
+  'Falha ao processar simulação.'
+  
+      at TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:229:38)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'Falha ao processar simulação.',
+    expected: /salve/i,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests\regression\workflow-editing.test.mjs:234:1
+✖ proposta aplicada e editada antes de render mantém os nós da proposta (15.4109ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  false !== true
+  
+      at TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:238:10)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests\regression\workflow-editing.test.mjs:257:1
+✖ handles padrão e nomeado default têm chaves distintas no componente real (102.8339ms)
+  AssertionError [ERR_ASSERTION]: Expected "actual" to be strictly unequal to:
+  
+  'default'
+      at TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:260:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'default',
+    expected: 'default',
+    operator: 'notStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests\regression\workflow-editing.test.mjs:265:1
+✖ efeito real do nó solicita atualização dos bounds dos handles após render (9.4588ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 1
+  
+      at TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:268:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

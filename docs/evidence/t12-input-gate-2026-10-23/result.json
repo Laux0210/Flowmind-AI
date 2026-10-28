@@ -1,0 +1,24 @@
+{
+  "checkedAt": "2026-10-23T20:20:01.935Z",
+  "sourceSha256": "9b7f6c60df39685f299dac1246024cbcd900d447f57ebad95e9334ffc253f383",
+  "sourceStable": true,
+  "scope": "Current trigger executor only; not an authenticated or full worker integration test",
+  "results": [
+    {
+      "case": "default",
+      "status": 400,
+      "message": "Campo obrigatório ausente na submissão do formulário: name"
+    },
+    {
+      "case": "required-form",
+      "status": 400,
+      "message": "Campo obrigatório ausente na submissão do formulário: name"
+    },
+    {
+      "case": "optional-form",
+      "succeeds": true,
+      "scheduledAtPreserved": false,
+      "contactFieldsEmpty": true
+    }
+  ]
+}

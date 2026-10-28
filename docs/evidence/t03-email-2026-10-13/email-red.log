@@ -1,0 +1,513 @@
+ts-jest[config] (WARN) message TS151002: Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) message TS151002: Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) message TS151002: Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+[Nest] 18544  - 13/10/2026, 13:08:06     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Fixture' [ID: wf_email_fixture]
+[Nest] 18544  - 13/10/2026, 13:08:06   ERROR [WorkflowEngineService] Falha no nó mail (send_email): Destinatário de e-mail ausente ou com formato inválido.
+[Nest] 18544  - 13/10/2026, 13:08:06     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Fixture' [ID: wf_email_fixture]
+[Nest] 18544  - 13/10/2026, 13:08:06   ERROR [WorkflowEngineService] Falha no nó mail (send_email): Destinatário de e-mail ausente ou com formato inválido.
+[Nest] 18544  - 13/10/2026, 13:08:06     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Fixture' [ID: wf_email_fixture]
+[Nest] 18544  - 13/10/2026, 13:08:06   ERROR [WorkflowEngineService] Falha no nó mail (send_email): E-mail de resposta (replyTo) com formato inválido.
+[Nest] 18544  - 13/10/2026, 13:08:06     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Fixture' [ID: wf_email_fixture]
+[Nest] 18544  - 13/10/2026, 13:08:06   ERROR [WorkflowEngineService] Falha no nó mail (send_email): E-mail de resposta (replyTo) com formato inválido.
+[Nest] 18544  - 13/10/2026, 13:08:06     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Fixture' [ID: wf_email_fixture]
+[Nest] 18544  - 13/10/2026, 13:08:06   ERROR [WorkflowEngineService] Falha no nó mail (send_email): E-mail de resposta (replyTo) com formato inválido.
+[Nest] 18544  - 13/10/2026, 13:08:06     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Fixture' [ID: wf_email_fixture]
+[Nest] 18544  - 13/10/2026, 13:08:06   ERROR [WorkflowEngineService] Falha no nó mail (send_email): E-mail de resposta (replyTo) com formato inválido.
+[Nest] 18544  - 13/10/2026, 13:08:06     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Fixture' [ID: wf_email_fixture]
+[Nest] 18544  - 13/10/2026, 13:08:06     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Fixture' [ID: wf_email_fixture]
+[Nest] 18544  - 13/10/2026, 13:08:06     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Fixture' [ID: wf_email_fixture]
+[Nest] 18544  - 13/10/2026, 13:08:06     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Fixture' [ID: wf_email_fixture]
+(node:18544) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+FAIL apps/api/src/engine/email-literal.validation.spec.ts
+  ● T03 — e-mail literal compatível com o executor › review nega to com espaço inicial antes de writes/snapshot
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"reviewedAt": "2026-10-13T16:08:06.191Z", "reviewedBy": "admin_fixture", "workflow": {"createdAt": "2026-10-13T00:00:00.000Z", "description": undefined, "edges": [{"id": "form_mail", "sourceNodeId": "form", "targetNodeId": "mail"}], "id": "wf_email_fixture", "name": "Fixture", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"bodyTemplate": "{{form.message_text}}", "subject": "Fixture", "to": " contato@example.test"}, "id": "mail", "label": "Fixture", "position": {"x": 100, "y": 0}, "type": "send_email"}], "orgId": "org_fixture", "reviewedAt": "2026-10-13T16:08:06.191Z", "reviewedBy": "admin_fixture", "schemaVersion": "1.0.0", "status": "REVIEWED", "triggerNodeId": "form", "updatedAt": "2026-10-13T00:00:00.000Z", "version": 1}}
+
+      33 | ];
+      34 | async function rejected(operation: Promise<unknown>) {
+    > 35 |   await expect(operation).rejects.toBeInstanceOf(BadRequestException);
+         |         ^
+      36 | }
+      37 |
+      38 | describe('T03 — e-mail literal compatível com o executor', () => {
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at rejected (src/engine/email-literal.validation.spec.ts:35:9)
+      at src/engine/email-literal.validation.spec.ts:43:13
+
+  ● T03 — e-mail literal compatível com o executor › review nega to com espaço final antes de writes/snapshot
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"reviewedAt": "2026-10-13T16:08:06.206Z", "reviewedBy": "admin_fixture", "workflow": {"createdAt": "2026-10-13T00:00:00.000Z", "description": undefined, "edges": [{"id": "form_mail", "sourceNodeId": "form", "targetNodeId": "mail"}], "id": "wf_email_fixture", "name": "Fixture", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"bodyTemplate": "{{form.message_text}}", "subject": "Fixture", "to": "contato@example.test "}, "id": "mail", "label": "Fixture", "position": {"x": 100, "y": 0}, "type": "send_email"}], "orgId": "org_fixture", "reviewedAt": "2026-10-13T16:08:06.206Z", "reviewedBy": "admin_fixture", "schemaVersion": "1.0.0", "status": "REVIEWED", "triggerNodeId": "form", "updatedAt": "2026-10-13T00:00:00.000Z", "version": 1}}
+
+      33 | ];
+      34 | async function rejected(operation: Promise<unknown>) {
+    > 35 |   await expect(operation).rejects.toBeInstanceOf(BadRequestException);
+         |         ^
+      36 | }
+      37 |
+      38 | describe('T03 — e-mail literal compatível com o executor', () => {
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at rejected (src/engine/email-literal.validation.spec.ts:35:9)
+      at src/engine/email-literal.validation.spec.ts:43:13
+
+  ● T03 — e-mail literal compatível com o executor › review nega replyTo inválido antes de writes/snapshot
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"reviewedAt": "2026-10-13T16:08:06.207Z", "reviewedBy": "admin_fixture", "workflow": {"createdAt": "2026-10-13T00:00:00.000Z", "description": undefined, "edges": [{"id": "form_mail", "sourceNodeId": "form", "targetNodeId": "mail"}], "id": "wf_email_fixture", "name": "Fixture", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"bodyTemplate": "{{form.message_text}}", "replyTo": "private_fixture_invalid", "subject": "Fixture", "to": "{{form.contact_email}}"}, "id": "mail", "label": "Fixture", "position": {"x": 100, "y": 0}, "type": "send_email"}], "orgId": "org_fixture", "reviewedAt": "2026-10-13T16:08:06.207Z", "reviewedBy": "admin_fixture", "schemaVersion": "1.0.0", "status": "REVIEWED", "triggerNodeId": "form", "updatedAt": "2026-10-13T00:00:00.000Z", "version": 1}}
+
+      33 | ];
+      34 | async function rejected(operation: Promise<unknown>) {
+    > 35 |   await expect(operation).rejects.toBeInstanceOf(BadRequestException);
+         |         ^
+      36 | }
+      37 |
+      38 | describe('T03 — e-mail literal compatível com o executor', () => {
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at rejected (src/engine/email-literal.validation.spec.ts:35:9)
+      at src/engine/email-literal.validation.spec.ts:43:13
+
+  ● T03 — e-mail literal compatível com o executor › review nega replyTo somente espaços antes de writes/snapshot
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"reviewedAt": "2026-10-13T16:08:06.209Z", "reviewedBy": "admin_fixture", "workflow": {"createdAt": "2026-10-13T00:00:00.000Z", "description": undefined, "edges": [{"id": "form_mail", "sourceNodeId": "form", "targetNodeId": "mail"}], "id": "wf_email_fixture", "name": "Fixture", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"bodyTemplate": "{{form.message_text}}", "replyTo": "   ", "subject": "Fixture", "to": "{{form.contact_email}}"}, "id": "mail", "label": "Fixture", "position": {"x": 100, "y": 0}, "type": "send_email"}], "orgId": "org_fixture", "reviewedAt": "2026-10-13T16:08:06.209Z", "reviewedBy": "admin_fixture", "schemaVersion": "1.0.0", "status": "REVIEWED", "triggerNodeId": "form", "updatedAt": "2026-10-13T00:00:00.000Z", "version": 1}}
+
+      33 | ];
+      34 | async function rejected(operation: Promise<unknown>) {
+    > 35 |   await expect(operation).rejects.toBeInstanceOf(BadRequestException);
+         |         ^
+      36 | }
+      37 |
+      38 | describe('T03 — e-mail literal compatível com o executor', () => {
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at rejected (src/engine/email-literal.validation.spec.ts:35:9)
+      at src/engine/email-literal.validation.spec.ts:43:13
+
+  ● T03 — e-mail literal compatível com o executor › review nega replyTo com espaço inicial antes de writes/snapshot
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"reviewedAt": "2026-10-13T16:08:06.210Z", "reviewedBy": "admin_fixture", "workflow": {"createdAt": "2026-10-13T00:00:00.000Z", "description": undefined, "edges": [{"id": "form_mail", "sourceNodeId": "form", "targetNodeId": "mail"}], "id": "wf_email_fixture", "name": "Fixture", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"bodyTemplate": "{{form.message_text}}", "replyTo": " contato@example.test", "subject": "Fixture", "to": "{{form.contact_email}}"}, "id": "mail", "label": "Fixture", "position": {"x": 100, "y": 0}, "type": "send_email"}], "orgId": "org_fixture", "reviewedAt": "2026-10-13T16:08:06.210Z", "reviewedBy": "admin_fixture", "schemaVersion": "1.0.0", "status": "REVIEWED", "triggerNodeId": "form", "updatedAt": "2026-10-13T00:00:00.000Z", "version": 1}}
+
+      33 | ];
+      34 | async function rejected(operation: Promise<unknown>) {
+    > 35 |   await expect(operation).rejects.toBeInstanceOf(BadRequestException);
+         |         ^
+      36 | }
+      37 |
+      38 | describe('T03 — e-mail literal compatível com o executor', () => {
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at rejected (src/engine/email-literal.validation.spec.ts:35:9)
+      at src/engine/email-literal.validation.spec.ts:43:13
+
+  ● T03 — e-mail literal compatível com o executor › review nega replyTo com prefixo mailto antes de writes/snapshot
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"reviewedAt": "2026-10-13T16:08:06.219Z", "reviewedBy": "admin_fixture", "workflow": {"createdAt": "2026-10-13T00:00:00.000Z", "description": undefined, "edges": [{"id": "form_mail", "sourceNodeId": "form", "targetNodeId": "mail"}], "id": "wf_email_fixture", "name": "Fixture", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"bodyTemplate": "{{form.message_text}}", "replyTo": "mailto:contato@example.test", "subject": "Fixture", "to": "{{form.contact_email}}"}, "id": "mail", "label": "Fixture", "position": {"x": 100, "y": 0}, "type": "send_email"}], "orgId": "org_fixture", "reviewedAt": "2026-10-13T16:08:06.219Z", "reviewedBy": "admin_fixture", "schemaVersion": "1.0.0", "status": "REVIEWED", "triggerNodeId": "form", "updatedAt": "2026-10-13T00:00:00.000Z", "version": 1}}
+
+      33 | ];
+      34 | async function rejected(operation: Promise<unknown>) {
+    > 35 |   await expect(operation).rejects.toBeInstanceOf(BadRequestException);
+         |         ^
+      36 | }
+      37 |
+      38 | describe('T03 — e-mail literal compatível com o executor', () => {
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at rejected (src/engine/email-literal.validation.spec.ts:35:9)
+      at src/engine/email-literal.validation.spec.ts:43:13
+
+  ● T03 — e-mail literal compatível com o executor › publish nega to com espaço inicial antes de writes/snapshot
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"publishedAt": "2026-10-13T16:08:06.220Z", "versionSnapshot": {"edges": [{"id": "form_mail", "sourceNodeId": "form", "targetNodeId": "mail"}], "id": "snapshot_fixture", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"bodyTemplate": "{{form.message_text}}", "subject": "Fixture", "to": " contato@example.test"}, "id": "mail", "label": "Fixture", "position": {"x": 100, "y": 0}, "type": "send_email"}], "publishedAt": "2026-10-13T16:08:06.220Z", "publishedBy": "admin_fixture", "schemaVersion": "1.0.0", "triggerNodeId": "form", "version": 1, "workflowId": "wf_email_fixture"}, "workflow": {"createdAt": "2026-10-13T00:00:00.000Z", "description": undefined, "edges": [{"id": "form_mail", "sourceNodeId": "form", "targetNodeId": "mail"}], "id": "wf_email_fixture", "name": "Fixture", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"bodyTemplate": "{{form.message_text}}", "subject": "Fixture", "to": " contato@example.test"}, "id": "mail", "label": "Fixture", "position": {"x": 100, "y": 0}, "type": "send_email"}], "orgId": "org_fixture", "reviewedAt": "2026-10-13T16:08:06.220Z", "reviewedBy": "admin_fixture", "schemaVersion": "1.0.0", "status": "PUBLISHED", "triggerNodeId": "form", "updatedAt": "2026-10-13T00:00:00.000Z", "version": 1}}
+
+      33 | ];
+      34 | async function rejected(operation: Promise<unknown>) {
+    > 35 |   await expect(operation).rejects.toBeInstanceOf(BadRequestException);
+         |         ^
+      36 | }
+      37 |
+      38 | describe('T03 — e-mail literal compatível com o executor', () => {
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at rejected (src/engine/email-literal.validation.spec.ts:35:9)
+      at src/engine/email-literal.validation.spec.ts:43:13
+
+  ● T03 — e-mail literal compatível com o executor › publish nega to com espaço final antes de writes/snapshot
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"publishedAt": "2026-10-13T16:08:06.221Z", "versionSnapshot": {"edges": [{"id": "form_mail", "sourceNodeId": "form", "targetNodeId": "mail"}], "id": "snapshot_fixture", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"bodyTemplate": "{{form.message_text}}", "subject": "Fixture", "to": "contato@example.test "}, "id": "mail", "label": "Fixture", "position": {"x": 100, "y": 0}, "type": "send_email"}], "publishedAt": "2026-10-13T16:08:06.221Z", "publishedBy": "admin_fixture", "schemaVersion": "1.0.0", "triggerNodeId": "form", "version": 1, "workflowId": "wf_email_fixture"}, "workflow": {"createdAt": "2026-10-13T00:00:00.000Z", "description": undefined, "edges": [{"id": "form_mail", "sourceNodeId": "form", "targetNodeId": "mail"}], "id": "wf_email_fixture", "name": "Fixture", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"bodyTemplate": "{{form.message_text}}", "subject": "Fixture", "to": "contato@example.test "}, "id": "mail", "label": "Fixture", "position": {"x": 100, "y": 0}, "type": "send_email"}], "orgId": "org_fixture", "reviewedAt": "2026-10-13T16:08:06.221Z", "reviewedBy": "admin_fixture", "schemaVersion": "1.0.0", "status": "PUBLISHED", "triggerNodeId": "form", "updatedAt": "2026-10-13T00:00:00.000Z", "version": 1}}
+
+      33 | ];
+      34 | async function rejected(operation: Promise<unknown>) {
+    > 35 |   await expect(operation).rejects.toBeInstanceOf(BadRequestException);
+         |         ^
+      36 | }
+      37 |
+      38 | describe('T03 — e-mail literal compatível com o executor', () => {
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at rejected (src/engine/email-literal.validation.spec.ts:35:9)
+      at src/engine/email-literal.validation.spec.ts:43:13
+
+  ● T03 — e-mail literal compatível com o executor › publish nega replyTo inválido antes de writes/snapshot
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"publishedAt": "2026-10-13T16:08:06.222Z", "versionSnapshot": {"edges": [{"id": "form_mail", "sourceNodeId": "form", "targetNodeId": "mail"}], "id": "snapshot_fixture", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"bodyTemplate": "{{form.message_text}}", "replyTo": "private_fixture_invalid", "subject": "Fixture", "to": "{{form.contact_email}}"}, "id": "mail", "label": "Fixture", "position": {"x": 100, "y": 0}, "type": "send_email"}], "publishedAt": "2026-10-13T16:08:06.222Z", "publishedBy": "admin_fixture", "schemaVersion": "1.0.0", "triggerNodeId": "form", "version": 1, "workflowId": "wf_email_fixture"}, "workflow": {"createdAt": "2026-10-13T00:00:00.000Z", "description": undefined, "edges": [{"id": "form_mail", "sourceNodeId": "form", "targetNodeId": "mail"}], "id": "wf_email_fixture", "name": "Fixture", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"bodyTemplate": "{{form.message_text}}", "replyTo": "private_fixture_invalid", "subject": "Fixture", "to": "{{form.contact_email}}"}, "id": "mail", "label": "Fixture", "position": {"x": 100, "y": 0}, "type": "send_email"}], "orgId": "org_fixture", "reviewedAt": "2026-10-13T16:08:06.222Z", "reviewedBy": "admin_fixture", "schemaVersion": "1.0.0", "status": "PUBLISHED", "triggerNodeId": "form", "updatedAt": "2026-10-13T00:00:00.000Z", "version": 1}}
+
+      33 | ];
+      34 | async function rejected(operation: Promise<unknown>) {
+    > 35 |   await expect(operation).rejects.toBeInstanceOf(BadRequestException);
+         |         ^
+      36 | }
+      37 |
+      38 | describe('T03 — e-mail literal compatível com o executor', () => {
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at rejected (src/engine/email-literal.validation.spec.ts:35:9)
+      at src/engine/email-literal.validation.spec.ts:43:13
+
+  ● T03 — e-mail literal compatível com o executor › publish nega replyTo somente espaços antes de writes/snapshot
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"publishedAt": "2026-10-13T16:08:06.223Z", "versionSnapshot": {"edges": [{"id": "form_mail", "sourceNodeId": "form", "targetNodeId": "mail"}], "id": "snapshot_fixture", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"bodyTemplate": "{{form.message_text}}", "replyTo": "   ", "subject": "Fixture", "to": "{{form.contact_email}}"}, "id": "mail", "label": "Fixture", "position": {"x": 100, "y": 0}, "type": "send_email"}], "publishedAt": "2026-10-13T16:08:06.223Z", "publishedBy": "admin_fixture", "schemaVersion": "1.0.0", "triggerNodeId": "form", "version": 1, "workflowId": "wf_email_fixture"}, "workflow": {"createdAt": "2026-10-13T00:00:00.000Z", "description": undefined, "edges": [{"id": "form_mail", "sourceNodeId": "form", "targetNodeId": "mail"}], "id": "wf_email_fixture", "name": "Fixture", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"bodyTemplate": "{{form.message_text}}", "replyTo": "   ", "subject": "Fixture", "to": "{{form.contact_email}}"}, "id": "mail", "label": "Fixture", "position": {"x": 100, "y": 0}, "type": "send_email"}], "orgId": "org_fixture", "reviewedAt": "2026-10-13T16:08:06.223Z", "reviewedBy": "admin_fixture", "schemaVersion": "1.0.0", "status": "PUBLISHED", "triggerNodeId": "form", "updatedAt": "2026-10-13T00:00:00.000Z", "version": 1}}
+
+      33 | ];
+      34 | async function rejected(operation: Promise<unknown>) {
+    > 35 |   await expect(operation).rejects.toBeInstanceOf(BadRequestException);
+         |         ^
+      36 | }
+      37 |
+      38 | describe('T03 — e-mail literal compatível com o executor', () => {
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at rejected (src/engine/email-literal.validation.spec.ts:35:9)
+      at src/engine/email-literal.validation.spec.ts:43:13
+
+  ● T03 — e-mail literal compatível com o executor › publish nega replyTo com espaço inicial antes de writes/snapshot
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"publishedAt": "2026-10-13T16:08:06.224Z", "versionSnapshot": {"edges": [{"id": "form_mail", "sourceNodeId": "form", "targetNodeId": "mail"}], "id": "snapshot_fixture", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"bodyTemplate": "{{form.message_text}}", "replyTo": " contato@example.test", "subject": "Fixture", "to": "{{form.contact_email}}"}, "id": "mail", "label": "Fixture", "position": {"x": 100, "y": 0}, "type": "send_email"}], "publishedAt": "2026-10-13T16:08:06.224Z", "publishedBy": "admin_fixture", "schemaVersion": "1.0.0", "triggerNodeId": "form", "version": 1, "workflowId": "wf_email_fixture"}, "workflow": {"createdAt": "2026-10-13T00:00:00.000Z", "description": undefined, "edges": [{"id": "form_mail", "sourceNodeId": "form", "targetNodeId": "mail"}], "id": "wf_email_fixture", "name": "Fixture", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"bodyTemplate": "{{form.message_text}}", "replyTo": " contato@example.test", "subject": "Fixture", "to": "{{form.contact_email}}"}, "id": "mail", "label": "Fixture", "position": {"x": 100, "y": 0}, "type": "send_email"}], "orgId": "org_fixture", "reviewedAt": "2026-10-13T16:08:06.224Z", "reviewedBy": "admin_fixture", "schemaVersion": "1.0.0", "status": "PUBLISHED", "triggerNodeId": "form", "updatedAt": "2026-10-13T00:00:00.000Z", "version": 1}}
+
+      33 | ];
+      34 | async function rejected(operation: Promise<unknown>) {
+    > 35 |   await expect(operation).rejects.toBeInstanceOf(BadRequestException);
+         |         ^
+      36 | }
+      37 |
+      38 | describe('T03 — e-mail literal compatível com o executor', () => {
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at rejected (src/engine/email-literal.validation.spec.ts:35:9)
+      at src/engine/email-literal.validation.spec.ts:43:13
+
+  ● T03 — e-mail literal compatível com o executor › publish nega replyTo com prefixo mailto antes de writes/snapshot
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"publishedAt": "2026-10-13T16:08:06.225Z", "versionSnapshot": {"edges": [{"id": "form_mail", "sourceNodeId": "form", "targetNodeId": "mail"}], "id": "snapshot_fixture", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"bodyTemplate": "{{form.message_text}}", "replyTo": "mailto:contato@example.test", "subject": "Fixture", "to": "{{form.contact_email}}"}, "id": "mail", "label": "Fixture", "position": {"x": 100, "y": 0}, "type": "send_email"}], "publishedAt": "2026-10-13T16:08:06.225Z", "publishedBy": "admin_fixture", "schemaVersion": "1.0.0", "triggerNodeId": "form", "version": 1, "workflowId": "wf_email_fixture"}, "workflow": {"createdAt": "2026-10-13T00:00:00.000Z", "description": undefined, "edges": [{"id": "form_mail", "sourceNodeId": "form", "targetNodeId": "mail"}], "id": "wf_email_fixture", "name": "Fixture", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"bodyTemplate": "{{form.message_text}}", "replyTo": "mailto:contato@example.test", "subject": "Fixture", "to": "{{form.contact_email}}"}, "id": "mail", "label": "Fixture", "position": {"x": 100, "y": 0}, "type": "send_email"}], "orgId": "org_fixture", "reviewedAt": "2026-10-13T16:08:06.225Z", "reviewedBy": "admin_fixture", "schemaVersion": "1.0.0", "status": "PUBLISHED", "triggerNodeId": "form", "updatedAt": "2026-10-13T00:00:00.000Z", "version": 1}}
+
+      33 | ];
+      34 | async function rejected(operation: Promise<unknown>) {
+    > 35 |   await expect(operation).rejects.toBeInstanceOf(BadRequestException);
+         |         ^
+      36 | }
+      37 |
+      38 | describe('T03 — e-mail literal compatível com o executor', () => {
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at rejected (src/engine/email-literal.validation.spec.ts:35:9)
+      at src/engine/email-literal.validation.spec.ts:43:13
+
+  ● T03 — e-mail literal compatível com o executor › simulação nega to com espaço inicial antes do primeiro nó
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"executionId": "sim_1791907686226_0ef63d", "nodeResults": [{"completedAt": "2026-10-13T16:08:06.227Z", "inputs": {}, "nodeId": "form", "nodeType": "trigger_form", "outputs": {"contact_email": "contato@example.test", "contact_name": "Fixture", "message_text": "Fixture", "submission_id": "sub_1791907686227_q7ali", "submitted_at": "2026-10-13T16:08:06.227Z"}, "startedAt": "2026-10-13T16:08:06.227Z", "status": "SUCCESS"}, {"completedAt": "2026-10-13T16:08:06.228Z", "error": {"code": "NODE_EXECUTION_FAILED", "message": "Destinatário de e-mail ausente ou com formato inválido."}, "inputs": {"bodyTemplate": "{{form.message_text}}", "subject": "Fixture", "to": " contato@example.test"}, "nodeId": "mail", "nodeType": "send_email", "startedAt": "2026-10-13T16:08:06.227Z", "status": "FAILED"}], "status": "FAILED", "totalDurationMs": 2}
+
+      33 | ];
+      34 | async function rejected(operation: Promise<unknown>) {
+    > 35 |   await expect(operation).rejects.toBeInstanceOf(BadRequestException);
+         |         ^
+      36 | }
+      37 |
+      38 | describe('T03 — e-mail literal compatível com o executor', () => {
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at rejected (src/engine/email-literal.validation.spec.ts:35:9)
+      at src/engine/email-literal.validation.spec.ts:50:11
+
+  ● T03 — e-mail literal compatível com o executor › simulação nega to com espaço final antes do primeiro nó
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"executionId": "sim_1791907686229_s2mc5h", "nodeResults": [{"completedAt": "2026-10-13T16:08:06.229Z", "inputs": {}, "nodeId": "form", "nodeType": "trigger_form", "outputs": {"contact_email": "contato@example.test", "contact_name": "Fixture", "message_text": "Fixture", "submission_id": "sub_1791907686229_u6h59", "submitted_at": "2026-10-13T16:08:06.229Z"}, "startedAt": "2026-10-13T16:08:06.229Z", "status": "SUCCESS"}, {"completedAt": "2026-10-13T16:08:06.229Z", "error": {"code": "NODE_EXECUTION_FAILED", "message": "Destinatário de e-mail ausente ou com formato inválido."}, "inputs": {"bodyTemplate": "{{form.message_text}}", "subject": "Fixture", "to": "contato@example.test "}, "nodeId": "mail", "nodeType": "send_email", "startedAt": "2026-10-13T16:08:06.229Z", "status": "FAILED"}], "status": "FAILED", "totalDurationMs": 0}
+
+      33 | ];
+      34 | async function rejected(operation: Promise<unknown>) {
+    > 35 |   await expect(operation).rejects.toBeInstanceOf(BadRequestException);
+         |         ^
+      36 | }
+      37 |
+      38 | describe('T03 — e-mail literal compatível com o executor', () => {
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at rejected (src/engine/email-literal.validation.spec.ts:35:9)
+      at src/engine/email-literal.validation.spec.ts:50:11
+
+  ● T03 — e-mail literal compatível com o executor › simulação nega replyTo inválido antes do primeiro nó
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"executionId": "sim_1791907686230_5ss889", "nodeResults": [{"completedAt": "2026-10-13T16:08:06.230Z", "inputs": {}, "nodeId": "form", "nodeType": "trigger_form", "outputs": {"contact_email": "contato@example.test", "contact_name": "Fixture", "message_text": "Fixture", "submission_id": "sub_1791907686230_072b4", "submitted_at": "2026-10-13T16:08:06.230Z"}, "startedAt": "2026-10-13T16:08:06.230Z", "status": "SUCCESS"}, {"completedAt": "2026-10-13T16:08:06.230Z", "error": {"code": "NODE_EXECUTION_FAILED", "message": "E-mail de resposta (replyTo) com formato inválido."}, "inputs": {"bodyTemplate": "{{form.message_text}}", "replyTo": "private_fixture_invalid", "subject": "Fixture", "to": "{{form.contact_email}}"}, "nodeId": "mail", "nodeType": "send_email", "startedAt": "2026-10-13T16:08:06.230Z", "status": "FAILED"}], "status": "FAILED", "totalDurationMs": 0}
+
+      33 | ];
+      34 | async function rejected(operation: Promise<unknown>) {
+    > 35 |   await expect(operation).rejects.toBeInstanceOf(BadRequestException);
+         |         ^
+      36 | }
+      37 |
+      38 | describe('T03 — e-mail literal compatível com o executor', () => {
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at rejected (src/engine/email-literal.validation.spec.ts:35:9)
+      at src/engine/email-literal.validation.spec.ts:50:11
+
+  ● T03 — e-mail literal compatível com o executor › simulação nega replyTo somente espaços antes do primeiro nó
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"executionId": "sim_1791907686231_jeo0dz", "nodeResults": [{"completedAt": "2026-10-13T16:08:06.231Z", "inputs": {}, "nodeId": "form", "nodeType": "trigger_form", "outputs": {"contact_email": "contato@example.test", "contact_name": "Fixture", "message_text": "Fixture", "submission_id": "sub_1791907686231_3dz9t", "submitted_at": "2026-10-13T16:08:06.231Z"}, "startedAt": "2026-10-13T16:08:06.231Z", "status": "SUCCESS"}, {"completedAt": "2026-10-13T16:08:06.231Z", "error": {"code": "NODE_EXECUTION_FAILED", "message": "E-mail de resposta (replyTo) com formato inválido."}, "inputs": {"bodyTemplate": "{{form.message_text}}", "replyTo": "   ", "subject": "Fixture", "to": "{{form.contact_email}}"}, "nodeId": "mail", "nodeType": "send_email", "startedAt": "2026-10-13T16:08:06.231Z", "status": "FAILED"}], "status": "FAILED", "totalDurationMs": 0}
+
+      33 | ];
+      34 | async function rejected(operation: Promise<unknown>) {
+    > 35 |   await expect(operation).rejects.toBeInstanceOf(BadRequestException);
+         |         ^
+      36 | }
+      37 |
+      38 | describe('T03 — e-mail literal compatível com o executor', () => {
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at rejected (src/engine/email-literal.validation.spec.ts:35:9)
+      at src/engine/email-literal.validation.spec.ts:50:11
+
+  ● T03 — e-mail literal compatível com o executor › simulação nega replyTo com espaço inicial antes do primeiro nó
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"executionId": "sim_1791907686232_adiicj", "nodeResults": [{"completedAt": "2026-10-13T16:08:06.232Z", "inputs": {}, "nodeId": "form", "nodeType": "trigger_form", "outputs": {"contact_email": "contato@example.test", "contact_name": "Fixture", "message_text": "Fixture", "submission_id": "sub_1791907686232_nvt3e", "submitted_at": "2026-10-13T16:08:06.232Z"}, "startedAt": "2026-10-13T16:08:06.232Z", "status": "SUCCESS"}, {"completedAt": "2026-10-13T16:08:06.232Z", "error": {"code": "NODE_EXECUTION_FAILED", "message": "E-mail de resposta (replyTo) com formato inválido."}, "inputs": {"bodyTemplate": "{{form.message_text}}", "replyTo": " contato@example.test", "subject": "Fixture", "to": "{{form.contact_email}}"}, "nodeId": "mail", "nodeType": "send_email", "startedAt": "2026-10-13T16:08:06.232Z", "status": "FAILED"}], "status": "FAILED", "totalDurationMs": 0}
+
+      33 | ];
+      34 | async function rejected(operation: Promise<unknown>) {
+    > 35 |   await expect(operation).rejects.toBeInstanceOf(BadRequestException);
+         |         ^
+      36 | }
+      37 |
+      38 | describe('T03 — e-mail literal compatível com o executor', () => {
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at rejected (src/engine/email-literal.validation.spec.ts:35:9)
+      at src/engine/email-literal.validation.spec.ts:50:11
+
+  ● T03 — e-mail literal compatível com o executor › simulação nega replyTo com prefixo mailto antes do primeiro nó
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"executionId": "sim_1791907686233_ruvvrx", "nodeResults": [{"completedAt": "2026-10-13T16:08:06.233Z", "inputs": {}, "nodeId": "form", "nodeType": "trigger_form", "outputs": {"contact_email": "contato@example.test", "contact_name": "Fixture", "message_text": "Fixture", "submission_id": "sub_1791907686233_vo9ho", "submitted_at": "2026-10-13T16:08:06.233Z"}, "startedAt": "2026-10-13T16:08:06.233Z", "status": "SUCCESS"}, {"completedAt": "2026-10-13T16:08:06.233Z", "error": {"code": "NODE_EXECUTION_FAILED", "message": "E-mail de resposta (replyTo) com formato inválido."}, "inputs": {"bodyTemplate": "{{form.message_text}}", "replyTo": "mailto:contato@example.test", "subject": "Fixture", "to": "{{form.contact_email}}"}, "nodeId": "mail", "nodeType": "send_email", "startedAt": "2026-10-13T16:08:06.233Z", "status": "FAILED"}], "status": "FAILED", "totalDurationMs": 0}
+
+      33 | ];
+      34 | async function rejected(operation: Promise<unknown>) {
+    > 35 |   await expect(operation).rejects.toBeInstanceOf(BadRequestException);
+         |         ^
+      36 | }
+      37 |
+      38 | describe('T03 — e-mail literal compatível com o executor', () => {
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at rejected (src/engine/email-literal.validation.spec.ts:35:9)
+      at src/engine/email-literal.validation.spec.ts:50:11
+
+  ● T03 — e-mail literal compatível com o executor › draft parcial não esconde replyTo inválido inválido
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"createdAt": "2026-10-13T00:00:00.000Z", "description": undefined, "edges": [{"id": "form_mail", "sourceNodeId": "form", "targetNodeId": "mail"}], "id": "wf_email_fixture", "name": "Fixture", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"replyTo": "private_fixture_invalid", "subject": "Fixture", "to": "{{form.contact_email}}"}, "id": "mail", "label": "Fixture", "position": {"x": 100, "y": 0}, "type": "send_email"}], "orgId": "org_fixture", "reviewedAt": undefined, "reviewedBy": undefined, "schemaVersion": "1.0.0", "status": "DRAFT", "triggerNodeId": "form", "updatedAt": "2026-10-13T00:00:00.000Z", "version": 1}
+
+      33 | ];
+      34 | async function rejected(operation: Promise<unknown>) {
+    > 35 |   await expect(operation).rejects.toBeInstanceOf(BadRequestException);
+         |         ^
+      36 | }
+      37 |
+      38 | describe('T03 — e-mail literal compatível com o executor', () => {
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at rejected (src/engine/email-literal.validation.spec.ts:35:9)
+      at src/engine/email-literal.validation.spec.ts:57:11
+
+  ● T03 — e-mail literal compatível com o executor › draft parcial não esconde replyTo somente espaços inválido
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"createdAt": "2026-10-13T00:00:00.000Z", "description": undefined, "edges": [{"id": "form_mail", "sourceNodeId": "form", "targetNodeId": "mail"}], "id": "wf_email_fixture", "name": "Fixture", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"replyTo": "   ", "subject": "Fixture", "to": "{{form.contact_email}}"}, "id": "mail", "label": "Fixture", "position": {"x": 100, "y": 0}, "type": "send_email"}], "orgId": "org_fixture", "reviewedAt": undefined, "reviewedBy": undefined, "schemaVersion": "1.0.0", "status": "DRAFT", "triggerNodeId": "form", "updatedAt": "2026-10-13T00:00:00.000Z", "version": 1}
+
+      33 | ];
+      34 | async function rejected(operation: Promise<unknown>) {
+    > 35 |   await expect(operation).rejects.toBeInstanceOf(BadRequestException);
+         |         ^
+      36 | }
+      37 |
+      38 | describe('T03 — e-mail literal compatível com o executor', () => {
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at rejected (src/engine/email-literal.validation.spec.ts:35:9)
+      at src/engine/email-literal.validation.spec.ts:57:11
+
+  ● T03 — e-mail literal compatível com o executor › draft parcial não esconde replyTo com espaço inicial inválido
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"createdAt": "2026-10-13T00:00:00.000Z", "description": undefined, "edges": [{"id": "form_mail", "sourceNodeId": "form", "targetNodeId": "mail"}], "id": "wf_email_fixture", "name": "Fixture", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"replyTo": " contato@example.test", "subject": "Fixture", "to": "{{form.contact_email}}"}, "id": "mail", "label": "Fixture", "position": {"x": 100, "y": 0}, "type": "send_email"}], "orgId": "org_fixture", "reviewedAt": undefined, "reviewedBy": undefined, "schemaVersion": "1.0.0", "status": "DRAFT", "triggerNodeId": "form", "updatedAt": "2026-10-13T00:00:00.000Z", "version": 1}
+
+      33 | ];
+      34 | async function rejected(operation: Promise<unknown>) {
+    > 35 |   await expect(operation).rejects.toBeInstanceOf(BadRequestException);
+         |         ^
+      36 | }
+      37 |
+      38 | describe('T03 — e-mail literal compatível com o executor', () => {
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at rejected (src/engine/email-literal.validation.spec.ts:35:9)
+      at src/engine/email-literal.validation.spec.ts:57:11
+
+  ● T03 — e-mail literal compatível com o executor › draft parcial não esconde replyTo com prefixo mailto inválido
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"createdAt": "2026-10-13T00:00:00.000Z", "description": undefined, "edges": [{"id": "form_mail", "sourceNodeId": "form", "targetNodeId": "mail"}], "id": "wf_email_fixture", "name": "Fixture", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"replyTo": "mailto:contato@example.test", "subject": "Fixture", "to": "{{form.contact_email}}"}, "id": "mail", "label": "Fixture", "position": {"x": 100, "y": 0}, "type": "send_email"}], "orgId": "org_fixture", "reviewedAt": undefined, "reviewedBy": undefined, "schemaVersion": "1.0.0", "status": "DRAFT", "triggerNodeId": "form", "updatedAt": "2026-10-13T00:00:00.000Z", "version": 1}
+
+      33 | ];
+      34 | async function rejected(operation: Promise<unknown>) {
+    > 35 |   await expect(operation).rejects.toBeInstanceOf(BadRequestException);
+         |         ^
+      36 | }
+      37 |
+      38 | describe('T03 — e-mail literal compatível com o executor', () => {
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at rejected (src/engine/email-literal.validation.spec.ts:35:9)
+      at src/engine/email-literal.validation.spec.ts:57:11
+
+  ● T03 — e-mail literal compatível com o executor › proposta parcial recusa replyTo inválido e conserva consumo
+
+    expect(received).toBeInstanceOf(expected)
+
+    Expected constructor: BadRequestException
+    Received constructor: Error
+
+      64 |     try { await service.generateFromNaturalLanguage({ prompt: 'Proposta sintética' }, 'org_fixture'); throw new Error('Deveria recusar'); }
+      65 |     catch (error) {
+    > 66 |       expect(error).toBeInstanceOf(BadRequestException);
+         |                     ^
+      67 |       const body = (error as BadRequestException).getResponse();
+      68 |       expect(body).toMatchObject({ code: 'AI_INVALID_WORKFLOW_RESPONSE', tokensConsumed: 24 });
+      69 |       expect(JSON.stringify(body)).not.toContain('private_fixture_invalid');
+
+      at src/engine/email-literal.validation.spec.ts:66:21
+
+  ● T03 — e-mail literal compatível com o executor › proposta parcial recusa replyTo somente espaços e conserva consumo
+
+    expect(received).toBeInstanceOf(expected)
+
+    Expected constructor: BadRequestException
+    Received constructor: Error
+
+      64 |     try { await service.generateFromNaturalLanguage({ prompt: 'Proposta sintética' }, 'org_fixture'); throw new Error('Deveria recusar'); }
+      65 |     catch (error) {
+    > 66 |       expect(error).toBeInstanceOf(BadRequestException);
+         |                     ^
+      67 |       const body = (error as BadRequestException).getResponse();
+      68 |       expect(body).toMatchObject({ code: 'AI_INVALID_WORKFLOW_RESPONSE', tokensConsumed: 24 });
+      69 |       expect(JSON.stringify(body)).not.toContain('private_fixture_invalid');
+
+      at src/engine/email-literal.validation.spec.ts:66:21
+
+  ● T03 — e-mail literal compatível com o executor › proposta parcial recusa replyTo com espaço inicial e conserva consumo
+
+    expect(received).toBeInstanceOf(expected)
+
+    Expected constructor: BadRequestException
+    Received constructor: Error
+
+      64 |     try { await service.generateFromNaturalLanguage({ prompt: 'Proposta sintética' }, 'org_fixture'); throw new Error('Deveria recusar'); }
+      65 |     catch (error) {
+    > 66 |       expect(error).toBeInstanceOf(BadRequestException);
+         |                     ^
+      67 |       const body = (error as BadRequestException).getResponse();
+      68 |       expect(body).toMatchObject({ code: 'AI_INVALID_WORKFLOW_RESPONSE', tokensConsumed: 24 });
+      69 |       expect(JSON.stringify(body)).not.toContain('private_fixture_invalid');
+
+      at src/engine/email-literal.validation.spec.ts:66:21
+
+  ● T03 — e-mail literal compatível com o executor › proposta parcial recusa replyTo com prefixo mailto e conserva consumo
+
+    expect(received).toBeInstanceOf(expected)
+
+    Expected constructor: BadRequestException
+    Received constructor: Error
+
+      64 |     try { await service.generateFromNaturalLanguage({ prompt: 'Proposta sintética' }, 'org_fixture'); throw new Error('Deveria recusar'); }
+      65 |     catch (error) {
+    > 66 |       expect(error).toBeInstanceOf(BadRequestException);
+         |                     ^
+      67 |       const body = (error as BadRequestException).getResponse();
+      68 |       expect(body).toMatchObject({ code: 'AI_INVALID_WORKFLOW_RESPONSE', tokensConsumed: 24 });
+      69 |       expect(JSON.stringify(body)).not.toContain('private_fixture_invalid');
+
+      at src/engine/email-literal.validation.spec.ts:66:21
+
+Test Suites: 1 failed, 1 total
+Tests:       26 failed, 4 passed, 30 total
+Snapshots:   0 total
+Time:        3.918 s
+Ran all test suites within paths "apps/api/src/engine/email-literal.validation.spec.ts".

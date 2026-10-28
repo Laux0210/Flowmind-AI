@@ -1,0 +1,52 @@
+[
+  {
+    "source": "docs/MEMORIA.md",
+    "sha256": "f723222290c2215b989cb730b1a787a7c8fd8bfb0b9c1c1d33655c1dbd207922",
+    "backup": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-t08-editor-20261013-3d130c91\\consolidation-MEMORIA.md"
+  },
+  {
+    "source": "plan.md",
+    "sha256": "13cec35d0396dac7aa7f3355fda58cd7f2cef50337e6d3f2d73ca26a36ab848d",
+    "backup": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-t08-editor-20261013-3d130c91\\consolidation-plan.md"
+  },
+  {
+    "source": "docs/PROJECT_CONTEXT.md",
+    "sha256": "77f227d15a8437b22bd77e714b7991f7066b3d23b7497bd6571c6a22bcb0cd23",
+    "backup": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-t08-editor-20261013-3d130c91\\consolidation-PROJECT_CONTEXT.md"
+  },
+  {
+    "source": "docs/T03_AVAILABILITY_PROPOSAL.md",
+    "sha256": "528a51b75c7954ee68efb2ab855684960d1ce4cbe7de154d096d081501676fde",
+    "backup": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-t08-editor-20261013-3d130c91\\consolidation-T03_AVAILABILITY_PROPOSAL.md"
+  },
+  {
+    "source": "docs/T03_RESOURCE_PROPOSAL.md",
+    "sha256": "ef9e3c3b76ee157b28c0e388c3671513fb7662438cbb27338e5f3938fe183311",
+    "backup": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-t08-editor-20261013-3d130c91\\consolidation-T03_RESOURCE_PROPOSAL.md"
+  },
+  {
+    "source": "docs/QA_SECURITY_MATRIX.md",
+    "sha256": "be25d597b3c2b828fcaf79d2419f4e220bb83d148383285da887d01e185e6ee9",
+    "backup": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-t08-editor-20261013-3d130c91\\consolidation-QA_SECURITY_MATRIX.md"
+  },
+  {
+    "source": "docs/AI_MEMORY.md",
+    "sha256": "fd77f3e9c6525bf22524e0bb5e68bee4c6344c2df9514027a2cacf0876492440",
+    "backup": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-t08-editor-20261013-3d130c91\\consolidation-AI_MEMORY.md"
+  },
+  {
+    "source": "docs/AI_EVALUATION.md",
+    "sha256": "0617dd16e5aebc30e7d249871d338bd0784c9a6e11d4e93341ea03b43ef38423",
+    "backup": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-t08-editor-20261013-3d130c91\\consolidation-AI_EVALUATION.md"
+  },
+  {
+    "source": "README.md",
+    "sha256": "b1d0fd98cebe0b6b8e54d1d94ee31e51f9e2d501d77b971c2512c921b4451e85",
+    "backup": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-t08-editor-20261013-3d130c91\\consolidation-README.md"
+  },
+  {
+    "source": "docs/AI_MEMORY_SYNC_PENDING_2026-10-12.json",
+    "sha256": "3fda34c259890b32dd80b0b526ca8e8a55bec89529b71b6f26f49f8dd306ea92",
+    "backup": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-t08-editor-20261013-3d130c91\\consolidation-AI_MEMORY_SYNC_PENDING_2026-10-12.json"
+  }
+]

@@ -1,0 +1,6 @@
+{
+  "checkedAt": "2026-10-28T23:38:51.304Z",
+  "exit": 0,
+  "signal": null,
+  "scope": "Local PostgreSQL/Redis; unique synthetic orgs and queues; tick→queue→worker→history; no HTTP authentication"
+}

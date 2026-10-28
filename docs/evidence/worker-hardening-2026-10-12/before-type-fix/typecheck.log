@@ -1,0 +1,25 @@
+
+> flowmind-ai@0.1.0 typecheck
+> node scripts/run-checks.mjs typecheck
+
+
+> @flowmind/contracts@0.1.0 build
+> tsc
+
+
+> @flowmind/api@0.1.0 typecheck
+> tsc --project tsconfig.json --noEmit
+
+
+> @flowmind/api@0.1.0 typecheck:test
+> tsc --project tsconfig.spec.json --noEmit
+
+src/worker/worker-bootstrap.spec.ts(10,39): error TS2835: Relative import paths need explicit file extensions in ECMAScript imports when '--moduleResolution' is 'node16' or 'nodenext'. Did you mean '../worker.js'?
+npm error Lifecycle script `typecheck:test` failed with error:
+npm error code 2
+npm error path C:\Users\jv883\Documents\Codex\FlowMind-AI\Flowmind-AI\apps\api
+npm error workspace @flowmind/api@0.1.0
+npm error location C:\Users\jv883\Documents\Codex\FlowMind-AI\Flowmind-AI\apps\api
+npm error command failed
+npm error command C:\Windows\system32\cmd.exe /d /s /c tsc --project tsconfig.spec.json --noEmit
+Verificação interrompida: run typecheck:test --workspace @flowmind/api.

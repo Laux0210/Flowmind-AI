@@ -1,0 +1,76 @@
+{
+  "checkedAtUtc": "2026-10-23T15:13:09.817Z",
+  "installedNext": "16.4.3",
+  "declaredNext": "16.4.3",
+  "react": "19.2.8",
+  "clerk": "7.9.14",
+  "rootManifestUnchanged": true,
+  "changes": [
+    {
+      "path": "apps/web",
+      "before": "0.1.0",
+      "after": "0.1.0",
+      "metadataOnly": true
+    },
+    {
+      "path": "node_modules/@next/env",
+      "before": "16.4.0",
+      "after": "16.4.3",
+      "metadataOnly": false
+    },
+    {
+      "path": "node_modules/@next/swc-darwin-arm64",
+      "before": "16.4.0",
+      "after": "16.4.3",
+      "metadataOnly": false
+    },
+    {
+      "path": "node_modules/@next/swc-darwin-x64",
+      "before": "16.4.0",
+      "after": "16.4.3",
+      "metadataOnly": false
+    },
+    {
+      "path": "node_modules/@next/swc-linux-arm64-gnu",
+      "before": "16.4.0",
+      "after": "16.4.3",
+      "metadataOnly": false
+    },
+    {
+      "path": "node_modules/@next/swc-linux-arm64-musl",
+      "before": "16.4.0",
+      "after": "16.4.3",
+      "metadataOnly": false
+    },
+    {
+      "path": "node_modules/@next/swc-linux-x64-gnu",
+      "before": "16.4.0",
+      "after": "16.4.3",
+      "metadataOnly": false
+    },
+    {
+      "path": "node_modules/@next/swc-linux-x64-musl",
+      "before": "16.4.0",
+      "after": "16.4.3",
+      "metadataOnly": false
+    },
+    {
+      "path": "node_modules/@next/swc-win32-arm64-msvc",
+      "before": "16.4.0",
+      "after": "16.4.3",
+      "metadataOnly": false
+    },
+    {
+      "path": "node_modules/@next/swc-win32-x64-msvc",
+      "before": "16.4.0",
+      "after": "16.4.3",
+      "metadataOnly": false
+    },
+    {
+      "path": "node_modules/next",
+      "before": "16.4.0",
+      "after": "16.4.3",
+      "metadataOnly": false
+    }
+  ]
+}

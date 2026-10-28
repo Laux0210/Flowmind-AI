@@ -1,0 +1,46 @@
+{
+  "success": true,
+  "data": {
+    "requests": [
+      {
+        "method": "GET",
+        "path": "/api/v1/workflows/wf_a/schedules"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/workflows/wf_b/schedules"
+      },
+      {
+        "method": "DELETE",
+        "path": "/api/v1/schedules/s_a"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/workflows/wf_b/schedules"
+      }
+    ],
+    "schedules": {
+      "wf_a": [
+        {
+          "id": "s_a",
+          "workflowId": "wf_a",
+          "cron": "0 9 * * 1-5",
+          "timezone": "America/Sao_Paulo",
+          "status": "REVOKED",
+          "createdAt": "2026-10-23T00:00:00Z"
+        }
+      ],
+      "wf_b": [
+        {
+          "id": "s_b",
+          "workflowId": "wf_b",
+          "cron": "0 17 * * 1-5",
+          "timezone": "UTC",
+          "status": "ACTIVE",
+          "createdAt": "2026-10-23T00:00:00Z"
+        }
+      ]
+    },
+    "held": 0
+  }
+}

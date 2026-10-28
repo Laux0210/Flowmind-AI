@@ -1,0 +1,24 @@
+{
+  "baselineResolverSha256": "5170d8cb49555e8609739251d6c66ca2b1b46228812476a1facfe2751985d3cf",
+  "validBehaviorRed": {
+    "failed": 45,
+    "passed": 91,
+    "total": 136
+  },
+  "green": {
+    "passed": 136,
+    "total": 136
+  },
+  "nativeRedFailed": 2,
+  "nativeGreenPassed": 7,
+  "initialRedFixtureMistakes": 4,
+  "logs": {
+    "red.log": "0413c824f1cba857ef037221a464d70381bc573cc5b044d5cdec8290dd94a002",
+    "behavior-red.log": "d5b7b7e6d9d79978545986c4bcec2c105b15d784cd5f92fd500ed34dc8041dff",
+    "green.log": "5f743a29ad33ea23a431ffe7ad2d3925f3a45fee0efc6f767670a727b050f256",
+    "native-red.log": "e3253acdd021a3e31265c574fe3b5d0e0377c979eb12b96ccba1e0bfd5989de4",
+    "native-green.log": "b632895f7a4b74059a420e4ecb62efabac4ec8493da893ad7e8b0323ac3b2d64",
+    "focused-typecheck.log": "88c1b1a2f9b95df5c3753d56910609c3bcd7fad6e2ebc29f2221d997471c1b5d"
+  },
+  "qualification": "baseline resolver hash was checked before production patch; initial fixture mistakes excluded from behavioral proof"
+}

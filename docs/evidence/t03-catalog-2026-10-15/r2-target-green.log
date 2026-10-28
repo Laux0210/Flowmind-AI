@@ -1,0 +1,91 @@
+ts-jest[config] (WARN) message TS151002: Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) message TS151002: Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) message TS151002: Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) message TS151002: Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+[Nest] 15044  - 15/10/2026, 14:45:42     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Sintético' [ID: wf]
+[Nest] 15044  - 15/10/2026, 14:45:42   ERROR [WorkflowEngineService] Falha no nó form (trigger_form): Campo obrigatório ausente na submissão do formulário: name
+[Nest] 15044  - 15/10/2026, 14:45:42     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Sintético' [ID: wf]
+[Nest] 15044  - 15/10/2026, 14:45:42   ERROR [WorkflowEngineService] Falha no nó form (trigger_form): Campo obrigatório ausente na submissão do formulário: name
+[Nest] 15044  - 15/10/2026, 14:45:42     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Sintético' [ID: wf]
+[Nest] 15044  - 15/10/2026, 14:45:42   ERROR [WorkflowEngineService] Falha no nó form (trigger_form): Campo obrigatório ausente na submissão do formulário: name
+[Nest] 15044  - 15/10/2026, 14:45:42     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Sintético' [ID: wf]
+[Nest] 15044  - 15/10/2026, 14:45:42   ERROR [WorkflowEngineService] Falha no nó form (trigger_form): Campo obrigatório ausente na submissão do formulário: name
+[Nest] 15044  - 15/10/2026, 14:45:42     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Sintético' [ID: wf]
+[Nest] 15044  - 15/10/2026, 14:45:42     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Sintético' [ID: wf]
+[Nest] 15044  - 15/10/2026, 14:45:42     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Sintético' [ID: wf]
+(node:15044) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+FAIL apps/api/src/resources/resource-validation.spec.ts
+  ● R2 — referências exigem catálogo explícito › simulação local sem referências concretas admite undefined com catálogo vazio
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "COMPLETED"
+    Received: "FAILED"
+
+      34 |     const engine = new (WorkflowEngineService as any)(make()) as WorkflowEngineService;
+      35 |     const result = await engine.simulate(workflow(ref), { message: 'Mensagem sintética' });
+    > 36 |     expect(result.status).toBe('COMPLETED');
+         |                           ^
+      37 |   });
+      38 |   it.each(['PENDING', 'foreign', 'missing'])('nega modelo concreto %s antes do primeiro nó', async (caseId) => {
+      39 |     const entry = { ...model, ...(caseId === 'PENDING' ? { approval: 'PENDING' } : {}), ...(caseId === 'foreign' ? { allowedOrgIds: ['beta'] } : {}) };
+
+      at src/resources/resource-validation.spec.ts:36:27
+
+  ● R2 — referências exigem catálogo explícito › simulação local sem referências concretas admite pending com catálogo vazio
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "COMPLETED"
+    Received: "FAILED"
+
+      34 |     const engine = new (WorkflowEngineService as any)(make()) as WorkflowEngineService;
+      35 |     const result = await engine.simulate(workflow(ref), { message: 'Mensagem sintética' });
+    > 36 |     expect(result.status).toBe('COMPLETED');
+         |                           ^
+      37 |   });
+      38 |   it.each(['PENDING', 'foreign', 'missing'])('nega modelo concreto %s antes do primeiro nó', async (caseId) => {
+      39 |     const entry = { ...model, ...(caseId === 'PENDING' ? { approval: 'PENDING' } : {}), ...(caseId === 'foreign' ? { allowedOrgIds: ['beta'] } : {}) };
+
+      at src/resources/resource-validation.spec.ts:36:27
+
+  ● R2 — referências exigem catálogo explícito › simulação local sem referências concretas admite modelo-a-aprovar com catálogo vazio
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "COMPLETED"
+    Received: "FAILED"
+
+      34 |     const engine = new (WorkflowEngineService as any)(make()) as WorkflowEngineService;
+      35 |     const result = await engine.simulate(workflow(ref), { message: 'Mensagem sintética' });
+    > 36 |     expect(result.status).toBe('COMPLETED');
+         |                           ^
+      37 |   });
+      38 |   it.each(['PENDING', 'foreign', 'missing'])('nega modelo concreto %s antes do primeiro nó', async (caseId) => {
+      39 |     const entry = { ...model, ...(caseId === 'PENDING' ? { approval: 'PENDING' } : {}), ...(caseId === 'foreign' ? { allowedOrgIds: ['beta'] } : {}) };
+
+      at src/resources/resource-validation.spec.ts:36:27
+
+  ● R2 — referências exigem catálogo explícito › simulação local sem referências concretas admite flowmind-default com catálogo vazio
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "COMPLETED"
+    Received: "FAILED"
+
+      34 |     const engine = new (WorkflowEngineService as any)(make()) as WorkflowEngineService;
+      35 |     const result = await engine.simulate(workflow(ref), { message: 'Mensagem sintética' });
+    > 36 |     expect(result.status).toBe('COMPLETED');
+         |                           ^
+      37 |   });
+      38 |   it.each(['PENDING', 'foreign', 'missing'])('nega modelo concreto %s antes do primeiro nó', async (caseId) => {
+      39 |     const entry = { ...model, ...(caseId === 'PENDING' ? { approval: 'PENDING' } : {}), ...(caseId === 'foreign' ? { allowedOrgIds: ['beta'] } : {}) };
+
+      at src/resources/resource-validation.spec.ts:36:27
+
+Test Suites: 1 failed, 1 total
+Tests:       4 failed, 9 passed, 13 total
+Snapshots:   0 total
+Time:        3.935 s, estimated 4 s
+Ran all test suites within paths "apps/api/src/resources/resource-validation.spec.ts".

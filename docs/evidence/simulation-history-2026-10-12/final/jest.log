@@ -1,0 +1,44 @@
+
+> flowmind-ai@0.1.0 test
+> node scripts/run-checks.mjs test
+
+
+> @flowmind/contracts@0.1.0 build
+> tsc
+
+
+> @flowmind/api@0.1.0 test
+> node --experimental-vm-modules ../../node_modules/jest/bin/jest.js --runInBand
+
+(node:26072) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151002: [0mUsing hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+[Nest] 26072  - 12/10/2026, 19:31:21     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Quando formulário for enviado resuma' [ID: wf_c01_full]
+[Nest] 26072  - 12/10/2026, 19:31:21     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Receba formulário de dúvidas gerais' [ID: wf_c02_doubts]
+[Nest] 26072  - 12/10/2026, 19:31:21     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Triagem Condicional' [ID: wf_c03_branch]
+[Nest] 26072  - 12/10/2026, 19:31:22     LOG [WebhooksService] Idempotência acionada para chave 'fixture_event' no workflow 'wf_beta'
+[Nest] 26072  - 12/10/2026, 19:31:22     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Workflow MVP Formulário' [ID: wf_mvp_test]
+[Nest] 26072  - 12/10/2026, 19:31:22     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Workflow MVP Formulário' [ID: wf_mvp_test]
+[Nest] 26072  - 12/10/2026, 19:31:22     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Workflow MVP Formulário' [ID: wf_mvp_test]
+[Nest] 26072  - 12/10/2026, 19:31:22   ERROR [WorkflowEngineService] Falha no nó node_trigger (trigger_form): Campo obrigatório ausente na submissão do formulário: email
+[Nest] 26072  - 12/10/2026, 19:31:22     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Workflow MVP Formulário' [ID: wf_mvp_test]
+[Nest] 26072  - 12/10/2026, 19:31:22     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Workflow MVP Formulário' [ID: wf_mvp_test]
+[Nest] 26072  - 12/10/2026, 19:31:22     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Workflow Condicional' [ID: wf_cond_test]
+[Nest] 26072  - 12/10/2026, 19:31:22     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Workflow Branch Profundo' [ID: wf_deep_branch]
+[Nest] 26072  - 12/10/2026, 19:31:22     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Workflow Convergência' [ID: wf_join_test]
+[Nest] 26072  - 12/10/2026, 19:31:22     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Workflow Convergência' [ID: wf_join_test]
+[Nest] 26072  - 12/10/2026, 19:31:22     LOG [WebhooksService] Idempotência acionada para chave 'unique_req_id_999' no workflow 'wf_webhook_pub'
+[Nest] 26072  - 12/10/2026, 19:31:22    WARN [SchedulerService] Agendamento ignorado para workflow 'wf_concurrent_test': execução anterior ainda em andamento (concorrência bloqueada).
+[Nest] 26072  - 12/10/2026, 19:31:23     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Fixture' [ID: wf_c03]
+[Nest] 26072  - 12/10/2026, 19:31:23     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Fixture' [ID: wf_c03]
+[Nest] 26072  - 12/10/2026, 19:31:23     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Fixture' [ID: wf_c03]
+[Nest] 26072  - 12/10/2026, 19:31:23     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Fixture' [ID: wf_c03]
+[Nest] 26072  - 12/10/2026, 19:31:23   ERROR [WorkflowEngineService] Falha no nó form (trigger_form): Campo obrigatório ausente na submissão do formulário: email
+[Nest] 26072  - 12/10/2026, 19:31:23     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Fixture' [ID: wf_c03]
+[Nest] 26072  - 12/10/2026, 19:31:23   ERROR [WorkflowEngineService] Falha no nó form (trigger_form): E-mail inválido na submissão do formulário
+
+Test Suites: 18 passed, 18 total
+Tests:       215 passed, 215 total
+Snapshots:   0 total
+Time:        11.312 s
+Ran all test suites.

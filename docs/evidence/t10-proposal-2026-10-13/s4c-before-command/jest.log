@@ -1,0 +1,57 @@
+
+> flowmind-ai@0.1.0 test
+> node scripts/run-checks.mjs test
+
+
+> @flowmind/contracts@0.1.0 build
+> tsc
+
+
+> @flowmind/api@0.1.0 test
+> node --experimental-vm-modules ../../node_modules/jest/bin/jest.js --runInBand
+
+(node:22404) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+[Nest] 22404  - 13/10/2026, 12:56:49     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Quando formulário for enviado resuma' [ID: wf_c01_full]
+[Nest] 22404  - 13/10/2026, 12:56:49     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Receba formulário de dúvidas gerais' [ID: wf_c02_doubts]
+[Nest] 22404  - 13/10/2026, 12:56:49     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Triagem Condicional' [ID: wf_c03_branch]
+[Nest] 22404  - 13/10/2026, 12:56:50   ERROR [WorkflowEngineService] Falha no nó form (trigger_form): Campo obrigatório ausente na submissão do formulário: name
+[Nest] 22404  - 13/10/2026, 12:56:50   ERROR [WorkflowEngineService] Falha no nó form (trigger_form): Campo obrigatório ausente na submissão do formulário: name
+[Nest] 22404  - 13/10/2026, 12:56:51     LOG [WorkerBootstrap] Inicializando FlowMind AI Background Worker (sem portas HTTP)...
+[Nest] 22404  - 13/10/2026, 12:56:51     LOG [WorkerBootstrap] Processo do worker inicializado em standby; consumo de fila indisponível.
+[Nest] 22404  - 13/10/2026, 12:56:53    WARN [WorkerService] Consumidor de fila não implementado. Worker permanece em standby.
+[Nest] 22404  - 13/10/2026, 12:56:53     LOG [WorkerService] Encerrando WorkerService em standby.
+[Nest] 22404  - 13/10/2026, 12:56:53    WARN [WorkerService] Consumidor de fila não implementado. Worker permanece em standby.
+[Nest] 22404  - 13/10/2026, 12:56:53     LOG [WorkerService] Processando simulação [Job: job_123] para workflow [ID: wf_worker_1] org [org_test]
+[Nest] 22404  - 13/10/2026, 12:56:53     LOG [WorkerService] Simulação [Job: job_123] concluída com status COMPLETED [ExecutionId: exec_recorded_job_1]
+[Nest] 22404  - 13/10/2026, 12:56:53     LOG [WorkerService] Processando simulação [Job: job_404] para workflow [ID: wf_missing] org [org_test]
+[Nest] 22404  - 13/10/2026, 12:56:53     LOG [WorkerService] Processando simulação [Job: job_mutable] para workflow [ID: wf_worker_1] org [org_test]
+[Nest] 22404  - 13/10/2026, 12:56:53     LOG [WorkerService] Simulação [Job: job_mutable] concluída com status COMPLETED [ExecutionId: exec_recorded_job_1]
+[Nest] 22404  - 13/10/2026, 12:56:53     LOG [WorkerService] Processando simulação [Job: job_cross] para workflow [ID: wf_worker_1] org [org_test]
+[Nest] 22404  - 13/10/2026, 12:56:53     LOG [WorkerService] Processando simulação [Job: job_storage] para workflow [ID: wf_worker_1] org [org_test]
+[Nest] 22404  - 13/10/2026, 12:56:54     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Workflow MVP Formulário' [ID: wf_mvp_test]
+[Nest] 22404  - 13/10/2026, 12:56:54     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Workflow MVP Formulário' [ID: wf_mvp_test]
+[Nest] 22404  - 13/10/2026, 12:56:54     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Workflow MVP Formulário' [ID: wf_mvp_test]
+[Nest] 22404  - 13/10/2026, 12:56:54   ERROR [WorkflowEngineService] Falha no nó node_trigger (trigger_form): Campo obrigatório ausente na submissão do formulário: email
+[Nest] 22404  - 13/10/2026, 12:56:54     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Workflow MVP Formulário' [ID: wf_mvp_test]
+[Nest] 22404  - 13/10/2026, 12:56:54     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Workflow MVP Formulário' [ID: wf_mvp_test]
+[Nest] 22404  - 13/10/2026, 12:56:54     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Workflow Condicional' [ID: wf_cond_test]
+[Nest] 22404  - 13/10/2026, 12:56:54     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Workflow Branch Profundo' [ID: wf_deep_branch]
+[Nest] 22404  - 13/10/2026, 12:56:54     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Workflow Convergência' [ID: wf_join_test]
+[Nest] 22404  - 13/10/2026, 12:56:54     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Workflow Convergência' [ID: wf_join_test]
+[Nest] 22404  - 13/10/2026, 12:56:55     LOG [WebhooksService] Idempotência acionada para chave 'unique_req_id_999' no workflow 'wf_webhook_pub'
+[Nest] 22404  - 13/10/2026, 12:56:55    WARN [SchedulerService] Agendamento ignorado para workflow 'wf_concurrent_test': execução anterior ainda em andamento (concorrência bloqueada).
+[Nest] 22404  - 13/10/2026, 12:56:55     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Fixture' [ID: wf_c03]
+[Nest] 22404  - 13/10/2026, 12:56:55     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Fixture' [ID: wf_c03]
+[Nest] 22404  - 13/10/2026, 12:56:55     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Fixture' [ID: wf_c03]
+[Nest] 22404  - 13/10/2026, 12:56:55     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Fixture' [ID: wf_c03]
+[Nest] 22404  - 13/10/2026, 12:56:55   ERROR [WorkflowEngineService] Falha no nó form (trigger_form): Campo obrigatório ausente na submissão do formulário: email
+[Nest] 22404  - 13/10/2026, 12:56:55     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Fixture' [ID: wf_c03]
+[Nest] 22404  - 13/10/2026, 12:56:55   ERROR [WorkflowEngineService] Falha no nó form (trigger_form): E-mail inválido na submissão do formulário
+[Nest] 22404  - 13/10/2026, 12:56:55     LOG [WebhooksService] Idempotência acionada para chave 'fixture_event' no workflow 'wf_beta'
+
+Test Suites: 33 passed, 33 total
+Tests:       543 passed, 543 total
+Snapshots:   0 total
+Time:        10.226 s, estimated 13 s
+Ran all test suites.

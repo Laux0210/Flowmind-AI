@@ -12,7 +12,7 @@ describe('SEC04 — acesso a execuções de duas organizações (adaptador sint�
       orgId: `org_${tenant}`,
       workflowId: `wf_${tenant}`,
       workflowVersion: 1,
-      workflow: { name: `Fluxo ${tenant}` },
+      workflow: { name: `Fluxo ${tenant}`, orgId: `org_${tenant}` },
       mode: 'SIMULATION',
       status: 'COMPLETED',
       triggeredBy: 'user_fixture',
@@ -23,7 +23,8 @@ describe('SEC04 — acesso a execuções de duas organizações (adaptador sint�
     // O adaptador aplica somente os filtros recebidos. Omitir orgId na consulta
     // real fará estes testes exporem dados alheios, em vez de retornar vazio sempre.
     const matches = (row: any, where: Record<string, unknown>) =>
-      Object.entries(where).every(([key, value]) => row[key] === value);
+      Object.entries(where).every(([key, value]: any) =>
+        key === 'workflow' ? row.workflow.orgId === value.orgId : row[key] === value);
     const prisma = {
       workflowExecution: {
         findMany: jest.fn(async ({ where }: any) => rows.filter((row) => matches(row, where))),

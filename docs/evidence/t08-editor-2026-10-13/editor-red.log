@@ -1,0 +1,313 @@
+(node:20460) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✖ configuração pendente impede salvar uma definição anterior à edição do usuário (107.3458ms)
+✖ resposta de salvamento obsoleta não substitui novas alterações nem escreve feedback de erro (30.6146ms)
+✖ parâmetros de e-mail editados preservam IDs, referências e campos não alterados (23.4537ms)
+✖ valores JSON da condição preservam número, array e booleano (1.1155ms)
+✖ JSON inválido e campos desconhecidos não substituem a configuração (1.3581ms)
+✖ aliases existentes de mensagem e mapeamento são preservados ao editar outro campo (1.1947ms)
+✖ draft incompleto continua editável e ausência de opcionais não injeta defaults (0.6682ms)
+✖ edições de parâmetros/posições/conexões são negadas em REVIEWED (0.7393ms)
+✖ edições de parâmetros/posições/conexões são negadas em PUBLISHED (0.643ms)
+✖ edições de parâmetros/posições/conexões são negadas em ARCHIVED (0.9222ms)
+✖ movimentação persiste coordenadas finitas sem mudar configuração ou arestas (1.0316ms)
+✖ conexões condicionais preservam os handles usados pelo motor (0.8149ms)
+✖ ciclo, auto-conexão, nó ausente e conexão repetida são recusados antes de mudar o grafo (0.8462ms)
+✖ remoção de conexão preserva nós e demais IDs, sem resolver convergências (0.9125ms)
+✖ formulários abrangem os seis tipos e conservam ausência versus valores JSON (0.8663ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 0
+ℹ fail 15
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 490.3706
+
+✖ failing tests:
+
+test at tests\regression\workflow-editing.test.mjs:32:1
+✖ configuração pendente impede salvar uma definição anterior à edição do usuário (107.3458ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /aplique|descarte/i. Input:
+  
+  'salvamento indevido'
+  
+      at TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:38:10)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'salvamento indevido',
+    expected: /aplique|descarte/i,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests\regression\workflow-editing.test.mjs:41:1
+✖ resposta de salvamento obsoleta não substitui novas alterações nem escreve feedback de erro (30.6146ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + {
+  +   message: 'erro de versão anterior',
+  +   type: 'error'
+  + }
+  - null
+  
+      at TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:47:10)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { type: 'error', message: 'erro de versão anterior' },
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests\regression\workflow-editing.test.mjs:50:1
+✖ parâmetros de e-mail editados preservam IDs, referências e campos não alterados (23.4537ms)
+  Error: ENOENT: no such file or directory, open 'C:\Users\jv883\Documents\Codex\FlowMind-AI\Flowmind-AI\apps\web\src\lib\workflow-editing.ts'
+      at readFileSync (node:fs:483:20)
+      at sourceModule (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:75:20)
+      at loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:89:18)
+      at logic (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:20:34)
+      at TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:51:40)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12) {
+    errno: -4058,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: 'C:\\Users\\jv883\\Documents\\Codex\\FlowMind-AI\\Flowmind-AI\\apps\\web\\src\\lib\\workflow-editing.ts'
+  }
+
+test at tests\regression\workflow-editing.test.mjs:59:1
+✖ valores JSON da condição preservam número, array e booleano (1.1155ms)
+  Error: ENOENT: no such file or directory, open 'C:\Users\jv883\Documents\Codex\FlowMind-AI\Flowmind-AI\apps\web\src\lib\workflow-editing.ts'
+      at readFileSync (node:fs:483:20)
+      at sourceModule (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:75:20)
+      at loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:89:18)
+      at logic (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:20:34)
+      at TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:60:40)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12) {
+    errno: -4058,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: 'C:\\Users\\jv883\\Documents\\Codex\\FlowMind-AI\\Flowmind-AI\\apps\\web\\src\\lib\\workflow-editing.ts'
+  }
+
+test at tests\regression\workflow-editing.test.mjs:67:1
+✖ JSON inválido e campos desconhecidos não substituem a configuração (1.3581ms)
+  Error: ENOENT: no such file or directory, open 'C:\Users\jv883\Documents\Codex\FlowMind-AI\Flowmind-AI\apps\web\src\lib\workflow-editing.ts'
+      at readFileSync (node:fs:483:20)
+      at sourceModule (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:75:20)
+      at loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:89:18)
+      at logic (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:20:34)
+      at TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:68:40)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12) {
+    errno: -4058,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: 'C:\\Users\\jv883\\Documents\\Codex\\FlowMind-AI\\Flowmind-AI\\apps\\web\\src\\lib\\workflow-editing.ts'
+  }
+
+test at tests\regression\workflow-editing.test.mjs:74:1
+✖ aliases existentes de mensagem e mapeamento são preservados ao editar outro campo (1.1947ms)
+  Error: ENOENT: no such file or directory, open 'C:\Users\jv883\Documents\Codex\FlowMind-AI\Flowmind-AI\apps\web\src\lib\workflow-editing.ts'
+      at readFileSync (node:fs:483:20)
+      at sourceModule (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:75:20)
+      at loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:89:18)
+      at logic (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:20:34)
+      at TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:75:64)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12) {
+    errno: -4058,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: 'C:\\Users\\jv883\\Documents\\Codex\\FlowMind-AI\\Flowmind-AI\\apps\\web\\src\\lib\\workflow-editing.ts'
+  }
+
+test at tests\regression\workflow-editing.test.mjs:84:1
+✖ draft incompleto continua editável e ausência de opcionais não injeta defaults (0.6682ms)
+  Error: ENOENT: no such file or directory, open 'C:\Users\jv883\Documents\Codex\FlowMind-AI\Flowmind-AI\apps\web\src\lib\workflow-editing.ts'
+      at readFileSync (node:fs:483:20)
+      at sourceModule (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:75:20)
+      at loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:89:18)
+      at logic (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:20:34)
+      at TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:85:40)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12) {
+    errno: -4058,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: 'C:\\Users\\jv883\\Documents\\Codex\\FlowMind-AI\\Flowmind-AI\\apps\\web\\src\\lib\\workflow-editing.ts'
+  }
+
+test at tests\regression\workflow-editing.test.mjs:91:3
+✖ edições de parâmetros/posições/conexões são negadas em REVIEWED (0.7393ms)
+  Error: ENOENT: no such file or directory, open 'C:\Users\jv883\Documents\Codex\FlowMind-AI\Flowmind-AI\apps\web\src\lib\workflow-editing.ts'
+      at readFileSync (node:fs:483:20)
+      at sourceModule (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:75:20)
+      at loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:89:18)
+      at logic (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:20:34)
+      at TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:92:109)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12) {
+    errno: -4058,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: 'C:\\Users\\jv883\\Documents\\Codex\\FlowMind-AI\\Flowmind-AI\\apps\\web\\src\\lib\\workflow-editing.ts'
+  }
+
+test at tests\regression\workflow-editing.test.mjs:91:3
+✖ edições de parâmetros/posições/conexões são negadas em PUBLISHED (0.643ms)
+  Error: ENOENT: no such file or directory, open 'C:\Users\jv883\Documents\Codex\FlowMind-AI\Flowmind-AI\apps\web\src\lib\workflow-editing.ts'
+      at readFileSync (node:fs:483:20)
+      at sourceModule (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:75:20)
+      at loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:89:18)
+      at logic (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:20:34)
+      at TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:92:109)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12) {
+    errno: -4058,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: 'C:\\Users\\jv883\\Documents\\Codex\\FlowMind-AI\\Flowmind-AI\\apps\\web\\src\\lib\\workflow-editing.ts'
+  }
+
+test at tests\regression\workflow-editing.test.mjs:91:3
+✖ edições de parâmetros/posições/conexões são negadas em ARCHIVED (0.9222ms)
+  Error: ENOENT: no such file or directory, open 'C:\Users\jv883\Documents\Codex\FlowMind-AI\Flowmind-AI\apps\web\src\lib\workflow-editing.ts'
+      at readFileSync (node:fs:483:20)
+      at sourceModule (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:75:20)
+      at loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:89:18)
+      at logic (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:20:34)
+      at TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:92:109)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12) {
+    errno: -4058,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: 'C:\\Users\\jv883\\Documents\\Codex\\FlowMind-AI\\Flowmind-AI\\apps\\web\\src\\lib\\workflow-editing.ts'
+  }
+
+test at tests\regression\workflow-editing.test.mjs:101:1
+✖ movimentação persiste coordenadas finitas sem mudar configuração ou arestas (1.0316ms)
+  Error: ENOENT: no such file or directory, open 'C:\Users\jv883\Documents\Codex\FlowMind-AI\Flowmind-AI\apps\web\src\lib\workflow-editing.ts'
+      at readFileSync (node:fs:483:20)
+      at sourceModule (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:75:20)
+      at loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:89:18)
+      at logic (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:20:34)
+      at TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:102:39)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12) {
+    errno: -4058,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: 'C:\\Users\\jv883\\Documents\\Codex\\FlowMind-AI\\Flowmind-AI\\apps\\web\\src\\lib\\workflow-editing.ts'
+  }
+
+test at tests\regression\workflow-editing.test.mjs:109:1
+✖ conexões condicionais preservam os handles usados pelo motor (0.8149ms)
+  Error: ENOENT: no such file or directory, open 'C:\Users\jv883\Documents\Codex\FlowMind-AI\Flowmind-AI\apps\web\src\lib\workflow-editing.ts'
+      at readFileSync (node:fs:483:20)
+      at sourceModule (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:75:20)
+      at loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:89:18)
+      at logic (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:20:34)
+      at TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:110:42)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12) {
+    errno: -4058,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: 'C:\\Users\\jv883\\Documents\\Codex\\FlowMind-AI\\Flowmind-AI\\apps\\web\\src\\lib\\workflow-editing.ts'
+  }
+
+test at tests\regression\workflow-editing.test.mjs:119:1
+✖ ciclo, auto-conexão, nó ausente e conexão repetida são recusados antes de mudar o grafo (0.8462ms)
+  Error: ENOENT: no such file or directory, open 'C:\Users\jv883\Documents\Codex\FlowMind-AI\Flowmind-AI\apps\web\src\lib\workflow-editing.ts'
+      at readFileSync (node:fs:483:20)
+      at sourceModule (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:75:20)
+      at loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:89:18)
+      at logic (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:20:34)
+      at TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:120:42)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12) {
+    errno: -4058,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: 'C:\\Users\\jv883\\Documents\\Codex\\FlowMind-AI\\Flowmind-AI\\apps\\web\\src\\lib\\workflow-editing.ts'
+  }
+
+test at tests\regression\workflow-editing.test.mjs:128:1
+✖ remoção de conexão preserva nós e demais IDs, sem resolver convergências (0.9125ms)
+  Error: ENOENT: no such file or directory, open 'C:\Users\jv883\Documents\Codex\FlowMind-AI\Flowmind-AI\apps\web\src\lib\workflow-editing.ts'
+      at readFileSync (node:fs:483:20)
+      at sourceModule (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:75:20)
+      at loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:89:18)
+      at logic (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:20:34)
+      at TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:129:68)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12) {
+    errno: -4058,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: 'C:\\Users\\jv883\\Documents\\Codex\\FlowMind-AI\\Flowmind-AI\\apps\\web\\src\\lib\\workflow-editing.ts'
+  }
+
+test at tests\regression\workflow-editing.test.mjs:136:1
+✖ formulários abrangem os seis tipos e conservam ausência versus valores JSON (0.8663ms)
+  Error: ENOENT: no such file or directory, open 'C:\Users\jv883\Documents\Codex\FlowMind-AI\Flowmind-AI\apps\web\src\lib\workflow-editing.ts'
+      at readFileSync (node:fs:483:20)
+      at sourceModule (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:75:20)
+      at loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:89:18)
+      at logic (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:20:34)
+      at TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:137:44)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12) {
+    errno: -4058,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: 'C:\\Users\\jv883\\Documents\\Codex\\FlowMind-AI\\Flowmind-AI\\apps\\web\\src\\lib\\workflow-editing.ts'
+  }

@@ -1,0 +1,18 @@
+[Nest] 14348  - 13/10/2026, 05:23:17     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Workflow MVP Formulário' [ID: wf_mvp_test]
+[Nest] 14348  - 13/10/2026, 05:23:17     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Workflow MVP Formulário' [ID: wf_mvp_test]
+[Nest] 14348  - 13/10/2026, 05:23:17     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Workflow MVP Formulário' [ID: wf_mvp_test]
+[Nest] 14348  - 13/10/2026, 05:23:17     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Workflow MVP Formulário' [ID: wf_mvp_test]
+[Nest] 14348  - 13/10/2026, 05:23:17     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Workflow MVP Formulário' [ID: wf_mvp_test]
+[Nest] 14348  - 13/10/2026, 05:23:17     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Workflow Condicional' [ID: wf_cond_test]
+[Nest] 14348  - 13/10/2026, 05:23:17     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Workflow Branch Profundo' [ID: wf_deep_branch]
+[Nest] 14348  - 13/10/2026, 05:23:17     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Workflow Convergência' [ID: wf_join_test]
+[Nest] 14348  - 13/10/2026, 05:23:17     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Workflow Convergência' [ID: wf_join_test]
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151002: [0mUsing hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+[Nest] 14348  - 13/10/2026, 05:23:17   ERROR [WorkflowEngineService] Falha no nó node_trigger (trigger_form): Campo obrigatório ausente na submissão do formulário: email
+(node:14348) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+Test Suites: 1 passed, 1 total
+Tests:       8 passed, 8 total
+Snapshots:   0 total
+Time:        2.852 s
+Ran all test suites within paths "C:\Users\jv883\Documents\Codex\FlowMind-AI\Flowmind-AI\apps\api\src\engine\workflow-engine.service.spec.ts".

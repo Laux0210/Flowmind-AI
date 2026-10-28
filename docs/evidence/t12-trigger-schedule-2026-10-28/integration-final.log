@@ -1,0 +1,13 @@
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151002: [0mUsing hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+(node:10348) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+[Nest] 10348  - 28/10/2026, 20:38:50    WARN [ScheduleTickConsumer] Disparo do agendamento [77067d3c-818e-46a6-9e38-5d3f5af013b1] pulado: execução anterior ainda em andamento.
+[Nest] 10348  - 28/10/2026, 20:38:50     LOG [ScheduleTickConsumer] Agendamento [4f99f534-107a-429a-98a1-06683dabdb2f] pausado: workflow não está ativado.
+[Nest] 10348  - 28/10/2026, 20:38:51     LOG [WorkerService] Processando simulação [Job: org_sc_a_1793230730097_zd7ek-28414fda-54ba-4c67-998f-995a6947f5f1-v2-sch-68384e1d-e75b-4c25-91f5-8a944f0a7211-1792845000000] para workflow [ID: 28414fda-54ba-4c67-998f-995a6947f5f1] org [org_sc_a_1793230730097_zd7ek]
+[Nest] 10348  - 28/10/2026, 20:38:51     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Agendado' [ID: 28414fda-54ba-4c67-998f-995a6947f5f1]
+[Nest] 10348  - 28/10/2026, 20:38:51     LOG [WorkerService] Simulação [Job: org_sc_a_1793230730097_zd7ek-28414fda-54ba-4c67-998f-995a6947f5f1-v2-sch-68384e1d-e75b-4c25-91f5-8a944f0a7211-1792845000000] concluída com status COMPLETED [ExecutionId: sim_1793230731119_xryoil]
+Test Suites: 1 passed, 1 total
+Tests:       9 passed, 9 total
+Snapshots:   0 total
+Time:        4.219 s
+Ran all test suites within paths "apps/api/src/qa/schedule-integration.spec.ts".

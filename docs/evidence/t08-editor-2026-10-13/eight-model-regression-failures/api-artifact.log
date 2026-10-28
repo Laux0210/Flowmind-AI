@@ -1,0 +1,5 @@
+
+> flowmind-ai@0.1.0 check:api-artifact
+> node scripts/check-api-artifact.mjs
+
+Artefato API: imports seguros, metadados de Workflows/Worker/Clerk/AI_CLIENT e prefixos conferidos, sem bootstrap.

@@ -5,7 +5,9 @@ import {
   UnauthorizedException,
   NotFoundException,
   Logger,
+  ServiceUnavailableException,
 } from '@nestjs/common';
+import { WebhookSignatureValidator } from './webhook-signature.validator';
 import type { WorkflowDefinition } from '@flowmind/contracts';
 import { WorkflowEngineService } from '../engine/workflow-engine.service';
 import type { WebhookTriggerHeaders, WebhookTriggerResponse } from './triggers.types';
@@ -37,6 +39,46 @@ export class WebhooksService {
     headers: WebhookTriggerHeaders,
     expectedSecret?: string,
   ): Promise<WebhookTriggerResponse> {
+    // Autenticar antes de expor existência, status ou payload do workflow.
+    if (typeof expectedSecret !== 'string' || !expectedSecret.trim()) {
+      throw new ServiceUnavailableException({ code: 'WEBHOOK_NOT_CONFIGURED', message: 'O recebimento de webhooks ainda não está disponível.' });
+    }
+    {
+      const receivedSig = headers.signature;
+      if (!receivedSig || typeof receivedSig !== 'string') {
+        throw new UnauthorizedException({
+          code: 'INVALID_WEBHOOK_SIGNATURE',
+          message: 'Assinatura ou segredo do webhook ausente.',
+        });
+      }
+
+      let isMatch = false;
+
+      // 1. Verificação canônica HMAC-SHA256 no formato t=<timestamp>,v1=<hmac>
+      if (receivedSig.startsWith('t=')) {
+        isMatch = WebhookSignatureValidator.verifySignature(
+          receivedSig,
+          JSON.stringify(payload),
+          expectedSecret,
+        );
+      } else {
+        // 2. Comparação timing-safe direta (para compatibilidade com fixtures de secret plano)
+        const receivedBuf = Buffer.from(receivedSig);
+        const expectedBuf = Buffer.from(expectedSecret);
+
+        isMatch =
+          receivedBuf.length === expectedBuf.length &&
+          timingSafeEqual(receivedBuf, expectedBuf);
+      }
+
+      if (!isMatch) {
+        throw new UnauthorizedException({
+          code: 'INVALID_WEBHOOK_SIGNATURE',
+          message: 'Assinatura ou segredo do webhook inválido.',
+        });
+      }
+    }
+
     if (!workflow) {
       throw new NotFoundException({
         code: 'WORKFLOW_NOT_FOUND',
@@ -58,31 +100,6 @@ export class WebhooksService {
         code: 'INVALID_WEBHOOK_PAYLOAD',
         message: 'Payload do webhook deve ser um objeto JSON válido.',
       });
-    }
-
-    // 3. Validação de autenticidade / assinatura com proteção contra timing attack (se configurado segredo)
-    if (expectedSecret) {
-      const receivedSig = headers.signature;
-      if (!receivedSig || typeof receivedSig !== 'string') {
-        throw new UnauthorizedException({
-          code: 'INVALID_WEBHOOK_SIGNATURE',
-          message: 'Assinatura ou segredo do webhook ausente.',
-        });
-      }
-
-      const receivedBuf = Buffer.from(receivedSig);
-      const expectedBuf = Buffer.from(expectedSecret);
-
-      const isMatch =
-        receivedBuf.length === expectedBuf.length &&
-        timingSafeEqual(receivedBuf, expectedBuf);
-
-      if (!isMatch) {
-        throw new UnauthorizedException({
-          code: 'INVALID_WEBHOOK_SIGNATURE',
-          message: 'Assinatura ou segredo do webhook inválido.',
-        });
-      }
     }
 
     // 4. Verificação de idempotência (Idempotency Key / Replay Protection)

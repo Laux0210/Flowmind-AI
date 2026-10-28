@@ -1,0 +1,382 @@
+{
+  "observedAtUtc": "2026-10-13T22:05:10.501Z",
+  "scope": "LOCAL_AVAILABILITY_CHARACTERIZATION",
+  "policyApproval": "PENDING",
+  "auth": "not exercised; direct service calls",
+  "storage": "synthetic; no real transaction semantics",
+  "sourceStable": true,
+  "networkAttempts": 0,
+  "commercialCallsExecuted": false,
+  "sourceHashes": {
+    "apps/api/src/engine/dag-validator.ts": "00a9cad191e6837ed23156aea0386d236ab9fb5f0f490cac3ded43f5f3e988ff",
+    "apps/api/src/engine/variable-resolver.ts": "33e19e8ff663b0e6f680273478387c8e1cc21d734aabf5d80f6150879bc520de",
+    "apps/api/src/engine/workflow-engine.service.ts": "eeedbd3fa376a09a4f861bbf4a0f97c8a78c59741c748bd2c5f9b7084c598d72",
+    "apps/api/src/engine/workflow-reference.validation.ts": "8344d8f7134d57e8571d0eeaa5ccb8d0690e246941768824b81a1062b7d788ee",
+    "apps/api/src/engine/workflow-validation.ts": "40f1096334c406810c056d542586adc56d1f9cb495af066135fc3cece5b9d613",
+    "apps/api/src/engine/node-executors.ts": "9b7f6c60df39685f299dac1246024cbcd900d447f57ebad95e9334ffc253f383",
+    "apps/api/src/workflows/workflows.service.ts": "337dda335a36163c2941b76e9ecf58f3cf093bba802a8dfd886ce540046c87f5",
+    "packages/contracts/src/nodes.ts": "b4547e544f71fa65f847b2737c61b290f5c655f2bf35fdc44a35d8748c42fa20",
+    "packages/contracts/src/node-outputs.ts": "e5e16e16cab58c1013cd62f9f930fa56aadcbc560623cc2ef7fb3de21add8798",
+    "packages/contracts/src/node-validation.ts": "2a85a3eda42b2fc27f97f916f5f9fb57ec24bbd9acc8fdc2b4c80c633e41ceb8"
+  },
+  "artifactHashes": {
+    "apps/api/dist/engine/dag-validator.js": "489e3dcc10e82c8eea453663efbe8936fd3080724ef10eb6f89312257d95a469",
+    "apps/api/dist/engine/variable-resolver.js": "6f96b7b2d327ec2c4d187c0f5f3cb17e2f7e5aa475a41956f3f9e6c6447caf74",
+    "apps/api/dist/engine/workflow-engine.service.js": "be77ab79475ba34f3f77d96edd0512adefcbbe7d7b12afe5b4b89c731af4b3a2",
+    "apps/api/dist/engine/workflow-reference.validation.js": "fd56443452385eab3d8e8d185024f3005967ec92e85da282bd2f71e5b5efaaf2",
+    "apps/api/dist/engine/workflow-validation.js": "d9a331a32254b1b60b60d72cccec6ee338c93bb8d587c8a51e433b6345e299fc",
+    "apps/api/dist/engine/node-executors.js": "10667a39da1479aa9a9e96c62d6bc2af0d270abb384791b9cf43ed7ead842fe7",
+    "apps/api/dist/workflows/workflows.service.js": "68ba368e8a57986f98b3c29d1371fb3922ea613294023e3cec2267814abad85f",
+    "packages/contracts/dist/index.js": "68a305295fb6cae669f9d4594534f43956f7e77089a727c11ef6df4b15115f5d",
+    "packages/contracts/dist/node-outputs.js": "f7b8d208cd1d8ea373c46d56c9d676fe1e8ac6457540f5503f259ac3ae29de50",
+    "packages/contracts/dist/node-validation.js": "0c7e1e8c13bbe8536e5fe54f96d18c93b6f80a24efc42aadd04ad65089550fcd"
+  },
+  "results": [
+    {
+      "id": "B1",
+      "messageVariant": "yes",
+      "purpose": "Bifurcação incondicional e convergência",
+      "lifecycle": "REJECTED",
+      "simulationStatus": "COMPLETED",
+      "consumerStatus": "SUCCESS",
+      "producerStatus": "SUCCESS",
+      "producerIsAncestor": true,
+      "everyStructuralPathHasProducer": false,
+      "nodeStatuses": [
+        {
+          "id": "form",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "ai",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "record",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "mail",
+          "status": "SUCCESS"
+        }
+      ],
+      "persistenceCounters": {
+        "writes": 0,
+        "snapshots": 0
+      }
+    },
+    {
+      "id": "B1",
+      "messageVariant": "no",
+      "purpose": "Bifurcação incondicional e convergência",
+      "lifecycle": "REJECTED",
+      "simulationStatus": "COMPLETED",
+      "consumerStatus": "SUCCESS",
+      "producerStatus": "SUCCESS",
+      "producerIsAncestor": true,
+      "everyStructuralPathHasProducer": false,
+      "nodeStatuses": [
+        {
+          "id": "form",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "ai",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "record",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "mail",
+          "status": "SUCCESS"
+        }
+      ],
+      "persistenceCounters": {
+        "writes": 0,
+        "snapshots": 0
+      }
+    },
+    {
+      "id": "B2",
+      "messageVariant": "yes",
+      "purpose": "Convergência consome somente a saída do ramo yes",
+      "lifecycle": "REJECTED",
+      "simulationStatus": "COMPLETED",
+      "consumerStatus": "SUCCESS",
+      "producerStatus": "SUCCESS",
+      "producerIsAncestor": true,
+      "everyStructuralPathHasProducer": false,
+      "nodeStatuses": [
+        {
+          "id": "form",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "condition",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "yes",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "no",
+          "status": "SKIPPED"
+        },
+        {
+          "id": "mail",
+          "status": "SUCCESS"
+        }
+      ],
+      "persistenceCounters": {
+        "writes": 0,
+        "snapshots": 0
+      }
+    },
+    {
+      "id": "B2",
+      "messageVariant": "no",
+      "purpose": "Convergência consome somente a saída do ramo yes",
+      "lifecycle": "REJECTED",
+      "simulationStatus": "FAILED",
+      "consumerStatus": "FAILED",
+      "producerStatus": "SKIPPED",
+      "producerIsAncestor": true,
+      "everyStructuralPathHasProducer": false,
+      "nodeStatuses": [
+        {
+          "id": "form",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "condition",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "yes",
+          "status": "SKIPPED"
+        },
+        {
+          "id": "no",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "mail",
+          "status": "FAILED"
+        }
+      ],
+      "persistenceCounters": {
+        "writes": 0,
+        "snapshots": 0
+      }
+    },
+    {
+      "id": "B3",
+      "messageVariant": "yes",
+      "purpose": "Consumidor limitado ao ramo produtor",
+      "lifecycle": "ACCEPTED",
+      "simulationStatus": "COMPLETED",
+      "consumerStatus": "SUCCESS",
+      "producerStatus": "SUCCESS",
+      "producerIsAncestor": true,
+      "everyStructuralPathHasProducer": true,
+      "nodeStatuses": [
+        {
+          "id": "form",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "condition",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "yes",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "no",
+          "status": "SKIPPED"
+        },
+        {
+          "id": "mail",
+          "status": "SUCCESS"
+        }
+      ],
+      "persistenceCounters": {
+        "writes": 2,
+        "snapshots": 1
+      }
+    },
+    {
+      "id": "B3",
+      "messageVariant": "no",
+      "purpose": "Consumidor limitado ao ramo produtor",
+      "lifecycle": "ACCEPTED",
+      "simulationStatus": "COMPLETED",
+      "consumerStatus": "SKIPPED",
+      "producerStatus": "SKIPPED",
+      "producerIsAncestor": true,
+      "everyStructuralPathHasProducer": true,
+      "nodeStatuses": [
+        {
+          "id": "form",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "condition",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "yes",
+          "status": "SKIPPED"
+        },
+        {
+          "id": "no",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "mail",
+          "status": "SKIPPED"
+        }
+      ],
+      "persistenceCounters": {
+        "writes": 2,
+        "snapshots": 1
+      }
+    },
+    {
+      "id": "B4",
+      "messageVariant": "yes",
+      "purpose": "Convergência consome saída anterior à condição",
+      "lifecycle": "REJECTED",
+      "simulationStatus": "COMPLETED",
+      "consumerStatus": "SUCCESS",
+      "producerStatus": "SUCCESS",
+      "producerIsAncestor": true,
+      "everyStructuralPathHasProducer": true,
+      "nodeStatuses": [
+        {
+          "id": "form",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "condition",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "yes",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "no",
+          "status": "SKIPPED"
+        },
+        {
+          "id": "mail",
+          "status": "SUCCESS"
+        }
+      ],
+      "persistenceCounters": {
+        "writes": 0,
+        "snapshots": 0
+      }
+    },
+    {
+      "id": "B4",
+      "messageVariant": "no",
+      "purpose": "Convergência consome saída anterior à condição",
+      "lifecycle": "REJECTED",
+      "simulationStatus": "COMPLETED",
+      "consumerStatus": "SUCCESS",
+      "producerStatus": "SUCCESS",
+      "producerIsAncestor": true,
+      "everyStructuralPathHasProducer": true,
+      "nodeStatuses": [
+        {
+          "id": "form",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "condition",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "yes",
+          "status": "SKIPPED"
+        },
+        {
+          "id": "no",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "mail",
+          "status": "SUCCESS"
+        }
+      ],
+      "persistenceCounters": {
+        "writes": 0,
+        "snapshots": 0
+      }
+    },
+    {
+      "id": "B5",
+      "messageVariant": "yes",
+      "purpose": "Produtor executado com campo opcional não mapeado",
+      "lifecycle": "REJECTED",
+      "simulationStatus": "FAILED",
+      "consumerStatus": "FAILED",
+      "producerStatus": "SUCCESS",
+      "producerIsAncestor": true,
+      "everyStructuralPathHasProducer": true,
+      "nodeStatuses": [
+        {
+          "id": "form",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "record",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "mail",
+          "status": "FAILED"
+        }
+      ],
+      "persistenceCounters": {
+        "writes": 0,
+        "snapshots": 0
+      }
+    },
+    {
+      "id": "B6",
+      "messageVariant": "yes",
+      "purpose": "Campo de modo saved em execução SIMULATION",
+      "lifecycle": "REJECTED",
+      "simulationStatus": "FAILED",
+      "consumerStatus": "FAILED",
+      "producerStatus": "SUCCESS",
+      "producerIsAncestor": true,
+      "everyStructuralPathHasProducer": true,
+      "nodeStatuses": [
+        {
+          "id": "form",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "record",
+          "status": "SUCCESS"
+        },
+        {
+          "id": "mail",
+          "status": "FAILED"
+        }
+      ],
+      "persistenceCounters": {
+        "writes": 0,
+        "snapshots": 0
+      }
+    }
+  ]
+}

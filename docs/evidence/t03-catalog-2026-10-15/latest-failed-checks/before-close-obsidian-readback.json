@@ -1,0 +1,34 @@
+{
+  "checkedAtUtc": "2026-10-15 18:26:36 UTC",
+  "notes": [
+    {
+      "path": "docs/MEMORIA.md",
+      "vaultPath": "FlowMind-AI/Flowmind-AI/docs/MEMORIA.md",
+      "matches": true,
+      "sourceSha256": "e7e355208e3305f9e571afc1f4ce37f4ab24b965bad57f844d7f6da947b8209f",
+      "bodySha256": "e7e355208e3305f9e571afc1f4ce37f4ab24b965bad57f844d7f6da947b8209f"
+    },
+    {
+      "path": "plan.md",
+      "vaultPath": "FlowMind-AI/Flowmind-AI/plan.md",
+      "matches": true,
+      "sourceSha256": "7fa650af4f843e4b5996dcf0940dfb8d975ce340f0c9eda8950bb24a5a0dd986",
+      "bodySha256": "7fa650af4f843e4b5996dcf0940dfb8d975ce340f0c9eda8950bb24a5a0dd986"
+    },
+    {
+      "path": "docs/T03_RESOURCE_IMPLEMENTATION_PLAN.md",
+      "vaultPath": "FlowMind-AI/Flowmind-AI/docs/T03_RESOURCE_IMPLEMENTATION_PLAN.md",
+      "matches": true,
+      "sourceSha256": "3d8efb78dd6a4d91df0f8bf8696d746088fccb8d2cd01963bb0d13c771124fa5",
+      "bodySha256": "3d8efb78dd6a4d91df0f8bf8696d746088fccb8d2cd01963bb0d13c771124fa5"
+    },
+    {
+      "path": "docs/VALIDATION_T03_CATALOG_2026-10-15.md",
+      "vaultPath": "FlowMind-AI/Flowmind-AI/docs/VALIDATION_T03_CATALOG_2026-10-15.md",
+      "matches": true,
+      "sourceSha256": "cc117b216c8e143e6508b64daffd9120ab4fc7cc1ad1fa56d8932b42a266827c",
+      "bodySha256": "cc117b216c8e143e6508b64daffd9120ab4fc7cc1ad1fa56d8932b42a266827c"
+    }
+  ],
+  "allMatch": true
+}

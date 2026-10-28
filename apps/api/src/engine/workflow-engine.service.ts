@@ -1,21 +1,28 @@
-import { Injectable, Logger, BadRequestException } from '@nestjs/common';
+import { Injectable, Inject, Logger, BadRequestException } from '@nestjs/common';
 import type {
   WorkflowDefinition,
-  WorkflowNode,
   WorkflowEdge,
   SimulateWorkflowResponse,
   NodeExecutionResult,
 } from '@flowmind/contracts';
 import { WORKFLOW_SCHEMA_VERSION } from '@flowmind/contracts';
 import { DagValidator } from './dag-validator';
+import { ResourceResolver } from './resource-resolver';
 import { VariableResolver } from './variable-resolver';
 import { NodeExecutors } from './node-executors';
-import { validateEmailConfiguration } from './workflow-validation';
+import { validateEmailConfiguration, validateNodeConfigurations } from './workflow-validation';
 import type { ExecutionContext } from './node-executors';
+import {
+  validateWorkflowReferences,
+  validateWorkflowResources,
+} from './workflow-reference.validation';
 
 @Injectable()
 export class WorkflowEngineService {
   private readonly logger = new Logger(WorkflowEngineService.name);
+  private readonly resources: ResourceResolver;
+
+  constructor(@Inject(ResourceResolver) resources: ResourceResolver) { this.resources = resources; }
 
   /**
    * Executa a simulação completa de um workflow DAG utilizando entradas sintéticas.
@@ -37,8 +44,10 @@ export class WorkflowEngineService {
     const { sortedNodes, edgesBySource, edgesByTarget, ancestorsByNode } = DagValidator.validateAndSort(workflow);
 
     // 2. Validação antecipada de referências de variáveis
-    this.validateVariablePrecedence(sortedNodes, ancestorsByNode);
     validateEmailConfiguration(workflow, ancestorsByNode);
+    validateNodeConfigurations(workflow.nodes);
+    validateWorkflowReferences(sortedNodes, ancestorsByNode);
+    validateWorkflowResources(workflow, this.resources, { requireComplete: false });
 
     // 3. Execução passo a passo
     const nodeOutputs = new Map<string, Record<string, unknown>>();
@@ -70,8 +79,13 @@ export class WorkflowEngineService {
       try {
         let outputs: Record<string, unknown> = {};
         const resolvedConfig = VariableResolver.resolve(node.config, nodeOutputs, skippedNodeIds);
+        validateNodeConfigurations([{ ...node, config: resolvedConfig }]);
 
         switch (node.type) {
+          case 'trigger_schedule':
+            outputs = { ...NodeExecutors.executeTriggerSchedule(initialPayload) };
+            break;
+
           case 'trigger_form':
             outputs = NodeExecutors.executeTriggerForm(resolvedConfig, initialPayload) as unknown as Record<string, unknown>;
             break;
@@ -173,27 +187,6 @@ export class WorkflowEngineService {
       totalDurationMs: Date.now() - startTime,
       nodeResults,
     };
-  }
-
-  /**
-   * Garante que todas as referências {{nodeId.field}} apontem apenas para ancestrais do nó atual.
-   */
-  private validateVariablePrecedence(
-    nodes: WorkflowNode[],
-    ancestorsByNode: Map<string, Set<string>>,
-  ): void {
-    for (const node of nodes) {
-      const references = VariableResolver.extractReferences(node.config);
-      const allowedAncestors = ancestorsByNode.get(node.id) || new Set<string>();
-
-      for (const ref of references) {
-        if (!allowedAncestors.has(ref.nodeId)) {
-          throw new BadRequestException(
-            `Violação de precedência no DAG: o nó '${node.id}' referencia '${ref.nodeId}', que não o precede no fluxo.`,
-          );
-        }
-      }
-    }
   }
 
   /**

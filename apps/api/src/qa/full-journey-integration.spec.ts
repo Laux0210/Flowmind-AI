@@ -1,3 +1,4 @@
+import { createTestResourceResolver } from '../../test/resource-fixtures';
 import { NotFoundException, BadRequestException, UnauthorizedException } from '@nestjs/common';
 import {
   WorkflowDefinition,
@@ -40,21 +41,28 @@ describe('T14 — componentes da jornada com adaptadores sintéticos', () => {
         deleteMany: jest.fn(),
       },
       workflowExecution: {
-        create: jest.fn().mockImplementation((args) => Promise.resolve(args.data)),
+        create: jest.fn().mockImplementation((args) => Promise.resolve({ ...args.data, id: 'exec_journey_1' })),
         findMany: jest.fn().mockResolvedValue([]),
         findFirst: jest.fn().mockResolvedValue(null),
         count: jest.fn().mockResolvedValue(0),
       },
+      workflowVersion: {
+        create: jest.fn().mockImplementation((args) => Promise.resolve({
+          ...args.data,
+          id: 'wv_snapshot_1',
+          publishedAt: new Date(),
+        })),
+      },
     };
 
     prismaMock.$transaction = jest.fn(async (operation: any) => operation(prismaMock));
-    engineService = new WorkflowEngineService();
-    aiService = new AiGeneratorService();
+    engineService = new WorkflowEngineService(createTestResourceResolver());
+    aiService = new AiGeneratorService(createTestResourceResolver());
     usageLimitsService = new UsageLimitsService(prismaMock);
     executionsService = new ExecutionsService(prismaMock, usageLimitsService);
     webhooksService = new WebhooksService(engineService);
     clerkService = new ClerkService(prismaMock);
-    workflowsService = new WorkflowsService(prismaMock, engineService);
+    workflowsService = new WorkflowsService(prismaMock, engineService, createTestResourceResolver(), executionsService);
   });
 
   describe('1. Estruturas sintéticas da jornada (não substituem o aceite C01–C03)', () => {
@@ -107,6 +115,7 @@ describe('T14 — componentes da jornada com adaptadores sintéticos', () => {
       expect(emailStep?.outputs?.recipient).toBe('carlos.empresa@example.test');
 
       // 1.3 Registro no histórico e auditoria (T13)
+      prismaMock.workflow.findFirst.mockResolvedValue({ id: workflow.id, orgId: orgAlpha });
       const recorded = await executionsService.recordExecution(
         orgAlpha,
         workflow.id,
@@ -151,6 +160,275 @@ describe('T14 — componentes da jornada com adaptadores sintéticos', () => {
       expect(simResult.nodeResults.length).toBeGreaterThanOrEqual(3);
     });
 
+    it('JOURNEY03: ciclo completo de governança do workflow (DRAFT -> Bloqueio Convergência -> Bloqueio Modelo Pendente -> REVIEWED por Admin -> PUBLISHED com Snapshot -> Simulação Registrada no Histórico)', async () => {
+      const storedWorkflows = new Map<string, any>();
+      prismaMock.workflow.create.mockImplementation(async ({ data }: any) => {
+        const row = {
+          ...data,
+          id: 'wf_governance_c03',
+          version: 1,
+          status: 'DRAFT',
+          reviewedBy: null,
+          reviewedAt: null,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        };
+        storedWorkflows.set(row.id, row);
+        return row;
+      });
+      prismaMock.workflow.findFirst.mockImplementation(async ({ where }: any) => {
+        const row = storedWorkflows.get(where.id);
+        return row?.orgId === where.orgId ? { ...row } : null;
+      });
+      prismaMock.workflow.updateMany.mockImplementation(async ({ where, data }: any) => {
+        const row = storedWorkflows.get(where.id);
+        if (!row || row.orgId !== where.orgId) return { count: 0 };
+        Object.assign(row, data, { updatedAt: new Date() });
+        return { count: 1 };
+      });
+
+      const storedExecutions = new Map<string, any>();
+      prismaMock.workflowExecution.create.mockImplementation(async ({ data }: any) => {
+        const row = {
+          ...data,
+          id: data.id || `sim_${Date.now()}`,
+          startedAt: data.startedAt instanceof Date ? data.startedAt : new Date(data.startedAt),
+          completedAt: data.completedAt ? (data.completedAt instanceof Date ? data.completedAt : new Date(data.completedAt)) : null,
+        };
+        storedExecutions.set(row.id, row);
+        return row;
+      });
+      prismaMock.workflowExecution.findMany.mockImplementation(async ({ where, take }: any) => {
+        const matching = Array.from(storedExecutions.values()).filter((r) => {
+          if (r.orgId !== where.orgId) return false;
+          if (where.workflow?.orgId && storedWorkflows.get(r.workflowId)?.orgId !== where.workflow.orgId) return false;
+          if (where.workflowId && r.workflowId !== where.workflowId) return false;
+          return true;
+        });
+        return matching.slice(0, take ?? 50).map((r) => ({
+          ...r,
+          workflow: { name: storedWorkflows.get(r.workflowId)?.name },
+        }));
+      });
+      prismaMock.workflowExecution.findFirst.mockImplementation(async ({ where }: any) => {
+        const row = storedExecutions.get(where.id);
+        if (!row || row.orgId !== where.orgId) return null;
+        if (where.workflow?.orgId && storedWorkflows.get(row.workflowId)?.orgId !== where.workflow.orgId) return null;
+        return { ...row };
+      });
+      prismaMock.workflowExecution.count.mockImplementation(async ({ where }: any) => {
+        return Array.from(storedExecutions.values()).filter((r) => {
+          if (r.orgId !== where.orgId) return false;
+          if (where.mode && r.mode !== where.mode) return false;
+          return true;
+        }).length;
+      });
+
+      // 1. Criação no estado DRAFT
+      const created = await workflowsService.create(orgAlpha, { name: 'Automação Comercial de Governança' });
+      expect(created.status).toBe('DRAFT');
+      expect(created.id).toBe('wf_governance_c03');
+
+      // 2. Negativa T03-S2b: Rejeição estrita de convergência (inDegree > 1) na revisão formal
+      const convergingNodes: WorkflowNode[] = [
+        {
+          id: 'trig',
+          type: 'trigger_form',
+          label: 'Gatilho Formulário',
+          position: { x: 0, y: 0 },
+          config: { requiredFields: ['name', 'email', 'message'] },
+        },
+        {
+          id: 'branch_a',
+          type: 'internal_record',
+          label: 'Ramo A',
+          position: { x: 200, y: -50 },
+          config: { fieldMappings: { name: '{{trig.contact_name}}' } },
+        },
+        {
+          id: 'branch_b',
+          type: 'internal_record',
+          label: 'Ramo B',
+          position: { x: 200, y: 50 },
+          config: { fieldMappings: { name: '{{trig.contact_name}}' } },
+        },
+        {
+          id: 'join_email',
+          type: 'send_email',
+          label: 'Nó Convergente Inválido',
+          position: { x: 400, y: 0 },
+          config: { to: '{{trig.contact_email}}', subject: 'Contato', bodyTemplate: 'Olá' },
+        },
+      ];
+      const convergingEdges: WorkflowEdge[] = [
+        { id: 'e1', sourceNodeId: 'trig', targetNodeId: 'branch_a' },
+        { id: 'e2', sourceNodeId: 'trig', targetNodeId: 'branch_b' },
+        { id: 'e3', sourceNodeId: 'branch_a', targetNodeId: 'join_email' },
+        { id: 'e4', sourceNodeId: 'branch_b', targetNodeId: 'join_email' },
+      ];
+
+      await workflowsService.update(orgAlpha, created.id, {
+        nodes: convergingNodes,
+        edges: convergingEdges,
+        triggerNodeId: 'trig',
+      });
+
+      await expect(
+        workflowsService.review(orgAlpha, created.id, 'admin_compliance'),
+      ).rejects.toThrow(/convergência de múltiplos ramos|múltiplos ramos/i);
+
+      // 3. Negativa T03-S3: Rejeição de modelo de IA pendente de seleção ou homologação
+      const pendingModelNodes: WorkflowNode[] = [
+        {
+          id: 'trig',
+          type: 'trigger_form',
+          label: 'Gatilho Formulário',
+          position: { x: 0, y: 0 },
+          config: { requiredFields: ['name', 'email', 'message'] },
+        },
+        {
+          id: 'ai_step',
+          type: 'ai_analyze_intent',
+          label: 'Análise de Intenção',
+          position: { x: 200, y: 0 },
+          config: { inputPromptTemplate: '{{trig.message_text}}', modelRef: 'pending' },
+        },
+        {
+          id: 'email_step',
+          type: 'send_email',
+          label: 'E-mail de Confirmação',
+          position: { x: 400, y: 0 },
+          config: { to: '{{trig.contact_email}}', subject: 'Contato', bodyTemplate: 'Resumo: {{ai_step.summary}}' },
+        },
+      ];
+      const validEdges: WorkflowEdge[] = [
+        { id: 'e1', sourceNodeId: 'trig', targetNodeId: 'ai_step' },
+        { id: 'e2', sourceNodeId: 'ai_step', targetNodeId: 'email_step' },
+      ];
+
+      await workflowsService.update(orgAlpha, created.id, {
+        nodes: pendingModelNodes,
+        edges: validEdges,
+        triggerNodeId: 'trig',
+      });
+
+      await expect(
+        workflowsService.review(orgAlpha, created.id, 'admin_compliance'),
+      ).rejects.toThrow(BadRequestException);
+
+      // 4. Correção para modelo homologado ('gpt-4o-mini') e aprovação formal (REVIEWED) por Admin
+      const approvedNodes: WorkflowNode[] = [
+        {
+          id: 'trig',
+          type: 'trigger_form',
+          label: 'Gatilho Formulário',
+          position: { x: 0, y: 0 },
+          config: { requiredFields: ['name', 'email', 'message'] },
+        },
+        {
+          id: 'ai_step',
+          type: 'ai_analyze_intent',
+          label: 'Análise de Intenção',
+          position: { x: 200, y: 0 },
+          config: { inputPromptTemplate: '{{trig.message_text}}', modelRef: 'gpt-4o-mini' },
+        },
+        {
+          id: 'email_step',
+          type: 'send_email',
+          label: 'E-mail de Confirmação',
+          position: { x: 400, y: 0 },
+          config: { to: '{{trig.contact_email}}', subject: 'Contato Recebido', bodyTemplate: 'Resumo: {{ai_step.summary}}' },
+        },
+      ];
+
+      await workflowsService.update(orgAlpha, created.id, {
+        nodes: approvedNodes,
+        edges: validEdges,
+        triggerNodeId: 'trig',
+      });
+
+      const reviewed = await workflowsService.review(orgAlpha, created.id, 'admin_compliance');
+      expect(reviewed.workflow.status).toBe('REVIEWED');
+      expect(reviewed.reviewedBy).toBe('admin_compliance');
+
+      // 5. Ativação (PUBLISHED) criando snapshot imutável em workflowVersion
+      const published = await workflowsService.publish(orgAlpha, created.id, 'admin_compliance');
+      expect(published.workflow.status).toBe('PUBLISHED');
+      expect(published.versionSnapshot).toBeDefined();
+      expect(published.versionSnapshot.version).toBe(1);
+      expect(published.versionSnapshot.publishedBy).toBe('admin_compliance');
+      expect(prismaMock.workflowVersion.create).toHaveBeenCalledWith(
+        expect.objectContaining({
+          data: expect.objectContaining({
+            workflowId: created.id,
+            version: 1,
+            publishedBy: 'admin_compliance',
+          }),
+        }),
+      );
+
+      // 6. Simulação do workflow ativo gerando execução rastreável no histórico
+      const simPayload = {
+        name: 'Ana Auditoria',
+        email: 'ana.auditoria@example.test',
+        message: 'Solicito demonstração institucional do sistema.',
+      };
+
+      const simResult = await workflowsService.simulate(
+        orgAlpha,
+        created.id,
+        { initialPayload: simPayload },
+        'admin_compliance',
+      );
+
+      expect(simResult.status).toBe('COMPLETED');
+      expect(simResult.executionId).toMatch(/^sim_/);
+      expect(prismaMock.workflowExecution.create).toHaveBeenCalledWith(
+        expect.objectContaining({
+          data: expect.objectContaining({
+            orgId: orgAlpha,
+            workflowId: created.id,
+            mode: 'SIMULATION',
+            status: 'COMPLETED',
+            triggeredBy: 'admin_compliance',
+          }),
+        }),
+      );
+
+      // 7. Acompanhamento no Histórico e Detalhes da Execução (T13/T14)
+      const listAlpha = await executionsService.listExecutions(orgAlpha);
+      expect(listAlpha).toHaveLength(1);
+      expect(listAlpha[0].id).toBe(simResult.executionId);
+      expect(listAlpha[0].workflowId).toBe(created.id);
+      expect(listAlpha[0].workflowName).toBe('Automação Comercial de Governança');
+      expect(listAlpha[0].mode).toBe('SIMULATION');
+      expect(listAlpha[0].status).toBe('COMPLETED');
+      expect(listAlpha[0].triggeredBy).toBe('admin_compliance');
+
+      const detailAlpha = await executionsService.getExecutionById(orgAlpha, simResult.executionId);
+      expect(detailAlpha.id).toBe(simResult.executionId);
+      expect(detailAlpha.orgId).toBe(orgAlpha);
+      expect(detailAlpha.mode).toBe('SIMULATION');
+      expect(detailAlpha.status).toBe('COMPLETED');
+      expect(detailAlpha.nodeResults).toBeDefined();
+
+      // 8. Isolamento estrito de Histórico e Auditoria entre Organizações (SEC01/SEC04)
+      const listBeta = await executionsService.listExecutions(orgBeta);
+      expect(listBeta).toHaveLength(0);
+
+      await expect(
+        executionsService.getExecutionById(orgBeta, simResult.executionId),
+      ).rejects.toThrow(NotFoundException);
+
+      // 9. Relatório de Consumo da Organização (Cota comercial LIVE intacta e simulação rastreada)
+      const reportAlpha = await usageLimitsService.getOrgUsageReport(orgAlpha);
+      expect(reportAlpha.orgId).toBe(orgAlpha);
+      expect(reportAlpha.totalExecutions).toBe(0); // Isenção de cota comercial LIVE para simulações
+      expect(reportAlpha.totalSimulations).toBe(1); // Simulação contabilizada separadamente
+      expect(reportAlpha.isLimitReached).toBe(false);
+      expect(reportAlpha.usagePercentage).toBe(0);
+    });
+
     it('BRANCH01: roteamento condicional e propagação de SKIPPED na subárvore inativa', async () => {
       const nodes: WorkflowNode[] = [
         {
@@ -176,7 +454,7 @@ describe('T14 — componentes da jornada com adaptadores sintéticos', () => {
           type: 'send_email',
           label: 'E-mail VIP',
           position: { x: 400, y: -100 },
-          config: { to: 'vip@example.test', subject: 'Atendimento Prioritário' },
+          config: { to: 'vip@example.test', subject: 'Atendimento Prioritário', bodyTemplate: 'Fixture do ramo VIP' },
         },
         {
           id: 'webhook_crm_vip',
@@ -229,6 +507,7 @@ describe('T14 — componentes da jornada com adaptadores sintéticos', () => {
   describe('2. Matriz de Isolamento e Segurança Multi-tenant (STRIDE SEC01–SEC06)', () => {
     it('SEC04: Org_Beta não pode consultar execuções da Org_Alpha (fixture negativa)', async () => {
       // Registra execução pertencente a Org_Alpha
+      prismaMock.workflow.findFirst.mockResolvedValue({ id: 'wf_alpha_secret', orgId: orgAlpha });
       const execAlpha = await executionsService.recordExecution(
         orgAlpha,
         'wf_alpha_secret',
@@ -364,7 +643,7 @@ describe('T14 — componentes da jornada com adaptadores sintéticos', () => {
 
       const sanitized = UsageLimitsService.sanitizeSensitiveData(sensitiveInputs);
 
-      expect(sanitized.authorization).toBe('Bearer [REDACTED]');
+      expect(sanitized.authorization).toBe('[REDACTED]');
       expect(sanitized.openAiKey).toBe('sk-[REDACTED]');
       expect(sanitized.contact.password).toBe('[REDACTED]');
       expect(sanitized.contact.name).toBe('João');

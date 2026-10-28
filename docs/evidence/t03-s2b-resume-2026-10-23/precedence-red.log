@@ -1,0 +1,67 @@
+ts-jest[config] (WARN) message TS151002: Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) message TS151002: Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+(node:34276) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+FAIL apps/api/src/engine/workflow-availability-precedence.spec.ts
+  ● S2b — disponibilidade respeita precedência do executor › rejeita name ocultado por um mapeamento vazio
+
+    expect(received).toBeInstanceOf(expected)
+
+    Expected constructor: BadRequestException
+
+    Received value has no prototype
+    Received value: undefined
+
+      22 |     let error: unknown;
+      23 |     try { validateWorkflowAvailability(nodes(config, field)); } catch (caught) { error = caught; }
+    > 24 |     expect(error).toBeInstanceOf(BadRequestException);
+         |                   ^
+      25 |     expect((error as BadRequestException).getResponse()).toMatchObject({ code: 'OUTPUT_NOT_AVAILABLE' });
+      26 |   });
+      27 |
+
+      at src/engine/workflow-availability-precedence.spec.ts:24:19
+
+  ● S2b — disponibilidade respeita precedência do executor › rejeita email ocultado por um mapeamento vazio
+
+    expect(received).toBeInstanceOf(expected)
+
+    Expected constructor: BadRequestException
+
+    Received value has no prototype
+    Received value: undefined
+
+      22 |     let error: unknown;
+      23 |     try { validateWorkflowAvailability(nodes(config, field)); } catch (caught) { error = caught; }
+    > 24 |     expect(error).toBeInstanceOf(BadRequestException);
+         |                   ^
+      25 |     expect((error as BadRequestException).getResponse()).toMatchObject({ code: 'OUTPUT_NOT_AVAILABLE' });
+      26 |   });
+      27 |
+
+      at src/engine/workflow-availability-precedence.spec.ts:24:19
+
+  ● S2b — disponibilidade respeita precedência do executor › rejeita raw_message ocultado por um mapeamento vazio
+
+    expect(received).toBeInstanceOf(expected)
+
+    Expected constructor: BadRequestException
+
+    Received value has no prototype
+    Received value: undefined
+
+      22 |     let error: unknown;
+      23 |     try { validateWorkflowAvailability(nodes(config, field)); } catch (caught) { error = caught; }
+    > 24 |     expect(error).toBeInstanceOf(BadRequestException);
+         |                   ^
+      25 |     expect((error as BadRequestException).getResponse()).toMatchObject({ code: 'OUTPUT_NOT_AVAILABLE' });
+      26 |   });
+      27 |
+
+      at src/engine/workflow-availability-precedence.spec.ts:24:19
+
+Test Suites: 1 failed, 1 total
+Tests:       3 failed, 3 passed, 6 total
+Snapshots:   0 total
+Time:        3.319 s
+Ran all test suites within paths "apps/api/src/engine/workflow-availability-precedence.spec.ts".

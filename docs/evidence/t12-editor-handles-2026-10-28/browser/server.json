@@ -1,0 +1,16 @@
+{
+  "origin": "http://127.0.0.1:62724",
+  "pid": 29888,
+  "output": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-editor-browser-yiA9B0",
+  "sourceHashes": {
+    "apps/web/src/app/workflows/[id]/page.tsx": "591d65e134c229200b333170927449f8ba9d86e7a9ddbddce5de07a3c0102bcf",
+    "apps/web/src/components/workflows/workflow-graph-node.tsx": "2dda76aff9b5fc59f7a93bf7122245fb9e1c26be684bfce18392a69fcabc0f41",
+    "apps/web/src/components/workflows/node-parameter-editor.tsx": "d62c1879b6e71b5c488efe3168db61c2e369dc7fb18df36c7d47624cd69b5898",
+    "apps/web/src/components/workflows/proposal-warnings.tsx": "d75944febbe1be0533d8960e2e5f05212ee3bfe24fd4b908a66cc712b9e1506b",
+    "apps/web/src/lib/workflow-editing.ts": "e53e63464f9fe35e58046ac81db72a5dd7981c85d7dee0e1719479682fc77a24",
+    "apps/web/src/lib/use-resource-catalog.ts": "e86438260ce77c9a796fec943f2fe39e704283b11d3bae3e229a94cf6e61115b",
+    "apps/web/src/lib/api-client.ts": "81249e37089c35d270d1cdeb4b58a2609d1e3e69e98597a928c42d7559cc8628",
+    "apps/web/src/app/globals.css": "a19087311c76be1825b681f2f22c475538311d190c60b30f7d3e5453707ad267"
+  },
+  "scope": "Real editor, XYFlow, parameter editor, API client and CSS; synthetic auth/navigation/HTTP storage; not Next/Clerk/DB integration"
+}

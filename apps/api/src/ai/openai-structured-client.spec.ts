@@ -9,6 +9,7 @@ describe('OpenAiStructuredClient (T10 — OpenAI Structured Outputs)', () => {
     const mockPayload = {
       choices: [
         {
+          finish_reason: 'stop',
           message: {
             content: JSON.stringify({
               workflow: {
@@ -87,7 +88,8 @@ describe('OpenAiStructuredClient (T10 — OpenAI Structured Outputs)', () => {
       json: async () => ({
         choices: [
           {
-            message: {
+            finish_reason: 'stop',
+          message: {
               refusal: 'O pedido não pôde ser atendido devido a diretrizes de segurança.',
             },
           },
@@ -156,7 +158,8 @@ describe('OpenAiStructuredClient (T10 — OpenAI Structured Outputs)', () => {
       json: async () => ({
         choices: [
           {
-            message: {
+            finish_reason: 'stop',
+          message: {
               content: 'isto nao e um json valido',
             },
           },

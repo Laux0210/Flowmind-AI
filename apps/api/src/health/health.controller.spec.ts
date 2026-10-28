@@ -1,5 +1,6 @@
 import { HealthController } from './health.controller';
 import { PrismaService } from '../prisma/prisma.service';
+import { ServiceUnavailableException } from '@nestjs/common';
 
 describe('HealthController (T15 — Liveness & Readiness Probes)', () => {
   let controller: HealthController;
@@ -20,6 +21,7 @@ describe('HealthController (T15 — Liveness & Readiness Probes)', () => {
     expect(liveness.version).toBe('1.0.0');
     expect(liveness.uptimeSeconds).toBeGreaterThanOrEqual(0);
     expect(liveness.timestamp).toBeDefined();
+    expect(prismaMock.$queryRaw).not.toHaveBeenCalled();
   });
 
   it('deve retornar readiness ready com banco de dados conectado', async () => {
@@ -30,12 +32,13 @@ describe('HealthController (T15 — Liveness & Readiness Probes)', () => {
     expect(readiness.timestamp).toBeDefined();
   });
 
-  it('deve indicar modo degradado seguro caso o banco não responda na checagem de readiness', async () => {
-    prismaMock.$queryRaw.mockRejectedValue(new Error('Connection timeout'));
-
-    const readiness = await controller.checkReadiness();
-
-    expect(readiness.status).toBe('ready');
-    expect(readiness.database).toBe('degraded_in_memory_fallback');
+  it('deve negar readiness com 503 quando o banco falha, sem divulgar o erro SQL', async () => {
+    prismaMock.$queryRaw.mockRejectedValue(new Error('db_private_fixture'));
+    await expect(controller.checkReadiness()).rejects.toThrow(ServiceUnavailableException);
+    try { await controller.checkReadiness(); } catch (error) {
+      expect((error as ServiceUnavailableException).getStatus()).toBe(503);
+      expect((error as ServiceUnavailableException).getResponse()).toMatchObject({ status: 'not_ready', database: 'unavailable' });
+      expect(JSON.stringify((error as ServiceUnavailableException).getResponse())).not.toContain('db_private_fixture');
+    }
   });
 });

@@ -1,0 +1,47 @@
+
+> flowmind-ai@0.1.0 build
+> node scripts/run-checks.mjs build
+
+
+> @flowmind/contracts@0.1.0 build
+> tsc
+
+
+> @flowmind/api@0.1.0 build
+> nest build
+
+
+> @flowmind/web@0.1.0 build
+> next build
+
+▲ Next.js 16.4.3 (Turbopack)
+- Environments: .env.local
+✓ Running next.config took 27ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 1738ms
+  Running TypeScript ...
+  Finished TypeScript in 2.8s ...
+  Collecting page data using 9 workers ...
+  Generating static pages using 9 workers (0/5) ...
+  Generating static pages using 9 workers (1/5) 
+  Generating static pages using 9 workers (2/5) 
+  Generating static pages using 9 workers (3/5) 
+✓ Generating static pages using 9 workers (5/5) in 660ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ○ /dashboard
+├ ○ /history
+├ ƒ /sign-in/[[...sign-in]]
+├ ƒ /sign-up/[[...sign-up]]
+└ ƒ /workflows/[id]
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

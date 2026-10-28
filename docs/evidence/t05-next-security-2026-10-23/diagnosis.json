@@ -1,0 +1,37 @@
+{
+  "verifiedAtUtc": "2026-10-23T15:09:02.6861215Z",
+  "scope": "Metadata only; no installation or dependency changes",
+  "currentNext": "16.4.0",
+  "candidateNext": "16.4.3",
+  "minimumFixedFromOfficialAdvisory": "16.4.1",
+  "officialAdvisory": "https://nextjs.org/blog/nextjs-security-update-october-14-2026",
+  "registry": "https://registry.npmjs.org/next/16.4.3",
+  "nodeRange": ">=20.9.0",
+  "peerDependencies": {
+    "sass": "^1.3.0",
+    "react": "^18.2.0 || 19.0.0-rc-de68d2f4-20241204 || ^19.0.0",
+    "react-dom": "^18.2.0 || 19.0.0-rc-de68d2f4-20241204 || ^19.0.0",
+    "@playwright/test": "^1.51.1",
+    "@opentelemetry/api": "^1.1.0",
+    "babel-plugin-react-compiler": "*"
+  },
+  "optionalDependencies": {
+    "sharp": "^0.35.5",
+    "@next/swc-darwin-x64": "16.4.3",
+    "@next/swc-darwin-arm64": "16.4.3",
+    "@next/swc-linux-x64-gnu": "16.4.3",
+    "@next/swc-linux-x64-musl": "16.4.3",
+    "@next/swc-win32-x64-msvc": "16.4.3",
+    "@next/swc-linux-arm64-gnu": "16.4.3",
+    "@next/swc-linux-arm64-musl": "16.4.3",
+    "@next/swc-win32-arm64-msvc": "16.4.3"
+  },
+  "candidateAudit": {},
+  "candidateIntegrity": "sha512-OqxKTGi9u80FydydsMNYNjnuje9Au+kvHlt2GZ//ftdpDHm1dxKqAaENoOOTX5wKzn+9vaKUNIfZeyZUuLhCnA==",
+  "manifestSha256": "edf7820b23883e7fbc73bff72c3d262fef5051727b9d3f5a3bdb5bc072adf7a1",
+  "lockSha256": "7078f82f0855c1b62af796dc42711a374079954b3e58830f8af34b6abf88c923",
+  "installedVersionUnchanged": true,
+  "compatibility": "Clerk7.9.14 accepts Next16.4.3 and React19.2.8; Node24.21.0 satisfies >=20.9.0. Semver metadata check only, not runtime validation",
+  "manifestUnchanged": true,
+  "lockUnchanged": true
+}

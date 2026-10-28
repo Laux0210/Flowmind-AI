@@ -1,0 +1,30 @@
+{
+  "notes": [
+    {
+      "source": "apps/web/src/components/workflows/node-parameter-editor.tsx",
+      "compiled": "node-parameter-editor.js",
+      "matches": true,
+      "compiledSha256": "282fa80942b18cc3de41730ec54481009ab7ce0d093ffde3376354af19e0511b"
+    },
+    {
+      "source": "apps/web/src/lib/workflow-editing.ts",
+      "compiled": "workflow-editing.js",
+      "matches": true,
+      "compiledSha256": "7a21f7926ca1e15a0144b7e6a49f46264d5d5af8789626847848165b1e547414"
+    },
+    {
+      "source": "apps/web/src/lib/use-resource-catalog.ts",
+      "compiled": "use-resource-catalog.js",
+      "matches": true,
+      "compiledSha256": "fe9ba5c069ab4f70a8836611196f87a21d42a2c1714f1b5d76add20d64c3d83e"
+    },
+    {
+      "source": "apps/web/src/lib/api-client.ts",
+      "compiled": "api-client.js",
+      "matches": true,
+      "compiledSha256": "f42482c59cd9e91f5f056ffb30ec931aa2563fda346948b7b6ea59689a72149c"
+    }
+  ],
+  "allMatch": true,
+  "testFixturesEmittedInProduction": false
+}

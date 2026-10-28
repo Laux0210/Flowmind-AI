@@ -1,3 +1,4 @@
+import { createTestResourceResolver } from '../../test/resource-fixtures';
 import { ConflictException } from '@nestjs/common';
 import { WorkflowsService } from './workflows.service';
 import type { PrismaService } from '../prisma/prisma.service';
@@ -79,7 +80,7 @@ function fixture(status = 'REVIEWED') {
       return result;
     },
   };
-  const service = new WorkflowsService(prisma as PrismaService, {} as WorkflowEngineService);
+  const service = new WorkflowsService(prisma as PrismaService, {} as WorkflowEngineService, createTestResourceResolver());
   return {
     service,
     state: () => state,
@@ -205,7 +206,7 @@ describe('T04 — atomicidade do ciclo de vida, com adaptador sintético', () =>
   });
 
   describe('C03 — destinatário obrigatório na definição de e-mail', () => {
-    const invalidRecipients = [undefined, null, '', ' \t', 123];
+    const invalidRecipients = [undefined, null, '', ' \t', 123, 'destino-invalido'];
     function addEmail(f: ReturnType<typeof fixture>, to: unknown) {
       f.state().row.nodes.push({
         id: 'mail', type: 'send_email', label: 'E-mail',

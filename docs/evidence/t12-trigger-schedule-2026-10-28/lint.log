@@ -1,0 +1,6 @@
+
+> flowmind-ai@0.1.0 lint
+> node scripts/lint.mjs
+
+
+✔ Lint aprovado: 189 arquivos verificados, zero violações encontradas.

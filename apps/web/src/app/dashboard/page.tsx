@@ -6,16 +6,19 @@ import Link from 'next/link';
 import { Navbar } from '@/components/navigation/navbar';
 import { ApiClient } from '@/lib/api-client';
 import type { WorkflowDefinition, GenerateWorkflowResponse } from '@flowmind/contracts';
-import { Plus, Workflow, Play, Clock, Sparkles, Layers, ArrowRight, Trash2 } from 'lucide-react';
+import { Plus, Workflow, Play, Clock, Sparkles, Layers, ArrowRight, Trash2, Search, Filter, RotateCcw } from 'lucide-react';
 
 export default function DashboardPage() {
   const { getToken, orgId, isLoaded } = useAuth();
-  const activeContext = useRef({ orgId, creating: false });
-  if (activeContext.current.orgId !== orgId) activeContext.current = { orgId, creating: false };
+  const activeContext = useRef({ orgId, creating: false, deletingIds: new Set<string>() });
+  if (activeContext.current.orgId !== orgId) activeContext.current = { orgId, creating: false, deletingIds: new Set<string>() };
   const [error, setError] = useState<string | null>(null);
+  const [feedback, setFeedback] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
   const [workflows, setWorkflows] = useState<WorkflowDefinition[]>([]);
   const [loading, setLoading] = useState(true);
   const [isCreating, setIsCreating] = useState(false);
+  const [isCreatingManual, setIsCreatingManual] = useState(false);
+  const [deletingId, setDeletingId] = useState<string | null>(null);
   const [createMode, setCreateMode] = useState<'ai' | 'manual'>('ai');
   const [newWorkflowName, setNewWorkflowName] = useState('');
   const [aiPrompt, setAiPrompt] = useState(
@@ -25,6 +28,8 @@ export default function DashboardPage() {
   const [pendingAiDraft, setPendingAiDraft] = useState<{
     id: string; proposal: GenerateWorkflowResponse['workflow'];
   } | null>(null);
+  const [statusFilter, setStatusFilter] = useState<'ALL' | 'DRAFT' | 'REVIEWED' | 'PUBLISHED'>('ALL');
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     if (!isLoaded) return;
@@ -33,6 +38,8 @@ export default function DashboardPage() {
     setPendingAiDraft(null);
     setAiGenerating(false);
     setError(null);
+    setStatusFilter('ALL');
+    setSearchQuery('');
     setLoading(true);
     if (!orgId) {
       setError('Entre e selecione uma organização para acessar as automações.');
@@ -69,6 +76,9 @@ export default function DashboardPage() {
     const context = activeContext.current;
     if (!newWorkflowName.trim() || context.creating) return;
     context.creating = true;
+    setIsCreatingManual(true);
+    setFeedback(null);
+    setError(null);
 
     try {
       const token = await getToken();
@@ -81,10 +91,17 @@ export default function DashboardPage() {
       setWorkflows((previous) => [created, ...previous]);
       setNewWorkflowName('');
       setIsCreating(false);
-    } catch {
-      if (activeContext.current === context) setError('Não foi possível criar o rascunho.');
+      setFeedback({ type: 'success', message: `Automação "${created.name}" criada com sucesso.` });
+    } catch (err: unknown) {
+      if (activeContext.current === context) {
+        setFeedback({
+          type: 'error',
+          message: err instanceof Error ? err.message : 'Não foi possível criar o rascunho.',
+        });
+      }
     } finally {
       context.creating = false;
+      if (activeContext.current === context) setIsCreatingManual(false);
     }
   };
 
@@ -96,6 +113,7 @@ export default function DashboardPage() {
 
     setAiGenerating(true);
     setError(null);
+    setFeedback(null);
     let draft = pendingAiDraft;
     try {
       const token = await getToken();
@@ -122,12 +140,19 @@ export default function DashboardPage() {
       setPendingAiDraft(null);
 
       setIsCreating(false);
-      alert('Proposta salva para revisão. Confira os parâmetros antes de simular.');
-    } catch {
+      setFeedback({
+        type: 'success',
+        message: 'Proposta salva para revisão. Confira os parâmetros antes de simular.',
+      });
+    } catch (err: unknown) {
       if (activeContext.current !== context) return;
-      setError(draft
-        ? `Rascunho ${draft.id} criado; a proposta ainda não foi salva. Tente salvar novamente nesse rascunho.`
-        : 'Não foi possível propor o fluxo.');
+      const detail = err instanceof Error ? err.message : '';
+      setFeedback({
+        type: 'error',
+        message: draft
+          ? `Rascunho criado, mas falhou ao salvar nós: ${detail || 'tente salvar novamente'}.`
+          : (detail || 'Não foi possível propor o fluxo.'),
+      });
     } finally {
       context.creating = false;
       if (activeContext.current === context) setAiGenerating(false);
@@ -135,20 +160,64 @@ export default function DashboardPage() {
   };
 
   const handleDelete = async (wf: WorkflowDefinition) => {
+    const context = activeContext.current;
+    if (context.deletingIds.has(wf.id)) return;
+
     if (wf.status === 'PUBLISHED') {
-      alert('Não é permitido excluir um workflow ativo (PUBLISHED). Desative-o no editor antes de excluí-lo.');
+      setFeedback({
+        type: 'error',
+        message: 'Não é permitido excluir um workflow ativo (PUBLISHED). Desative-o no editor antes de excluí-lo.',
+      });
       return;
     }
     if (!confirm(`Deseja realmente excluir o workflow "${wf.name}"?`)) return;
+
+    context.deletingIds.add(wf.id);
+    setDeletingId(wf.id);
+    setFeedback(null);
     try {
       const token = await getToken();
       await ApiClient.deleteWorkflow(wf.id, token);
+      if (activeContext.current !== context) return;
       setWorkflows((previous) => previous.filter((item) => item.id !== wf.id));
+      setFeedback({ type: 'success', message: `Workflow "${wf.name}" excluído com sucesso.` });
     } catch (err: unknown) {
-      alert(err instanceof Error ? err.message : 'Falha ao excluir workflow.');
+      if (activeContext.current === context) {
+        setFeedback({
+          type: 'error',
+          message: err instanceof Error ? err.message : 'Falha ao excluir workflow.',
+        });
+      }
+    } finally {
+      context.deletingIds.delete(wf.id);
+      if (activeContext.current === context) setDeletingId(null);
     }
   };
 
+  const filteredWorkflows = workflows.filter((wf) => {
+    if (statusFilter !== 'ALL' && wf.status !== statusFilter) return false;
+    if (searchQuery.trim()) {
+      const q = searchQuery.toLowerCase().trim();
+      const matchName = wf.name.toLowerCase().includes(q);
+      const matchDesc = (wf.description || '').toLowerCase().includes(q);
+      if (!matchName && !matchDesc) return false;
+    }
+    return true;
+  });
+
+  const counts = {
+    ALL: workflows.length,
+    DRAFT: workflows.filter((w) => w.status === 'DRAFT').length,
+    REVIEWED: workflows.filter((w) => w.status === 'REVIEWED').length,
+    PUBLISHED: workflows.filter((w) => w.status === 'PUBLISHED').length,
+  };
+
+  const isFiltered = statusFilter !== 'ALL' || searchQuery.trim().length > 0;
+
+  const handleResetFilters = () => {
+    setStatusFilter('ALL');
+    setSearchQuery('');
+  };
 
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col">
@@ -156,6 +225,27 @@ export default function DashboardPage() {
 
       <main className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 flex-1">
         {error && <p role="alert" className="mb-4 text-sm text-red-700">{error}</p>}
+        {feedback && !isCreating && (
+          <div
+            role={feedback.type === 'error' ? 'alert' : 'status'}
+            aria-live="polite"
+            className={`mb-6 p-4 rounded-xl border flex items-center justify-between text-xs font-semibold ${
+              feedback.type === 'error'
+                ? 'bg-red-50 text-red-800 border-red-200'
+                : 'bg-emerald-50 text-emerald-800 border-emerald-200'
+            }`}
+          >
+            <span>{feedback.message}</span>
+            <button
+              type="button"
+              onClick={() => setFeedback(null)}
+              className="p-1 hover:bg-black/5 rounded transition text-slate-500 hover:text-slate-800"
+              aria-label="Fechar notificação"
+            >
+              ✕
+            </button>
+          </div>
+        )}
         {/* Cabeçalho do Dashboard */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-slate-200 gap-4">
           <div>
@@ -168,7 +258,7 @@ export default function DashboardPage() {
           </div>
 
           <button
-            onClick={() => setIsCreating(true)}
+            onClick={() => { setFeedback(null); setIsCreating(true); }}
             className="inline-flex items-center justify-center space-x-2 px-4 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-lg shadow-sm transition"
           >
             <Plus className="w-4 h-4" />
@@ -214,6 +304,15 @@ export default function DashboardPage() {
                   </button>
                 </div>
               </div>
+
+              {feedback && (
+                <p role={feedback.type === 'error' ? 'alert' : 'status'} aria-live="polite"
+                  className={`mb-4 rounded-lg border p-3 text-xs ${feedback.type === 'error'
+                    ? 'border-red-200 bg-red-50 text-red-800'
+                    : 'border-emerald-200 bg-emerald-50 text-emerald-800'}`}>
+                  {feedback.message}
+                </p>
+              )}
 
               {createMode === 'ai' ? (
                 <form onSubmit={handleCreateWithAi}>
@@ -269,9 +368,9 @@ export default function DashboardPage() {
                   <div className="flex items-center justify-end space-x-2">
                     <button
                       type="button"
-                      onClick={() => setIsCreating(false)}
+                      onClick={() => { setIsCreating(false); setPendingAiDraft(null); }}
                       disabled={aiGenerating}
-                      className="px-4 py-2 text-sm font-medium text-slate-600 hover:bg-slate-100 rounded-lg transition"
+                      className="px-4 py-2 text-sm font-medium text-slate-600 hover:bg-slate-100 rounded-lg transition disabled:opacity-50"
                     >
                       Cancelar
                     </button>
@@ -312,16 +411,25 @@ export default function DashboardPage() {
                   <div className="flex items-center justify-end space-x-2">
                     <button
                       type="button"
-                      onClick={() => setIsCreating(false)}
-                      className="px-4 py-2 text-sm font-medium text-slate-600 hover:bg-slate-100 rounded-lg transition"
+                      onClick={() => { setIsCreating(false); setPendingAiDraft(null); }}
+                      disabled={isCreatingManual}
+                      className="px-4 py-2 text-sm font-medium text-slate-600 hover:bg-slate-100 rounded-lg transition disabled:opacity-50"
                     >
                       Cancelar
                     </button>
                     <button
                       type="submit"
-                      className="px-4 py-2 text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg shadow-sm transition"
+                      disabled={isCreatingManual}
+                      className="inline-flex items-center space-x-2 px-4 py-2 text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg shadow-sm transition disabled:opacity-50"
                     >
-                      Criar e Editar
+                      {isCreatingManual ? (
+                        <>
+                          <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                          <span>Criando...</span>
+                        </>
+                      ) : (
+                        <span>Criar e Editar</span>
+                      )}
                     </button>
                   </div>
                 </form>
@@ -330,6 +438,84 @@ export default function DashboardPage() {
           </div>
         )}
 
+
+        {/* Barra de Filtro e Busca */}
+        {!loading && workflows.length > 0 && (
+          <div className="pt-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
+            {/* Tabs de Status */}
+            <div className="flex flex-wrap items-center bg-slate-100 p-1 rounded-xl text-xs">
+              <button
+                type="button"
+                onClick={() => setStatusFilter('ALL')}
+                className={`px-3 py-1.5 rounded-lg font-medium transition ${
+                  statusFilter === 'ALL'
+                    ? 'bg-white text-slate-900 shadow-sm font-semibold'
+                    : 'text-slate-500 hover:text-slate-900'
+                }`}
+              >
+                Todos ({counts.ALL})
+              </button>
+              <button
+                type="button"
+                onClick={() => setStatusFilter('DRAFT')}
+                className={`px-3 py-1.5 rounded-lg font-medium transition ${
+                  statusFilter === 'DRAFT'
+                    ? 'bg-white text-amber-700 shadow-sm font-semibold'
+                    : 'text-slate-500 hover:text-slate-900'
+                }`}
+              >
+                Rascunhos ({counts.DRAFT})
+              </button>
+              <button
+                type="button"
+                onClick={() => setStatusFilter('REVIEWED')}
+                className={`px-3 py-1.5 rounded-lg font-medium transition ${
+                  statusFilter === 'REVIEWED'
+                    ? 'bg-white text-blue-700 shadow-sm font-semibold'
+                    : 'text-slate-500 hover:text-slate-900'
+                }`}
+              >
+                Revisados ({counts.REVIEWED})
+              </button>
+              <button
+                type="button"
+                onClick={() => setStatusFilter('PUBLISHED')}
+                className={`px-3 py-1.5 rounded-lg font-medium transition ${
+                  statusFilter === 'PUBLISHED'
+                    ? 'bg-white text-emerald-700 shadow-sm font-semibold'
+                    : 'text-slate-500 hover:text-slate-900'
+                }`}
+              >
+                Ativos ({counts.PUBLISHED})
+              </button>
+            </div>
+
+            {/* Campo de Busca e Limpeza */}
+            <div className="flex items-center space-x-2">
+              <div className="relative">
+                <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+                <input
+                  type="search"
+                  placeholder="Buscar automação por nome..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="pl-8 pr-3 py-1.5 text-xs border border-slate-200 rounded-lg w-52 sm:w-64 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 bg-white"
+                />
+              </div>
+              {isFiltered && (
+                <button
+                  type="button"
+                  onClick={handleResetFilters}
+                  className="inline-flex items-center space-x-1 px-2.5 py-1.5 text-xs text-slate-500 hover:text-slate-800 hover:bg-slate-100 rounded-lg transition"
+                  title="Limpar filtros"
+                >
+                  <RotateCcw className="w-3 h-3" />
+                  <span>Limpar</span>
+                </button>
+              )}
+            </div>
+          </div>
+        )}
 
         {/* Grid de Workflows */}
         {loading ? (
@@ -354,9 +540,25 @@ export default function DashboardPage() {
               <span>Criar Primeira Automação</span>
             </button>
           </div>
+        ) : filteredWorkflows.length === 0 ? (
+          <div className="py-16 text-center bg-white rounded-2xl border border-slate-200 my-8 p-8 space-y-3">
+            <Filter className="w-8 h-8 text-slate-300 mx-auto" />
+            <h3 className="text-base font-semibold text-slate-900">Nenhuma automação encontrada</h3>
+            <p className="text-sm text-slate-500 max-w-sm mx-auto">
+              Nenhuma automação corresponde aos filtros selecionados.
+            </p>
+            <button
+              type="button"
+              onClick={handleResetFilters}
+              className="inline-flex items-center space-x-1.5 px-3.5 py-2 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 text-xs font-semibold rounded-lg transition"
+            >
+              <RotateCcw className="w-3.5 h-3.5" />
+              <span>Restaurar visualização completa</span>
+            </button>
+          </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 py-8">
-            {workflows.map((wf) => (
+            {filteredWorkflows.map((wf) => (
               <div
                 key={wf.id}
                 className="bg-white rounded-2xl border border-slate-200 hover:border-indigo-200 shadow-sm hover:shadow-md transition p-6 flex flex-col justify-between"
@@ -415,12 +617,13 @@ export default function DashboardPage() {
 
                   <button
                     onClick={() => handleDelete(wf)}
+                    disabled={deletingId === wf.id}
                     title={
                       wf.status === 'PUBLISHED'
                         ? 'Workflows ativos não podem ser excluídos. Desative primeiro.'
                         : 'Excluir workflow'
                     }
-                    className="p-2 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-lg border border-slate-200 transition"
+                    className="p-2 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-lg border border-slate-200 transition disabled:opacity-50"
                   >
                     <Trash2 className="w-3.5 h-3.5" />
                   </button>

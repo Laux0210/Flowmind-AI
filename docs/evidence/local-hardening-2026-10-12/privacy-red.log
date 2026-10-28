@@ -1,0 +1,45 @@
+
+> @flowmind/api@0.1.0 test
+> node --experimental-vm-modules ../../node_modules/jest/bin/jest.js --runInBand --runTestsByPath src/executions/executions.hardening.spec.ts
+
+
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151002: [0mUsing hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+(node:19460) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+FAIL src/executions/executions.hardening.spec.ts
+  ● T13 — persistência, isolamento e proteção de dados (storage sintético) › redige headers de API e o token Bearer completo com caracteres base64
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 2
+    + Received  + 2
+
+      Object {
+    -   "X-API-Key": "[REDACTED]",
+    -   "authorizationHeader": "[REDACTED]",
+    +   "X-API-Key": "fixture_private",
+    +   "authorizationHeader": "Basic fixture_private",
+      }
+
+      141 |       message: 'Bearer abc+def/ghi== terminou',
+      142 |     });
+    > 143 |     expect(clean.headers).toEqual({ 'X-API-Key': '[REDACTED]', authorizationHeader: '[REDACTED]' });
+          |                           ^
+      144 |     expect(clean.message).toBe('Bearer [REDACTED] terminou');
+      145 |   });
+      146 | });
+
+      at Object.<anonymous> (src/executions/executions.hardening.spec.ts:143:27)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 15 passed, 16 total
+Snapshots:   0 total
+Time:        2.437 s
+Ran all test suites within paths "src/executions/executions.hardening.spec.ts".
+npm error Lifecycle script `test` failed with error:
+npm error code 1
+npm error path C:\Users\jv883\Documents\Codex\FlowMind-AI\Flowmind-AI\apps\api
+npm error workspace @flowmind/api@0.1.0
+npm error location C:\Users\jv883\Documents\Codex\FlowMind-AI\Flowmind-AI\apps\api
+npm error command failed
+npm error command C:\Windows\system32\cmd.exe /d /s /c node --experimental-vm-modules ../../node_modules/jest/bin/jest.js --runInBand --runTestsByPath src/executions/executions.hardening.spec.ts

@@ -10,7 +10,9 @@ test('ExecutionsService: isolamento estrito entre organizações (SEC01 e SEC04)
   const { exports: execExports } = await loadTypeScript(executionsServicePath);
 
   const rows = [];
+  const workflows = [{ id: 'wf_alpha_1', orgId: 'org_alpha' }, { id: 'wf_beta_1', orgId: 'org_beta' }];
   const prismaMock = {
+    workflow: { findFirst: async ({ where }) => workflows.find((row) => row.id === where.id && row.orgId === where.orgId) ?? null },
     workflowExecution: {
       create: async (args) => {
         rows.push(args.data);
@@ -18,14 +20,14 @@ test('ExecutionsService: isolamento estrito entre organizações (SEC01 e SEC04)
       },
       findMany: async ({ where, take }) => {
         return rows
-          .filter((r) => r.orgId === where.orgId && (!where.workflowId || r.workflowId === where.workflowId))
+          .filter((r) => r.orgId === where.orgId && workflows.find((workflow) => workflow.id === r.workflowId)?.orgId === where.workflow.orgId && (!where.workflowId || r.workflowId === where.workflowId))
           .slice(0, take);
       },
       findFirst: async ({ where }) => {
-        return rows.find((r) => r.id === where.id && r.orgId === where.orgId) || null;
+        return rows.find((r) => r.id === where.id && r.orgId === where.orgId && workflows.find((workflow) => workflow.id === r.workflowId)?.orgId === where.workflow.orgId) || null;
       },
       count: async ({ where }) => {
-        return rows.filter((r) => r.orgId === where.orgId).length;
+        return rows.filter((r) => r.orgId === where.orgId && (!where.mode || r.mode === where.mode)).length;
       },
     },
   };
@@ -90,6 +92,8 @@ test('ExecutionsService: sanitiza segredos e tokens nos dados gravados', async (
 
   const rows = [];
   const prismaMock = {
+    workflow: { findFirst: async ({ where }) =>
+      where.id === 'wf_sec_1' && where.orgId === 'org_sanit_test' ? { id: where.id, orgId: where.orgId } : null },
     workflowExecution: {
       create: async (args) => {
         rows.push(args.data);
@@ -130,7 +134,7 @@ test('ExecutionsService: sanitiza segredos e tokens nos dados gravados', async (
     new Date().toISOString(),
   );
 
-  assert.equal(execution.nodeResults[0].inputs.authHeader, 'Bearer [REDACTED]');
+  assert.equal(execution.nodeResults[0].inputs.authHeader, '[REDACTED]');
   assert.equal(execution.nodeResults[0].inputs.apiKey, '[REDACTED]');
   assert.equal(execution.nodeResults[0].inputs.password, '[REDACTED]');
 });
@@ -140,7 +144,10 @@ test('UsageLimitsService: barra execução quando limite de quota mensal for ati
 
   const prismaMock = {
     workflowExecution: {
-      count: async () => 1000, // Limite atingido
+      count: async ({ where }) => {
+        if (where?.mode === 'SIMULATION') return 15;
+        return 1000; // Limite LIVE atingido
+      },
     },
   };
 
@@ -155,4 +162,105 @@ test('UsageLimitsService: barra execução quando limite de quota mensal for ati
   assert.equal(report.isLimitReached, true);
   assert.equal(report.usagePercentage, 100);
   assert.equal(report.totalExecutions, 1000);
+  assert.equal(report.totalSimulations, 15);
+});
+
+test('WorkerService e InMemoryJobQueue: enfileiramento assíncrono, deduplicação e retries (T05/T12)', async () => {
+  const workerServicePath = 'apps/api/src/worker/worker.service.ts';
+  const inMemoryJobQueuePath = 'apps/api/src/worker/in-memory-job-queue.ts';
+  const { exports: workerExports } = await loadTypeScript(workerServicePath);
+  const { exports: queueExports } = await loadTypeScript(inMemoryJobQueuePath);
+
+  const prismaMock = {
+    workflow: {
+      findFirst: async ({ where }) => {
+        if (where.id === 'wf_worker_queue' && where.orgId === 'org_worker_reg') {
+          return {
+            id: 'wf_worker_queue',
+            orgId: 'org_worker_reg',
+            name: 'WF Fila Regressão',
+            version: 1,
+            schemaVersion: '1.0.0',
+            triggerNodeId: 'trig',
+            nodes: [{ id: 'trig', type: 'trigger_form', config: {} }],
+            edges: [],
+            status: 'PUBLISHED',
+            createdAt: new Date(),
+            updatedAt: new Date(),
+          };
+        }
+        return null;
+      },
+    },
+  };
+
+  const engineMock = {
+    simulate: async () => ({
+      executionId: 'exec_queue_sim_1',
+      status: 'COMPLETED',
+      totalDurationMs: 20,
+      nodeResults: [],
+    }),
+  };
+
+  const executionsMock = {
+    recordExecution: async (orgId, workflowId, version, mode, status, userId, nodeResults, startedAt, completedAt, executionId) => ({
+      id: executionId || 'exec_saved_1',
+      orgId,
+      workflowId,
+      workflowVersion: version,
+      mode,
+      status,
+      triggeredBy: userId,
+      nodeResults,
+      startedAt,
+      completedAt,
+    }),
+  };
+
+  const queue = new queueExports.InMemoryJobQueue();
+  const worker = new workerExports.WorkerService(prismaMock, engineMock, executionsMock, queue);
+
+  // 1. Enfileiramento e consumo regular
+  const enqueueRes = await worker.enqueueJob({
+    jobId: 'job_reg_1',
+    workflowId: 'wf_worker_queue',
+    orgId: 'org_worker_reg',
+    userId: 'user_reg',
+    initialPayload: { msg: 'ok' },
+    mode: 'SIMULATION',
+    idempotencyKey: 'idem_reg_1',
+  });
+  assert.equal(enqueueRes.enqueued, true);
+  assert.equal(enqueueRes.isDuplicate, false);
+
+  const metricsInitial = worker.getQueueMetrics();
+  assert.equal(metricsInitial.pendingJobs, 1);
+  assert.equal(metricsInitial.completedJobs, 0);
+
+  const processRes = await worker.processNextJob();
+  assert.equal(processRes?.jobId, 'job_reg_1');
+  assert.equal(processRes?.status, 'COMPLETED');
+
+  const metricsAfter = worker.getQueueMetrics();
+  assert.equal(metricsAfter.pendingJobs, 0);
+  assert.equal(metricsAfter.completedJobs, 1);
+
+  // 2. Deduplicação com idempotência
+  const dupRes = await worker.enqueueJob({
+    jobId: 'job_reg_2',
+    workflowId: 'wf_worker_queue',
+    orgId: 'org_worker_reg',
+    userId: 'user_reg',
+    initialPayload: {},
+    mode: 'SIMULATION',
+    idempotencyKey: 'idem_reg_1',
+  });
+  assert.equal(dupRes.enqueued, false);
+  assert.equal(dupRes.isDuplicate, true);
+  assert.equal(dupRes.jobId, 'job_reg_1');
+
+  // 3. Fila vazia retorna null
+  const emptyRes = await worker.processNextJob();
+  assert.equal(emptyRes, null);
 });

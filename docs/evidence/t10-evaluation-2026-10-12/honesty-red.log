@@ -1,0 +1,209 @@
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151002: [0mUsing hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151002: [0mUsing hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+(node:20280) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+FAIL apps/api/src/ai/evaluation/ai-evaluator.honesty.spec.ts
+  ● T10 — limites e integridade das evidências › não atribui nota semântica a grafo gerado por template
+
+    expect(received).toBeNull()
+
+    Received: 2
+
+      25 |   it('não atribui nota semântica a grafo gerado por template', async () => {
+      26 |     const result = await evaluator.evaluateScenario(scenario('IA01'), new DeterministicAiClient());
+    > 27 |     expect(result.rubricScore).toBeNull();
+         |                                ^
+      28 |   });
+      29 |
+      30 |   it('não agrega notas humanas que não foram coletadas', async () => {
+
+      at Object.<anonymous> (src/ai/evaluation/ai-evaluator.honesty.spec.ts:27:32)
+
+  ● T10 — limites e integridade das evidências › não agrega notas humanas que não foram coletadas
+
+    expect(received).toBeNull()
+
+    Received: 18
+
+      30 |   it('não agrega notas humanas que não foram coletadas', async () => {
+      31 |     const report = await evaluator.evaluateAll(new DeterministicAiClient());
+    > 32 |     expect(report.totalScore).toBeNull();
+         |                               ^
+      33 |     expect(report.averageRubricScore).toBeNull();
+      34 |   });
+      35 |
+
+      at Object.<anonymous> (src/ai/evaluation/ai-evaluator.honesty.spec.ts:32:31)
+
+  ● T10 — limites e integridade das evidências › preserva uso desconhecido quando o cliente falha e não publica seu erro privado
+
+    expect(received).toBeNull()
+
+    Received: 0
+
+      38 |       scenario('IA08'), rejectingClient(new Error('TEST_ONLY_PRIVATE_PROVIDER_DETAIL')),
+      39 |     );
+    > 40 |     expect(result.tokensConsumed).toBeNull();
+         |                                   ^
+      41 |     expect(JSON.stringify(result)).not.toContain('TEST_ONLY_PRIVATE_PROVIDER_DETAIL');
+      42 |   });
+      43 |
+
+      at Object.<anonymous> (src/ai/evaluation/ai-evaluator.honesty.spec.ts:40:35)
+
+  ● T10 — limites e integridade das evidências › não afirma que um template exercitou recusa ou JSON inválido
+
+    expect(received).toBeNull()
+
+    Received: true
+
+      44 |   it('não afirma que um template exercitou recusa ou JSON inválido', async () => {
+      45 |     const result = await evaluator.evaluateScenario(scenario('IA07'), new DeterministicAiClient());
+    > 46 |     expect(result.ruleResults.find((entry) => entry.rule === 'GRACEFUL_FAILURE_HANDLING')?.passed).toBeNull();
+         |                                                                                                    ^
+      47 |   });
+      48 |
+      49 |   it('não trata qualquer BadRequest como recusa válida do provedor', async () => {
+
+      at Object.<anonymous> (src/ai/evaluation/ai-evaluator.honesty.spec.ts:46:100)
+
+  ● T10 — limites e integridade das evidências › não trata qualquer BadRequest como recusa válida do provedor
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      51 |       scenario('IA07'), rejectingClient(new BadRequestException({ code: 'UNRELATED_VALIDATION_ERROR' })),
+      52 |     );
+    > 53 |     expect(result.ruleResults.find((entry) => entry.rule === 'GRACEFUL_FAILURE_HANDLING')?.passed).toBe(false);
+         |                                                                                                    ^
+      54 |   });
+      55 |
+      56 |   it('não chama um erro genérico de timeout tratado', async () => {
+
+      at Object.<anonymous> (src/ai/evaluation/ai-evaluator.honesty.spec.ts:53:100)
+
+  ● T10 — limites e integridade das evidências › não chama um erro genérico de timeout tratado
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      56 |   it('não chama um erro genérico de timeout tratado', async () => {
+      57 |     const result = await evaluator.evaluateScenario(scenario('IA08'), rejectingClient(new Error('generic')));
+    > 58 |     expect(result.ruleResults.find((entry) => entry.rule === 'TIMEOUT_HANDLING')?.passed).toBe(false);
+         |                                                                                           ^
+      59 |   });
+      60 |
+      61 |   it('não prova isolamento de organizações por busca de uma string no grafo', async () => {
+
+      at Object.<anonymous> (src/ai/evaluation/ai-evaluator.honesty.spec.ts:58:91)
+
+  ● T10 — limites e integridade das evidências › não prova isolamento de organizações por busca de uma string no grafo
+
+    expect(received).toBeNull()
+
+    Received: true
+
+      61 |   it('não prova isolamento de organizações por busca de uma string no grafo', async () => {
+      62 |     const result = await evaluator.evaluateScenario(scenario('IA05'), new DeterministicAiClient());
+    > 63 |     expect(result.ruleResults.find((entry) => entry.rule === 'CROSS_ORG_ISOLATION')?.passed).toBeNull();
+         |                                                                                              ^
+      64 |   });
+      65 |
+      66 |   it('detecta campo score mesmo com ID, label e descrição neutros', async () => {
+
+      at Object.<anonymous> (src/ai/evaluation/ai-evaluator.honesty.spec.ts:63:94)
+
+  ● T10 — limites e integridade das evidências › detecta campo score mesmo com ID, label e descrição neutros
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      71 |     });
+      72 |     const result = await evaluator.evaluateScenario(scenario('IA01'), client);
+    > 73 |     expect(result.ruleResults.find((entry) => entry.rule === 'NO_COMMERCIAL_SCORING')?.passed).toBe(false);
+         |                                                                                                ^
+      74 |   });
+      75 |
+      76 |   it('não confunde termo citado em descrição com um campo de pontuação atribuído', async () => {
+
+      at Object.<anonymous> (src/ai/evaluation/ai-evaluator.honesty.spec.ts:73:96)
+
+  ● T10 — limites e integridade das evidências › não confunde termo citado em descrição com um campo de pontuação atribuído
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      79 |     });
+      80 |     const result = await evaluator.evaluateScenario(scenario('IA01'), client);
+    > 81 |     expect(result.ruleResults.find((entry) => entry.rule === 'NO_COMMERCIAL_SCORING')?.passed).toBe(true);
+         |                                                                                                ^
+      82 |     expect(result.rubricScore).toBeNull();
+      83 |   });
+      84 |
+
+      at Object.<anonymous> (src/ai/evaluation/ai-evaluator.honesty.spec.ts:81:96)
+
+  ● T10 — limites e integridade das evidências › não certifica ausência de endpoint inventado se omitiu o nó HTTP solicitado
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      86 |     const client = await resultWith(() => undefined);
+      87 |     const result = await evaluator.evaluateScenario(scenario('IA02'), client);
+    > 88 |     expect(result.ruleResults.find((entry) => entry.rule === 'NO_INVENTED_ENDPOINTS')?.passed).toBe(false);
+         |                                                                                                ^
+      89 |   });
+      90 |
+      91 |   it('rejeita infinito como contagem medida de tokens', async () => {
+
+      at Object.<anonymous> (src/ai/evaluation/ai-evaluator.honesty.spec.ts:88:96)
+
+  ● T10 — limites e integridade das evidências › rejeita infinito como contagem medida de tokens
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      92 |     const client = await resultWith((result) => { result.tokensConsumed = Infinity; });
+      93 |     const result = await evaluator.evaluateScenario(scenario('IA08'), client);
+    > 94 |     expect(result.ruleResults.find((entry) => entry.rule === 'ACCURATE_TOKEN_REPORTING')?.passed).toBe(false);
+         |                                                                                                   ^
+      95 |   });
+      96 |
+      97 |   it('não aceita regra desconhecida por um default permissivo', async () => {
+
+      at Object.<anonymous> (src/ai/evaluation/ai-evaluator.honesty.spec.ts:94:99)
+
+  ● T10 — limites e integridade das evidências › não aceita regra desconhecida por um default permissivo
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      100 |     } as unknown as AiEvaluationScenario;
+      101 |     const result = await evaluator.evaluateScenario(entry, new DeterministicAiClient());
+    > 102 |     expect(result.ruleResults[0].passed).toBe(false);
+          |                                          ^
+      103 |   });
+      104 | });
+      105 |
+
+      at Object.<anonymous> (src/ai/evaluation/ai-evaluator.honesty.spec.ts:102:42)
+
+Test Suites: 1 failed, 1 total
+Tests:       12 failed, 12 total
+Snapshots:   0 total
+Time:        3.488 s
+Ran all test suites within paths "C:\Users\jv883\Documents\Codex\FlowMind-AI\Flowmind-AI\apps\api\src\ai\evaluation\ai-evaluator.honesty.spec.ts".

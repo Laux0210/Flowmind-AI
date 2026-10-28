@@ -37,7 +37,17 @@ async function fixture() {
   });
   const prisma = { workflow: delegate };
   prisma.$transaction = async (operation) => operation(prisma);
-  const service = new exports.WorkflowsService(prisma, { simulate: async () => { simulations++; return {}; } });
+  const executionsService = {
+    recordExecution: async (_orgId, _workflowId, _version, _mode, _status, _userId, _nodeResults, _startedAt, _completedAt, executionId) => ({
+      id: executionId || 'sim_persisted',
+    }),
+  };
+  const service = new exports.WorkflowsService(
+    prisma,
+    { simulate: async () => { simulations++; return { status: 'COMPLETED', totalDurationMs: 10, nodeResults: [], executionId: 'sim_1' }; } },
+    exports.createTestResourceResolver(),
+    executionsService,
+  );
   return { service, delegate, rows, calls, simulations: () => simulations };
 }
 

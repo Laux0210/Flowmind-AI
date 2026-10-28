@@ -1,0 +1,14 @@
+{
+  "checkedAtUtc": "2026-10-13T06:37:08.996433+00:00",
+  "sourceStableSinceAcceptedSnapshot": true,
+  "inputCount": 127,
+  "changedInputs": [],
+  "validationLogHashesMatch": true,
+  "obsidianReadbackHashesStillMatch": true,
+  "pendingAiMemoryPages": 17,
+  "pendingAiMemoryManifestHashesMatch": true,
+  "markdownLinksChecked": 7,
+  "missingLinks": [],
+  "replacementCharacters": [],
+  "gitDiffCheckExitCode": 0
+}

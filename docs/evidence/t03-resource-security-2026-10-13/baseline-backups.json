@@ -1,0 +1,57 @@
+[
+  {
+    "source": "apps/api/src/engine/resource-resolver.ts",
+    "backup": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-resource-security-20261013-g7l1h18e\\resource-resolver.ts",
+    "sha256": "5170d8cb49555e8609739251d6c66ca2b1b46228812476a1facfe2751985d3cf"
+  },
+  {
+    "source": "apps/api/src/engine/resource-resolver.spec.ts",
+    "backup": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-resource-security-20261013-g7l1h18e\\resource-resolver.spec.ts",
+    "sha256": "afb4d91d1eddec42028bdb0655b40a8f9ae4b644c4a02ca998a7c3e22eaa50d0"
+  },
+  {
+    "source": "apps/api/src/auth/workflow-container.spec.ts",
+    "backup": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-resource-security-20261013-g7l1h18e\\workflow-container.spec.ts",
+    "sha256": "213efdb93753203764cb1e8f9486128a394477d2f010e95f13f66d6bf8de7486"
+  },
+  {
+    "source": "tests/regression/triggers-email.test.mjs",
+    "backup": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-resource-security-20261013-g7l1h18e\\triggers-email.test.mjs",
+    "sha256": "14e846cb907463339ace0f149d27d31669c61fbe05a613552dd0a3112273a139"
+  },
+  {
+    "source": "docs/MEMORIA.md",
+    "backup": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-resource-security-20261013-g7l1h18e\\MEMORIA.md",
+    "sha256": "edba0cd3f99173ab28b4461037a130fcc7ba899718dc65fc6c6052996a0ba15c"
+  },
+  {
+    "source": "plan.md",
+    "backup": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-resource-security-20261013-g7l1h18e\\plan.md",
+    "sha256": "f08c682e81b65fe29dbf4ce4f335a27555ef485d5f28d5706daeb536f3b70657"
+  },
+  {
+    "source": "docs/PROJECT_CONTEXT.md",
+    "backup": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-resource-security-20261013-g7l1h18e\\PROJECT_CONTEXT.md",
+    "sha256": "5081ee210afd39159de1fd0202663494758d8a25e34398e7230d843059517be0"
+  },
+  {
+    "source": "docs/QA_SECURITY_MATRIX.md",
+    "backup": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-resource-security-20261013-g7l1h18e\\QA_SECURITY_MATRIX.md",
+    "sha256": "cb9aaa8da4802b5a6df39f1307ff175ec429da7a78777e4ec9c9ddff3c8b8f71"
+  },
+  {
+    "source": "docs/AI_MEMORY.md",
+    "backup": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-resource-security-20261013-g7l1h18e\\AI_MEMORY.md",
+    "sha256": "85df0dfc506eb047b2b9cc13455ead91bd6b701dd08304f7e583ad111e0ac9b5"
+  },
+  {
+    "source": "docs/AI_MEMORY_SYNC_PENDING_2026-10-12.json",
+    "backup": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-resource-security-20261013-g7l1h18e\\AI_MEMORY_SYNC_PENDING_2026-10-12.json",
+    "sha256": "36d11c79186515ddc7fe5614060cc12873b0be9fefb11f1ee0a75cd2dabfe986"
+  },
+  {
+    "source": "README.md",
+    "backup": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-resource-security-20261013-g7l1h18e\\README.md",
+    "sha256": "b6f6c30df3df3150b9d618d4a050caa7b4835613edb5695e2157d1e078122236"
+  }
+]

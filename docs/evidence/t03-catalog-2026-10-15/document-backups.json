@@ -1,0 +1,45 @@
+{
+  "atUtc": "2026-10-15T18:24:04.278502+00:00",
+  "files": [
+    {
+      "source": "README.md",
+      "backup": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-catalog-20261015-3zvha0pb\\before-final-docs\\README.md",
+      "sha256": "c2352a234400aeaf5bbcfbfc68e137d5860fa5d79c5df793677d3bbab11146be"
+    },
+    {
+      "source": "plan.md",
+      "backup": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-catalog-20261015-3zvha0pb\\before-final-docs\\plan.md",
+      "sha256": "06abbeb4407415c3d8cca9efda34a885e7e598ed67f6e397376d3d7900730c92"
+    },
+    {
+      "source": "docs/MEMORIA.md",
+      "backup": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-catalog-20261015-3zvha0pb\\before-final-docs\\docs\\MEMORIA.md",
+      "sha256": "98a9f6c6c93f6228a493d94d6474797497a3ab2b9b938327ad2375d1d3664b50"
+    },
+    {
+      "source": "docs/PROJECT_CONTEXT.md",
+      "backup": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-catalog-20261015-3zvha0pb\\before-final-docs\\docs\\PROJECT_CONTEXT.md",
+      "sha256": "f4eae2088af7009463f5cc82efb72ae5b0ff1a1f8f23aa0e6a865f6ae74e259c"
+    },
+    {
+      "source": "docs/QA_SECURITY_MATRIX.md",
+      "backup": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-catalog-20261015-3zvha0pb\\before-final-docs\\docs\\QA_SECURITY_MATRIX.md",
+      "sha256": "a521453e711c330963dc2847d3e54f9db8795f0e2c22a309da12b23ab1dff8f4"
+    },
+    {
+      "source": "docs/AI_MEMORY.md",
+      "backup": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-catalog-20261015-3zvha0pb\\before-final-docs\\docs\\AI_MEMORY.md",
+      "sha256": "5cb145d85c3aae2afa9b6ed933a71098b297dc6a66f4fe8e292d12ab41e8abe1"
+    },
+    {
+      "source": "docs/AI_MEMORY_SYNC_PENDING_2026-10-12.json",
+      "backup": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-catalog-20261015-3zvha0pb\\before-final-docs\\docs\\AI_MEMORY_SYNC_PENDING_2026-10-12.json",
+      "sha256": "7dbc626573bc483af479a3138108f16e56ae87a6bd222816c5e7007740c9afa4"
+    },
+    {
+      "source": "docs/T03_RESOURCE_IMPLEMENTATION_PLAN.md",
+      "backup": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-catalog-20261015-3zvha0pb\\before-final-docs\\docs\\T03_RESOURCE_IMPLEMENTATION_PLAN.md",
+      "sha256": "bbf3a6f01ff41791f66a599d07ec0e7507a60663dcb423cb6faa71b2756d4635"
+    }
+  ]
+}

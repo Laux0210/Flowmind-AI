@@ -1,0 +1,25 @@
+{
+  "recordedAtUtc": "2026-10-13T22:51:11.605231+00:00",
+  "reviewer": "/root/review_t08_editor",
+  "mode": "independent_read_only_no_test_rerun",
+  "scope": "T08 delta plus ForbiddenException fake export and three import type symbols; no approval of backend policies",
+  "materialOpenFindings": [],
+  "correctedFindings": [
+    "frozen render dirty/save snapshot",
+    "graph handle keys/bounds effect",
+    "reviewed/published/load-context ref synchronization"
+  ],
+  "limits": "SSR and synthetic hooks/AST do not prove DOM/lifecycle/browser; PUBLISHED red proves stale reference, not editable published workflow",
+  "sourceHashes": {
+    "apps/web/src/lib/workflow-editing.ts": "d53a1fb76801eddaa62ab271fa6e85daaac33e90a85016e75694409a564bf19d",
+    "apps/web/src/components/workflows/node-parameter-editor.tsx": "835b2ac9422a2eb3b6f62b37335b511f964cb0b16235112db4077b6e31689587",
+    "apps/web/src/components/workflows/workflow-graph-node.tsx": "2dda76aff9b5fc59f7a93bf7122245fb9e1c26be684bfce18392a69fcabc0f41",
+    "apps/web/src/app/workflows/[id]/page.tsx": "a66b1ff975ccd6f16226cfe5179955ca4512de25702cd5873198632c8fc3ee6e",
+    "tests/regression/workflow-editing.test.mjs": "9a52fbbd58555728ee51a80729ab88f40c6096c3ee70a9481b763bd3191cbea7",
+    "tests/regression/load-ui-handlers.mjs": "7c181ce4d75b203defb33711d002866699a0bc6d07a8b266884812edec6d925e",
+    "apps/api/src/auth/workflow-container.spec.ts": "213efdb93753203764cb1e8f9486128a394477d2f010e95f13f66d6bf8de7486",
+    "package.json": "4ba8f62561a0a7253fbb948224562b786cda5ffb99ff9f556fc18d72d499d9af",
+    "tests/regression/load-typescript.mjs": "c833ab5696fa93e4e54d91c492179854709c064699f7b27dae89df45a53cc218",
+    "apps/api/src/engine/resource-resolver.ts": "5170d8cb49555e8609739251d6c66ca2b1b46228812476a1facfe2751985d3cf"
+  }
+}

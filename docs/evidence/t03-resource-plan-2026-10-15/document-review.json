@@ -1,0 +1,13 @@
+{
+  "reviewer": "principal",
+  "scope": "document clarity and approval gates; not runtime or independent security acceptance",
+  "candidateOnly": true,
+  "fiveTaskSections": true,
+  "simulationBoundaryExplicit": true,
+  "pendingLoadVsUseExplicit": true,
+  "adminAuthorityPreserved": true,
+  "noAutomaticModelApproval": true,
+  "realEffectsHaveSeparateGates": true,
+  "implementationNotStarted": true,
+  "passed": true
+}

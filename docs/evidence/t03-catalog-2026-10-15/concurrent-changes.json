@@ -1,0 +1,47 @@
+{
+  "checkedAtUtc": "2026-10-15T18:41:24.991960+00:00",
+  "historicalCheckpoint": "verified-checkpoint/checks.json",
+  "historicalCheckpointAccepted": true,
+  "latestChecks": "latest-failed-checks/checks.json",
+  "checkExitCodes": {
+    "prisma-validate": 0,
+    "typecheck": 2,
+    "jest": 1,
+    "regression": 0,
+    "api-build": 0,
+    "api-artifact": 0,
+    "lint": 0,
+    "operation-static": 0,
+    "web-build": 0,
+    "evaluation-offline": 0
+  },
+  "inputsChangedDuringLatestChecks": [
+    "apps/api/src/executions/executions.service.spec.ts",
+    "tests/regression/persistence.test.mjs"
+  ],
+  "sourceDrift": [
+    "apps/api/src/qa/full-journey-integration.spec.ts",
+    "apps/api/src/workflows/workflows.atomic.spec.ts",
+    "apps/api/src/workflows/workflows.service.spec.ts",
+    "apps/api/src/workflows/workflows.service.ts",
+    "apps/web/src/app/history/page.tsx",
+    "tests/regression/executions.test.mjs",
+    "tests/regression/full-journey.test.mjs",
+    "tests/regression/persistence.test.mjs"
+  ],
+  "sourceDriftSinceHistoricalCheckpoint": [
+    "apps/api/src/executions/executions.service.spec.ts",
+    "apps/api/src/executions/usage-limits.service.ts",
+    "apps/api/src/qa/full-journey-integration.spec.ts",
+    "apps/api/src/workflows/workflows.service.spec.ts",
+    "apps/api/src/workflows/workflows.service.ts",
+    "apps/web/src/app/history/page.tsx",
+    "packages/contracts/src/api.ts",
+    "scripts/check-api-artifact.mjs",
+    "tests/regression/executions.test.mjs",
+    "tests/regression/full-journey.test.mjs",
+    "tests/regression/persistence.test.mjs"
+  ],
+  "R5CurrentAcceptancePending": true,
+  "nextAction": "Select a single editing session; preserve concurrent changes; complete fixes and rerun validation on stable sources. No further blind full-suite repeats in this delivery."
+}

@@ -1,0 +1,35 @@
+(node:27652) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:27652) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+✔ history: resposta E1 atrasada não substitui seleção mais recente E2 (68.8905ms)
+✔ history: finally de uma seleção antiga não encerra loading da seleção atual (18.3436ms)
+✔ history: contexto Alpha→Beta→Alpha invalida a resposta da geração anterior (11.0154ms)
+✔ history: rejeição antiga não escreve erro na nova organização (11.0189ms)
+✔ history: fechar o modal invalida a inspeção pendente (10.1102ms)
+✔ history: troca de contexto durante getToken evita consultar recurso com sessão nova (9.9206ms)
+✔ history: erro da inspeção atual preserva a mensagem do servidor (8.5968ms)
+✔ editor: trocar contexto limpa isReviewing enquanto a operação anterior aguarda token (21.344ms)
+✔ editor: trocar contexto limpa isPublishing enquanto a operação anterior aguarda token (18.8614ms)
+✔ editor: trocar contexto limpa isDeactivating enquanto a operação anterior aguarda token (13.0747ms)
+✔ editor: feedback da simulação respeita status FAILED (11.8098ms)
+✔ editor: feedback da simulação respeita status COMPLETED (10.8086ms)
+✔ editor: handler de aplicar proposta bloqueia mutação enquanto revisão está pendente (13.2309ms)
+✔ editor: reviewWorkflow não aplica resposta de revisão local anterior (17.22ms)
+✔ editor: reviewWorkflow não envia mutação após trocar contexto durante getToken (9.667ms)
+✔ editor: activateWorkflow não aplica resposta de revisão local anterior (13.1699ms)
+✔ editor: activateWorkflow não envia mutação após trocar contexto durante getToken (10.8482ms)
+✔ ApiClient sanitiza URL e codifica identificadores com caracteres especiais (59.1584ms)
+✔ ApiClient propaga mensagens de erro estruturadas da API em caso de 400 ou 403 (2.6101ms)
+✔ Mapeamento dos 6 nós do catálogo do MVP para o canvas XYFlow (4.2872ms)
+✔ Validação de simulação de workflow com dados sintéticos no cliente (13.8454ms)
+✔ ApiClient serializa requisições de simulação e ciclo de vida com integridade de headers e payload (3.1071ms)
+✔ Invariantes estáticas de prevenção de condições de corrida e feedback acessível no frontend (1.3776ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 23
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 697.5985
+

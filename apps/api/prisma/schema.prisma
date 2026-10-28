@@ -60,6 +60,8 @@ model Workflow {
 
   organization Organization        @relation(fields: [orgId], references: [id], onDelete: Cascade)
   versions     WorkflowVersion[]
+  webhookEndpoints WebhookEndpoint[]
+  schedules        WorkflowSchedule[]
   executions   WorkflowExecution[]
   leads        LeadRecord[]
 
@@ -123,4 +125,55 @@ model LeadRecord {
   @@index([orgId])
   @@index([workflowId])
   @@map("lead_records")
+}
+
+enum WebhookEndpointStatus {
+  ACTIVE
+  REVOKED
+}
+
+// T12 webhook (aprovado em 23/10/2026): organização resolvida pelo endpoint; segredo só cifrado.
+model WebhookEndpoint {
+  id               String                @id @default(uuid())
+  publicId         String                @unique @map("public_id")
+  orgId            String                @map("org_id")
+  workflowId       String                @map("workflow_id")
+  secretCiphertext String                @map("secret_ciphertext")
+  status           WebhookEndpointStatus @default(ACTIVE)
+  createdBy        String                @map("created_by")
+  createdAt        DateTime              @default(now()) @map("created_at")
+  rotatedAt        DateTime?             @map("rotated_at")
+  revokedAt        DateTime?             @map("revoked_at")
+
+  workflow Workflow @relation(fields: [workflowId], references: [id], onDelete: Cascade)
+
+  @@index([orgId])
+  @@index([workflowId])
+  @@map("webhook_endpoints")
+}
+
+enum WorkflowScheduleStatus {
+  ACTIVE
+  PAUSED
+  REVOKED
+}
+
+// T12 agendamento (aprovado em 23/10/2026): banco é a fonte da verdade; Redis é ressincronizado.
+model WorkflowSchedule {
+  id         String                 @id @default(uuid())
+  orgId      String                 @map("org_id")
+  workflowId String                 @map("workflow_id")
+  cron       String
+  timezone   String
+  status     WorkflowScheduleStatus @default(ACTIVE)
+  createdBy  String                 @map("created_by")
+  createdAt  DateTime               @default(now()) @map("created_at")
+  updatedAt  DateTime               @updatedAt @map("updated_at")
+  revokedAt  DateTime?              @map("revoked_at")
+
+  workflow Workflow @relation(fields: [workflowId], references: [id], onDelete: Cascade)
+
+  @@index([orgId, status])
+  @@index([workflowId])
+  @@map("workflow_schedules")
 }

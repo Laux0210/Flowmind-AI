@@ -10,11 +10,11 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@flowmind/contracts": "*",
     "@clerk/nextjs": "7.9.14",
+    "@flowmind/contracts": "*",
     "@xyflow/react": "12.12.0",
     "lucide-react": "1.55.0",
-    "next": "16.4.0",
+    "next": "16.4.3",
     "react": "19.2.8",
     "react-dom": "19.2.8"
   },

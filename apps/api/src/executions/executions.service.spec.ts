@@ -11,7 +11,12 @@ describe('ExecutionsService & UsageLimitsService (T13 — Logs, Histórico e Con
 
   beforeEach(() => {
     const rows: any[] = [];
+    const workflows = [
+      { id: 'wf_1', orgId: 'org_test_1' }, { id: 'wf_a', orgId: 'org_list_1' },
+      { id: 'wf_b', orgId: 'org_list_1' }, { id: 'wf_c', orgId: 'org_list_2' },
+    ];
     prismaMock = {
+      workflow: { findFirst: jest.fn(async ({ where }: any) => workflows.find((row) => row.id === where.id && row.orgId === where.orgId) ?? null) },
       workflowExecution: {
         create: jest.fn().mockImplementation((args: { data: any }) => {
           rows.push(args.data);
@@ -54,16 +59,20 @@ describe('ExecutionsService & UsageLimitsService (T13 — Logs, Histórico e Con
       }
     });
 
-    it('deve calcular o relatório de consumo com percentual e estimativa de tokens', async () => {
+    it('deve calcular consumo persistido e manter tokens não medidos como desconhecidos', async () => {
       const orgId = 'org_metrics_test';
-      prismaMock.workflowExecution.count.mockResolvedValue(250);
+      prismaMock.workflowExecution.count.mockImplementation(({ where }: any) => {
+        if (where?.mode === 'SIMULATION') return Promise.resolve(45);
+        return Promise.resolve(250);
+      });
 
       const report = await usageLimitsService.getOrgUsageReport(orgId);
       expect(report.orgId).toBe(orgId);
       expect(report.totalExecutions).toBe(250);
+      expect(report.totalSimulations).toBe(45);
       expect(report.maxExecutionsQuota).toBe(1000);
       expect(report.usagePercentage).toBe(25);
-      expect(report.estimatedTokensConsumed).toBe(250 * 240);
+      expect(report.estimatedTokensConsumed).toBeNull();
       expect(report.isLimitReached).toBe(false);
     });
 
@@ -82,7 +91,7 @@ describe('ExecutionsService & UsageLimitsService (T13 — Logs, Histórico e Con
 
       const sanitized = UsageLimitsService.sanitizeSensitiveData(rawData);
 
-      expect(sanitized.authorizationHeader).toBe('Bearer [REDACTED]');
+      expect(sanitized.authorizationHeader).toBe('[REDACTED]');
       expect(sanitized.apiKey).toBe('[REDACTED]');
       expect(sanitized.signature).toBe('[REDACTED]');
       expect(sanitized.credential).toBe('[REDACTED]');
@@ -128,6 +137,7 @@ describe('ExecutionsService & UsageLimitsService (T13 — Logs, Histórico e Con
     it('deve retornar 404 ao consultar execução pertencente a outra organização (SEC01)', async () => {
       const orgTenantA = 'org_tenant_a';
       const orgTenantB = 'org_tenant_b';
+      prismaMock.workflow.findFirst.mockResolvedValue({ id: 'wf_1', orgId: orgTenantA });
 
       // Execução salva para Tenant A
       const execA = await executionsService.recordExecution(

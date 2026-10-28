@@ -1,0 +1,609 @@
+
+> flowmind-ai@0.1.0 test:regression
+> node --experimental-vm-modules --test tests/regression/security.test.mjs tests/regression/simulation.test.mjs tests/regression/generation-client.test.mjs tests/regression/persistence.test.mjs tests/regression/toolchain.test.mjs tests/regression/ui-workflow.test.mjs tests/regression/triggers.test.mjs tests/regression/executions.test.mjs tests/regression/full-journey.test.mjs tests/regression/ai-evaluation.test.mjs tests/regression/triggers-email.test.mjs tests/regression/ai-generation-usage.test.mjs tests/regression/workflow-editing.test.mjs
+
+(node:1124) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:1124) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+✔ dataset canônico de avaliação sintética contém exatamente 9 cenários (IA01 a IA09) (95.1641ms)
+✖ AiEvaluator verifica IA01 sem fabricar nota semântica (94.9657ms)
+✖ AiEvaluator registra campo comercial rejeitado antes da proposta, sem nota humana (49.4617ms)
+✖ AiEvaluator valida que IA04 bloqueia injeções com SECURITY_SCOPE_VIOLATION (19.0467ms)
+✖ AiEvaluator gera relatório agregado de avaliação (evaluateAll) (23.8925ms)
+(node:8412) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:8412) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+✔ cliente conserva uso da falha controlada AI_INVALID_WORKFLOW_RESPONSE, sem corpo privado (100.7326ms)
+✔ cliente conserva uso da falha controlada AI_PROMPT_REFUSED, sem corpo privado (2.704ms)
+✔ cliente conserva uso da falha controlada AI_INCOMPLETE_RESPONSE, sem corpo privado (16.6615ms)
+✔ cliente conserva uso da falha controlada AI_INVALID_JSON_RESPONSE, sem corpo privado (3.007ms)
+✔ cliente conserva uso da falha controlada AI_EMPTY_RESPONSE, sem corpo privado (3.2764ms)
+✔ cliente conserva uso da falha controlada AI_INVALID_RESPONSE_STRUCTURE, sem corpo privado (4.907ms)
+✔ cliente preserva classificação do consumo zero (4.0646ms)
+✔ cliente preserva classificação do consumo desconhecido (3.9842ms)
+✔ cliente preserva classificação do consumo ausente (3.4974ms)
+✔ cliente preserva classificação do consumo negativo (3.8784ms)
+✔ cliente preserva classificação do consumo fracionário (3.0951ms)
+✔ cliente preserva classificação do consumo infinito (2.5557ms)
+✔ cliente preserva classificação do consumo NaN (11.378ms)
+✔ cliente preserva classificação do consumo inteiro inseguro (15.9155ms)
+✔ cliente preserva classificação do consumo string (14.0473ms)
+✔ não transforma metadata de UNRELATED_ERROR em medição declarada (3.851ms)
+✔ não transforma metadata de INVALID_PROMPT em medição declarada (2.6698ms)
+✔ não transforma metadata de SECURITY_SCOPE_VIOLATION em medição declarada (2.3205ms)
+✔ não transforma metadata de AI_PRIVATE_FIXTURE_CODE em medição declarada (2.3123ms)
+✔ erro HTTP sem JSON tem consumo desconhecido e mensagem genérica (2.9005ms)
+✔ outras rotas não recebem metadata de geração (2.258ms)
+✔ sem token não chama fetch nem inventa consumo de geração (2.1478ms)
+✔ feedback do callback real mostra consumo 24, sem reaplicar proposta anterior (169.6294ms)
+✔ feedback do callback real mostra consumo 0, sem reaplicar proposta anterior (54.7563ms)
+✔ feedback do callback real mostra consumo null, sem reaplicar proposta anterior (47.5942ms)
+✔ falha de geração atrasada não mostra consumo no contexto de outra organização (22.585ms)
+(node:23660) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:23660) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+✔ ExecutionsService: isolamento estrito entre organizações (SEC01 e SEC04) (154.7427ms)
+✔ ExecutionsService: sanitiza segredos e tokens nos dados gravados (11.6289ms)
+✔ UsageLimitsService: barra execução quando limite de quota mensal for atingido (4.0843ms)
+(node:30648) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:30648) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+✖ T14 — C01: Jornada completa com formulário, IA, registro e e-mail (Pedido Completo) (195.3107ms)
+✖ T14 — C02: Preservação de ambiguidades em dúvidas gerais sem pontuação comercial (70.6624ms)
+✖ T14 — C03: Interrupção imediata antes de efeitos colaterais com payload incompleto (63.709ms)
+✖ T14 — Matriz de Isolamento Multi-tenant (SEC01–SEC04, SEC09) (87.7983ms)
+✔ T14 — Segurança: Proteção contra SSRF e sanitização profunda de credenciais (8.6612ms)
+✔ T14 — Presença estática de atributos de acessibilidade (não comprova WCAG) (1.3503ms)
+(node:7956) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:7956) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+✖ template gera rascunho compatível com o motor, sem modelo/tokens fictícios (265.4864ms)
+✖ gerador rejeita condição não interpretada em vez de criar score comercial (64.4697ms)
+✖ gerador aceita caso como substantivo e rejeita caso condicional (29.463ms)
+✖ gerador sinaliza HTTP sem destino escolhido e nunca executa comandos (19.6529ms)
+✔ ApiClient rejeita todas as operações sem token, antes da rede (4.0346ms)
+✔ ApiClient propaga HTTP 401 sem inventar workflows ou geração (2.8552ms)
+✔ ApiClient propaga HTTP 404 sem inventar workflows ou geração (3.4632ms)
+✔ ApiClient propaga HTTP 500 sem inventar workflows ou geração (2.8018ms)
+✔ ApiClient envia Bearer real e PUT de atualização compatível com o controller (2.8278ms)
+✔ ApiClient envia POST correto para rotas de ciclo de vida (review, activate, deactivate) (4.1157ms)
+✔ ApiClient envia DELETE correto para exclusão de workflow e aceita HTTP 204 (2.4553ms)
+✔ OpenAiStructuredClient gera draft com JSON Schema estrito e trata recusa (refusal) (13.5631ms)
+✖ AiGeneratorService suporta cliente de IA customizado via injeção mantendo validação DAG (29.1936ms)
+✖ uso ausente permanece null do provedor até a serialização da proposta (34.5328ms)
+✔ JSON válido com término incompleto não vira proposta e conserva uso informado (8.6359ms)
+✔ configuração JSON inválida não é substituída silenciosamente por objeto vazio (8.642ms)
+✔ recusa não revela mensagem privada nem descarta a medição de uso (36.7258ms)
+(node:27820) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:27820) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+✖ CRUD consulta fonte persistente e isola operações entre organizações com adaptador fake (224.192ms)
+✖ falha do banco não vira sucesso em memória em nenhuma operação (23.815ms)
+✖ consulta não retorna cópia obsoleta depois de remoção na fonte (24.2487ms)
+✖ edição de versão publicada fica bloqueada até contrato de novas revisões (25.589ms)
+✖ exclusão de versão publicada fica bloqueada exigindo desativação prévia (51.392ms)
+(node:23804) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:23804) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+✔ token sintético passa pela verificação do SDK e é rejeitado em test (152.7892ms)
+✔ token sintético passa pela verificação do SDK e é rejeitado em development (7.4296ms)
+✔ token sintético passa pela verificação do SDK e é rejeitado em production (3.5262ms)
+✔ utiliza os campos normalizados de toAuth (61.4591ms)
+✔ rejeita sessão sem userId (4.3867ms)
+✔ rejeita sessão sem sessionId (2.7762ms)
+✔ rejeita sessão sem orgId (4.8785ms)
+✔ erros e logs não revelam mensagem interna do provedor (2.8776ms)
+✔ ausência de chave e ausência de token falham antes de chamar SDK (2.6354ms)
+✔ chave pública exigida pelo SDK declarado também é obrigatória (7.3406ms)
+✔ guard rejeita cabeçalhos ausentes, duplicados ou com partes extras (5.8669ms)
+✔ guard usa somente a organização resolvida pelo serviço (19.4474ms)
+✔ exige APIs de sessão e membership e persistência, sem permissões por omissão (16.1085ms)
+✔ sessão vigente precisa pertencer ao usuário e ao identificador autenticado (24.8966ms)
+✔ sessão revogada ou expirada falha antes da sincronização (27.235ms)
+✔ consulta membership pelo usuário e usa papel vigente em vez do papel antigo do token (7.4298ms)
+✔ membership ausente, alheia, sem papel ou com papel desconhecido não autoriza (29.3216ms)
+✔ organização confirmada no provedor é espelhada antes de conceder acesso (12.0155ms)
+✔ falhas de consulta ou upsert impedem acesso e ocultam detalhes internos (22.0484ms)
+✔ remoção do vínculo depois de uma requisição válida é verificada novamente (4.0779ms)
+(node:17596) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:17596) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+✖ C01 percorre a jornada com efeitos simulados e sem classificação comercial (198.0478ms)
+✖ C02: template com ambiguidades conserva sua interpolação na prévia (19.1613ms)
+✖ C03 falha no gatilho antes dos efeitos com email undefined (47.198ms)
+✖ C03 falha no gatilho antes dos efeitos com email "" (15.8502ms)
+✖ C03 falha no gatilho antes dos efeitos com email "   " (14.257ms)
+✖ C03 falha no gatilho antes dos efeitos com email "invalid" (22.6655ms)
+✖ C03 falha no gatilho antes dos efeitos com email 123 (16.7934ms)
+✖ campos distintos e aliases não preenchem dados obrigatórios ausentes (25.9591ms)
+✖ referência antiga falha explicitamente em vez de produzir valor vazio (23.6948ms)
+✖ DAG rejeita ciclos, gatilho divergente e nós desconectados (25.9641ms)
+✖ schema ausente ou de outra versão impede a simulação (39.5348ms)
+✔ executores de simulação rejeitam LIVE sem afirmar efeitos reais (5.4763ms)
+✖ motor suporta ramificação e convergência (OR-Join), executando nó convergente (21.7898ms)
+✖ interpolação resolve variáveis de internal_record para nós downstream e avalia starts_with (14.6019ms)
+✔ build compila contratos antes da API e da web (931.7563ms)
+✔ falha de um consumidor interrompe o pipeline e preserva código de saída (267.5132ms)
+✔ linter de conformidade e segurança valida arquivos e conclui com sucesso (196.9534ms)
+(node:26284) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:26284) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+✔ WebhookSignatureValidator: gera assinatura HMAC no padrão canônico t=...,v1=... (139.7579ms)
+✔ WebhookSignatureValidator: valida assinatura válida e rejeita adulteração de payload (3.9407ms)
+✔ WebhookSignatureValidator: rejeita replay attack quando timestamp exceder tolerância (2.454ms)
+✔ SimulatedEmailProvider: despacha e-mail simulado com identificador e sem rede (12.8544ms)
+✔ SimulatedEmailProvider: bloqueia CRLF injection em headers de e-mail (3.9439ms)
+(node:30756) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:30756) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+✖ WebhooksService: dispara workflow PUBLISHED e deduplica chamadas idênticas via idempotencyKey (154.5651ms)
+✖ WebhooksService: bloqueia disparo de workflow em estado DRAFT (23.112ms)
+✖ WebhooksService: valida assinatura timing-safe e rejeita token incorreto (38.2737ms)
+✖ WebhooksService: rejeita payload inválido ou chave de idempotência em branco (29.9616ms)
+✔ SchedulerService: valida cron com limites numéricos e rejeita valores fora da faixa (5.8635ms)
+✔ SchedulerService: valida timezone IANA e bloqueia execuções concorrentes simultâneas (42.3205ms)
+(node:8800) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:8800) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+✔ history: falha do consumo preserva a listagem que respondeu com sucesso (146.7834ms)
+✔ history: falha da listagem preserva consumo obtido e distingue erro de lista vazia (22.0408ms)
+✔ history: carregar contexto cancelado após getToken não dispara consultas (22.7608ms)
+✔ history: resposta E1 atrasada não substitui seleção mais recente E2 (19.5482ms)
+✔ history: finally de uma seleção antiga não encerra loading da seleção atual (22.2648ms)
+✔ history: contexto Alpha→Beta→Alpha invalida a resposta da geração anterior (13.7567ms)
+✔ history: rejeição antiga não escreve erro na nova organização (14.2682ms)
+✔ history: fechar o modal invalida a inspeção pendente (16.7291ms)
+✔ history: troca de contexto durante getToken evita consultar recurso com sessão nova (17.4972ms)
+✔ history: erro da inspeção atual preserva a mensagem do servidor (11.0108ms)
+✔ editor: trocar contexto limpa isReviewing enquanto a operação anterior aguarda token (40.2915ms)
+✔ editor: trocar contexto limpa isPublishing enquanto a operação anterior aguarda token (25.3829ms)
+✔ editor: trocar contexto limpa isDeactivating enquanto a operação anterior aguarda token (27.7059ms)
+✔ editor: feedback da simulação respeita status FAILED (25.4768ms)
+✔ editor: feedback da simulação respeita status COMPLETED (19.4213ms)
+✔ editor: handler de aplicar proposta bloqueia mutação enquanto revisão está pendente (32.4626ms)
+✔ editor: reviewWorkflow não aplica resposta de revisão local anterior (22.9779ms)
+✔ editor: reviewWorkflow não envia mutação após trocar contexto durante getToken (20.4435ms)
+✔ editor: activateWorkflow não aplica resposta de revisão local anterior (41.522ms)
+✔ editor: activateWorkflow não envia mutação após trocar contexto durante getToken (25.3486ms)
+✔ ApiClient sanitiza URL e codifica identificadores com caracteres especiais (81.2853ms)
+✔ ApiClient propaga mensagens de erro estruturadas da API em caso de 400 ou 403 (3.4667ms)
+✔ Mapeamento dos 6 nós do catálogo do MVP para o canvas XYFlow (24.5847ms)
+✖ Validação de simulação de workflow com dados sintéticos no cliente (27.4694ms)
+✔ ApiClient serializa requisições de simulação e ciclo de vida com integridade de headers e payload (3.6552ms)
+✔ Invariantes estáticas de prevenção de condições de corrida e feedback acessível no frontend (1.382ms)
+(node:16492) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ configuração pendente impede salvar uma definição anterior à edição do usuário (134.1588ms)
+(node:16492) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+✔ resposta de salvamento obsoleta não substitui novas alterações nem escreve feedback de erro (62.0942ms)
+✔ parâmetros de e-mail editados preservam IDs, referências e campos não alterados (120.2061ms)
+✔ valores JSON da condição preservam número, array e booleano (0.5761ms)
+✔ JSON inválido e campos desconhecidos não substituem a configuração (0.8715ms)
+✔ aliases existentes de mensagem e mapeamento são preservados ao editar outro campo (0.5364ms)
+✔ draft incompleto continua editável e ausência de opcionais não injeta defaults (0.5552ms)
+✔ edições de parâmetros/posições/conexões são negadas em REVIEWED (0.7474ms)
+✔ edições de parâmetros/posições/conexões são negadas em PUBLISHED (0.2338ms)
+✔ edições de parâmetros/posições/conexões são negadas em ARCHIVED (0.3064ms)
+✔ movimentação persiste coordenadas finitas sem mudar configuração ou arestas (0.4943ms)
+✔ conexões condicionais preservam os handles usados pelo motor (0.3162ms)
+✔ ciclo, auto-conexão, nó ausente e conexão repetida são recusados antes de mudar o grafo (0.4688ms)
+✔ remoção de conexão preserva nós e demais IDs, sem resolver convergências (0.351ms)
+✔ formulários abrangem os seis tipos e conservam ausência versus valores JSON (0.4185ms)
+✔ arestas exibidas no canvas mantêm sourceHandle e targetHandle sem normalização (32.1635ms)
+✔ edição aplicada marca dirty, avança revisão e invalida resultado anterior (58.3311ms)
+✔ edição não altera o workflow durante saving (40.4696ms)
+✔ edição não altera o workflow durante reviewing (36.8004ms)
+✔ edição não altera o workflow durante publishing (65.0458ms)
+✔ edição não altera o workflow durante deactivating (34.1622ms)
+✔ edição não altera o workflow durante simulating (51.3374ms)
+✔ edição não altera o workflow durante generatingAi (31.8525ms)
+✔ duas movimentações antes de renderizar preservam as duas alterações (31.9914ms)
+✔ edição com contexto Alpha→Beta→Alpha anterior é descartada (31.0203ms)
+✔ rascunho local de parâmetros impede trocar etapa, mover ou aplicar conexões (49.4818ms)
+✔ conectar e remover pela interface altera somente as arestas pertinentes (29.3381ms)
+✔ editar e salvar no mesmo snapshot usa a definição recente da referência (32.3596ms)
+✔ edição antes de render bloqueia simulação, revisão e ativação do snapshot antigo (21.1462ms)
+✔ proposta aplicada e editada antes de render mantém os nós da proposta (21.8771ms)
+✔ REVIEWED recebido impede editar antes de renderizar o novo estado (22.9179ms)
+✔ PUBLISHED recebido impede editar antes de renderizar o novo estado (66.7958ms)
+✔ falha de carregamento do contexto anterior não altera erro ou loading atuais (23.2979ms)
+✔ handles padrão e nomeado default têm chaves distintas no componente real (49.1724ms)
+✔ efeito real do nó solicita atualização dos bounds dos handles após render (16.8759ms)
+✔ formulário real de trigger_form renderiza labels, valores escapados e bloqueio de edição (49.4959ms)
+✔ formulário real de ai_analyze_intent renderiza labels, valores escapados e bloqueio de edição (15.3094ms)
+✔ formulário real de internal_record renderiza labels, valores escapados e bloqueio de edição (15.8109ms)
+✔ formulário real de send_email renderiza labels, valores escapados e bloqueio de edição (13.7016ms)
+✔ formulário real de condition renderiza labels, valores escapados e bloqueio de edição (17.2806ms)
+✔ formulário real de http_request renderiza labels, valores escapados e bloqueio de edição (17.1519ms)
+ℹ tests 177
+ℹ suites 0
+ℹ pass 140
+ℹ fail 37
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2603.607
+
+✖ failing tests:
+
+test at tests\regression\ai-evaluation.test.mjs:27:1
+✖ AiEvaluator verifica IA01 sem fabricar nota semântica (94.9657ms)
+  SyntaxError: The requested module '@nestjs/common' does not provide an export named 'ForbiddenException'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/ai-evaluation.test.mjs:28:36)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\ai-evaluation.test.mjs:44:1
+✖ AiEvaluator registra campo comercial rejeitado antes da proposta, sem nota humana (49.4617ms)
+  SyntaxError: The requested module '@nestjs/common' does not provide an export named 'ForbiddenException'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/ai-evaluation.test.mjs:45:36)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\ai-evaluation.test.mjs:82:1
+✖ AiEvaluator valida que IA04 bloqueia injeções com SECURITY_SCOPE_VIOLATION (19.0467ms)
+  SyntaxError: The requested module '@nestjs/common' does not provide an export named 'ForbiddenException'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/ai-evaluation.test.mjs:83:36)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\ai-evaluation.test.mjs:99:1
+✖ AiEvaluator gera relatório agregado de avaliação (evaluateAll) (23.8925ms)
+  SyntaxError: The requested module '@nestjs/common' does not provide an export named 'ForbiddenException'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/ai-evaluation.test.mjs:100:36)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\full-journey.test.mjs:80:1
+✖ T14 — C01: Jornada completa com formulário, IA, registro e e-mail (Pedido Completo) (195.3107ms)
+  SyntaxError: The requested module '@nestjs/common' does not provide an export named 'ForbiddenException'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/full-journey.test.mjs:81:37)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+test at tests\regression\full-journey.test.mjs:157:1
+✖ T14 — C02: Preservação de ambiguidades em dúvidas gerais sem pontuação comercial (70.6624ms)
+  SyntaxError: The requested module '@nestjs/common' does not provide an export named 'ForbiddenException'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/full-journey.test.mjs:158:37)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\full-journey.test.mjs:178:1
+✖ T14 — C03: Interrupção imediata antes de efeitos colaterais com payload incompleto (63.709ms)
+  SyntaxError: The requested module '@nestjs/common' does not provide an export named 'ForbiddenException'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/full-journey.test.mjs:179:37)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\full-journey.test.mjs:201:1
+✖ T14 — Matriz de Isolamento Multi-tenant (SEC01–SEC04, SEC09) (87.7983ms)
+  SyntaxError: The requested module '@nestjs/common' does not provide an export named 'ForbiddenException'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/full-journey.test.mjs:202:40)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\generation-client.test.mjs:30:1
+✖ template gera rascunho compatível com o motor, sem modelo/tokens fictícios (265.4864ms)
+  SyntaxError: The requested module '@nestjs/common' does not provide an export named 'ForbiddenException'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/generation-client.test.mjs:31:23)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+test at tests\regression\generation-client.test.mjs:47:1
+✖ gerador rejeita condição não interpretada em vez de criar score comercial (64.4697ms)
+  SyntaxError: The requested module '@nestjs/common' does not provide an export named 'ForbiddenException'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/generation-client.test.mjs:48:23)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\generation-client.test.mjs:54:1
+✖ gerador aceita caso como substantivo e rejeita caso condicional (29.463ms)
+  SyntaxError: The requested module '@nestjs/common' does not provide an export named 'ForbiddenException'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/generation-client.test.mjs:55:23)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\generation-client.test.mjs:67:1
+✖ gerador sinaliza HTTP sem destino escolhido e nunca executa comandos (19.6529ms)
+  SyntaxError: The requested module '@nestjs/common' does not provide an export named 'ForbiddenException'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/generation-client.test.mjs:68:23)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\generation-client.test.mjs:219:1
+✖ AiGeneratorService suporta cliente de IA customizado via injeção mantendo validação DAG (29.1936ms)
+  SyntaxError: The requested module '@nestjs/common' does not provide an export named 'ForbiddenException'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/generation-client.test.mjs:220:35)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\generation-client.test.mjs:253:1
+✖ uso ausente permanece null do provedor até a serialização da proposta (34.5328ms)
+  SyntaxError: The requested module '@nestjs/common' does not provide an export named 'ForbiddenException'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/generation-client.test.mjs:256:23)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\persistence.test.mjs:44:1
+✖ CRUD consulta fonte persistente e isola operações entre organizações com adaptador fake (224.192ms)
+  SyntaxError: The requested module '@nestjs/common' does not provide an export named 'ForbiddenException'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async fixture (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/persistence.test.mjs:35:23)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/persistence.test.mjs:45:23)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+test at tests\regression\persistence.test.mjs:64:1
+✖ falha do banco não vira sucesso em memória em nenhuma operação (23.815ms)
+  SyntaxError: The requested module '@nestjs/common' does not provide an export named 'ForbiddenException'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async fixture (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/persistence.test.mjs:35:23)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/persistence.test.mjs:65:33)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\persistence.test.mjs:80:1
+✖ consulta não retorna cópia obsoleta depois de remoção na fonte (24.2487ms)
+  SyntaxError: The requested module '@nestjs/common' does not provide an export named 'ForbiddenException'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async fixture (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/persistence.test.mjs:35:23)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/persistence.test.mjs:81:29)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\persistence.test.mjs:88:1
+✖ edição de versão publicada fica bloqueada até contrato de novas revisões (25.589ms)
+  SyntaxError: The requested module '@nestjs/common' does not provide an export named 'ForbiddenException'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async fixture (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/persistence.test.mjs:35:23)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/persistence.test.mjs:89:29)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\persistence.test.mjs:95:1
+✖ exclusão de versão publicada fica bloqueada exigindo desativação prévia (51.392ms)
+  SyntaxError: The requested module '@nestjs/common' does not provide an export named 'ForbiddenException'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async fixture (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/persistence.test.mjs:35:23)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/persistence.test.mjs:96:29)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\simulation.test.mjs:32:1
+✖ C01 percorre a jornada com efeitos simulados e sem classificação comercial (198.0478ms)
+  SyntaxError: The requested module '@nestjs/common' does not provide an export named 'ForbiddenException'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async simulate (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:28:23)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:33:18)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+test at tests\regression\simulation.test.mjs:53:1
+✖ C02: template com ambiguidades conserva sua interpolação na prévia (19.1613ms)
+  SyntaxError: The requested module '@nestjs/common' does not provide an export named 'ForbiddenException'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async simulate (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:28:23)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:54:18)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\simulation.test.mjs:64:3
+✖ C03 falha no gatilho antes dos efeitos com email undefined (47.198ms)
+  SyntaxError: The requested module '@nestjs/common' does not provide an export named 'ForbiddenException'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async simulate (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:28:23)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:65:20)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\simulation.test.mjs:64:3
+✖ C03 falha no gatilho antes dos efeitos com email "" (15.8502ms)
+  SyntaxError: The requested module '@nestjs/common' does not provide an export named 'ForbiddenException'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async simulate (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:28:23)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:65:20)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\simulation.test.mjs:64:3
+✖ C03 falha no gatilho antes dos efeitos com email "   " (14.257ms)
+  SyntaxError: The requested module '@nestjs/common' does not provide an export named 'ForbiddenException'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async simulate (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:28:23)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:65:20)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\simulation.test.mjs:64:3
+✖ C03 falha no gatilho antes dos efeitos com email "invalid" (22.6655ms)
+  SyntaxError: The requested module '@nestjs/common' does not provide an export named 'ForbiddenException'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async simulate (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:28:23)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:65:20)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\simulation.test.mjs:64:3
+✖ C03 falha no gatilho antes dos efeitos com email 123 (16.7934ms)
+  SyntaxError: The requested module '@nestjs/common' does not provide an export named 'ForbiddenException'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async simulate (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:28:23)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:65:20)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\simulation.test.mjs:72:1
+✖ campos distintos e aliases não preenchem dados obrigatórios ausentes (25.9591ms)
+  SyntaxError: The requested module '@nestjs/common' does not provide an export named 'ForbiddenException'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async simulate (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:28:23)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:73:18)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\simulation.test.mjs:78:1
+✖ referência antiga falha explicitamente em vez de produzir valor vazio (23.6948ms)
+  TypeError: error.getResponse is not a function
+      at Object.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:83:22)
+      at expectedException (node:assert:578:17)
+      at expectsError (node:assert:703:21)
+      at strict.rejects (node:assert:769:3)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:81:3)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\simulation.test.mjs:88:1
+✖ DAG rejeita ciclos, gatilho divergente e nós desconectados (25.9641ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /Ciclo/. Input:
+  
+  "SyntaxError: The requested module '@nestjs/common' does not provide an export named 'ForbiddenException'"
+  
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:92:3)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: SyntaxError: The requested module '@nestjs/common' does not provide an export named 'ForbiddenException'
+        at SourceTextModule.link (node:internal/vm/module:209:17)
+        at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+        at async simulate (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:28:23)
+        at async waitForActual (node:assert:646:5)
+        at async strict.rejects (node:assert:769:25)
+        at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:92:3)
+        at async Test.run (node:internal/test_runner/test:1409:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:974:7),
+    expected: /Ciclo/,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at tests\regression\simulation.test.mjs:101:1
+✖ schema ausente ou de outra versão impede a simulação (39.5348ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /schema/. Input:
+  
+  "SyntaxError: The requested module '@nestjs/common' does not provide an export named 'ForbiddenException'"
+  
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: SyntaxError: The requested module '@nestjs/common' does not provide an export named 'ForbiddenException'
+        at SourceTextModule.link (node:internal/vm/module:209:17)
+        at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+        at async simulate (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:28:23)
+        at async waitForActual (node:assert:646:5)
+        at async strict.rejects (node:assert:769:25)
+        at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:104:5)
+        at async Test.run (node:internal/test_runner/test:1409:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:974:7),
+    expected: /schema/,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at tests\regression\simulation.test.mjs:117:1
+✖ motor suporta ramificação e convergência (OR-Join), executando nó convergente (21.7898ms)
+  SyntaxError: The requested module '@nestjs/common' does not provide an export named 'ForbiddenException'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async simulate (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:28:23)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:137:18)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\simulation.test.mjs:150:1
+✖ interpolação resolve variáveis de internal_record para nós downstream e avalia starts_with (14.6019ms)
+  SyntaxError: The requested module '@nestjs/common' does not provide an export named 'ForbiddenException'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async simulate (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:28:23)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:167:15)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\triggers.test.mjs:30:1
+✖ WebhooksService: dispara workflow PUBLISHED e deduplica chamadas idênticas via idempotencyKey (154.5651ms)
+  SyntaxError: The requested module '@nestjs/common' does not provide an export named 'ForbiddenException'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/triggers.test.mjs:31:23)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+test at tests\regression\triggers.test.mjs:63:1
+✖ WebhooksService: bloqueia disparo de workflow em estado DRAFT (23.112ms)
+  SyntaxError: The requested module '@nestjs/common' does not provide an export named 'ForbiddenException'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/triggers.test.mjs:64:23)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\triggers.test.mjs:75:1
+✖ WebhooksService: valida assinatura timing-safe e rejeita token incorreto (38.2737ms)
+  SyntaxError: The requested module '@nestjs/common' does not provide an export named 'ForbiddenException'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/triggers.test.mjs:76:23)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\triggers.test.mjs:98:1
+✖ WebhooksService: rejeita payload inválido ou chave de idempotência em branco (29.9616ms)
+  SyntaxError: The requested module '@nestjs/common' does not provide an export named 'ForbiddenException'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/triggers.test.mjs:99:23)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\ui-workflow.test.mjs:264:1
+✖ Validação de simulação de workflow com dados sintéticos no cliente (27.4694ms)
+  SyntaxError: The requested module '@nestjs/common' does not provide an export named 'ForbiddenException'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/ui-workflow.test.mjs:265:31)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)

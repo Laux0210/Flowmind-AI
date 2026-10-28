@@ -2,6 +2,10 @@
  * FlowMind AI — Catálogo de Nós do MVP e Tipagens Específicas
  */
 
+// Gatilho de agendamento: configuração vazia; horário vem do disparo.
+export type TriggerScheduleConfig = Record<string, never>;
+export interface TriggerScheduleOutputs { scheduledAt: string; }
+
 // 1. Gatilho de Formulário (trigger_form)
 export interface TriggerFormConfig {
   formId?: string;
@@ -84,33 +88,12 @@ export interface SendEmailOutputs {
 }
 
 // 5. Nó de Condição (condition)
-export type ConditionOperator =
-  | 'equals'
-  | '=='
-  | 'eq'
-  | 'not_equals'
-  | '!='
-  | 'neq'
-  | 'contains'
-  | 'not_contains'
-  | 'in'
-  | 'not_in'
-  | 'greater_than'
-  | '>'
-  | 'gt'
-  | 'less_than'
-  | '<'
-  | 'lt'
-  | 'greater_or_equal'
-  | '>='
-  | 'gte'
-  | 'less_or_equal'
-  | '<='
-  | 'lte'
-  | 'is_empty'
-  | 'is_not_empty'
-  | 'starts_with'
-  | 'ends_with';
+export const CONDITION_OPERATORS = [
+  'equals', '==', 'eq', 'not_equals', '!=', 'neq', 'contains', 'not_contains', 'in', 'not_in',
+  'greater_than', '>', 'gt', 'less_than', '<', 'lt', 'greater_or_equal', '>=', 'gte',
+  'less_or_equal', '<=', 'lte', 'is_empty', 'is_not_empty', 'starts_with', 'ends_with',
+] as const;
+export type ConditionOperator = typeof CONDITION_OPERATORS[number];
 
 export interface ConditionConfig {
   leftOperand: string;
@@ -124,7 +107,8 @@ export interface ConditionOutputs {
 }
 
 // 6. Nó HTTP (http_request)
-export type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH';
+export const HTTP_METHODS = ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'] as const;
+export type HttpMethod = typeof HTTP_METHODS[number];
 
 export interface HttpRequestConfig {
   url: string;

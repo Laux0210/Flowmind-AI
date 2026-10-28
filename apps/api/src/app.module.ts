@@ -6,6 +6,8 @@ import { AiModule } from './ai/ai.module';
 import { TriggersModule } from './triggers/triggers.module';
 import { ExecutionsModule } from './executions/executions.module';
 import { HealthModule } from './health/health.module';
+import { ResourcesModule } from './resources/resources.module';
+import { SchedulesModule } from './schedules/schedules.module';
 
 @Module({
   imports: [
@@ -16,6 +18,8 @@ import { HealthModule } from './health/health.module';
     TriggersModule,
     ExecutionsModule,
     HealthModule,
+    ResourcesModule,
+    SchedulesModule,
   ],
 })
 export class AppModule {}

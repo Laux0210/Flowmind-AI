@@ -5,7 +5,7 @@ export interface AiGenerationResult {
   reasoning: string;
   warnings: string[];
   modelUsed: string;
-  tokensConsumed: number;
+  tokensConsumed: number | null; // null: medição não informada/confiável, diferente de zero
 }
 
 export interface AiClient {

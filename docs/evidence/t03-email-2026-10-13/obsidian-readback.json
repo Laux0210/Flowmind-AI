@@ -1,0 +1,19 @@
+{
+  "checkedAtUtc": "2026-10-13T16:33:40.119Z",
+  "canonicalSource": "repository Markdown / Obsidian Junction",
+  "notes": [
+    {
+      "path": "docs/MEMORIA.md",
+      "sourceSha256": "23bf2afa413c01d1750bfab69808ecd32d6ed122ac597e5c3ebbed02529d6a75",
+      "obsidianPath": "FlowMind-AI/Flowmind-AI/docs/MEMORIA.md",
+      "normalizedContentMatches": true
+    },
+    {
+      "path": "plan.md",
+      "sourceSha256": "709b16a2b7ed89848dbb5595d6bc71a5a62aac94aba81e7fda8f8d2de0427c1b",
+      "obsidianPath": "FlowMind-AI/Flowmind-AI/plan.md",
+      "normalizedContentMatches": true
+    }
+  ],
+  "allMatch": true
+}

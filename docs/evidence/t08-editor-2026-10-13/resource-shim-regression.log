@@ -1,0 +1,609 @@
+
+> flowmind-ai@0.1.0 test:regression
+> node --experimental-vm-modules --test tests/regression/security.test.mjs tests/regression/simulation.test.mjs tests/regression/generation-client.test.mjs tests/regression/persistence.test.mjs tests/regression/toolchain.test.mjs tests/regression/ui-workflow.test.mjs tests/regression/triggers.test.mjs tests/regression/executions.test.mjs tests/regression/full-journey.test.mjs tests/regression/ai-evaluation.test.mjs tests/regression/triggers-email.test.mjs tests/regression/ai-generation-usage.test.mjs tests/regression/workflow-editing.test.mjs
+
+(node:31584) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ dataset canônico de avaliação sintética contém exatamente 9 cenários (IA01 a IA09) (87.5392ms)
+(node:31584) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+✖ AiEvaluator verifica IA01 sem fabricar nota semântica (125.1565ms)
+✖ AiEvaluator registra campo comercial rejeitado antes da proposta, sem nota humana (82.5062ms)
+✖ AiEvaluator valida que IA04 bloqueia injeções com SECURITY_SCOPE_VIOLATION (43.6477ms)
+✖ AiEvaluator gera relatório agregado de avaliação (evaluateAll) (54.6006ms)
+(node:28780) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:28780) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+✔ cliente conserva uso da falha controlada AI_INVALID_WORKFLOW_RESPONSE, sem corpo privado (156.1122ms)
+✔ cliente conserva uso da falha controlada AI_PROMPT_REFUSED, sem corpo privado (11.168ms)
+✔ cliente conserva uso da falha controlada AI_INCOMPLETE_RESPONSE, sem corpo privado (3.8168ms)
+✔ cliente conserva uso da falha controlada AI_INVALID_JSON_RESPONSE, sem corpo privado (4.571ms)
+✔ cliente conserva uso da falha controlada AI_EMPTY_RESPONSE, sem corpo privado (12.9133ms)
+✔ cliente conserva uso da falha controlada AI_INVALID_RESPONSE_STRUCTURE, sem corpo privado (5.6546ms)
+✔ cliente preserva classificação do consumo zero (3.7408ms)
+✔ cliente preserva classificação do consumo desconhecido (2.9586ms)
+✔ cliente preserva classificação do consumo ausente (3.2255ms)
+✔ cliente preserva classificação do consumo negativo (4.0344ms)
+✔ cliente preserva classificação do consumo fracionário (3.2377ms)
+✔ cliente preserva classificação do consumo infinito (4.0472ms)
+✔ cliente preserva classificação do consumo NaN (3.9744ms)
+✔ cliente preserva classificação do consumo inteiro inseguro (2.6824ms)
+✔ cliente preserva classificação do consumo string (2.9748ms)
+✔ não transforma metadata de UNRELATED_ERROR em medição declarada (2.5493ms)
+✔ não transforma metadata de INVALID_PROMPT em medição declarada (2.2652ms)
+✔ não transforma metadata de SECURITY_SCOPE_VIOLATION em medição declarada (2.288ms)
+✔ não transforma metadata de AI_PRIVATE_FIXTURE_CODE em medição declarada (2.2141ms)
+✔ erro HTTP sem JSON tem consumo desconhecido e mensagem genérica (2.992ms)
+✔ outras rotas não recebem metadata de geração (2.2525ms)
+✔ sem token não chama fetch nem inventa consumo de geração (2.3885ms)
+✔ feedback do callback real mostra consumo 24, sem reaplicar proposta anterior (178.8343ms)
+✔ feedback do callback real mostra consumo 0, sem reaplicar proposta anterior (43.6627ms)
+✔ feedback do callback real mostra consumo null, sem reaplicar proposta anterior (34.1044ms)
+✔ falha de geração atrasada não mostra consumo no contexto de outra organização (34.306ms)
+(node:30504) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:30504) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+✔ ExecutionsService: isolamento estrito entre organizações (SEC01 e SEC04) (175.8955ms)
+✔ ExecutionsService: sanitiza segredos e tokens nos dados gravados (45.4103ms)
+✔ UsageLimitsService: barra execução quando limite de quota mensal for atingido (3.3931ms)
+(node:30888) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:30888) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+✖ T14 — C01: Jornada completa com formulário, IA, registro e e-mail (Pedido Completo) (197.2414ms)
+✖ T14 — C02: Preservação de ambiguidades em dúvidas gerais sem pontuação comercial (19.2676ms)
+✖ T14 — C03: Interrupção imediata antes de efeitos colaterais com payload incompleto (36.7435ms)
+✖ T14 — Matriz de Isolamento Multi-tenant (SEC01–SEC04, SEC09) (41.8506ms)
+✔ T14 — Segurança: Proteção contra SSRF e sanitização profunda de credenciais (11.6491ms)
+✔ T14 — Presença estática de atributos de acessibilidade (não comprova WCAG) (1.7771ms)
+(node:30972) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:30972) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+✖ template gera rascunho compatível com o motor, sem modelo/tokens fictícios (186.884ms)
+✖ gerador rejeita condição não interpretada em vez de criar score comercial (17.1962ms)
+✖ gerador aceita caso como substantivo e rejeita caso condicional (61.8363ms)
+✖ gerador sinaliza HTTP sem destino escolhido e nunca executa comandos (15.3131ms)
+✔ ApiClient rejeita todas as operações sem token, antes da rede (39.8018ms)
+✔ ApiClient propaga HTTP 401 sem inventar workflows ou geração (8.3538ms)
+✔ ApiClient propaga HTTP 404 sem inventar workflows ou geração (4.7011ms)
+✔ ApiClient propaga HTTP 500 sem inventar workflows ou geração (3.2505ms)
+✔ ApiClient envia Bearer real e PUT de atualização compatível com o controller (5.6782ms)
+✔ ApiClient envia POST correto para rotas de ciclo de vida (review, activate, deactivate) (3.4763ms)
+✔ ApiClient envia DELETE correto para exclusão de workflow e aceita HTTP 204 (3.1965ms)
+✔ OpenAiStructuredClient gera draft com JSON Schema estrito e trata recusa (refusal) (27.0816ms)
+✖ AiGeneratorService suporta cliente de IA customizado via injeção mantendo validação DAG (26.3398ms)
+✖ uso ausente permanece null do provedor até a serialização da proposta (45.5738ms)
+✔ JSON válido com término incompleto não vira proposta e conserva uso informado (12.1275ms)
+✔ configuração JSON inválida não é substituída silenciosamente por objeto vazio (10.7932ms)
+✔ recusa não revela mensagem privada nem descarta a medição de uso (26.7934ms)
+(node:14496) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:14496) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+✖ CRUD consulta fonte persistente e isola operações entre organizações com adaptador fake (193.8451ms)
+✖ falha do banco não vira sucesso em memória em nenhuma operação (31.1369ms)
+✖ consulta não retorna cópia obsoleta depois de remoção na fonte (19.6324ms)
+✖ edição de versão publicada fica bloqueada até contrato de novas revisões (18.1689ms)
+✖ exclusão de versão publicada fica bloqueada exigindo desativação prévia (15.6313ms)
+(node:31736) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:31736) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+✔ token sintético passa pela verificação do SDK e é rejeitado em test (222.1134ms)
+✔ token sintético passa pela verificação do SDK e é rejeitado em development (8.9138ms)
+✔ token sintético passa pela verificação do SDK e é rejeitado em production (5.0922ms)
+✔ utiliza os campos normalizados de toAuth (5.3771ms)
+✔ rejeita sessão sem userId (3.5402ms)
+✔ rejeita sessão sem sessionId (7.8562ms)
+✔ rejeita sessão sem orgId (4.0793ms)
+✔ erros e logs não revelam mensagem interna do provedor (3.1192ms)
+✔ ausência de chave e ausência de token falham antes de chamar SDK (6.9705ms)
+✔ chave pública exigida pelo SDK declarado também é obrigatória (8.3777ms)
+✔ guard rejeita cabeçalhos ausentes, duplicados ou com partes extras (7.1913ms)
+✔ guard usa somente a organização resolvida pelo serviço (2.992ms)
+✔ exige APIs de sessão e membership e persistência, sem permissões por omissão (9.5083ms)
+✔ sessão vigente precisa pertencer ao usuário e ao identificador autenticado (4.8187ms)
+✔ sessão revogada ou expirada falha antes da sincronização (7.3818ms)
+✔ consulta membership pelo usuário e usa papel vigente em vez do papel antigo do token (2.7415ms)
+✔ membership ausente, alheia, sem papel ou com papel desconhecido não autoriza (56.7502ms)
+✔ organização confirmada no provedor é espelhada antes de conceder acesso (8.048ms)
+✔ falhas de consulta ou upsert impedem acesso e ocultam detalhes internos (14.0632ms)
+✔ remoção do vínculo depois de uma requisição válida é verificada novamente (5.2893ms)
+(node:3448) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:3448) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+✖ C01 percorre a jornada com efeitos simulados e sem classificação comercial (160.2012ms)
+✖ C02: template com ambiguidades conserva sua interpolação na prévia (31.2513ms)
+✖ C03 falha no gatilho antes dos efeitos com email undefined (31.908ms)
+✖ C03 falha no gatilho antes dos efeitos com email "" (25.5056ms)
+✖ C03 falha no gatilho antes dos efeitos com email "   " (22.8501ms)
+✖ C03 falha no gatilho antes dos efeitos com email "invalid" (17.9574ms)
+✖ C03 falha no gatilho antes dos efeitos com email 123 (29.7482ms)
+✖ campos distintos e aliases não preenchem dados obrigatórios ausentes (32.7841ms)
+✖ referência antiga falha explicitamente em vez de produzir valor vazio (18.831ms)
+✖ DAG rejeita ciclos, gatilho divergente e nós desconectados (17.7821ms)
+✖ schema ausente ou de outra versão impede a simulação (12.7031ms)
+✔ executores de simulação rejeitam LIVE sem afirmar efeitos reais (4.2ms)
+✖ motor suporta ramificação e convergência (OR-Join), executando nó convergente (18.169ms)
+✖ interpolação resolve variáveis de internal_record para nós downstream e avalia starts_with (18.7138ms)
+✔ build compila contratos antes da API e da web (657.5023ms)
+✔ falha de um consumidor interrompe o pipeline e preserva código de saída (341.4969ms)
+✔ linter de conformidade e segurança valida arquivos e conclui com sucesso (207.6378ms)
+(node:19532) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:19532) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+✔ WebhookSignatureValidator: gera assinatura HMAC no padrão canônico t=...,v1=... (146.4496ms)
+✔ WebhookSignatureValidator: valida assinatura válida e rejeita adulteração de payload (5.3498ms)
+✔ WebhookSignatureValidator: rejeita replay attack quando timestamp exceder tolerância (5.9613ms)
+✔ SimulatedEmailProvider: despacha e-mail simulado com identificador e sem rede (23.182ms)
+✔ SimulatedEmailProvider: bloqueia CRLF injection em headers de e-mail (3.5328ms)
+(node:23480) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:23480) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+✖ WebhooksService: dispara workflow PUBLISHED e deduplica chamadas idênticas via idempotencyKey (160.5921ms)
+✖ WebhooksService: bloqueia disparo de workflow em estado DRAFT (21.826ms)
+✖ WebhooksService: valida assinatura timing-safe e rejeita token incorreto (17.0975ms)
+✖ WebhooksService: rejeita payload inválido ou chave de idempotência em branco (18.0812ms)
+✔ SchedulerService: valida cron com limites numéricos e rejeita valores fora da faixa (3.8706ms)
+✔ SchedulerService: valida timezone IANA e bloqueia execuções concorrentes simultâneas (29.5277ms)
+(node:31288) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:31288) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+✔ history: falha do consumo preserva a listagem que respondeu com sucesso (133.0456ms)
+✔ history: falha da listagem preserva consumo obtido e distingue erro de lista vazia (22.7165ms)
+✔ history: carregar contexto cancelado após getToken não dispara consultas (14.2987ms)
+✔ history: resposta E1 atrasada não substitui seleção mais recente E2 (19.6931ms)
+✔ history: finally de uma seleção antiga não encerra loading da seleção atual (18.575ms)
+✔ history: contexto Alpha→Beta→Alpha invalida a resposta da geração anterior (26.0749ms)
+✔ history: rejeição antiga não escreve erro na nova organização (12.6817ms)
+✔ history: fechar o modal invalida a inspeção pendente (16.3813ms)
+✔ history: troca de contexto durante getToken evita consultar recurso com sessão nova (9.7228ms)
+✔ history: erro da inspeção atual preserva a mensagem do servidor (12.0958ms)
+✔ editor: trocar contexto limpa isReviewing enquanto a operação anterior aguarda token (48.6765ms)
+✔ editor: trocar contexto limpa isPublishing enquanto a operação anterior aguarda token (27.6078ms)
+✔ editor: trocar contexto limpa isDeactivating enquanto a operação anterior aguarda token (27.6924ms)
+✔ editor: feedback da simulação respeita status FAILED (18.7102ms)
+✔ editor: feedback da simulação respeita status COMPLETED (19.6673ms)
+✔ editor: handler de aplicar proposta bloqueia mutação enquanto revisão está pendente (28.7149ms)
+✔ editor: reviewWorkflow não aplica resposta de revisão local anterior (20.6802ms)
+✔ editor: reviewWorkflow não envia mutação após trocar contexto durante getToken (24.3835ms)
+✔ editor: activateWorkflow não aplica resposta de revisão local anterior (19.0222ms)
+✔ editor: activateWorkflow não envia mutação após trocar contexto durante getToken (24.9191ms)
+✔ ApiClient sanitiza URL e codifica identificadores com caracteres especiais (100.694ms)
+✔ ApiClient propaga mensagens de erro estruturadas da API em caso de 400 ou 403 (3.38ms)
+✔ Mapeamento dos 6 nós do catálogo do MVP para o canvas XYFlow (16.5529ms)
+✖ Validação de simulação de workflow com dados sintéticos no cliente (27.9152ms)
+✔ ApiClient serializa requisições de simulação e ciclo de vida com integridade de headers e payload (2.8319ms)
+✔ Invariantes estáticas de prevenção de condições de corrida e feedback acessível no frontend (1.3994ms)
+(node:30156) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ configuração pendente impede salvar uma definição anterior à edição do usuário (180.2582ms)
+(node:30156) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+✔ resposta de salvamento obsoleta não substitui novas alterações nem escreve feedback de erro (51.877ms)
+✔ parâmetros de e-mail editados preservam IDs, referências e campos não alterados (108.9461ms)
+✔ valores JSON da condição preservam número, array e booleano (1.245ms)
+✔ JSON inválido e campos desconhecidos não substituem a configuração (1.5377ms)
+✔ aliases existentes de mensagem e mapeamento são preservados ao editar outro campo (0.6889ms)
+✔ draft incompleto continua editável e ausência de opcionais não injeta defaults (0.3541ms)
+✔ edições de parâmetros/posições/conexões são negadas em REVIEWED (0.6322ms)
+✔ edições de parâmetros/posições/conexões são negadas em PUBLISHED (0.2001ms)
+✔ edições de parâmetros/posições/conexões são negadas em ARCHIVED (0.2396ms)
+✔ movimentação persiste coordenadas finitas sem mudar configuração ou arestas (0.4088ms)
+✔ conexões condicionais preservam os handles usados pelo motor (0.3979ms)
+✔ ciclo, auto-conexão, nó ausente e conexão repetida são recusados antes de mudar o grafo (0.4043ms)
+✔ remoção de conexão preserva nós e demais IDs, sem resolver convergências (0.3214ms)
+✔ formulários abrangem os seis tipos e conservam ausência versus valores JSON (0.2579ms)
+✔ arestas exibidas no canvas mantêm sourceHandle e targetHandle sem normalização (32.1147ms)
+✔ edição aplicada marca dirty, avança revisão e invalida resultado anterior (57.9313ms)
+✔ edição não altera o workflow durante saving (38.595ms)
+✔ edição não altera o workflow durante reviewing (36.6212ms)
+✔ edição não altera o workflow durante publishing (44.1347ms)
+✔ edição não altera o workflow durante deactivating (36.6152ms)
+✔ edição não altera o workflow durante simulating (35.8862ms)
+✔ edição não altera o workflow durante generatingAi (27.5726ms)
+✔ duas movimentações antes de renderizar preservam as duas alterações (39.7065ms)
+✔ edição com contexto Alpha→Beta→Alpha anterior é descartada (25.1383ms)
+✔ rascunho local de parâmetros impede trocar etapa, mover ou aplicar conexões (26.8908ms)
+✔ conectar e remover pela interface altera somente as arestas pertinentes (22.4158ms)
+✔ editar e salvar no mesmo snapshot usa a definição recente da referência (22.6658ms)
+✔ edição antes de render bloqueia simulação, revisão e ativação do snapshot antigo (22.8634ms)
+✔ proposta aplicada e editada antes de render mantém os nós da proposta (59.6719ms)
+✔ REVIEWED recebido impede editar antes de renderizar o novo estado (23.3484ms)
+✔ PUBLISHED recebido impede editar antes de renderizar o novo estado (25.9804ms)
+✔ falha de carregamento do contexto anterior não altera erro ou loading atuais (24.0176ms)
+✔ handles padrão e nomeado default têm chaves distintas no componente real (52.2606ms)
+✔ efeito real do nó solicita atualização dos bounds dos handles após render (13.8238ms)
+✔ formulário real de trigger_form renderiza labels, valores escapados e bloqueio de edição (47.3353ms)
+✔ formulário real de ai_analyze_intent renderiza labels, valores escapados e bloqueio de edição (16.6251ms)
+✔ formulário real de internal_record renderiza labels, valores escapados e bloqueio de edição (16.7422ms)
+✔ formulário real de send_email renderiza labels, valores escapados e bloqueio de edição (16.76ms)
+✔ formulário real de condition renderiza labels, valores escapados e bloqueio de edição (17.8834ms)
+✔ formulário real de http_request renderiza labels, valores escapados e bloqueio de edição (15.2008ms)
+ℹ tests 177
+ℹ suites 0
+ℹ pass 140
+ℹ fail 37
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2499.612
+
+✖ failing tests:
+
+test at tests\regression\ai-evaluation.test.mjs:27:1
+✖ AiEvaluator verifica IA01 sem fabricar nota semântica (125.1565ms)
+  SyntaxError: The requested module '@flowmind/contracts' does not provide an export named 'ResourceDescriptor'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/ai-evaluation.test.mjs:28:36)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\ai-evaluation.test.mjs:44:1
+✖ AiEvaluator registra campo comercial rejeitado antes da proposta, sem nota humana (82.5062ms)
+  SyntaxError: The requested module '@flowmind/contracts' does not provide an export named 'ResourceDescriptor'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/ai-evaluation.test.mjs:45:36)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\ai-evaluation.test.mjs:82:1
+✖ AiEvaluator valida que IA04 bloqueia injeções com SECURITY_SCOPE_VIOLATION (43.6477ms)
+  SyntaxError: The requested module '@flowmind/contracts' does not provide an export named 'ResourceDescriptor'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/ai-evaluation.test.mjs:83:36)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\ai-evaluation.test.mjs:99:1
+✖ AiEvaluator gera relatório agregado de avaliação (evaluateAll) (54.6006ms)
+  SyntaxError: The requested module '@flowmind/contracts' does not provide an export named 'ResourceDescriptor'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/ai-evaluation.test.mjs:100:36)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\full-journey.test.mjs:80:1
+✖ T14 — C01: Jornada completa com formulário, IA, registro e e-mail (Pedido Completo) (197.2414ms)
+  SyntaxError: The requested module '@flowmind/contracts' does not provide an export named 'ResourceDescriptor'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/full-journey.test.mjs:81:37)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+test at tests\regression\full-journey.test.mjs:157:1
+✖ T14 — C02: Preservação de ambiguidades em dúvidas gerais sem pontuação comercial (19.2676ms)
+  SyntaxError: The requested module '@flowmind/contracts' does not provide an export named 'ResourceDescriptor'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/full-journey.test.mjs:158:37)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\full-journey.test.mjs:178:1
+✖ T14 — C03: Interrupção imediata antes de efeitos colaterais com payload incompleto (36.7435ms)
+  SyntaxError: The requested module '@flowmind/contracts' does not provide an export named 'ResourceDescriptor'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/full-journey.test.mjs:179:37)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\full-journey.test.mjs:201:1
+✖ T14 — Matriz de Isolamento Multi-tenant (SEC01–SEC04, SEC09) (41.8506ms)
+  SyntaxError: The requested module '@flowmind/contracts' does not provide an export named 'ResourceDescriptor'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/full-journey.test.mjs:202:40)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\generation-client.test.mjs:30:1
+✖ template gera rascunho compatível com o motor, sem modelo/tokens fictícios (186.884ms)
+  SyntaxError: The requested module '@flowmind/contracts' does not provide an export named 'ResourceDescriptor'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/generation-client.test.mjs:31:23)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+test at tests\regression\generation-client.test.mjs:47:1
+✖ gerador rejeita condição não interpretada em vez de criar score comercial (17.1962ms)
+  SyntaxError: The requested module '@flowmind/contracts' does not provide an export named 'ResourceDescriptor'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/generation-client.test.mjs:48:23)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\generation-client.test.mjs:54:1
+✖ gerador aceita caso como substantivo e rejeita caso condicional (61.8363ms)
+  SyntaxError: The requested module '@flowmind/contracts' does not provide an export named 'ResourceDescriptor'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/generation-client.test.mjs:55:23)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\generation-client.test.mjs:67:1
+✖ gerador sinaliza HTTP sem destino escolhido e nunca executa comandos (15.3131ms)
+  SyntaxError: The requested module '@flowmind/contracts' does not provide an export named 'ResourceDescriptor'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/generation-client.test.mjs:68:23)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\generation-client.test.mjs:219:1
+✖ AiGeneratorService suporta cliente de IA customizado via injeção mantendo validação DAG (26.3398ms)
+  SyntaxError: The requested module '@flowmind/contracts' does not provide an export named 'ResourceDescriptor'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/generation-client.test.mjs:220:35)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\generation-client.test.mjs:253:1
+✖ uso ausente permanece null do provedor até a serialização da proposta (45.5738ms)
+  SyntaxError: The requested module '@flowmind/contracts' does not provide an export named 'ResourceDescriptor'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/generation-client.test.mjs:256:23)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\persistence.test.mjs:44:1
+✖ CRUD consulta fonte persistente e isola operações entre organizações com adaptador fake (193.8451ms)
+  SyntaxError: The requested module '@flowmind/contracts' does not provide an export named 'ResourceDescriptor'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async fixture (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/persistence.test.mjs:35:23)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/persistence.test.mjs:45:23)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+test at tests\regression\persistence.test.mjs:64:1
+✖ falha do banco não vira sucesso em memória em nenhuma operação (31.1369ms)
+  SyntaxError: The requested module '@flowmind/contracts' does not provide an export named 'ResourceDescriptor'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async fixture (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/persistence.test.mjs:35:23)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/persistence.test.mjs:65:33)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\persistence.test.mjs:80:1
+✖ consulta não retorna cópia obsoleta depois de remoção na fonte (19.6324ms)
+  SyntaxError: The requested module '@flowmind/contracts' does not provide an export named 'ResourceDescriptor'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async fixture (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/persistence.test.mjs:35:23)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/persistence.test.mjs:81:29)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\persistence.test.mjs:88:1
+✖ edição de versão publicada fica bloqueada até contrato de novas revisões (18.1689ms)
+  SyntaxError: The requested module '@flowmind/contracts' does not provide an export named 'ResourceDescriptor'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async fixture (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/persistence.test.mjs:35:23)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/persistence.test.mjs:89:29)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\persistence.test.mjs:95:1
+✖ exclusão de versão publicada fica bloqueada exigindo desativação prévia (15.6313ms)
+  SyntaxError: The requested module '@flowmind/contracts' does not provide an export named 'ResourceDescriptor'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async fixture (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/persistence.test.mjs:35:23)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/persistence.test.mjs:96:29)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\simulation.test.mjs:32:1
+✖ C01 percorre a jornada com efeitos simulados e sem classificação comercial (160.2012ms)
+  SyntaxError: The requested module '@flowmind/contracts' does not provide an export named 'ResourceDescriptor'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async simulate (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:28:23)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:33:18)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+test at tests\regression\simulation.test.mjs:53:1
+✖ C02: template com ambiguidades conserva sua interpolação na prévia (31.2513ms)
+  SyntaxError: The requested module '@flowmind/contracts' does not provide an export named 'ResourceDescriptor'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async simulate (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:28:23)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:54:18)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\simulation.test.mjs:64:3
+✖ C03 falha no gatilho antes dos efeitos com email undefined (31.908ms)
+  SyntaxError: The requested module '@flowmind/contracts' does not provide an export named 'ResourceDescriptor'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async simulate (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:28:23)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:65:20)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\simulation.test.mjs:64:3
+✖ C03 falha no gatilho antes dos efeitos com email "" (25.5056ms)
+  SyntaxError: The requested module '@flowmind/contracts' does not provide an export named 'ResourceDescriptor'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async simulate (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:28:23)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:65:20)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\simulation.test.mjs:64:3
+✖ C03 falha no gatilho antes dos efeitos com email "   " (22.8501ms)
+  SyntaxError: The requested module '@flowmind/contracts' does not provide an export named 'ResourceDescriptor'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async simulate (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:28:23)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:65:20)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\simulation.test.mjs:64:3
+✖ C03 falha no gatilho antes dos efeitos com email "invalid" (17.9574ms)
+  SyntaxError: The requested module '@flowmind/contracts' does not provide an export named 'ResourceDescriptor'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async simulate (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:28:23)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:65:20)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\simulation.test.mjs:64:3
+✖ C03 falha no gatilho antes dos efeitos com email 123 (29.7482ms)
+  SyntaxError: The requested module '@flowmind/contracts' does not provide an export named 'ResourceDescriptor'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async simulate (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:28:23)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:65:20)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\simulation.test.mjs:72:1
+✖ campos distintos e aliases não preenchem dados obrigatórios ausentes (32.7841ms)
+  SyntaxError: The requested module '@flowmind/contracts' does not provide an export named 'ResourceDescriptor'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async simulate (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:28:23)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:73:18)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\simulation.test.mjs:78:1
+✖ referência antiga falha explicitamente em vez de produzir valor vazio (18.831ms)
+  TypeError: error.getResponse is not a function
+      at Object.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:83:22)
+      at expectedException (node:assert:578:17)
+      at expectsError (node:assert:703:21)
+      at strict.rejects (node:assert:769:3)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:81:3)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\simulation.test.mjs:88:1
+✖ DAG rejeita ciclos, gatilho divergente e nós desconectados (17.7821ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /Ciclo/. Input:
+  
+  "SyntaxError: The requested module '@flowmind/contracts' does not provide an export named 'ResourceDescriptor'"
+  
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:92:3)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: SyntaxError: The requested module '@flowmind/contracts' does not provide an export named 'ResourceDescriptor'
+        at SourceTextModule.link (node:internal/vm/module:209:17)
+        at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+        at async simulate (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:28:23)
+        at async waitForActual (node:assert:646:5)
+        at async strict.rejects (node:assert:769:25)
+        at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:92:3)
+        at async Test.run (node:internal/test_runner/test:1409:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:974:7),
+    expected: /Ciclo/,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at tests\regression\simulation.test.mjs:101:1
+✖ schema ausente ou de outra versão impede a simulação (12.7031ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /schema/. Input:
+  
+  "SyntaxError: The requested module '@flowmind/contracts' does not provide an export named 'ResourceDescriptor'"
+  
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: SyntaxError: The requested module '@flowmind/contracts' does not provide an export named 'ResourceDescriptor'
+        at SourceTextModule.link (node:internal/vm/module:209:17)
+        at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+        at async simulate (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:28:23)
+        at async waitForActual (node:assert:646:5)
+        at async strict.rejects (node:assert:769:25)
+        at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:104:5)
+        at async Test.run (node:internal/test_runner/test:1409:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:974:7),
+    expected: /schema/,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at tests\regression\simulation.test.mjs:117:1
+✖ motor suporta ramificação e convergência (OR-Join), executando nó convergente (18.169ms)
+  SyntaxError: The requested module '@flowmind/contracts' does not provide an export named 'ResourceDescriptor'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async simulate (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:28:23)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:137:18)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\simulation.test.mjs:150:1
+✖ interpolação resolve variáveis de internal_record para nós downstream e avalia starts_with (18.7138ms)
+  SyntaxError: The requested module '@flowmind/contracts' does not provide an export named 'ResourceDescriptor'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async simulate (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:28:23)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/simulation.test.mjs:167:15)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\triggers.test.mjs:30:1
+✖ WebhooksService: dispara workflow PUBLISHED e deduplica chamadas idênticas via idempotencyKey (160.5921ms)
+  SyntaxError: The requested module '@flowmind/contracts' does not provide an export named 'ResourceDescriptor'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/triggers.test.mjs:31:23)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+test at tests\regression\triggers.test.mjs:63:1
+✖ WebhooksService: bloqueia disparo de workflow em estado DRAFT (21.826ms)
+  SyntaxError: The requested module '@flowmind/contracts' does not provide an export named 'ResourceDescriptor'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/triggers.test.mjs:64:23)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\triggers.test.mjs:75:1
+✖ WebhooksService: valida assinatura timing-safe e rejeita token incorreto (17.0975ms)
+  SyntaxError: The requested module '@flowmind/contracts' does not provide an export named 'ResourceDescriptor'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/triggers.test.mjs:76:23)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\triggers.test.mjs:98:1
+✖ WebhooksService: rejeita payload inválido ou chave de idempotência em branco (18.0812ms)
+  SyntaxError: The requested module '@flowmind/contracts' does not provide an export named 'ResourceDescriptor'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/triggers.test.mjs:99:23)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\ui-workflow.test.mjs:264:1
+✖ Validação de simulação de workflow com dados sintéticos no cliente (27.9152ms)
+  SyntaxError: The requested module '@flowmind/contracts' does not provide an export named 'ResourceDescriptor'
+      at SourceTextModule.link (node:internal/vm/module:209:17)
+      at async loadTypeScript (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-typescript.mjs:90:3)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/ui-workflow.test.mjs:265:31)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)

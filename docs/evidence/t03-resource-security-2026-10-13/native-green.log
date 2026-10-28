@@ -1,0 +1,18 @@
+(node:30832) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:30832) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+✔ WebhookSignatureValidator: gera assinatura HMAC no padrão canônico t=...,v1=... (75.9189ms)
+✔ WebhookSignatureValidator: valida assinatura válida e rejeita adulteração de payload (2.5215ms)
+✔ WebhookSignatureValidator: rejeita replay attack quando timestamp exceder tolerância (3.7499ms)
+✔ SimulatedEmailProvider: despacha e-mail simulado com identificador e sem rede (6.4791ms)
+✔ SimulatedEmailProvider: bloqueia CRLF injection em headers de e-mail (4.5774ms)
+✔ T03-S3 (SC09): ResourceResolver rejeita credenciais e formulários cross-tenant e desconhecidos (16.4539ms)
+✔ T03-S3 (SC09): validateWorkflowResources bloqueia workflow com recurso cross-tenant (13.7091ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 254.0128

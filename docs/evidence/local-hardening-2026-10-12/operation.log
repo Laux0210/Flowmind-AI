@@ -1,0 +1,11 @@
+
+> flowmind-ai@0.1.0 check:operation
+> node scripts/verify-operation.mjs
+
+--- Checagens estáticas de configuração operacional (T15) ---
+✔ Variáveis e prefixos restritos conferidos em .env.example.
+✔ Declarações de PostgreSQL, Redis e healthchecks encontradas no Compose.
+✔ Comandos esperados encontrados no arquivo do CI.
+✔ Métodos de liveness e readiness encontrados no código.
+--- Checagens estáticas aprovadas. Serviços, CI remoto, restauração e integrações reais não foram exercitados. ---
+

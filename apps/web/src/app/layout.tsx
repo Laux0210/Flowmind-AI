@@ -13,12 +13,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <ClerkProvider afterSignOutUrl="/">
-      <html lang="pt-BR">
-        <body className="antialiased bg-slate-50 text-slate-900">
+    <html lang="pt-BR">
+      <body className="antialiased bg-slate-50 text-slate-900">
+        <ClerkProvider afterSignOutUrl="/">
           {children}
-        </body>
-      </html>
-    </ClerkProvider>
+        </ClerkProvider>
+      </body>
+    </html>
   );
 }

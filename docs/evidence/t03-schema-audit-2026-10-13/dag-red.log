@@ -1,0 +1,385 @@
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151002: [0mUsing hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151002: [0mUsing hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151002: [0mUsing hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151002: [0mUsing hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151002: [0mUsing hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151002: [0mUsing hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151002: [0mUsing hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151002: [0mUsing hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151002: [0mUsing hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151002: [0mUsing hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151002: [0mUsing hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+(node:25640) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+FAIL apps/api/src/engine/dag-validator.catalog.spec.ts
+  ● Validação runtime do catálogo e identidades do DAG › nega tipo de nó inválido "fixture_unknown_type" com erro controlado
+
+    expect(received).toThrow(expected)
+
+    Expected constructor: BadRequestException
+
+    Received function did not throw
+
+      35 |     const w = definition();
+      36 |     w.nodes[1].type = type as unknown as typeof w.nodes[1]['type'];
+    > 37 |     expect(() => DagValidator.validateAndSort(w)).toThrow(BadRequestException);
+         |                                                   ^
+      38 |   });
+      39 |
+      40 |   it.each([undefined, null, '', '  ', 42])('nega ID de nó inválido %j', (id) => {
+
+      at src/engine/dag-validator.catalog.spec.ts:37:51
+
+  ● Validação runtime do catálogo e identidades do DAG › nega tipo de nó inválido null com erro controlado
+
+    expect(received).toThrow(expected)
+
+    Expected constructor: BadRequestException
+    Received constructor: TypeError
+
+    Received message: "Cannot read properties of null (reading 'startsWith')"
+
+          33 |
+          34 |     // Validação de gatilhos
+        > 35 |     const triggerNodes = nodes.filter((n) => n.type.startsWith('trigger_'));
+             |                                                     ^
+          36 |     if (triggerNodes.length === 0) {
+          37 |       throw new BadRequestException('O workflow deve possuir exatamente um nó de gatilho (trigger).');
+          38 |     }
+
+      at src/engine/dag-validator.ts:35:53
+                at Array.filter (<anonymous>)
+      at DagValidator.validateAndSort (src/engine/dag-validator.ts:35:32)
+      at src/engine/dag-validator.catalog.spec.ts:37:31
+      at Object.<anonymous> (../../node_modules/expect/build/index.js:1824:9)
+      at Object.throwingMatcher [as toThrow] (../../node_modules/expect/build/index.js:2235:93)
+      at src/engine/dag-validator.catalog.spec.ts:37:51
+      at src/engine/dag-validator.catalog.spec.ts:37:51
+
+  ● Validação runtime do catálogo e identidades do DAG › nega tipo de nó inválido {} com erro controlado
+
+    expect(received).toThrow(expected)
+
+    Expected constructor: BadRequestException
+    Received constructor: TypeError
+
+    Received message: "n.type.startsWith is not a function"
+
+          33 |
+          34 |     // Validação de gatilhos
+        > 35 |     const triggerNodes = nodes.filter((n) => n.type.startsWith('trigger_'));
+             |                                                     ^
+          36 |     if (triggerNodes.length === 0) {
+          37 |       throw new BadRequestException('O workflow deve possuir exatamente um nó de gatilho (trigger).');
+          38 |     }
+
+      at src/engine/dag-validator.ts:35:53
+                at Array.filter (<anonymous>)
+      at DagValidator.validateAndSort (src/engine/dag-validator.ts:35:32)
+      at src/engine/dag-validator.catalog.spec.ts:37:31
+      at Object.<anonymous> (../../node_modules/expect/build/index.js:1824:9)
+      at Object.throwingMatcher [as toThrow] (../../node_modules/expect/build/index.js:2235:93)
+      at src/engine/dag-validator.catalog.spec.ts:37:51
+      at src/engine/dag-validator.catalog.spec.ts:37:51
+
+  ● Validação runtime do catálogo e identidades do DAG › nega tipo de nó inválido 17 com erro controlado
+
+    expect(received).toThrow(expected)
+
+    Expected constructor: BadRequestException
+    Received constructor: TypeError
+
+    Received message: "n.type.startsWith is not a function"
+
+          33 |
+          34 |     // Validação de gatilhos
+        > 35 |     const triggerNodes = nodes.filter((n) => n.type.startsWith('trigger_'));
+             |                                                     ^
+          36 |     if (triggerNodes.length === 0) {
+          37 |       throw new BadRequestException('O workflow deve possuir exatamente um nó de gatilho (trigger).');
+          38 |     }
+
+      at src/engine/dag-validator.ts:35:53
+                at Array.filter (<anonymous>)
+      at DagValidator.validateAndSort (src/engine/dag-validator.ts:35:32)
+      at src/engine/dag-validator.catalog.spec.ts:37:31
+      at Object.<anonymous> (../../node_modules/expect/build/index.js:1824:9)
+      at Object.throwingMatcher [as toThrow] (../../node_modules/expect/build/index.js:2235:93)
+      at src/engine/dag-validator.catalog.spec.ts:37:51
+      at src/engine/dag-validator.catalog.spec.ts:37:51
+
+  ● Validação runtime do catálogo e identidades do DAG › nega ID de nó inválido undefined
+
+    expect(received).toThrow(expected)
+
+    Expected constructor: BadRequestException
+
+    Received function did not throw
+
+      42 |     w.nodes[1].id = id as unknown as string;
+      43 |     w.edges[0].targetNodeId = id as unknown as string;
+    > 44 |     expect(() => DagValidator.validateAndSort(w)).toThrow(BadRequestException);
+         |                                                   ^
+      45 |   });
+      46 |
+      47 |   it.each([undefined, null, '', '  ', 42])('nega ID de aresta inválido %j', (id) => {
+
+      at src/engine/dag-validator.catalog.spec.ts:44:51
+
+  ● Validação runtime do catálogo e identidades do DAG › nega ID de nó inválido null
+
+    expect(received).toThrow(expected)
+
+    Expected constructor: BadRequestException
+
+    Received function did not throw
+
+      42 |     w.nodes[1].id = id as unknown as string;
+      43 |     w.edges[0].targetNodeId = id as unknown as string;
+    > 44 |     expect(() => DagValidator.validateAndSort(w)).toThrow(BadRequestException);
+         |                                                   ^
+      45 |   });
+      46 |
+      47 |   it.each([undefined, null, '', '  ', 42])('nega ID de aresta inválido %j', (id) => {
+
+      at src/engine/dag-validator.catalog.spec.ts:44:51
+
+  ● Validação runtime do catálogo e identidades do DAG › nega ID de nó inválido ""
+
+    expect(received).toThrow(expected)
+
+    Expected constructor: BadRequestException
+
+    Received function did not throw
+
+      42 |     w.nodes[1].id = id as unknown as string;
+      43 |     w.edges[0].targetNodeId = id as unknown as string;
+    > 44 |     expect(() => DagValidator.validateAndSort(w)).toThrow(BadRequestException);
+         |                                                   ^
+      45 |   });
+      46 |
+      47 |   it.each([undefined, null, '', '  ', 42])('nega ID de aresta inválido %j', (id) => {
+
+      at src/engine/dag-validator.catalog.spec.ts:44:51
+
+  ● Validação runtime do catálogo e identidades do DAG › nega ID de nó inválido "  "
+
+    expect(received).toThrow(expected)
+
+    Expected constructor: BadRequestException
+
+    Received function did not throw
+
+      42 |     w.nodes[1].id = id as unknown as string;
+      43 |     w.edges[0].targetNodeId = id as unknown as string;
+    > 44 |     expect(() => DagValidator.validateAndSort(w)).toThrow(BadRequestException);
+         |                                                   ^
+      45 |   });
+      46 |
+      47 |   it.each([undefined, null, '', '  ', 42])('nega ID de aresta inválido %j', (id) => {
+
+      at src/engine/dag-validator.catalog.spec.ts:44:51
+
+  ● Validação runtime do catálogo e identidades do DAG › nega ID de nó inválido 42
+
+    expect(received).toThrow(expected)
+
+    Expected constructor: BadRequestException
+
+    Received function did not throw
+
+      42 |     w.nodes[1].id = id as unknown as string;
+      43 |     w.edges[0].targetNodeId = id as unknown as string;
+    > 44 |     expect(() => DagValidator.validateAndSort(w)).toThrow(BadRequestException);
+         |                                                   ^
+      45 |   });
+      46 |
+      47 |   it.each([undefined, null, '', '  ', 42])('nega ID de aresta inválido %j', (id) => {
+
+      at src/engine/dag-validator.catalog.spec.ts:44:51
+
+  ● Validação runtime do catálogo e identidades do DAG › nega ID de aresta inválido undefined
+
+    expect(received).toThrow(expected)
+
+    Expected constructor: BadRequestException
+
+    Received function did not throw
+
+      47 |   it.each([undefined, null, '', '  ', 42])('nega ID de aresta inválido %j', (id) => {
+      48 |     const w = definition(); w.edges[0].id = id as unknown as string;
+    > 49 |     expect(() => DagValidator.validateAndSort(w)).toThrow(BadRequestException);
+         |                                                   ^
+      50 |   });
+      51 |
+      52 |   it('nega colisão de IDs entre arestas true e false', () => {
+
+      at src/engine/dag-validator.catalog.spec.ts:49:51
+
+  ● Validação runtime do catálogo e identidades do DAG › nega ID de aresta inválido null
+
+    expect(received).toThrow(expected)
+
+    Expected constructor: BadRequestException
+
+    Received function did not throw
+
+      47 |   it.each([undefined, null, '', '  ', 42])('nega ID de aresta inválido %j', (id) => {
+      48 |     const w = definition(); w.edges[0].id = id as unknown as string;
+    > 49 |     expect(() => DagValidator.validateAndSort(w)).toThrow(BadRequestException);
+         |                                                   ^
+      50 |   });
+      51 |
+      52 |   it('nega colisão de IDs entre arestas true e false', () => {
+
+      at src/engine/dag-validator.catalog.spec.ts:49:51
+
+  ● Validação runtime do catálogo e identidades do DAG › nega ID de aresta inválido ""
+
+    expect(received).toThrow(expected)
+
+    Expected constructor: BadRequestException
+
+    Received function did not throw
+
+      47 |   it.each([undefined, null, '', '  ', 42])('nega ID de aresta inválido %j', (id) => {
+      48 |     const w = definition(); w.edges[0].id = id as unknown as string;
+    > 49 |     expect(() => DagValidator.validateAndSort(w)).toThrow(BadRequestException);
+         |                                                   ^
+      50 |   });
+      51 |
+      52 |   it('nega colisão de IDs entre arestas true e false', () => {
+
+      at src/engine/dag-validator.catalog.spec.ts:49:51
+
+  ● Validação runtime do catálogo e identidades do DAG › nega ID de aresta inválido "  "
+
+    expect(received).toThrow(expected)
+
+    Expected constructor: BadRequestException
+
+    Received function did not throw
+
+      47 |   it.each([undefined, null, '', '  ', 42])('nega ID de aresta inválido %j', (id) => {
+      48 |     const w = definition(); w.edges[0].id = id as unknown as string;
+    > 49 |     expect(() => DagValidator.validateAndSort(w)).toThrow(BadRequestException);
+         |                                                   ^
+      50 |   });
+      51 |
+      52 |   it('nega colisão de IDs entre arestas true e false', () => {
+
+      at src/engine/dag-validator.catalog.spec.ts:49:51
+
+  ● Validação runtime do catálogo e identidades do DAG › nega ID de aresta inválido 42
+
+    expect(received).toThrow(expected)
+
+    Expected constructor: BadRequestException
+
+    Received function did not throw
+
+      47 |   it.each([undefined, null, '', '  ', 42])('nega ID de aresta inválido %j', (id) => {
+      48 |     const w = definition(); w.edges[0].id = id as unknown as string;
+    > 49 |     expect(() => DagValidator.validateAndSort(w)).toThrow(BadRequestException);
+         |                                                   ^
+      50 |   });
+      51 |
+      52 |   it('nega colisão de IDs entre arestas true e false', () => {
+
+      at src/engine/dag-validator.catalog.spec.ts:49:51
+
+  ● Validação runtime do catálogo e identidades do DAG › nega colisão de IDs entre arestas true e false
+
+    expect(received).toThrow(expected)
+
+    Expected constructor: BadRequestException
+
+    Received function did not throw
+
+      51 |
+      52 |   it('nega colisão de IDs entre arestas true e false', () => {
+    > 53 |     expect(() => DagValidator.validateAndSort(duplicateEdges())).toThrow(BadRequestException);
+         |                                                                  ^
+      54 |   });
+      55 |
+      56 |   it('mantém a execução do ramo ativo quando os IDs das arestas são distintos', async () => {
+
+      at Object.<anonymous> (src/engine/dag-validator.catalog.spec.ts:53:66)
+
+  ● Guardas do DAG antes da revisão e do snapshot › review nega unknown-type antes de gravar metadados/snapshot
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"reviewedAt": "2026-10-13T06:58:29.384Z", "reviewedBy": "admin_fixture", "workflow": {"createdAt": "2026-10-13T00:00:00.000Z", "description": undefined, "edges": [{"id": "form_record", "sourceNodeId": "form", "targetNodeId": "record"}], "id": "wf_catalog", "name": "Fixture", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"fieldMappings": {"name": "{{form.contact_name}}"}}, "id": "record", "label": "Fixture", "position": {"x": 1, "y": 0}, "type": "fixture_unknown_type"}], "orgId": "org_fixture", "reviewedAt": "2026-10-13T06:58:29.384Z", "reviewedBy": "admin_fixture", "schemaVersion": "1.0.0", "status": "REVIEWED", "triggerNodeId": "form", "updatedAt": "2026-10-13T00:00:00.000Z", "version": 1}}
+
+      86 |       $transaction: async (action: (tx: object) => Promise<unknown>) => action({ workflow, workflowVersion }) };
+      87 |     const service = new WorkflowsService(prisma as unknown as PrismaService, new WorkflowEngineService());
+    > 88 |     await expect(service[operation](row.orgId, row.id, 'admin_fixture')).rejects.toBeInstanceOf(BadRequestException);
+         |           ^
+      89 |     expect(workflow.updateMany).not.toHaveBeenCalled();
+      90 |     expect(workflowVersion.create).not.toHaveBeenCalled();
+      91 |   });
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/engine/dag-validator.catalog.spec.ts:88:11
+
+  ● Guardas do DAG antes da revisão e do snapshot › publish nega unknown-type antes de gravar metadados/snapshot
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"publishedAt": "2026-10-13T06:58:29.386Z", "versionSnapshot": {"edges": [{"id": "form_record", "sourceNodeId": "form", "targetNodeId": "record"}], "id": "snapshot", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"fieldMappings": {"name": "{{form.contact_name}}"}}, "id": "record", "label": "Fixture", "position": {"x": 1, "y": 0}, "type": "fixture_unknown_type"}], "publishedAt": "2026-10-13T06:58:29.386Z", "publishedBy": "admin_fixture", "schemaVersion": "1.0.0", "triggerNodeId": "form", "version": 1, "workflowId": "wf_catalog"}, "workflow": {"createdAt": "2026-10-13T00:00:00.000Z", "description": undefined, "edges": [{"id": "form_record", "sourceNodeId": "form", "targetNodeId": "record"}], "id": "wf_catalog", "name": "Fixture", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"fieldMappings": {"name": "{{form.contact_name}}"}}, "id": "record", "label": "Fixture", "position": {"x": 1, "y": 0}, "type": "fixture_unknown_type"}], "orgId": "org_fixture", "reviewedAt": "2026-10-13T00:00:00.000Z", "reviewedBy": "admin_fixture", "schemaVersion": "1.0.0", "status": "PUBLISHED", "triggerNodeId": "form", "updatedAt": "2026-10-13T00:00:00.000Z", "version": 1}}
+
+      86 |       $transaction: async (action: (tx: object) => Promise<unknown>) => action({ workflow, workflowVersion }) };
+      87 |     const service = new WorkflowsService(prisma as unknown as PrismaService, new WorkflowEngineService());
+    > 88 |     await expect(service[operation](row.orgId, row.id, 'admin_fixture')).rejects.toBeInstanceOf(BadRequestException);
+         |           ^
+      89 |     expect(workflow.updateMany).not.toHaveBeenCalled();
+      90 |     expect(workflowVersion.create).not.toHaveBeenCalled();
+      91 |   });
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/engine/dag-validator.catalog.spec.ts:88:11
+
+  ● Guardas do DAG antes da revisão e do snapshot › review nega duplicate-edge antes de gravar metadados/snapshot
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"reviewedAt": "2026-10-13T06:58:29.387Z", "reviewedBy": "admin_fixture", "workflow": {"createdAt": "2026-10-13T00:00:00.000Z", "description": undefined, "edges": [{"id": "form_condition", "sourceNodeId": "form", "targetNodeId": "condition"}, {"id": "duplicate", "sourceHandle": "true", "sourceNodeId": "condition", "targetNodeId": "record"}, {"id": "duplicate", "sourceHandle": "false", "sourceNodeId": "condition", "targetNodeId": "record"}], "id": "wf_catalog", "name": "Fixture", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"leftOperand": "a", "operator": "equals", "rightOperand": "a"}, "id": "condition", "label": "Fixture", "position": {"x": 0, "y": 1}, "type": "condition"}, {"config": {"fieldMappings": {"name": "{{form.contact_name}}"}}, "id": "record", "label": "Fixture", "position": {"x": 1, "y": 0}, "type": "internal_record"}], "orgId": "org_fixture", "reviewedAt": "2026-10-13T06:58:29.387Z", "reviewedBy": "admin_fixture", "schemaVersion": "1.0.0", "status": "REVIEWED", "triggerNodeId": "form", "updatedAt": "2026-10-13T00:00:00.000Z", "version": 1}}
+
+      86 |       $transaction: async (action: (tx: object) => Promise<unknown>) => action({ workflow, workflowVersion }) };
+      87 |     const service = new WorkflowsService(prisma as unknown as PrismaService, new WorkflowEngineService());
+    > 88 |     await expect(service[operation](row.orgId, row.id, 'admin_fixture')).rejects.toBeInstanceOf(BadRequestException);
+         |           ^
+      89 |     expect(workflow.updateMany).not.toHaveBeenCalled();
+      90 |     expect(workflowVersion.create).not.toHaveBeenCalled();
+      91 |   });
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/engine/dag-validator.catalog.spec.ts:88:11
+
+  ● Guardas do DAG antes da revisão e do snapshot › publish nega duplicate-edge antes de gravar metadados/snapshot
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"publishedAt": "2026-10-13T06:58:29.388Z", "versionSnapshot": {"edges": [{"id": "form_condition", "sourceNodeId": "form", "targetNodeId": "condition"}, {"id": "duplicate", "sourceHandle": "true", "sourceNodeId": "condition", "targetNodeId": "record"}, {"id": "duplicate", "sourceHandle": "false", "sourceNodeId": "condition", "targetNodeId": "record"}], "id": "snapshot", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"leftOperand": "a", "operator": "equals", "rightOperand": "a"}, "id": "condition", "label": "Fixture", "position": {"x": 0, "y": 1}, "type": "condition"}, {"config": {"fieldMappings": {"name": "{{form.contact_name}}"}}, "id": "record", "label": "Fixture", "position": {"x": 1, "y": 0}, "type": "internal_record"}], "publishedAt": "2026-10-13T06:58:29.388Z", "publishedBy": "admin_fixture", "schemaVersion": "1.0.0", "triggerNodeId": "form", "version": 1, "workflowId": "wf_catalog"}, "workflow": {"createdAt": "2026-10-13T00:00:00.000Z", "description": undefined, "edges": [{"id": "form_condition", "sourceNodeId": "form", "targetNodeId": "condition"}, {"id": "duplicate", "sourceHandle": "true", "sourceNodeId": "condition", "targetNodeId": "record"}, {"id": "duplicate", "sourceHandle": "false", "sourceNodeId": "condition", "targetNodeId": "record"}], "id": "wf_catalog", "name": "Fixture", "nodes": [{"config": {}, "id": "form", "label": "Fixture", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"leftOperand": "a", "operator": "equals", "rightOperand": "a"}, "id": "condition", "label": "Fixture", "position": {"x": 0, "y": 1}, "type": "condition"}, {"config": {"fieldMappings": {"name": "{{form.contact_name}}"}}, "id": "record", "label": "Fixture", "position": {"x": 1, "y": 0}, "type": "internal_record"}], "orgId": "org_fixture", "reviewedAt": "2026-10-13T00:00:00.000Z", "reviewedBy": "admin_fixture", "schemaVersion": "1.0.0", "status": "PUBLISHED", "triggerNodeId": "form", "updatedAt": "2026-10-13T00:00:00.000Z", "version": 1}}
+
+      86 |       $transaction: async (action: (tx: object) => Promise<unknown>) => action({ workflow, workflowVersion }) };
+      87 |     const service = new WorkflowsService(prisma as unknown as PrismaService, new WorkflowEngineService());
+    > 88 |     await expect(service[operation](row.orgId, row.id, 'admin_fixture')).rejects.toBeInstanceOf(BadRequestException);
+         |           ^
+      89 |     expect(workflow.updateMany).not.toHaveBeenCalled();
+      90 |     expect(workflowVersion.create).not.toHaveBeenCalled();
+      91 |   });
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/engine/dag-validator.catalog.spec.ts:88:11
+
+Test Suites: 1 failed, 1 total
+Tests:       19 failed, 1 passed, 20 total
+Snapshots:   0 total
+Time:        3.701 s
+Ran all test suites within paths "C:\Users\jv883\Documents\Codex\FlowMind-AI\Flowmind-AI\apps\api\src\engine\dag-validator.catalog.spec.ts".

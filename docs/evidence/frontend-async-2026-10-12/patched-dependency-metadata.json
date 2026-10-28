@@ -1,0 +1,22 @@
+[
+  {
+    "package": "mysql2@3.23.1",
+    "metadata": {
+      "version": "3.23.1",
+      "dist.integrity": "sha512-tTuRnC7qCet2IOfSNMYZ5SwXuBnfvBPAcIA28P0gtruXyZlU1LMxA6uha32kYypoFgyYklMqhLWwt4laYwXR/Q==",
+      "engines": {
+        "node": ">= 8.0"
+      }
+    }
+  },
+  {
+    "package": "deepmerge-ts@8.0.0",
+    "metadata": {
+      "version": "8.0.0",
+      "dist.integrity": "sha512-ICNjaP0ML+eSdEpJYQC46XiAn/UjAdwbEl0dE8p85ZTeNDinN4Kd4+9jS4OSAuH7st6eC7rQhsqTF5zIDaUm2g==",
+      "engines": {
+        "node": ">=16.0.0"
+      }
+    }
+  }
+]

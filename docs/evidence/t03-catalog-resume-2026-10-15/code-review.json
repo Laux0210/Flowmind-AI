@@ -1,0 +1,22 @@
+{
+  "reviewer": "/root/resource_catalog_review",
+  "mode": "independent read-only, no test/build executions",
+  "criticalFindings": [],
+  "importantFindings": [],
+  "materialFindings": [],
+  "result": "No material defect confirmed in the reviewed catalog/DI/history slice",
+  "paths": {
+    "apps/api/src/workflows/workflows.service.ts": "896e309530e5f4752321e02a3a16d3611e303d421e557523c2d30f010e91c153",
+    "scripts/check-api-artifact.mjs": "7575db255cf4a643d81bd7c700d9d253c44d2dac2374c5d53222b6786b841425"
+  },
+  "notes": [
+    "ResourceResolver remains required without fallback, shared ResourcesModule retained.",
+    "History is required by Nest; optional TypeScript argument is not @Optional. Guard returns 503 and storage is awaited before success.",
+    "No permissive catalog, alternative grant or private metadata disclosure introduced."
+  ],
+  "limitations": [
+    "Static review only; source fallback used for metadata_changed/excluded graph coverage.",
+    "Principal runs full tests/builds.",
+    "No commercial T13/S2b/model approval or real integration/MVP acceptance."
+  ]
+}

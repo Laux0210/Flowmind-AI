@@ -1,0 +1,34 @@
+ts-jest[config] (WARN) message TS151002: Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+FAIL apps/api/src/resources/resources-container.spec.ts
+  ● Test suite failed to run
+
+    apps/api/src/resources/resources-container.spec.ts:71:12 - error TS18046: 'result.body' is of type 'unknown'.
+
+    71     expect(result.body.data.map((item: any) => item.id)).toEqual(['form-alpha', 'model-shared']);
+                  ~~~~~~~~~~~
+    apps/api/src/resources/resources-container.spec.ts:73:24 - error TS18046: 'result.body' is of type 'unknown'.
+
+    73     expect(Object.keys(result.body.data[0]).sort()).toEqual(['id', 'name', 'status', 'type']);
+                              ~~~~~~~~~~~
+    apps/api/src/resources/resources-container.spec.ts:76:12 - error TS2571: Object is of type 'unknown'.
+
+    76     expect((await request('beta:member')).body.data.map((item: any) => item.id)).toEqual(['cred-beta', 'model-shared']);
+                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    apps/api/src/resources/resources-container.spec.ts:81:12 - error TS18046: 'result.body' is of type 'unknown'.
+
+    81     expect(result.body.data.every((item: any) => item.type === type)).toBe(true);
+                  ~~~~~~~~~~~
+    apps/api/src/resources/resources-container.spec.ts:82:12 - error TS18046: 'result.body' is of type 'unknown'.
+
+    82     expect(result.body.data).toHaveLength(type === 'credential' ? 0 : 1);
+                  ~~~~~~~~~~~
+    apps/api/src/resources/resources-container.spec.ts:104:12 - error TS18046: 'result.body' is of type 'unknown'.
+
+    104     expect(result.body.code).toBe('RESOURCE_CATALOG_UNAVAILABLE');
+                   ~~~~~~~~~~~
+
+Test Suites: 1 failed, 1 total
+Tests:       0 total
+Snapshots:   0 total
+Time:        5.013 s
+Ran all test suites within paths "apps/api/src/resources/resources-container.spec.ts".

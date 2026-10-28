@@ -1,0 +1,20 @@
+{
+  "checkedAtUtc": "2026-10-13T21:29:46.700250+00:00",
+  "snapshotAccepted": true,
+  "sourceStableSinceAcceptedSnapshot": true,
+  "inputCount": 138,
+  "changedInputs": [],
+  "logsAndDiagnosticHashesMatch": true,
+  "obsidianReadbackMatches": true,
+  "pendingAiMemoryPages": 26,
+  "pendingManifestMatches": true,
+  "markdownLinksMatch": true,
+  "brokenLinks": [],
+  "encodingErrors": [],
+  "gitDiffCheckExitCode": 0,
+  "dependenciesEvidence": "manifests/lockfile included; installed node_modules/.tools/generated tree not exhaustively hashed",
+  "reviewVerdict": "no material findings in bounded transport review; operational gates pending",
+  "reviewMatchesCurrentSource": true,
+  "transportEvidenceMatches": true,
+  "allMatch": true
+}

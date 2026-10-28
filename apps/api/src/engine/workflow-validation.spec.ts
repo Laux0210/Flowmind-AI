@@ -1,3 +1,4 @@
+import { createTestResourceResolver } from '../../test/resource-fixtures';
 import { WorkflowEngineService } from './workflow-engine.service';
 import { NodeExecutors } from './node-executors';
 import type { WorkflowDefinition } from '@flowmind/contracts';
@@ -29,7 +30,7 @@ describe('C03 — validação de definição antes da simulação', () => {
     const form = jest.spyOn(NodeExecutors, 'executeTriggerForm');
     const record = jest.spyOn(NodeExecutors, 'executeInternalRecord');
     const mail = jest.spyOn(NodeExecutors, 'executeSendEmail');
-    await expect(new WorkflowEngineService().simulate(journey(), {
+    await expect(new WorkflowEngineService(createTestResourceResolver()).simulate(journey(), {
       name: 'Pessoa sintética', message: 'Fixture sem email',
     })).rejects.toThrow(/email obrigatório/);
     expect(form).not.toHaveBeenCalled();
@@ -37,12 +38,23 @@ describe('C03 — validação de definição antes da simulação', () => {
     expect(mail).not.toHaveBeenCalled();
   });
 
+  it('destinatário literal inválido rejeita a definição antes de executar nós', async () => {
+    const definition = journey(); definition.nodes[2].config.to = 'destino-invalido';
+    const form = jest.spyOn(NodeExecutors, 'executeTriggerForm');
+    const record = jest.spyOn(NodeExecutors, 'executeInternalRecord');
+    const mail = jest.spyOn(NodeExecutors, 'executeSendEmail');
+    await expect(new WorkflowEngineService(createTestResourceResolver()).simulate(definition, {
+      name: 'Pessoa', email: 'pessoa@example.test', message: 'Fixture',
+    })).rejects.toThrow(/Destinatário/);
+    expect(form).not.toHaveBeenCalled(); expect(record).not.toHaveBeenCalled(); expect(mail).not.toHaveBeenCalled();
+  });
+
   it('permite formulário genérico sem email quando não há resposta ao contato', async () => {
     const definition = journey();
     definition.nodes = definition.nodes.slice(0, 1);
     definition.nodes[0].config.requiredFields = ['message'];
     definition.edges = [];
-    const result = await new WorkflowEngineService().simulate(definition, { message: 'Fixture' });
+    const result = await new WorkflowEngineService(createTestResourceResolver()).simulate(definition, { message: 'Fixture' });
     expect(result.status).toBe('COMPLETED');
     expect(result.nodeResults).toHaveLength(1);
   });
@@ -52,10 +64,20 @@ describe('C03 — validação de definição antes da simulação', () => {
     definition.nodes[0].config.requiredFields = ['name', 'email', 'message'];
     const record = jest.spyOn(NodeExecutors, 'executeInternalRecord');
     const mail = jest.spyOn(NodeExecutors, 'executeSendEmail');
-    const result = await new WorkflowEngineService().simulate(definition, { name: 'Pessoa', message: 'Fixture' });
+    const result = await new WorkflowEngineService(createTestResourceResolver()).simulate(definition, { name: 'Pessoa', message: 'Fixture' });
     expect(result.status).toBe('FAILED');
     expect(result.nodeResults.map((node) => [node.nodeId, node.status])).toEqual([['form', 'FAILED']]);
     expect(record).not.toHaveBeenCalled();
     expect(mail).not.toHaveBeenCalled();
+  });
+
+  it('dados com email inválido falham no gatilho antes de registro/e-mail', async () => {
+    const definition = journey(); definition.nodes[0].config.requiredFields = ['name', 'email', 'message'];
+    const record = jest.spyOn(NodeExecutors, 'executeInternalRecord');
+    const mail = jest.spyOn(NodeExecutors, 'executeSendEmail');
+    const result = await new WorkflowEngineService(createTestResourceResolver()).simulate(definition, { name: 'Pessoa', email: 'invalido', message: 'Fixture' });
+    expect(result.status).toBe('FAILED');
+    expect(result.nodeResults.map((node) => [node.nodeId, node.status])).toEqual([['form', 'FAILED']]);
+    expect(record).not.toHaveBeenCalled(); expect(mail).not.toHaveBeenCalled();
   });
 });

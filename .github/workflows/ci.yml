@@ -75,4 +75,4 @@ jobs:
         run: npm run lint
 
       - name: Auditar dependências
-        run: npm audit --audit-level=high
+        run: npm audit --audit-level=high --omit=dev

@@ -1,0 +1,26 @@
+{
+  "checkedAtUtc": "2026-10-15T18:58:11.316Z",
+  "notes": [
+    {
+      "path": "docs/MEMORIA.md",
+      "sha256": "6102536e7385fd35a9fd0a2f5e97f0d58b12cc2277482885762f7cf370daa041",
+      "matches": true
+    },
+    {
+      "path": "plan.md",
+      "sha256": "f1cce0d3c2a56ee0a5e7dbe3b2ab462c725b0eea77158e290b73450c081e382d",
+      "matches": true
+    },
+    {
+      "path": "docs/T03_RESOURCE_IMPLEMENTATION_PLAN.md",
+      "sha256": "dc4e284aa0ff8112c175b769e433543a174eaed1445fa98efeb059ae2f4042fb",
+      "matches": true
+    },
+    {
+      "path": "docs/VALIDATION_T03_CATALOG_2026-10-15.md",
+      "sha256": "39970397d53b2b9ef1c0a719a9fa8aaf5c29f888111a74d9f1301086b82463af",
+      "matches": true
+    }
+  ],
+  "allMatch": true
+}

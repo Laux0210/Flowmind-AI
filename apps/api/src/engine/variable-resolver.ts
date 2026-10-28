@@ -6,6 +6,11 @@ import { BadRequestException } from '@nestjs/common';
  */
 export class VariableResolver {
   private static readonly VARIABLE_REGEX = /\{\{\s*([a-zA-Z0-9_-]+)\.([a-zA-Z0-9_.-]+)\s*\}\}/g;
+  private static readonly EXACT_VARIABLE_REGEX = /^\{\{\s*([a-zA-Z0-9_-]+)\.([a-zA-Z0-9_.-]+)\s*\}\}$/;
+
+  static isExactReference(value: string): boolean {
+    return this.EXACT_VARIABLE_REGEX.test(value.trim());
+  }
 
   /**
    * Extrai todas as referências a nós presentes em um valor (string ou objeto recursivo).
@@ -62,7 +67,7 @@ export class VariableResolver {
     skippedNodeIds?: Set<string>,
   ): unknown {
     // Se a string inteira for exatamente uma variável "{{node.field}}", preserva o tipo original
-    const exactMatch = str.trim().match(/^\{\{\s*([a-zA-Z0-9_-]+)\.([a-zA-Z0-9_.-]+)\s*\}\}$/);
+    const exactMatch = str.trim().match(this.EXACT_VARIABLE_REGEX);
     if (exactMatch) {
       const nodeId = exactMatch[1];
       const fieldPath = exactMatch[2];

@@ -1,0 +1,37 @@
+{
+  "reviewer": "/root/resource_catalog_review",
+  "mode": "independent read-only review; baseline backup comparison, no commits",
+  "importantFindings": [
+    {
+      "id": "DI01",
+      "file": "apps/api/src/ai/ai-generator.service.ts",
+      "finding": "Optional fallback could construct independent empty catalog instead of required shared DI",
+      "verification": "review-di-red.log: 1 failure, 6 controls; container without ResourceResolver compiled unexpectedly",
+      "resolution": "ResourceResolver mandatory fixed role/argument, runtime guard, no catalog imports/fallback",
+      "beforeSha256": "cd0ee8c27d58edb2be24db32ac20e2be07bd7ab64d66c22dfbf8fa02d6bb5413",
+      "afterSha256": "77a3fe6392c3b412839d4c51012a9948f30ae3353a049c15fb817ff95a55ff9b",
+      "backup": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-catalog-20261015-3zvha0pb\\before-review-fix\\ai-generator.service.ts",
+      "greenEvidencePending": false,
+      "greenEvidence": "review-di-green-fixed-consumer.log"
+    }
+  ],
+  "criticalFindings": [],
+  "minorFindings": [],
+  "declinedToJudge": [
+    "real React lifecycle, keyboard/focus/mobile and connected persistence",
+    "complete checks/build/artifact executed by principal",
+    "commercial model, external services, secrets and LIVE remain gated",
+    "flowmind-default pending alias is intentional",
+    "semantic secrets inside name/id cannot be reliably classified; structural whitelist reviewed",
+    "all mechanically migrated tests not exhaustively audited",
+    "conflicting historical approval claims in notes need principal consolidation"
+  ],
+  "rulings": [
+    "Browser and real services reported separately; synthetic/SSR tests do not close those gates.",
+    "Alias semantics remain as approved candidate contract; no real model authorized.",
+    "Operator metadata must not contain secret material; structural fields are validated, no semantic secret classifier added.",
+    "Mechanical migrations verified by full suite/typecheck; original sources backed up.",
+    "Only explicit A approves T03-S3; earlier generic approvals for S2b/models not inferred."
+  ],
+  "finalFullSuite": "751 Jest/39 suites; 201 native regression; ten checks exit0; 159 stable inputs"
+}

@@ -1,0 +1,223 @@
+
+> flowmind-ai@0.1.0 test
+> node scripts/run-checks.mjs test
+
+
+> @flowmind/contracts@0.1.0 build
+> tsc
+
+
+> @flowmind/api@0.1.0 test
+> node --experimental-vm-modules ../../node_modules/jest/bin/jest.js --runInBand
+
+[Nest] 25228  - 13/10/2026, 04:57:58     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Quando formulário for enviado resuma' [ID: wf_c01_full]
+[Nest] 25228  - 13/10/2026, 04:57:58     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Receba formulário de dúvidas gerais' [ID: wf_c02_doubts]
+[Nest] 25228  - 13/10/2026, 04:57:58     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Triagem Condicional' [ID: wf_c03_branch]
+[Nest] 25228  - 13/10/2026, 04:57:59    WARN [WorkerService] Consumidor de fila não implementado. Worker permanece em standby.
+[Nest] 25228  - 13/10/2026, 04:57:59     LOG [WorkerService] Encerrando WorkerService em standby.
+[Nest] 25228  - 13/10/2026, 04:57:59    WARN [WorkerService] Consumidor de fila não implementado. Worker permanece em standby.
+[Nest] 25228  - 13/10/2026, 04:57:59     LOG [WorkerService] Processando simulação [Job: job_123] para workflow [ID: wf_worker_1] org [org_test]
+[Nest] 25228  - 13/10/2026, 04:57:59     LOG [WorkerService] Simulação [Job: job_123] concluída com status COMPLETED [ExecutionId: exec_recorded_job_1]
+[Nest] 25228  - 13/10/2026, 04:57:59     LOG [WorkerService] Processando simulação [Job: job_404] para workflow [ID: wf_missing] org [org_test]
+[Nest] 25228  - 13/10/2026, 04:57:59     LOG [WorkerService] Processando simulação [Job: job_mutable] para workflow [ID: wf_worker_1] org [org_test]
+[Nest] 25228  - 13/10/2026, 04:57:59     LOG [WorkerService] Simulação [Job: job_mutable] concluída com status COMPLETED [ExecutionId: exec_recorded_job_1]
+[Nest] 25228  - 13/10/2026, 04:57:59     LOG [WorkerService] Processando simulação [Job: job_cross] para workflow [ID: wf_worker_1] org [org_test]
+[Nest] 25228  - 13/10/2026, 04:57:59     LOG [WorkerService] Processando simulação [Job: job_storage] para workflow [ID: wf_worker_1] org [org_test]
+[Nest] 25228  - 13/10/2026, 04:57:59     LOG [WebhooksService] Idempotência acionada para chave 'unique_req_id_999' no workflow 'wf_webhook_pub'
+[Nest] 25228  - 13/10/2026, 04:57:59    WARN [SchedulerService] Agendamento ignorado para workflow 'wf_concurrent_test': execução anterior ainda em andamento (concorrência bloqueada).
+[Nest] 25228  - 13/10/2026, 04:58:00     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Workflow MVP Formulário' [ID: wf_mvp_test]
+[Nest] 25228  - 13/10/2026, 04:58:00     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Workflow MVP Formulário' [ID: wf_mvp_test]
+[Nest] 25228  - 13/10/2026, 04:58:00     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Workflow MVP Formulário' [ID: wf_mvp_test]
+[Nest] 25228  - 13/10/2026, 04:58:00     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Workflow MVP Formulário' [ID: wf_mvp_test]
+[Nest] 25228  - 13/10/2026, 04:58:00     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Workflow MVP Formulário' [ID: wf_mvp_test]
+[Nest] 25228  - 13/10/2026, 04:58:00     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Workflow Condicional' [ID: wf_cond_test]
+[Nest] 25228  - 13/10/2026, 04:58:00     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Workflow Branch Profundo' [ID: wf_deep_branch]
+[Nest] 25228  - 13/10/2026, 04:58:00     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Workflow Convergência' [ID: wf_join_test]
+[Nest] 25228  - 13/10/2026, 04:58:00     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Fixture' [ID: wf_c03]
+[Nest] 25228  - 13/10/2026, 04:58:00     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Fixture' [ID: wf_c03]
+[Nest] 25228  - 13/10/2026, 04:58:00     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Fixture' [ID: wf_c03]
+[Nest] 25228  - 13/10/2026, 04:58:00     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Fixture' [ID: wf_c03]
+[Nest] 25228  - 13/10/2026, 04:58:00     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Fixture' [ID: wf_c03]
+[Nest] 25228  - 13/10/2026, 04:58:02     LOG [WorkerBootstrap] Inicializando FlowMind AI Background Worker (sem portas HTTP)...
+[Nest] 25228  - 13/10/2026, 04:58:02     LOG [WorkerBootstrap] Processo do worker inicializado em standby; consumo de fila indisponível.
+[Nest] 25228  - 13/10/2026, 04:58:03     LOG [WebhooksService] Idempotência acionada para chave 'fixture_event' no workflow 'wf_beta'
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151002: [0mUsing hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151002: [0mUsing hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151002: [0mUsing hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151002: [0mUsing hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151002: [0mUsing hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+(node:25228) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151002: [0mUsing hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151002: [0mUsing hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151002: [0mUsing hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151002: [0mUsing hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151002: [0mUsing hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151002: [0mUsing hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151002: [0mUsing hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151002: [0mUsing hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151002: [0mUsing hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151002: [0mUsing hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+[Nest] 25228  - 13/10/2026, 04:57:57   ERROR [WorkflowEngineService] Falha no nó form (trigger_form): Campo obrigatório ausente na submissão do formulário: name
+[Nest] 25228  - 13/10/2026, 04:57:57   ERROR [WorkflowEngineService] Falha no nó form (trigger_form): Campo obrigatório ausente na submissão do formulário: name
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151002: [0mUsing hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151002: [0mUsing hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+FAIL src/qa/full-journey-integration.spec.ts
+  ● T14 — componentes da jornada com adaptadores sintéticos › 1. Estruturas sintéticas da jornada (não substituem o aceite C01–C03) › BRANCH01: roteamento condicional e propagação de SKIPPED na subárvore inativa
+
+    BadRequestException: Configuração dos nós inválida; revise os campos indicados.
+
+      28 |   });
+      29 |   if (problems.length) {
+    > 30 |     throw new BadRequestException({ code: 'WORKFLOW_INVALID_NODE_CONFIG',
+         |           ^
+      31 |       message: 'Configuração dos nós inválida; revise os campos indicados.', issues: problems });
+      32 |   }
+      33 | }
+
+      at validateNodeConfigurations (src/engine/workflow-validation.ts:30:11)
+      at WorkflowEngineService.simulate (src/engine/workflow-engine.service.ts:42:31)
+      at Object.<anonymous> (src/qa/full-journey-integration.spec.ts:218:42)
+
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151002: [0mUsing hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151002: [0mUsing hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151002: [0mUsing hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151002: [0mUsing hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151002: [0mUsing hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+[Nest] 25228  - 13/10/2026, 04:58:00   ERROR [WorkflowEngineService] Falha no nó node_trigger (trigger_form): Campo obrigatório ausente na submissão do formulário: email
+FAIL src/engine/workflow-engine.service.spec.ts
+  ● WorkflowEngineService (DAG & Simulation Engine) › deve suportar roteamento condicional com nós marcados como SKIPPED no ramo inativo
+
+    BadRequestException: Configuração dos nós inválida; revise os campos indicados.
+
+      28 |   });
+      29 |   if (problems.length) {
+    > 30 |     throw new BadRequestException({ code: 'WORKFLOW_INVALID_NODE_CONFIG',
+         |           ^
+      31 |       message: 'Configuração dos nós inválida; revise os campos indicados.', issues: problems });
+      32 |   }
+      33 | }
+
+      at validateNodeConfigurations (src/engine/workflow-validation.ts:30:11)
+      at WorkflowEngineService.simulate (src/engine/workflow-engine.service.ts:42:31)
+      at Object.<anonymous> (src/engine/workflow-engine.service.spec.ts:226:33)
+
+  ● WorkflowEngineService (DAG & Simulation Engine) › deve propagar recursivamente o status SKIPPED para descendentes indiretos do ramo inativo
+
+    BadRequestException: Configuração dos nós inválida; revise os campos indicados.
+
+      28 |   });
+      29 |   if (problems.length) {
+    > 30 |     throw new BadRequestException({ code: 'WORKFLOW_INVALID_NODE_CONFIG',
+         |           ^
+      31 |       message: 'Configuração dos nós inválida; revise os campos indicados.', issues: problems });
+      32 |   }
+      33 | }
+
+      at validateNodeConfigurations (src/engine/workflow-validation.ts:30:11)
+      at WorkflowEngineService.simulate (src/engine/workflow-engine.service.ts:42:31)
+      at Object.<anonymous> (src/engine/workflow-engine.service.spec.ts:293:33)
+
+  ● WorkflowEngineService (DAG & Simulation Engine) › deve suportar convergência de ramos (OR-Join): nó convergente executa se ao menos um ramo for ativo
+
+    BadRequestException: Configuração dos nós inválida; revise os campos indicados.
+
+      28 |   });
+      29 |   if (problems.length) {
+    > 30 |     throw new BadRequestException({ code: 'WORKFLOW_INVALID_NODE_CONFIG',
+         |           ^
+      31 |       message: 'Configuração dos nós inválida; revise os campos indicados.', issues: problems });
+      32 |   }
+      33 | }
+
+      at validateNodeConfigurations (src/engine/workflow-validation.ts:30:11)
+      at WorkflowEngineService.simulate (src/engine/workflow-engine.service.ts:42:31)
+      at Object.<anonymous> (src/engine/workflow-engine.service.spec.ts:378:36)
+
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151002: [0mUsing hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+[Nest] 25228  - 13/10/2026, 04:58:00   ERROR [WorkflowEngineService] Falha no nó form (trigger_form): Campo obrigatório ausente na submissão do formulário: email
+[Nest] 25228  - 13/10/2026, 04:58:00   ERROR [WorkflowEngineService] Falha no nó form (trigger_form): E-mail inválido na submissão do formulário
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151002: [0mUsing hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151002: [0mUsing hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+
+Summary of all failing tests
+FAIL src/qa/full-journey-integration.spec.ts
+  ● T14 — componentes da jornada com adaptadores sintéticos › 1. Estruturas sintéticas da jornada (não substituem o aceite C01–C03) › BRANCH01: roteamento condicional e propagação de SKIPPED na subárvore inativa
+
+    BadRequestException: Configuração dos nós inválida; revise os campos indicados.
+
+      28 |   });
+      29 |   if (problems.length) {
+    > 30 |     throw new BadRequestException({ code: 'WORKFLOW_INVALID_NODE_CONFIG',
+         |           ^
+      31 |       message: 'Configuração dos nós inválida; revise os campos indicados.', issues: problems });
+      32 |   }
+      33 | }
+
+      at validateNodeConfigurations (src/engine/workflow-validation.ts:30:11)
+      at WorkflowEngineService.simulate (src/engine/workflow-engine.service.ts:42:31)
+      at Object.<anonymous> (src/qa/full-journey-integration.spec.ts:218:42)
+
+FAIL src/engine/workflow-engine.service.spec.ts
+  ● WorkflowEngineService (DAG & Simulation Engine) › deve suportar roteamento condicional com nós marcados como SKIPPED no ramo inativo
+
+    BadRequestException: Configuração dos nós inválida; revise os campos indicados.
+
+      28 |   });
+      29 |   if (problems.length) {
+    > 30 |     throw new BadRequestException({ code: 'WORKFLOW_INVALID_NODE_CONFIG',
+         |           ^
+      31 |       message: 'Configuração dos nós inválida; revise os campos indicados.', issues: problems });
+      32 |   }
+      33 | }
+
+      at validateNodeConfigurations (src/engine/workflow-validation.ts:30:11)
+      at WorkflowEngineService.simulate (src/engine/workflow-engine.service.ts:42:31)
+      at Object.<anonymous> (src/engine/workflow-engine.service.spec.ts:226:33)
+
+  ● WorkflowEngineService (DAG & Simulation Engine) › deve propagar recursivamente o status SKIPPED para descendentes indiretos do ramo inativo
+
+    BadRequestException: Configuração dos nós inválida; revise os campos indicados.
+
+      28 |   });
+      29 |   if (problems.length) {
+    > 30 |     throw new BadRequestException({ code: 'WORKFLOW_INVALID_NODE_CONFIG',
+         |           ^
+      31 |       message: 'Configuração dos nós inválida; revise os campos indicados.', issues: problems });
+      32 |   }
+      33 | }
+
+      at validateNodeConfigurations (src/engine/workflow-validation.ts:30:11)
+      at WorkflowEngineService.simulate (src/engine/workflow-engine.service.ts:42:31)
+      at Object.<anonymous> (src/engine/workflow-engine.service.spec.ts:293:33)
+
+  ● WorkflowEngineService (DAG & Simulation Engine) › deve suportar convergência de ramos (OR-Join): nó convergente executa se ao menos um ramo for ativo
+
+    BadRequestException: Configuração dos nós inválida; revise os campos indicados.
+
+      28 |   });
+      29 |   if (problems.length) {
+    > 30 |     throw new BadRequestException({ code: 'WORKFLOW_INVALID_NODE_CONFIG',
+         |           ^
+      31 |       message: 'Configuração dos nós inválida; revise os campos indicados.', issues: problems });
+      32 |   }
+      33 | }
+
+      at validateNodeConfigurations (src/engine/workflow-validation.ts:30:11)
+      at WorkflowEngineService.simulate (src/engine/workflow-engine.service.ts:42:31)
+      at Object.<anonymous> (src/engine/workflow-engine.service.spec.ts:378:36)
+
+
+Test Suites: 2 failed, 29 passed, 31 total
+Tests:       4 failed, 427 passed, 431 total
+Snapshots:   0 total
+Time:        12.885 s, estimated 16 s
+Ran all test suites.
+npm error Lifecycle script `test` failed with error:
+npm error code 1
+npm error path C:\Users\jv883\Documents\Codex\FlowMind-AI\Flowmind-AI\apps\api
+npm error workspace @flowmind/api@0.1.0
+npm error location C:\Users\jv883\Documents\Codex\FlowMind-AI\Flowmind-AI\apps\api
+npm error command failed
+npm error command C:\Windows\system32\cmd.exe /d /s /c node --experimental-vm-modules ../../node_modules/jest/bin/jest.js --runInBand
+Verificação interrompida: run test --workspace @flowmind/api -- --runInBand.

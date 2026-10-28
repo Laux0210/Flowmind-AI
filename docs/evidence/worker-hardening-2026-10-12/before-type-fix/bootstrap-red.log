@@ -1,0 +1,43 @@
+
+> @flowmind/api@0.1.0 test
+> node --experimental-vm-modules ../../node_modules/jest/bin/jest.js --runInBand --runTestsByPath src/worker/worker-bootstrap.spec.ts
+
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151002: [0mUsing hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151002: [0mUsing hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151002: [0mUsing hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+[Nest] 27756  - 12/10/2026, 22:33:23     LOG [WorkerBootstrap] Inicializando FlowMind AI Background Worker (sem portas HTTP)...
+[Nest] 27756  - 12/10/2026, 22:33:23     LOG [WorkerBootstrap] FlowMind AI Worker ativo e operando em segundo plano.
+(node:27756) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+FAIL src/worker/worker-bootstrap.spec.ts
+  ● Worker bootstrap — import seguro e shutdown › importar o entrypoint não cria aplicação nem inicia serviços
+
+    expect(jest.fn()).not.toHaveBeenCalled()
+
+    Expected number of calls: 0
+    Received number of calls: 1
+
+    1: [Function WorkerModule]
+
+      10 |       const entry: any = await import('../worker');
+      11 |       await Promise.resolve();
+    > 12 |       expect(create).not.toHaveBeenCalled();
+         |                          ^
+      13 |       expect(typeof entry.bootstrapWorker).toBe('function');
+      14 |       await entry.bootstrapWorker();
+      15 |       expect(create).toHaveBeenCalledTimes(1);
+
+      at Object.<anonymous> (src/worker/worker-bootstrap.spec.ts:12:26)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        3.295 s
+Ran all test suites within paths "src/worker/worker-bootstrap.spec.ts".
+npm error Lifecycle script `test` failed with error:
+npm error code 1
+npm error path C:\Users\jv883\Documents\Codex\FlowMind-AI\Flowmind-AI\apps\api
+npm error workspace @flowmind/api@0.1.0
+npm error location C:\Users\jv883\Documents\Codex\FlowMind-AI\Flowmind-AI\apps\api
+npm error command failed
+npm error command C:\Windows\system32\cmd.exe /d /s /c node --experimental-vm-modules ../../node_modules/jest/bin/jest.js --runInBand --runTestsByPath src/worker/worker-bootstrap.spec.ts

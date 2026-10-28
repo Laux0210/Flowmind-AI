@@ -1,0 +1,176 @@
+(node:12060) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:12060) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+✔ history: resposta E1 atrasada não substitui seleção mais recente E2 (106.6553ms)
+✔ history: finally de uma seleção antiga não encerra loading da seleção atual (25.1545ms)
+✖ history: contexto Alpha→Beta→Alpha invalida a resposta da geração anterior (25.623ms)
+✔ history: rejeição antiga não escreve erro na nova organização (17.9284ms)
+✖ history: fechar o modal invalida a inspeção pendente (13.944ms)
+✖ history: troca de contexto durante getToken evita consultar recurso com sessão nova (17.0302ms)
+✔ history: erro da inspeção atual preserva a mensagem do servidor (11.8417ms)
+✖ editor: handler de aplicar proposta bloqueia mutação enquanto revisão está pendente (39.1307ms)
+✖ editor: reviewWorkflow não aplica resposta de revisão local anterior (21.7802ms)
+✖ editor: reviewWorkflow não envia mutação após trocar contexto durante getToken (30.051ms)
+✖ editor: activateWorkflow não aplica resposta de revisão local anterior (17.7238ms)
+✖ editor: activateWorkflow não envia mutação após trocar contexto durante getToken (19.1403ms)
+✔ ApiClient sanitiza URL e codifica identificadores com caracteres especiais (85.5887ms)
+✔ ApiClient propaga mensagens de erro estruturadas da API em caso de 400 ou 403 (2.4195ms)
+✔ Mapeamento dos 6 nós do catálogo do MVP para o canvas XYFlow (7.4405ms)
+✔ Validação de simulação de workflow com dados sintéticos no cliente (19.8266ms)
+✔ ApiClient serializa requisições de simulação e ciclo de vida com integridade de headers e payload (4.2487ms)
+✔ Invariantes estáticas de prevenção de condições de corrida e feedback acessível no frontend (2.4741ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 10
+ℹ fail 8
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 990.5363
+
+✖ failing tests:
+
+test at tests\regression\ui-workflow.test.mjs:47:1
+✖ history: contexto Alpha→Beta→Alpha invalida a resposta da geração anterior (25.623ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + {
+  +   id: 'e1'
+  + }
+  - null
+  
+      at TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/ui-workflow.test.mjs:53:10)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { id: 'e1' },
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests\regression\ui-workflow.test.mjs:64:1
+✖ history: fechar o modal invalida a inspeção pendente (13.944ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + {
+  +   id: 'e1'
+  + }
+  - null
+  
+      at TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/ui-workflow.test.mjs:68:10)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { id: 'e1' },
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests\regression\ui-workflow.test.mjs:71:1
+✖ history: troca de contexto durante getToken evita consultar recurso com sessão nova (17.0302ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/ui-workflow.test.mjs:77:55)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests\regression\ui-workflow.test.mjs:95:1
+✖ editor: handler de aplicar proposta bloqueia mutação enquanto revisão está pendente (39.1307ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  'g2' !== 'g1'
+  
+      at TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/ui-workflow.test.mjs:98:46)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'g2',
+    expected: 'g1',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests\regression\ui-workflow.test.mjs:106:3
+✖ editor: reviewWorkflow não aplica resposta de revisão local anterior (21.7802ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  'g1' !== 'g2'
+  
+      at TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/ui-workflow.test.mjs:113:12)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'g1',
+    expected: 'g2',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests\regression\ui-workflow.test.mjs:115:3
+✖ editor: reviewWorkflow não envia mutação após trocar contexto durante getToken (30.051ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/ui-workflow.test.mjs:120:57)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests\regression\ui-workflow.test.mjs:106:3
+✖ editor: activateWorkflow não aplica resposta de revisão local anterior (17.7238ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  'g1' !== 'g2'
+  
+      at TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/ui-workflow.test.mjs:113:12)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'g1',
+    expected: 'g2',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests\regression\ui-workflow.test.mjs:115:3
+✖ editor: activateWorkflow não envia mutação após trocar contexto durante getToken (19.1403ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/ui-workflow.test.mjs:120:57)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+

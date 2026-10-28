@@ -1,0 +1,14 @@
+{
+  "checkedAtUtc": "2026-10-13T22:15:35.192761+00:00",
+  "scope": "T08 editor visual/lifecycle verification",
+  "inventory": {
+    "apps": [],
+    "browsers": []
+  },
+  "iabAttempt": "Browser is not available: iab",
+  "status": "NOT_EXERCISED",
+  "reactLifecycleProven": false,
+  "layoutFocusAccessibilityProven": false,
+  "nextDevStarted": false,
+  "reason": "No CUA browser surface; no alternate browser automation or installation used"
+}

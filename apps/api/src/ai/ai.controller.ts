@@ -15,7 +15,7 @@ import { ClerkAuthGuard } from '../auth/clerk-auth.guard';
 import { CurrentOrg } from '../auth/decorators';
 import { AiGeneratorService } from './ai-generator.service';
 
-@Controller('api/v1/ai')
+@Controller('ai')
 @UseGuards(ClerkAuthGuard)
 export class AiController {
   private readonly aiGeneratorService: AiGeneratorService;

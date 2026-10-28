@@ -1,0 +1,28 @@
+{
+  "checkedAtUtc": "2026-10-15 17:31:29 UTC",
+  "scope": "Canonical Obsidian note contents compared with local filesystem; not product runtime validation",
+  "notes": [
+    {
+      "path": "docs/MEMORIA.md",
+      "vaultPath": "FlowMind-AI/Flowmind-AI/docs/MEMORIA.md",
+      "matches": true,
+      "sourceSha256": "6f578aebfa3915f069540c278fa3ebd616ee9e6217958d79e9b5abee94d13501",
+      "bodySha256": "6f578aebfa3915f069540c278fa3ebd616ee9e6217958d79e9b5abee94d13501"
+    },
+    {
+      "path": "plan.md",
+      "vaultPath": "FlowMind-AI/Flowmind-AI/plan.md",
+      "matches": true,
+      "sourceSha256": "fc461cd2148199900d646451c626851676328af5f9bacd7bdc390de2933efd92",
+      "bodySha256": "fc461cd2148199900d646451c626851676328af5f9bacd7bdc390de2933efd92"
+    },
+    {
+      "path": "docs/T03_RESOURCE_IMPLEMENTATION_PLAN.md",
+      "vaultPath": "FlowMind-AI/Flowmind-AI/docs/T03_RESOURCE_IMPLEMENTATION_PLAN.md",
+      "matches": true,
+      "sourceSha256": "d3f2a14b10dd0f1eacf8a7cf22fd1b24d2b58a4f9ea50ed0fdb3d1d55dc3fcd7",
+      "bodySha256": "d3f2a14b10dd0f1eacf8a7cf22fd1b24d2b58a4f9ea50ed0fdb3d1d55dc3fcd7"
+    }
+  ],
+  "allMatch": true
+}

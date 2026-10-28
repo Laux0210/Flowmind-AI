@@ -1,0 +1,22 @@
+{
+  "checkedAtUtc": "2026-10-15 20:04:59 UTC",
+  "canonicalVault": "C:\\Users\\jv883\\Documents\\Codex\\FlowMind-AI",
+  "singleCopyViaFilesystemJunction": true,
+  "allMatch": true,
+  "notes": [
+    {
+      "path": "docs/MEMORIA.md",
+      "exactMatch": true,
+      "obsidianChars": 5418,
+      "localChars": 5418,
+      "localSha256": "f122f1d8bea36931fbfe8b29f8aa2e793221982014ace2ede49b998296f84677"
+    },
+    {
+      "path": "plan.md",
+      "exactMatch": true,
+      "obsidianChars": 77857,
+      "localChars": 77857,
+      "localSha256": "af51955576dbf0d3c3167139274f3594cb067ba35b9024a712362b3c4d03fe5f"
+    }
+  ]
+}

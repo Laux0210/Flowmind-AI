@@ -1,0 +1,16 @@
+✔ resposta atrasada A não substitui a lista de B (75.9559ms)
+✔ A→B→A ignora sucesso e erro dos pedidos anteriores (24.1501ms)
+✔ token atrasado de contexto anterior não inicia sua consulta (13.6505ms)
+✔ troca de identidade do token esconde lista anterior já no primeiro render (13.1336ms)
+✔ ação com token pendente não cria agendamento após mudar contexto (16.7605ms)
+✔ duas ações no mesmo render iniciam só uma criação (14.4701ms)
+✔ resposta após unmount não altera estado (17.0898ms)
+✔ replay de efeitos do StrictMode não deixa ações presas em busy (10.9678ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 438.5102

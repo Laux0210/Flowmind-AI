@@ -1,0 +1,20 @@
+{
+  "checkedAtUtc": "2026-10-13T21:28:33.594Z",
+  "allMatch": true,
+  "notes": [
+    {
+      "path": "docs/MEMORIA.md",
+      "connectorPath": "FlowMind-AI/Flowmind-AI/docs/MEMORIA.md",
+      "sourceSha256": "06a8c745ca3dd811d34e6d222d263af44531068d93c5e4e00eb47e3785d46636",
+      "bodySha256": "4a26f492d9c606e90640b1dc3e1af480727de175c014ae98bf52523532952063",
+      "match": true
+    },
+    {
+      "path": "plan.md",
+      "connectorPath": "FlowMind-AI/Flowmind-AI/plan.md",
+      "sourceSha256": "612580c1f063f591a787002d57cfb56474fc1644f54ff3482e8af0a6758b092b",
+      "bodySha256": "11cdcb88b509b6f89492b925628719f362989a34a975d7c87f60e1ea9db1b7e1",
+      "match": true
+    }
+  ]
+}

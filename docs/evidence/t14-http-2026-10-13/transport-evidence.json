@@ -1,0 +1,15 @@
+{
+  "source": "apps/api/src/auth/workflow-container.spec.ts",
+  "sourceSha256": "a4af2838f51557ec301d50fc837e6fc5e8ed754e3ea06dd15225ae0483537273",
+  "focusedLogSha256": "2acc83a5fecfc17daab39fd67666d438df11c88faaf4c338075423ee5aa2a33d",
+  "focusedPassed": 60,
+  "focusedTotal": 60,
+  "casesPerTransport": 30,
+  "host": "127.0.0.1",
+  "port": "ephemeral",
+  "providers": "synthetic identity/storage/AI",
+  "appModuleAndGuards": "real",
+  "bootstrapMainTested": false,
+  "externalServicesTested": false,
+  "listenerClosedAssertionPassed": true
+}

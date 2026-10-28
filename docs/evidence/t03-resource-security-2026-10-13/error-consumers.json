@@ -1,0 +1,16 @@
+{
+  "recordedAtUtc": "2026-10-13T23:14:47.342902+00:00",
+  "reviewer": "/root/audit_concurrent_backend",
+  "mode": "independent_read_only_no_test_rerun",
+  "result": "RESOURCE_NOT_FOUND with HTTP 400 compatible with generic frontend error handling",
+  "changedExpectations": [
+    "resource-resolver.spec.ts one assert",
+    "triggers-email.test.mjs three asserts in two tests"
+  ],
+  "sources": [
+    "workflow-reference.validation.ts propagates code/message and aggregates issues",
+    "api-client.ts:35 and workflow page review/activate handle generic errors",
+    "AiGeneratorService converts to AI_INVALID_WORKFLOW_RESPONSE preserving usage"
+  ],
+  "approvalOfResourceArchitectureOrModel": false
+}

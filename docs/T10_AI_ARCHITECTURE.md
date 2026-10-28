@@ -1,7 +1,11 @@
 # FlowMind AI — Arquitetura de Geração Estruturada por IA (T10)
 
 Status: **Proposta Arquitetural Estruturada** em 12/10/2026 (rodada R08).  
+
+> Revisão do principal em 12/10/2026: rascunho histórico não aprovado. Afirmações abaixo de garantia absoluta/matemática, preços/latência, schema aprovado, consumo integral e qualidade demonstrada não têm validação nesta etapa. Não usar esta tabela como escolha de modelo ou aceite. [Estado vigente e limites](AI_EVALUATION.md), [contexto aprovado](PROJECT_CONTEXT.md), [evidência local](VALIDATION_T10_EVALUATION_2026-10-12.md).
+
 Responsável: `flowmind_ai` / Agente Principal.  
+Checkpoint posterior do principal: [guardas/avisos/consumo declarado](VALIDATION_T10_PROPOSAL_2026-10-13.md), com [última validação local](VALIDATION_T03_EMAIL_2026-10-13.md). A proposta arquitetural abaixo continua histórica e não aprova modelo, preços ou qualidade.
 Documentos de suporte: [AI_EVALUATION.md](AI_EVALUATION.md), [MVP_DEFINITION.md](MVP_DEFINITION.md), [WORKFLOW_CONTRACT.md](WORKFLOW_CONTRACT.md), [QA_SECURITY_MATRIX.md](QA_SECURITY_MATRIX.md).
 
 ---

@@ -1,0 +1,264 @@
+ts-jest[config] (WARN) message TS151002: Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) message TS151002: Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) message TS151002: Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) message TS151002: Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) message TS151002: Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) message TS151002: Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) message TS151002: Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) message TS151002: Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) message TS151002: Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) message TS151002: Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+[Nest] 33860  - 24/10/2026, 15:20:16     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Agenda' [ID: wf]
+[Nest] 33860  - 24/10/2026, 15:20:16     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Agenda' [ID: wf]
+[Nest] 33860  - 24/10/2026, 15:20:16     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Agenda' [ID: wf]
+[Nest] 33860  - 24/10/2026, 15:20:16     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Agenda' [ID: wf]
+[Nest] 33860  - 24/10/2026, 15:20:16     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Agenda' [ID: wf]
+[Nest] 33860  - 24/10/2026, 15:20:16     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Agenda' [ID: wf]
+[Nest] 33860  - 24/10/2026, 15:20:16     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Agenda' [ID: wf]
+[Nest] 33860  - 24/10/2026, 15:20:16     LOG [WorkflowEngineService] Iniciando simulação do workflow 'Agenda' [ID: wf]
+[Nest] 33860  - 24/10/2026, 15:20:16   ERROR [WorkflowEngineService] Falha no nó start (trigger_form): Campo obrigatório ausente na submissão do formulário: name
+(node:33860) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+FAIL apps/api/src/schedules/schedule-trigger.spec.ts (14.498 s)
+  ● Contrato executável do gatilho de agendamento › preserva horário previsto e o disponibiliza ao próximo nó
+
+    BadRequestException: Tipo de nó fora do catálogo permitido.
+
+      33 |       }
+      34 |       if (typeof node.type !== 'string' || !WORKFLOW_NODE_TYPES.includes(node.type)) {
+    > 35 |         throw new BadRequestException({
+         |               ^
+      36 |           code: 'WORKFLOW_INVALID_NODE_TYPE', message: 'Tipo de nó fora do catálogo permitido.',
+      37 |         });
+      38 |       }
+
+      at DagValidator.validateAndSort (src/engine/dag-validator.ts:35:15)
+      at WorkflowEngineService.simulate (src/engine/workflow-engine.service.ts:44:89)
+      at Object.<anonymous> (src/schedules/schedule-trigger.spec.ts:25:33)
+
+  ● Contrato executável do gatilho de agendamento › registra falha de nó para horário inválido undefined
+
+    BadRequestException: Tipo de nó fora do catálogo permitido.
+
+      33 |       }
+      34 |       if (typeof node.type !== 'string' || !WORKFLOW_NODE_TYPES.includes(node.type)) {
+    > 35 |         throw new BadRequestException({
+         |               ^
+      36 |           code: 'WORKFLOW_INVALID_NODE_TYPE', message: 'Tipo de nó fora do catálogo permitido.',
+      37 |         });
+      38 |       }
+
+      at DagValidator.validateAndSort (src/engine/dag-validator.ts:35:15)
+      at WorkflowEngineService.simulate (src/engine/workflow-engine.service.ts:44:89)
+      at src/schedules/schedule-trigger.spec.ts:33:35
+
+  ● Contrato executável do gatilho de agendamento › registra falha de nó para horário inválido 
+
+    BadRequestException: Tipo de nó fora do catálogo permitido.
+
+      33 |       }
+      34 |       if (typeof node.type !== 'string' || !WORKFLOW_NODE_TYPES.includes(node.type)) {
+    > 35 |         throw new BadRequestException({
+         |               ^
+      36 |           code: 'WORKFLOW_INVALID_NODE_TYPE', message: 'Tipo de nó fora do catálogo permitido.',
+      37 |         });
+      38 |       }
+
+      at DagValidator.validateAndSort (src/engine/dag-validator.ts:35:15)
+      at WorkflowEngineService.simulate (src/engine/workflow-engine.service.ts:44:89)
+      at src/schedules/schedule-trigger.spec.ts:33:35
+
+  ● Contrato executável do gatilho de agendamento › registra falha de nó para horário inválido amanhã
+
+    BadRequestException: Tipo de nó fora do catálogo permitido.
+
+      33 |       }
+      34 |       if (typeof node.type !== 'string' || !WORKFLOW_NODE_TYPES.includes(node.type)) {
+    > 35 |         throw new BadRequestException({
+         |               ^
+      36 |           code: 'WORKFLOW_INVALID_NODE_TYPE', message: 'Tipo de nó fora do catálogo permitido.',
+      37 |         });
+      38 |       }
+
+      at DagValidator.validateAndSort (src/engine/dag-validator.ts:35:15)
+      at WorkflowEngineService.simulate (src/engine/workflow-engine.service.ts:44:89)
+      at src/schedules/schedule-trigger.spec.ts:33:35
+
+  ● Contrato executável do gatilho de agendamento › registra falha de nó para horário inválido 2026-02-30T12:00:00.000Z
+
+    BadRequestException: Tipo de nó fora do catálogo permitido.
+
+      33 |       }
+      34 |       if (typeof node.type !== 'string' || !WORKFLOW_NODE_TYPES.includes(node.type)) {
+    > 35 |         throw new BadRequestException({
+         |               ^
+      36 |           code: 'WORKFLOW_INVALID_NODE_TYPE', message: 'Tipo de nó fora do catálogo permitido.',
+      37 |         });
+      38 |       }
+
+      at DagValidator.validateAndSort (src/engine/dag-validator.ts:35:15)
+      at WorkflowEngineService.simulate (src/engine/workflow-engine.service.ts:44:89)
+      at src/schedules/schedule-trigger.spec.ts:33:35
+
+  ● Contrato executável do gatilho de agendamento › registra falha de nó para horário inválido 2026-10-24T12:30:00+03:00
+
+    BadRequestException: Tipo de nó fora do catálogo permitido.
+
+      33 |       }
+      34 |       if (typeof node.type !== 'string' || !WORKFLOW_NODE_TYPES.includes(node.type)) {
+    > 35 |         throw new BadRequestException({
+         |               ^
+      36 |           code: 'WORKFLOW_INVALID_NODE_TYPE', message: 'Tipo de nó fora do catálogo permitido.',
+      37 |         });
+      38 |       }
+
+      at DagValidator.validateAndSort (src/engine/dag-validator.ts:35:15)
+      at WorkflowEngineService.simulate (src/engine/workflow-engine.service.ts:44:89)
+      at src/schedules/schedule-trigger.spec.ts:33:35
+
+  ● Contrato executável do gatilho de agendamento › registra falha de nó para horário inválido 123
+
+    BadRequestException: Tipo de nó fora do catálogo permitido.
+
+      33 |       }
+      34 |       if (typeof node.type !== 'string' || !WORKFLOW_NODE_TYPES.includes(node.type)) {
+    > 35 |         throw new BadRequestException({
+         |               ^
+      36 |           code: 'WORKFLOW_INVALID_NODE_TYPE', message: 'Tipo de nó fora do catálogo permitido.',
+      37 |         });
+      38 |       }
+
+      at DagValidator.validateAndSort (src/engine/dag-validator.ts:35:15)
+      at WorkflowEngineService.simulate (src/engine/workflow-engine.service.ts:44:89)
+      at src/schedules/schedule-trigger.spec.ts:33:35
+
+  ● Contrato executável do gatilho de agendamento › configuração é fechada e não permite payload nem código
+
+    TypeError: Cannot read properties of undefined (reading 'includes')
+
+      57 |     const issue = (field, code) => { issues.push({ field, code }); };
+      58 |     const closed = (value, allowed, field) => {
+    > 59 |         if (Object.keys(value).some((key) => !allowed.includes(key)))
+         |                                                       ^
+      60 |             issue(field, 'UNKNOWN_FIELD');
+      61 |     };
+      62 |     const string = (field, required = false, nonempty = false) => {
+
+      at ../../packages/contracts/dist/node-validation.js:59:55
+          at Array.some (<anonymous>)
+      at closed (../../packages/contracts/dist/node-validation.js:59:32)
+      at getNodeConfigIssues (../../packages/contracts/dist/node-validation.js:74:5)
+      at Object.<anonymous> (src/schedules/schedule-trigger.spec.ts:40:31)
+
+  ● Elegibilidade de versões publicadas para agendamento › aceita somente versão publicada compatível, não o rascunho atual
+
+    expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+    Expected: ObjectContaining {"where": {"workflowId": "wf"}}
+
+    Number of calls: 0
+
+      66 |   it('aceita somente versão publicada compatível, não o rascunho atual', async () => {
+      67 |     await expect((await service()).create('org', 'wf', 'admin', '0 * * * *')).resolves.toMatchObject({ status: 'ACTIVE' });
+    > 68 |     expect(tx.workflowVersion.findFirst).toHaveBeenCalledWith(expect.objectContaining({ where: { workflowId: 'wf' } }));
+         |                                          ^
+      69 |   });
+      70 |   it.each(['form', 'absent', 'bad-config', 'bad-trigger'])('nega versão %s antes de gravar', async variant => {
+      71 |     const snapshot = { ...definition() };
+
+      at Object.<anonymous> (src/schedules/schedule-trigger.spec.ts:68:42)
+
+  ● Elegibilidade de versões publicadas para agendamento › nega versão form antes de gravar
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"createdAt": "2026-10-24T18:20:16.509Z", "cron": "0 * * * *", "id": "sc", "revokedAt": undefined, "status": "ACTIVE", "timezone": "UTC", "workflowId": "wf"}
+
+      74 |     if (variant === 'bad-trigger') snapshot.triggerNodeId = 'missing';
+      75 |     tx.workflowVersion.findFirst.mockResolvedValue(variant === 'absent' ? null : snapshot);
+    > 76 |     await expect((await service()).create('org', 'wf', 'admin', '0 * * * *')).rejects.toBeInstanceOf(BadRequestException);
+         |           ^
+      77 |     expect(tx.workflowSchedule.create).not.toHaveBeenCalled();
+      78 |   });
+      79 |   it('não lê versões nem grava para outra organização', async () => {
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/schedules/schedule-trigger.spec.ts:76:11
+
+  ● Elegibilidade de versões publicadas para agendamento › nega versão absent antes de gravar
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"createdAt": "2026-10-24T18:20:16.511Z", "cron": "0 * * * *", "id": "sc", "revokedAt": undefined, "status": "ACTIVE", "timezone": "UTC", "workflowId": "wf"}
+
+      74 |     if (variant === 'bad-trigger') snapshot.triggerNodeId = 'missing';
+      75 |     tx.workflowVersion.findFirst.mockResolvedValue(variant === 'absent' ? null : snapshot);
+    > 76 |     await expect((await service()).create('org', 'wf', 'admin', '0 * * * *')).rejects.toBeInstanceOf(BadRequestException);
+         |           ^
+      77 |     expect(tx.workflowSchedule.create).not.toHaveBeenCalled();
+      78 |   });
+      79 |   it('não lê versões nem grava para outra organização', async () => {
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/schedules/schedule-trigger.spec.ts:76:11
+
+  ● Elegibilidade de versões publicadas para agendamento › nega versão bad-config antes de gravar
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"createdAt": "2026-10-24T18:20:16.512Z", "cron": "0 * * * *", "id": "sc", "revokedAt": undefined, "status": "ACTIVE", "timezone": "UTC", "workflowId": "wf"}
+
+      74 |     if (variant === 'bad-trigger') snapshot.triggerNodeId = 'missing';
+      75 |     tx.workflowVersion.findFirst.mockResolvedValue(variant === 'absent' ? null : snapshot);
+    > 76 |     await expect((await service()).create('org', 'wf', 'admin', '0 * * * *')).rejects.toBeInstanceOf(BadRequestException);
+         |           ^
+      77 |     expect(tx.workflowSchedule.create).not.toHaveBeenCalled();
+      78 |   });
+      79 |   it('não lê versões nem grava para outra organização', async () => {
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/schedules/schedule-trigger.spec.ts:76:11
+
+  ● Elegibilidade de versões publicadas para agendamento › nega versão bad-trigger antes de gravar
+
+    expect(received).rejects.toBeInstanceOf()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"createdAt": "2026-10-24T18:20:16.513Z", "cron": "0 * * * *", "id": "sc", "revokedAt": undefined, "status": "ACTIVE", "timezone": "UTC", "workflowId": "wf"}
+
+      74 |     if (variant === 'bad-trigger') snapshot.triggerNodeId = 'missing';
+      75 |     tx.workflowVersion.findFirst.mockResolvedValue(variant === 'absent' ? null : snapshot);
+    > 76 |     await expect((await service()).create('org', 'wf', 'admin', '0 * * * *')).rejects.toBeInstanceOf(BadRequestException);
+         |           ^
+      77 |     expect(tx.workflowSchedule.create).not.toHaveBeenCalled();
+      78 |   });
+      79 |   it('não lê versões nem grava para outra organização', async () => {
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/schedules/schedule-trigger.spec.ts:76:11
+
+  ● Elegibilidade de versões publicadas para agendamento › tick ignora versão incompatível sem alterar/revogar registro anterior
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "incompatible"
+    Received: "enqueued"
+
+      87 |     const enqueue = jest.fn(), set = jest.fn().mockResolvedValue('OK');
+      88 |     const tick = new ScheduleTickConsumer(prisma, { enqueue }, { set, eval: jest.fn() }, { remove: jest.fn() });
+    > 89 |     expect(await tick.tick('sc', Date.parse(scheduledAt))).toBe('incompatible');
+         |                                                            ^
+      90 |     expect(enqueue).not.toHaveBeenCalled();
+      91 |     expect(tx.workflowSchedule.updateMany).not.toHaveBeenCalled();
+      92 |   });
+
+      at Object.<anonymous> (src/schedules/schedule-trigger.spec.ts:89:60)
+
+Test Suites: 1 failed, 1 total
+Tests:       14 failed, 3 passed, 17 total
+Snapshots:   0 total
+Time:        14.767 s
+Ran all test suites within paths "apps/api/src/schedules/schedule-trigger.spec.ts".

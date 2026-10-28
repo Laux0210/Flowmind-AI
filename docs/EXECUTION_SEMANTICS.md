@@ -2,6 +2,8 @@
 
 Status: DAG confirmado em 10/10/2026; detalhes de execução/versionamento em revisão, sem motor implementado. Contribuição inicial de `flowmind_automation`, tarefa `/root/inicio_t03_t09_execucao`, thread `01a122eb-2259-7b00-8165-2cc4555f9de0`; principal consolida.
 
+Qualificação em 13/10/2026: o status acima é histórico. Há motor de simulação local e guardas [S1](VALIDATION_T03_CONFIG_2026-10-13.md)/[S2a](VALIDATION_T03_REFERENCE_2026-10-13.md), sem aceite operacional integrado. [T03-S2b](T03_AVAILABILITY_PROPOSAL.md) reproduziu dez exemplos de convergência/opcionais/modos; a política de convergência continua aguardando decisão. O protótipo OR-Join não aprova os detalhes propostos abaixo.
+
 Fontes locais: [contratos em rascunho](WORKFLOW_CONTRACT_DRAFT.md), [autorização](AUTHORIZATION_OPTIONS.md), [produto](MVP_DEFINITION.md) e [plano](../plan.md). Este documento não implementa nem testa um motor.
 
 ## Grafo e referências

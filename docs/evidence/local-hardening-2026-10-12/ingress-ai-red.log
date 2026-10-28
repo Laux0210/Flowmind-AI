@@ -1,0 +1,265 @@
+
+> @flowmind/api@0.1.0 test
+> node --experimental-vm-modules ../../node_modules/jest/bin/jest.js --runInBand --runTestsByPath src/ai/ai-container.spec.ts src/triggers/triggers.hardening.spec.ts src/auth/workflow-container.spec.ts
+
+[Nest] 17936  - 12/10/2026, 13:44:33     LOG [WebhooksService] Idempotência acionada para chave 'fixture_event' no workflow 'wf_beta'
+
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151002: [0mUsing hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+(node:17936) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+FAIL src/triggers/triggers.hardening.spec.ts
+  ● T12 — ingresso autenticado e datas não fabricadas › sem segredo do servidor (undefined) não executa
+
+    expect(received).rejects.toThrow()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"executionId": "exec_fixture", "idempotentReplay": false, "status": "COMPLETED", "triggeredAt": "2026-10-12T16:44:33.711Z", "workflowId": "wf_beta"}
+
+      15 |
+      16 |   it.each([undefined, '', '   '])('sem segredo do servidor (%s) não executa', async (configuredSecret) => {
+    > 17 |     await expect(service.handleWebhookTrigger(workflow, {}, { signature: secret }, configuredSecret))
+         |           ^
+      18 |       .rejects.toThrow(ServiceUnavailableException);
+      19 |     expect(engine.simulate).not.toHaveBeenCalled();
+      20 |   });
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/triggers/triggers.hardening.spec.ts:17:11
+
+  ● T12 — ingresso autenticado e datas não fabricadas › sem segredo do servidor () não executa
+
+    expect(received).rejects.toThrow()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"executionId": "exec_fixture", "idempotentReplay": false, "status": "COMPLETED", "triggeredAt": "2026-10-12T16:44:33.721Z", "workflowId": "wf_beta"}
+
+      15 |
+      16 |   it.each([undefined, '', '   '])('sem segredo do servidor (%s) não executa', async (configuredSecret) => {
+    > 17 |     await expect(service.handleWebhookTrigger(workflow, {}, { signature: secret }, configuredSecret))
+         |           ^
+      18 |       .rejects.toThrow(ServiceUnavailableException);
+      19 |     expect(engine.simulate).not.toHaveBeenCalled();
+      20 |   });
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/triggers/triggers.hardening.spec.ts:17:11
+
+  ● T12 — ingresso autenticado e datas não fabricadas › sem segredo do servidor (   ) não executa
+
+    expect(received).rejects.toThrow(expected)
+
+    Expected constructor: ServiceUnavailableException
+    Received constructor: UnauthorizedException
+
+    Received message: "Assinatura ou segredo do webhook inválido."
+
+          79 |
+          80 |       if (!isMatch) {
+        > 81 |         throw new UnauthorizedException({
+             |               ^
+          82 |           code: 'INVALID_WEBHOOK_SIGNATURE',
+          83 |           message: 'Assinatura ou segredo do webhook inválido.',
+          84 |         });
+
+      at WebhooksService.handleWebhookTrigger (src/triggers/webhooks.service.ts:81:15)
+      at src/triggers/triggers.hardening.spec.ts:17:26
+      at Object.toThrow (../../node_modules/expect/build/index.js:2155:20)
+      at src/triggers/triggers.hardening.spec.ts:18:16
+
+  ● T12 — ingresso autenticado e datas não fabricadas › assinatura undefined não expõe estado nem executa
+
+    expect(received).toBeInstanceOf(expected)
+
+    Expected constructor: UnauthorizedException
+    Received constructor: BadRequestException
+
+      26 |         throw new Error('Deveria negar autenticação');
+      27 |       } catch (error) {
+    > 28 |         expect(error).toBeInstanceOf(UnauthorizedException);
+         |                       ^
+      29 |         expect(JSON.stringify((error as UnauthorizedException).getResponse())).not.toContain('Nome privado Beta');
+      30 |       }
+      31 |     }
+
+      at src/triggers/triggers.hardening.spec.ts:28:23
+
+  ● T12 — ingresso autenticado e datas não fabricadas › assinatura wrong não expõe estado nem executa
+
+    expect(received).toBeInstanceOf(expected)
+
+    Expected constructor: UnauthorizedException
+    Received constructor: BadRequestException
+
+      26 |         throw new Error('Deveria negar autenticação');
+      27 |       } catch (error) {
+    > 28 |         expect(error).toBeInstanceOf(UnauthorizedException);
+         |                       ^
+      29 |         expect(JSON.stringify((error as UnauthorizedException).getResponse())).not.toContain('Nome privado Beta');
+      30 |       }
+      31 |     }
+
+      at src/triggers/triggers.hardening.spec.ts:28:23
+
+  ● T12 — ingresso autenticado e datas não fabricadas › assinatura fixture_server_secreX não expõe estado nem executa
+
+    expect(received).toBeInstanceOf(expected)
+
+    Expected constructor: UnauthorizedException
+    Received constructor: BadRequestException
+
+      26 |         throw new Error('Deveria negar autenticação');
+      27 |       } catch (error) {
+    > 28 |         expect(error).toBeInstanceOf(UnauthorizedException);
+         |                       ^
+      29 |         expect(JSON.stringify((error as UnauthorizedException).getResponse())).not.toContain('Nome privado Beta');
+      30 |       }
+      31 |     }
+
+      at src/triggers/triggers.hardening.spec.ts:28:23
+
+  ● T12 — ingresso autenticado e datas não fabricadas › cron diário não apresenta próximo minuto como próxima execução
+
+    expect(received).toBeUndefined()
+
+    Received: "2026-10-12T00:02:00.000Z"
+
+      46 |       jest.setSystemTime(new Date('2026-10-12T00:01:30Z'));
+      47 |       const result = new SchedulerService().calculateNextRun({ cronExpression: '0 9 * * *', timezone: 'UTC', enabled: true });
+    > 48 |       expect(result.isValid).toBe(true); expect(result.nextExecutionAt).toBeUndefined();
+         |                                                                         ^
+      49 |       expect(result.error).toMatch(/indisponível/);
+      50 |     } finally { jest.useRealTimers(); }
+      51 |   });
+
+      at Object.<anonymous> (src/triggers/triggers.hardening.spec.ts:48:73)
+
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151002: [0mUsing hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151002: [0mUsing hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151002: [0mUsing hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151002: [0mUsing hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+FAIL src/ai/ai-container.spec.ts
+  ● T10 — cliente injetado e ativação explícita (sem rede) › o container injeta AI_CLIENT e a geração utiliza o adaptador fornecido
+
+    Nest can't resolve dependencies of the AiGeneratorService (?). Please make sure that the argument at index [0] is available in the current module.
+
+    Potential solutions:
+    - The dependency at index [0] appears to be undefined at runtime
+    - This commonly occurs when using 'import type' instead of 'import' for injectable classes
+    - Check your imports and change:
+      ❌ import type { SomeService } from './some.service';
+      ✅ import { SomeService } from './some.service';
+    - Ensure the imported class is decorated with @Injectable() or is a valid provider
+    - If using dynamic imports, ensure the class is available at runtime, not just for type checking
+
+    For more common dependency resolution issues, see: https://docs.nestjs.com/faq/common-errors
+
+      10 |     const client = { generateWorkflow: jest.fn((prompt: string, orgId: string) =>
+      11 |       new DeterministicAiClient().generateWorkflow(prompt, orgId)) };
+    > 12 |     const module = await Test.createTestingModule({ providers: [AiGeneratorService,
+         |                    ^
+      13 |       { provide: AI_CLIENT, useValue: client }] }).compile();
+      14 |     try {
+      15 |       const result = await module.get(AiGeneratorService).generateFromNaturalLanguage({ prompt: 'Receba formulário de contato e resuma a mensagem' }, 'org_fixture');
+
+      at TestingInjector.lookupComponentInParentModules (../../node_modules/@nestjs/core/injector/injector.js:346:19)
+      at TestingInjector.resolveComponentWrapper (../../node_modules/@nestjs/testing/testing-injector.js:16:45)
+      at resolveParam (../../node_modules/@nestjs/core/injector/injector.js:150:38)
+          at async Promise.all (index 0)
+      at TestingInjector.resolveConstructorParams (../../node_modules/@nestjs/core/injector/injector.js:182:27)
+      at TestingInjector.loadInstance (../../node_modules/@nestjs/core/injector/injector.js:76:13)
+      at TestingInjector.loadProvider (../../node_modules/@nestjs/core/injector/injector.js:110:9)
+      at ../../node_modules/@nestjs/core/injector/instance-loader.js:58:13
+          at async Promise.all (index 3)
+      at TestingInstanceLoader.createInstancesOfProviders (../../node_modules/@nestjs/core/injector/instance-loader.js:57:9)
+      at ../../node_modules/@nestjs/core/injector/instance-loader.js:42:13
+          at async Promise.all (index 1)
+      at TestingInstanceLoader.createInstances (../../node_modules/@nestjs/core/injector/instance-loader.js:41:9)
+      at TestingInstanceLoader.createInstancesOfDependencies (../../node_modules/@nestjs/core/injector/instance-loader.js:24:13)
+      at TestingInstanceLoader.createInstancesOfDependencies (../../node_modules/@nestjs/testing/testing-instance-loader.js:6:9)
+      at TestingModuleBuilder.createInstancesOfDependencies (../../node_modules/@nestjs/testing/testing-module.builder.js:119:9)
+      at TestingModuleBuilder.compile (../../node_modules/@nestjs/testing/testing-module.builder.js:72:9)
+      at Object.<anonymous> (src/ai/ai-container.spec.ts:12:20)
+
+  ● T10 — cliente injetado e ativação explícita (sem rede) › chave sozinha e opt-in undefined não habilitam envio externo
+
+    expect(received).toBeInstanceOf(expected)
+
+    Expected constructor: DeterministicAiClient
+    Received constructor: OpenAiStructuredClient
+
+      29 |       const providers = Reflect.getMetadata('providers', AiModule);
+      30 |       const factory = providers.find((provider: any) => provider.provide === AI_CLIENT).useFactory;
+    > 31 |       expect(factory()).toBeInstanceOf(DeterministicAiClient);
+         |                         ^
+      32 |       expect(network).not.toHaveBeenCalled();
+      33 |     } finally {
+      34 |       if (previousKey === undefined) delete process.env.OPENAI_API_KEY; else process.env.OPENAI_API_KEY = previousKey;
+
+      at src/ai/ai-container.spec.ts:31:25
+
+  ● T10 — cliente injetado e ativação explícita (sem rede) › chave sozinha e opt-in false não habilitam envio externo
+
+    expect(received).toBeInstanceOf(expected)
+
+    Expected constructor: DeterministicAiClient
+    Received constructor: OpenAiStructuredClient
+
+      29 |       const providers = Reflect.getMetadata('providers', AiModule);
+      30 |       const factory = providers.find((provider: any) => provider.provide === AI_CLIENT).useFactory;
+    > 31 |       expect(factory()).toBeInstanceOf(DeterministicAiClient);
+         |                         ^
+      32 |       expect(network).not.toHaveBeenCalled();
+      33 |     } finally {
+      34 |       if (previousKey === undefined) delete process.env.OPENAI_API_KEY; else process.env.OPENAI_API_KEY = previousKey;
+
+      at src/ai/ai-container.spec.ts:31:25
+
+  ● T10 — cliente injetado e ativação explícita (sem rede) › chave sozinha e opt-in TRUE não habilitam envio externo
+
+    expect(received).toBeInstanceOf(expected)
+
+    Expected constructor: DeterministicAiClient
+    Received constructor: OpenAiStructuredClient
+
+      29 |       const providers = Reflect.getMetadata('providers', AiModule);
+      30 |       const factory = providers.find((provider: any) => provider.provide === AI_CLIENT).useFactory;
+    > 31 |       expect(factory()).toBeInstanceOf(DeterministicAiClient);
+         |                         ^
+      32 |       expect(network).not.toHaveBeenCalled();
+      33 |     } finally {
+      34 |       if (previousKey === undefined) delete process.env.OPENAI_API_KEY; else process.env.OPENAI_API_KEY = previousKey;
+
+      at src/ai/ai-container.spec.ts:31:25
+
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151002: [0mUsing hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151002: [0mUsing hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+FAIL src/auth/workflow-container.spec.ts
+  ● T06 — container Nest e requisições em memória › ingresso público não configurado responde 503 sem consultar ou simular recursos
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 503
+    Received: 404
+
+      208 |       for (const workflowId of ['wf_alpha', 'wf_beta', 'missing']) {
+      209 |         const result = await request('POST', `/triggers/webhook/${workflowId}`, undefined, { secret: 'fixture', orgId: 'org_beta' });
+    > 210 |         expect(result.status).toBe(503); expect(result.body.code).toBe('WEBHOOK_NOT_CONFIGURED');
+          |                               ^
+      211 |         expect(JSON.stringify(result.body)).not.toContain('Fixture');
+      212 |       }
+      213 |       expect(prisma.workflow.findFirst).not.toHaveBeenCalled();
+
+      at Object.<anonymous> (src/auth/workflow-container.spec.ts:210:31)
+
+Test Suites: 3 failed, 3 total
+Tests:       12 failed, 17 passed, 29 total
+Snapshots:   0 total
+Time:        3.772 s
+Ran all test suites within paths "src/ai/ai-container.spec.ts", "src/triggers/triggers.hardening.spec.ts", "src/auth/workflow-container.spec.ts".
+npm error Lifecycle script `test` failed with error:
+npm error code 1
+npm error path C:\Users\jv883\Documents\Codex\FlowMind-AI\Flowmind-AI\apps\api
+npm error workspace @flowmind/api@0.1.0
+npm error location C:\Users\jv883\Documents\Codex\FlowMind-AI\Flowmind-AI\apps\api
+npm error command failed
+npm error command C:\Windows\system32\cmd.exe /d /s /c node --experimental-vm-modules ../../node_modules/jest/bin/jest.js --runInBand --runTestsByPath src/ai/ai-container.spec.ts src/triggers/triggers.hardening.spec.ts src/auth/workflow-container.spec.ts

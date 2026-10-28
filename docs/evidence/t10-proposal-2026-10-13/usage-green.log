@@ -1,0 +1,37 @@
+(node:24040) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:24040) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+✔ cliente conserva uso da falha controlada AI_INVALID_WORKFLOW_RESPONSE, sem corpo privado (60.767ms)
+✔ cliente conserva uso da falha controlada AI_PROMPT_REFUSED, sem corpo privado (2.454ms)
+✔ cliente conserva uso da falha controlada AI_INCOMPLETE_RESPONSE, sem corpo privado (2.1886ms)
+✔ cliente conserva uso da falha controlada AI_INVALID_JSON_RESPONSE, sem corpo privado (2.5472ms)
+✔ cliente conserva uso da falha controlada AI_EMPTY_RESPONSE, sem corpo privado (2.371ms)
+✔ cliente conserva uso da falha controlada AI_INVALID_RESPONSE_STRUCTURE, sem corpo privado (2.8941ms)
+✔ cliente preserva classificação do consumo zero (1.9828ms)
+✔ cliente preserva classificação do consumo desconhecido (1.9507ms)
+✔ cliente preserva classificação do consumo ausente (2.1069ms)
+✔ cliente preserva classificação do consumo negativo (2.2158ms)
+✔ cliente preserva classificação do consumo fracionário (2.8145ms)
+✔ cliente preserva classificação do consumo infinito (2.2978ms)
+✔ cliente preserva classificação do consumo NaN (1.9489ms)
+✔ cliente preserva classificação do consumo inteiro inseguro (2.0252ms)
+✔ cliente preserva classificação do consumo string (2.5712ms)
+✔ não transforma metadata de UNRELATED_ERROR em medição declarada (1.6321ms)
+✔ não transforma metadata de INVALID_PROMPT em medição declarada (1.581ms)
+✔ não transforma metadata de SECURITY_SCOPE_VIOLATION em medição declarada (1.3883ms)
+✔ não transforma metadata de AI_PRIVATE_FIXTURE_CODE em medição declarada (1.5108ms)
+✔ erro HTTP sem JSON tem consumo desconhecido e mensagem genérica (1.7633ms)
+✔ outras rotas não recebem metadata de geração (1.7949ms)
+✔ sem token não chama fetch nem inventa consumo de geração (1.7831ms)
+✔ feedback do callback real mostra consumo 24, sem reaplicar proposta anterior (77.4975ms)
+✔ feedback do callback real mostra consumo 0, sem reaplicar proposta anterior (25.0279ms)
+✔ feedback do callback real mostra consumo null, sem reaplicar proposta anterior (22.0283ms)
+✔ falha de geração atrasada não mostra consumo no contexto de outra organização (20.9639ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 26
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 579.8498

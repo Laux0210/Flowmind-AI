@@ -3,12 +3,21 @@ import {
   NotFoundException,
   BadRequestException,
   ConflictException,
+  ServiceUnavailableException,
 } from '@nestjs/common';
 import type { Prisma, Workflow } from '../generated/prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
 import { WorkflowEngineService } from '../engine/workflow-engine.service';
-import { validateEmailConfiguration } from '../engine/workflow-validation';
+import { ExecutionsService } from '../executions/executions.service';
+import { ResourceResolver } from '../engine/resource-resolver';
+import { validateEmailConfiguration, validateNodeConfigurations } from '../engine/workflow-validation';
 import { DagValidator } from '../engine/dag-validator';
+import {
+  validateWorkflowReferences,
+  validateWorkflowAvailability,
+  validateNoConvergence,
+  validateWorkflowResources,
+} from '../engine/workflow-reference.validation';
 import type {
   WorkflowDefinition,
   CreateWorkflowDto,
@@ -28,10 +37,19 @@ import {
 export class WorkflowsService {
   private readonly prisma: PrismaService;
   private readonly engine: WorkflowEngineService;
+  private readonly executionsService?: ExecutionsService;
+  private readonly resources: ResourceResolver;
 
-  constructor(prisma: PrismaService, engine: WorkflowEngineService) {
+  constructor(
+    prisma: PrismaService,
+    engine: WorkflowEngineService,
+    resources: ResourceResolver,
+    executionsService?: ExecutionsService,
+  ) {
     this.prisma = prisma;
     this.engine = engine;
+    this.resources = resources;
+    this.executionsService = executionsService;
   }
 
   async create(orgId: string, dto: CreateWorkflowDto): Promise<WorkflowDefinition> {
@@ -77,6 +95,7 @@ export class WorkflowsService {
       if (dto.name !== undefined && (typeof dto.name !== 'string' || !dto.name.trim())) {
         throw new BadRequestException('Nome do workflow obrigatório');
       }
+      if (dto.nodes !== undefined) validateNodeConfigurations(dto.nodes, true);
       const result = await tx.workflow.updateMany({
         where: { id, orgId, status: existing.status, version: existing.version },
         data: {
@@ -110,9 +129,37 @@ export class WorkflowsService {
     orgId: string,
     id: string,
     dto: SimulateWorkflowDto,
+    userId = 'system',
   ): Promise<SimulateWorkflowResponse> {
     const workflow = await this.findOne(orgId, id);
-    return this.engine.simulate(workflow, dto.initialPayload ?? {});
+    const simResult = await this.engine.simulate(workflow, dto.initialPayload ?? {});
+
+    if (!this.executionsService) {
+      throw new ServiceUnavailableException({
+        code: 'EXECUTION_STORAGE_UNAVAILABLE',
+        message: 'O histórico de execuções está temporariamente indisponível.',
+      });
+    }
+
+    const now = Date.now();
+    const startedAt = new Date(now - simResult.totalDurationMs).toISOString();
+    const completedAt = new Date(now).toISOString();
+    const recorded = await this.executionsService.recordExecution(
+      orgId,
+      workflow.id,
+      workflow.version,
+      'SIMULATION',
+      simResult.status,
+      userId,
+      simResult.nodeResults,
+      startedAt,
+      completedAt,
+      simResult.executionId,
+    );
+    return {
+      ...simResult,
+      executionId: recorded.id,
+    };
   }
 
   async review(orgId: string, id: string, reviewedBy: string): Promise<ReviewWorkflowResponse> {
@@ -229,8 +276,13 @@ export class WorkflowsService {
     if (workflow.schemaVersion !== WORKFLOW_SCHEMA_VERSION) {
       throw new BadRequestException('Versão de schema não suportada; revise a definição antes de ativar');
     }
-    const { ancestorsByNode } = DagValidator.validateAndSort(workflow);
+    const { ancestorsByNode, edgesByTarget } = DagValidator.validateAndSort(workflow);
+    validateNoConvergence(edgesByTarget);
     validateEmailConfiguration(workflow, ancestorsByNode);
+    validateNodeConfigurations(workflow.nodes);
+    validateWorkflowReferences(workflow.nodes, ancestorsByNode);
+    validateWorkflowAvailability(workflow.nodes);
+    validateWorkflowResources(workflow, this.resources);
   }
 
   private toDefinition(row: Workflow): WorkflowDefinition {

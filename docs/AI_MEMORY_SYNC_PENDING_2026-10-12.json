@@ -1,0 +1,220 @@
+{
+  "status": "pending_not_transferred",
+  "createdAt": "2026-10-12T14:12:49.516413-03:00",
+  "workspace": "flowmind-ai",
+  "project": "flowmind-ai",
+  "reason": "Local documentation hashes refreshed; transfer remains pending. ConnectionRefusedError request136 is historical, not rechecked in this step.",
+  "previousVerifiedPages": 10,
+  "previousVerifiedVersions": 24,
+  "pages": [
+    {
+      "source": "docs/MEMORIA.md",
+      "target": "notes/flowmind-contexto-continuidade.md",
+      "sourceSha256": "0b86a2cd3365a02e333a4c2ddab5021efe38181e977b5d690170a481225a30bd",
+      "bodySha256": "08f1ba7ac2aaf6e128bf7da70aee9ade8acdbef67969319ca86b3a77fb9421e1"
+    },
+    {
+      "source": "docs/MEMORIA.md",
+      "target": "imports/obsidian/docs/MEMORIA.md",
+      "sourceSha256": "0b86a2cd3365a02e333a4c2ddab5021efe38181e977b5d690170a481225a30bd",
+      "bodySha256": "08f1ba7ac2aaf6e128bf7da70aee9ade8acdbef67969319ca86b3a77fb9421e1"
+    },
+    {
+      "source": "plan.md",
+      "target": "imports/obsidian/plan.md",
+      "sourceSha256": "b252c56184733cc61563412f9a61c5d6e97b2d59dd895349958df4696e409d8c",
+      "bodySha256": "29fb81c9295ff688a3419eca445c7df7aa81629d2a3a494e6457a0f88fd83227"
+    },
+    {
+      "source": "docs/PROJECT_CONTEXT.md",
+      "target": "imports/obsidian/docs/PROJECT_CONTEXT.md",
+      "sourceSha256": "d0dad78372cf88a1c798befd1e35dba15f1d130089f7259e1e08eb2a80632e01",
+      "bodySha256": "df5df49a0ec7968685425b53a25b0eafe20d9a0d28ce3ed91e456acf77989a26"
+    },
+    {
+      "source": "docs/AGENT_TEAM.md",
+      "target": "imports/obsidian/docs/AGENT_TEAM.md",
+      "sourceSha256": "93073e115a9fe202a462c78e5f378683c5cdc2cb77194f713129ac508347bed3",
+      "bodySha256": "93073e115a9fe202a462c78e5f378683c5cdc2cb77194f713129ac508347bed3"
+    },
+    {
+      "source": "docs/QA_SECURITY_MATRIX.md",
+      "target": "imports/obsidian/docs/QA_SECURITY_MATRIX.md",
+      "sourceSha256": "db5bd12a07904a53cac8e4c5364a108838da4275f508e77cf209ae8fbe9ba97f",
+      "bodySha256": "db5bd12a07904a53cac8e4c5364a108838da4275f508e77cf209ae8fbe9ba97f"
+    },
+    {
+      "source": "docs/VALIDATION_LOCAL_HARDENING_2026-10-12.md",
+      "target": "imports/obsidian/docs/VALIDATION_LOCAL_HARDENING_2026-10-12.md",
+      "sourceSha256": "4a62e6b7507216c13345bdd0e478b20875e49c4364882fb16768dff0aad032b4",
+      "bodySha256": "4a62e6b7507216c13345bdd0e478b20875e49c4364882fb16768dff0aad032b4"
+    },
+    {
+      "source": "docs/VALIDATION_FRONTEND_ASYNC_2026-10-12.md",
+      "target": "imports/obsidian/docs/VALIDATION_FRONTEND_ASYNC_2026-10-12.md",
+      "sourceSha256": "e9f9bfa858ad40639813be23e4fe9911b2f6ba6eebee7ea93ea7dd1dcee643d5",
+      "bodySha256": "e9f9bfa858ad40639813be23e4fe9911b2f6ba6eebee7ea93ea7dd1dcee643d5"
+    },
+    {
+      "source": "docs/T13_SIMULATION_HISTORY_PLAN.md",
+      "target": "imports/obsidian/docs/T13_SIMULATION_HISTORY_PLAN.md",
+      "sourceSha256": "169b4e88750954aea0f23bc946d214362cdf3fe09262a8719da727faa3ebc1aa",
+      "bodySha256": "169b4e88750954aea0f23bc946d214362cdf3fe09262a8719da727faa3ebc1aa"
+    },
+    {
+      "source": "docs/T05_DEPENDENCY_REMEDIATION_PLAN.md",
+      "target": "imports/obsidian/docs/T05_DEPENDENCY_REMEDIATION_PLAN.md",
+      "sourceSha256": "d0a6952bdac3ca138f2c213a5cfde6dfbff996039bc0641fd97f7653a89700b0",
+      "bodySha256": "d0a6952bdac3ca138f2c213a5cfde6dfbff996039bc0641fd97f7653a89700b0"
+    },
+    {
+      "source": "docs/DEPLOYMENT_OPERATIONS.md",
+      "target": "imports/obsidian/docs/DEPLOYMENT_OPERATIONS.md",
+      "sourceSha256": "391c438cf2d957b0f7366b487baef41d7407f33822082946b2b9a8e61f2a845c",
+      "bodySha256": "ef411cea863ea89f9846b17e4af8be627e65b8919b106dccf36be25cc3eecc6f"
+    },
+    {
+      "source": "docs/VALIDATION_DEPENDENCY_DRIFT_2026-10-12.md",
+      "target": "imports/obsidian/docs/VALIDATION_DEPENDENCY_DRIFT_2026-10-12.md",
+      "sourceSha256": "4b43e73ccca524c84e5d43e6a2ea925c5434b8cd580a946e8d2e8232b3ab8703",
+      "bodySha256": "4b43e73ccca524c84e5d43e6a2ea925c5434b8cd580a946e8d2e8232b3ab8703"
+    },
+    {
+      "source": "docs/VALIDATION_WORKER_HARDENING_2026-10-12.md",
+      "target": "imports/obsidian/docs/VALIDATION_WORKER_HARDENING_2026-10-12.md",
+      "sourceSha256": "eb252ba878e8ab2326148e4ab4aa41bd399deb27cdd16974c77b1a90393fe181",
+      "bodySha256": "eb252ba878e8ab2326148e4ab4aa41bd399deb27cdd16974c77b1a90393fe181"
+    },
+    {
+      "source": "docs/AI_EVALUATION.md",
+      "target": "imports/obsidian/docs/AI_EVALUATION.md",
+      "sourceSha256": "b5069f4343ad0c315ea0ec13951ba9d4b6ea317bb4ef40ec6e40f3c7d9a604a0",
+      "bodySha256": "b5069f4343ad0c315ea0ec13951ba9d4b6ea317bb4ef40ec6e40f3c7d9a604a0"
+    },
+    {
+      "source": "docs/evaluation/T10_RUBRIC_PROPOSAL.md",
+      "target": "imports/obsidian/docs/evaluation/T10_RUBRIC_PROPOSAL.md",
+      "sourceSha256": "d43b52ff14b86a13cc81beb4d12af341fd338c23a5e03b9c4b98546b7ef8f59d",
+      "bodySha256": "d43b52ff14b86a13cc81beb4d12af341fd338c23a5e03b9c4b98546b7ef8f59d"
+    },
+    {
+      "source": "docs/VALIDATION_T10_EVALUATION_2026-10-12.md",
+      "target": "imports/obsidian/docs/VALIDATION_T10_EVALUATION_2026-10-12.md",
+      "sourceSha256": "f3418f49630ad8fcccf55730f4dc7efa7ae43a5ac95693a1d5f55750a313cd56",
+      "bodySha256": "f3418f49630ad8fcccf55730f4dc7efa7ae43a5ac95693a1d5f55750a313cd56"
+    },
+    {
+      "source": "docs/VALIDATION_T10_CLIENT_2026-10-13.md",
+      "target": "imports/obsidian/docs/VALIDATION_T10_CLIENT_2026-10-13.md",
+      "sourceSha256": "57260e7ad033887179d9140304396df19df6db900b9b15371b51f25041efc021",
+      "bodySha256": "57260e7ad033887179d9140304396df19df6db900b9b15371b51f25041efc021"
+    },
+    {
+      "source": "docs/T03_NODE_SCHEMA_REVIEW.md",
+      "target": "imports/obsidian/docs/T03_NODE_SCHEMA_REVIEW.md",
+      "sourceSha256": "68423bcea445611acfeef4968136bf9447d0a54e20fcd97adbcfcb8ce9e8d9c2",
+      "bodySha256": "68423bcea445611acfeef4968136bf9447d0a54e20fcd97adbcfcb8ce9e8d9c2"
+    },
+    {
+      "source": "docs/WORKFLOW_CONTRACT.md",
+      "target": "imports/obsidian/docs/WORKFLOW_CONTRACT.md",
+      "sourceSha256": "fd34c98a288b3b1208f929e0443d077abfd82909126ebb443881d20775e58685",
+      "bodySha256": "fd34c98a288b3b1208f929e0443d077abfd82909126ebb443881d20775e58685"
+    },
+    {
+      "source": "docs/VALIDATION_T03_CONFIG_2026-10-13.md",
+      "target": "imports/obsidian/docs/VALIDATION_T03_CONFIG_2026-10-13.md",
+      "sourceSha256": "2e605fd9e7e7af291be3fac3facfd16388334413c30181259870af085c055ef6",
+      "bodySha256": "2e605fd9e7e7af291be3fac3facfd16388334413c30181259870af085c055ef6"
+    },
+    {
+      "source": "docs/VALIDATION_T03_REFERENCE_2026-10-13.md",
+      "target": "imports/obsidian/docs/VALIDATION_T03_REFERENCE_2026-10-13.md",
+      "sourceSha256": "7da4e807945c030f9b0c1792d4d51d70222c767735326c1cdc3b986a10f55b9b",
+      "bodySha256": "7da4e807945c030f9b0c1792d4d51d70222c767735326c1cdc3b986a10f55b9b"
+    },
+    {
+      "source": "docs/VALIDATION_T10_PROPOSAL_2026-10-13.md",
+      "target": "imports/obsidian/docs/VALIDATION_T10_PROPOSAL_2026-10-13.md",
+      "sourceSha256": "3dab054014c9821a21074b895e708d25d32e6d3b982f3f410cf0048179d0fc93",
+      "bodySha256": "3dab054014c9821a21074b895e708d25d32e6d3b982f3f410cf0048179d0fc93"
+    },
+    {
+      "source": "docs/VALIDATION_T03_EMAIL_2026-10-13.md",
+      "target": "imports/obsidian/docs/VALIDATION_T03_EMAIL_2026-10-13.md",
+      "sourceSha256": "5d7dbb0466168f75e83d03e7bd1a6175b0605b692e2ae5d969f7614b137a5e84",
+      "bodySha256": "5d7dbb0466168f75e83d03e7bd1a6175b0605b692e2ae5d969f7614b137a5e84"
+    },
+    {
+      "source": "docs/T03_AVAILABILITY_PROPOSAL.md",
+      "target": "imports/obsidian/docs/T03_AVAILABILITY_PROPOSAL.md",
+      "sourceSha256": "8961c39edbce5e6595e1129f20ba7f37d32ef1214281fca8b5dd39405cd74031",
+      "bodySha256": "2b63b753b90cd8f5924e6feba427a11de16b568fbc01d2e2132d5471b100c895"
+    },
+    {
+      "source": "docs/T03_RESOURCE_PROPOSAL.md",
+      "target": "imports/obsidian/docs/T03_RESOURCE_PROPOSAL.md",
+      "sourceSha256": "847549187af55ff3a08ec36622a7e9127de2d5c112c133319ebee2a9eb16dfd6",
+      "bodySha256": "847549187af55ff3a08ec36622a7e9127de2d5c112c133319ebee2a9eb16dfd6"
+    },
+    {
+      "source": "docs/VALIDATION_T14_HTTP_2026-10-13.md",
+      "target": "imports/obsidian/docs/VALIDATION_T14_HTTP_2026-10-13.md",
+      "sourceSha256": "3b5f813c454207644047aa32772fe3d5415361286cd246e082b6a33b9ee532d0",
+      "bodySha256": "3b5f813c454207644047aa32772fe3d5415361286cd246e082b6a33b9ee532d0"
+    },
+    {
+      "source": "docs/VALIDATION_T08_EDITOR_2026-10-13.md",
+      "target": "imports/obsidian/docs/VALIDATION_T08_EDITOR_2026-10-13.md",
+      "sourceSha256": "b91f6dc530c8a2ed53c7d73b05916ae13956a2dde4168bb3007aa4bc9e4ac2f8",
+      "bodySha256": "b91f6dc530c8a2ed53c7d73b05916ae13956a2dde4168bb3007aa4bc9e4ac2f8"
+    },
+    {
+      "source": "docs/archive/CONCURRENT_T03_T08_2026-10-13.md",
+      "target": "imports/obsidian/docs/archive/CONCURRENT_T03_T08_2026-10-13.md",
+      "sourceSha256": "9c4bfc4711c0ff07969052b4f5780ab8b1b805a5110702ecb966044996051097",
+      "bodySha256": "9c4bfc4711c0ff07969052b4f5780ab8b1b805a5110702ecb966044996051097"
+    },
+    {
+      "source": "docs/VALIDATION_T03_RESOURCE_SECURITY_2026-10-13.md",
+      "target": "imports/obsidian/docs/VALIDATION_T03_RESOURCE_SECURITY_2026-10-13.md",
+      "sourceSha256": "c3440cacb683ad5e1230f422658db8a7ffb7ca7950ec0c59506d9d3106c6a559",
+      "bodySha256": "c3440cacb683ad5e1230f422658db8a7ffb7ca7950ec0c59506d9d3106c6a559"
+    },
+    {
+      "source": "docs/T03_RESOURCE_IMPLEMENTATION_PLAN.md",
+      "target": "imports/obsidian/docs/T03_RESOURCE_IMPLEMENTATION_PLAN.md",
+      "sourceSha256": "dc4e284aa0ff8112c175b769e433543a174eaed1445fa98efeb059ae2f4042fb",
+      "bodySha256": "dc4e284aa0ff8112c175b769e433543a174eaed1445fa98efeb059ae2f4042fb"
+    },
+    {
+      "source": "docs/VALIDATION_T05_T12_WORKER_QUEUE_2026-10-13.md",
+      "target": "imports/obsidian/docs/VALIDATION_T05_T12_WORKER_QUEUE_2026-10-13.md",
+      "sourceSha256": "516c1fafbc37edcee47bb1d5d14bd1cb37c608c838aa7c1a1965f7df0c2ce341",
+      "bodySha256": "516c1fafbc37edcee47bb1d5d14bd1cb37c608c838aa7c1a1965f7df0c2ce341",
+      "verificationStatus": "concurrent_report_not_revalidated; consult canonical MEMORIA.md"
+    },
+    {
+      "source": "docs/VALIDATION_T03_CATALOG_2026-10-15.md",
+      "target": "imports/obsidian/docs/VALIDATION_T03_CATALOG_2026-10-15.md",
+      "sourceSha256": "39970397d53b2b9ef1c0a719a9fa8aaf5c29f888111a74d9f1301086b82463af",
+      "bodySha256": "39970397d53b2b9ef1c0a719a9fa8aaf5c29f888111a74d9f1301086b82463af"
+    },
+    {
+      "source": "docs/archive/CONCURRENT_CATALOG_REPORTS_2026-10-15.md",
+      "target": "imports/obsidian/docs/archive/CONCURRENT_CATALOG_REPORTS_2026-10-15.md",
+      "sourceSha256": "0b939ff025db22147327d68030a7d6face36510f710400bb425c029040591118",
+      "bodySha256": "0b939ff025db22147327d68030a7d6face36510f710400bb425c029040591118"
+    }
+  ],
+  "requiredVerification": [
+    "preserve_existing_metadata",
+    "write_with_explicit_scope",
+    "read_back_body_and_compare",
+    "query_answer_false",
+    "status_scope_counts"
+  ],
+  "updatedAt": "2026-10-23",
+  "updatedAtUtc": "2026-10-28T23:46:36.951773+00:00",
+  "currentCheckpoint": "T03-S3 A R1-R5 accepted on 751 Jest/39 suites, 201 regressions, ten exit0 and 159 stable inputs; later UI QA remains pending. Local preview serves homepage HTTP200 at http://localhost:3000; Clerk sign-in/up HTTP200 and dashboard remains protected (307). Accountless development configured; doctor detected a pre-existing local CLI session, but no login or claim command was run and no account identifier was recorded. API/DB/Redis and browser visual validation remain pending; real AI, LIVE and commercial approval absent. Update 2026-10-23: T05 Compose configuration validated offline only, explicit PostgreSQL password required, ports bound to loopback; Docker engine unavailable and firmware virtualization disabled. Previous preview runtime observations remain historical. No containers or migrations executed. Update: independent S2b mapping-precedence regression fix verified on 779 Jest/40 suites, 202 regressions, typecheck and lint158; 118 scoped TypeScript files unchanged during final run. Runtime integrations remain pending; SVM work deferred by user. T08 isolated browser/mobile header correction verified at1920/390/320px; types,202 regressions,lint162 pass. Build exit1 due Next SecurityFatalError; no upgrade or real integration. Fixture stopped. Security proposal prepared: installed Next16.4.0; candidate16.4.3; dependency installation explicitly pending user approval, no manifest/lock changes in diagnosis. Authorized Next16.4.3 installed with scripts disabled; build exit0 and production audit0/full3moderate Tailwind. HTTP auth redirect and synthetic browser save/reload verified. Jest782passed/9skipped/0failed, but concurrent worker edits prevent full checkout stability; web8source scope unchanged. No LIVE/deploy/migration. Local consolidation 2026-10-23T15:26Z:176 inputs unchanged,7 checks exit0,788 Jest passed/16 skipped,202 regressions,Next16.4.3 build pass,audit production/full0. Incoming PostCSS override preserved; approval provenance not recovered here. Real DB/Redis integration not run. Post-checkpoint: webhook/editor/api-client edited by another execution; latest checkout not accepted. Coordinate writers before further integrated checks. Coordinated final validation: Claude flowmind-ai-a0 ACKed pause,191 inputs stable,806 Jestpassed/26skipped,202regressions,8 npmchecks+2audits exit0 and audits0. Physical26tests only peer-reported, not rerun. Scheduling frontend remains unstarted; no automatic implementation release. T12 frontend schedule panel reviewed: old A response/wrong revoke reproduced in synthetic browser; received generation fix preserved, Codex fixed duplicate-mutation and StrictMode pending counter.8unit controls,806Jestpass/26skip,210regressions,8checks and audits0 on195stable inputs. Authenticated real-service UI not validated; no automatic parallel implementation. T12 input gate 2026-10-23: three current-source executor probes confirm schedule payload/form mismatch; dedicated trigger proposal pending explicit approval. No production changes or service restart; authenticated journey pending. T12 trigger_schedule 2026-10-28:833Jest/27skip,222regressions,8checks exit0;9local DB/Redis integrations exit0; UI test file revalidated28pass after external change; production sources stable. Minor visual handle/authenticated journey pending. No transfer. Handle visual corrigido:50testes editor/tipos verdes. Computer Use interrompeu tentativa por URL desconhecida; jornada autenticada pendente, sem contornar bloqueio."
+}

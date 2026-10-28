@@ -1,6 +1,7 @@
 import { BadRequestException } from '@nestjs/common';
 import type {
   TriggerFormOutputs,
+  TriggerScheduleOutputs,
   AiAnalyzeIntentOutputs,
   InternalRecordOutputs,
   SendEmailOutputs,
@@ -14,6 +15,16 @@ export interface ExecutionContext {
 }
 
 export class NodeExecutors {
+  static executeTriggerSchedule(payload: Record<string, unknown>): TriggerScheduleOutputs {
+    const value = payload.scheduledAt;
+    // Forma UTC canônica produzida por Date.toISOString; rejeita datas normalizadas/inexistentes.
+    if (typeof value !== 'string' || !/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/.test(value) ||
+      !Number.isFinite(Date.parse(value)) || new Date(value).toISOString() !== value) {
+      throw new BadRequestException('Horário previsto do agendamento inválido; use ISO UTC.');
+    }
+    return { scheduledAt: value };
+  }
+
   /**
    * 1. Gatilho de Formulário (trigger_form)
    */
@@ -518,7 +529,7 @@ export class NodeExecutors {
     }
   }
 
-  private static isEmail(value: string): boolean {
+  static isEmail(value: string): boolean {
     return /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(value);
   }
 }

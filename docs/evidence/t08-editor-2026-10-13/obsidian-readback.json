@@ -1,0 +1,26 @@
+{
+  "checkedAtUtc": "2026-10-13T22:52:29.332Z",
+  "canonicalVault": "C:/Users/jv883/Documents/Codex/FlowMind-AI",
+  "normalization": "UTF-8 without BOM; CRLF normalized to LF; equal bodies share SHA256",
+  "notes": [
+    {
+      "source": "docs/MEMORIA.md",
+      "obsidianPath": "FlowMind-AI/Flowmind-AI/docs/MEMORIA.md",
+      "bodyMatches": true,
+      "sourceSha256": "edba0cd3f99173ab28b4461037a130fcc7ba899718dc65fc6c6052996a0ba15c",
+      "bodySha256": "edba0cd3f99173ab28b4461037a130fcc7ba899718dc65fc6c6052996a0ba15c",
+      "localLength": 5313,
+      "connectorLength": 5313
+    },
+    {
+      "source": "plan.md",
+      "obsidianPath": "FlowMind-AI/Flowmind-AI/plan.md",
+      "bodyMatches": true,
+      "sourceSha256": "f08c682e81b65fe29dbf4ce4f335a27555ef485d5f28d5706daeb536f3b70657",
+      "bodySha256": "f08c682e81b65fe29dbf4ce4f335a27555ef485d5f28d5706daeb536f3b70657",
+      "localLength": 67455,
+      "connectorLength": 67455
+    }
+  ],
+  "allMatch": true
+}

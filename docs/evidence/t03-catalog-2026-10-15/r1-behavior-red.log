@@ -1,0 +1,25 @@
+ts-jest[config] (WARN) message TS151002: Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+FAIL apps/api/src/resources/resource-catalog.spec.ts
+  ● Test suite failed to run
+
+    Must use import to load ES Module: C:\Users\jv883\Documents\Codex\FlowMind-AI\Flowmind-AI\node_modules\@nestjs\common\index.js
+
+    The file contains ESM syntax (import/export) that could not be executed as CommonJS. Either:
+      - Configure a transform (e.g. babel-jest) that compiles this file to CommonJS (see https://jestjs.io/docs/code-transformation)
+      - If the file is in "node_modules", allow it to be transformed by adjusting "transformIgnorePatterns" (see https://jestjs.io/docs/configuration#transformignorepatterns-arraystring)
+      - Use Node v24.9+ where Jest supports require(esm) natively (see https://jestjs.io/docs/ecmascript-modules#require-of-esm)
+
+    > 1 | import { BadRequestException } from '@nestjs/common';
+        | ^
+      2 | import { ConfiguredResourceCatalog } from './resource-catalog';
+      3 |
+      4 | const credential = { id: 'cred-a', type: 'credential', orgId: 'alpha', name: 'Credencial A', status: 'ACTIVE' };
+
+      at createRequireEsmError (../../node_modules/jest-runtime/build/index.js:452:17)
+      at Object.<anonymous> (src/resources/resource-catalog.spec.ts:1:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       0 total
+Snapshots:   0 total
+Time:        3.292 s
+Ran all test suites within paths "apps/api/src/resources/resource-catalog.spec.ts".

@@ -1,0 +1,32 @@
+ts-jest[config] (WARN) message TS151002: Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) message TS151002: Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) message TS151002: Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) message TS151002: Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) message TS151002: Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+ts-jest[config] (WARN) message TS151002: Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+(node:7004) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+FAIL apps/api/src/ai/ai-container.spec.ts (5.364 s)
+  ● T10 — cliente injetado e ativação explícita (sem rede) › recusa container sem ResourceResolver em vez de criar catálogo interno
+
+    expect(received).rejects.toThrow()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"_instanceLinksHost": undefined, "_moduleRefsForHooksByDistance": undefined, "appOptions": {}, "applicationConfig": {"cookieSigner": undefined, "globalFilters": [Array], "globalGuards": [Array], "globalInterceptors": [Array], "globalPipes": [Array], "globalPreRequestHooks": [Array], "globalPrefix": "", "globalPrefixOptions": [Object], "globalRequestFilters": [Array], "globalRequestGuards": [Array], "globalRequestInterceptors": [Array], "globalRequestPipes": [Array], "ioAdapter": null, "routeConflictPolicy": undefined, "routeResolutionStrategy": undefined, "versioningOptions": undefined}, "container": {"_applicationConfig": [ApplicationConfig], "_contextOptions": undefined, "_serializedGraph": [SerializedGraph], "dynamicModulesMetadata": [Map], "globalModules": [Set], "internalCoreModule": [Module], "internalProvidersStorage": [InternalProvidersStorage], "moduleCompiler": [ModuleCompiler], "modules": [Map]}, "contextModule": {"_controllers": [Map], "_distance": 1.7976931348623157e+308, "_entryProviderKeys": [Set], "_exports": [Set], "_id": "dd5ff4a4b7d24d316a214", "_imports": [Set], "_initOnPreview": true, "_injectables": [Map], "_isGlobal": true, "_metatype": [Function InternalCoreModule], "_middlewares": [Map], "_providers": [Map], "_token": "fc39dd5ff4a4b7d24d316", "container": [NestContainer]}, "graphInspector": undefined, "initializationPromise": undefined, "injector": {"instanceDecorator": [Function instanceDecorator], "logger": [Logger], "options": undefined}, "isInitialized": false, "logger": {"context": "NestApplicationContext", "localInstanceLogLevels": undefined, "localInstanceRef": undefined, "options": [Object]}, "moduleCompiler": {"_moduleOpaqueKeyFactory": [ByReferenceModuleOpaqueKeyFactory]}, "scope": [], "shouldFlushLogsOnOverride": false, "shutdownCleanupRefs": Map {}, "shutdownPromise": undefined}
+
+      10 | describe('T10 — cliente injetado e ativação explícita (sem rede)', () => {
+      11 |   it('recusa container sem ResourceResolver em vez de criar catálogo interno', async () => {
+    > 12 |     await expect(Test.createTestingModule({ providers: [AiGeneratorService] }).compile()).rejects.toThrow();
+         |           ^
+      13 |     expect(() => new (AiGeneratorService as any)()).toThrow();
+      14 |   });
+      15 |
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at Object.<anonymous> (src/ai/ai-container.spec.ts:12:11)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 6 passed, 7 total
+Snapshots:   0 total
+Time:        5.742 s
+Ran all test suites within paths "apps/api/src/ai/ai-container.spec.ts".

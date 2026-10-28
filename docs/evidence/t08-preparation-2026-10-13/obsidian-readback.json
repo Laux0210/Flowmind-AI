@@ -1,0 +1,18 @@
+{
+  "checkedAtUtc": "2026-10-13T21:49:09.111Z",
+  "allMatch": true,
+  "notes": [
+    {
+      "path": "docs/MEMORIA.md",
+      "sourceSha256": "276f0a621d64197f32af33c533d20eedd40a8c4c5dd01f0f05d471e80ff709d7",
+      "bodySha256": "193bcb73f048458618c3e862131050769db595e37882a73d2c87a195ccb2973a",
+      "match": true
+    },
+    {
+      "path": "plan.md",
+      "sourceSha256": "0ddb99cebf524ff43946071c276904f7375ecc9ceeae756d8b10308342d9f609",
+      "bodySha256": "8b37125db1b0f9ab996e4c8834785cfd78b1a74c1c202eb0454a84b82c288bff",
+      "match": true
+    }
+  ]
+}

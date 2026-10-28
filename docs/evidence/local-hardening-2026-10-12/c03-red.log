@@ -1,0 +1,189 @@
+ts-jest[config] (WARN) message TS151002: Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+(node:13360) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+FAIL apps/api/src/workflows/workflows.atomic.spec.ts (8.075 s)
+  ● T04 — atomicidade do ciclo de vida, com adaptador sintético › C03 — destinatário obrigatório na definição de e-mail › review rejeita destinatário ausente/inválido (undefined), sem alterar estado
+
+    expect(received).rejects.toThrow()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"reviewedAt": "2026-10-12T16:01:58.539Z", "reviewedBy": "admin", "workflow": {"createdAt": "2026-10-12T11:00:00.000Z", "description": undefined, "edges": [{"id": "form_mail", "sourceNodeId": "form", "targetNodeId": "mail"}], "id": "wf_atomic", "name": "Definição original", "nodes": [{"config": {}, "id": "form", "label": "Formulário", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"bodyTemplate": "Fixture", "subject": "Fixture"}, "id": "mail", "label": "E-mail", "position": {"x": 200, "y": 0}, "type": "send_email"}], "orgId": "org_alpha", "reviewedAt": "2026-10-12T16:01:58.539Z", "reviewedBy": "admin", "schemaVersion": "1.0.0", "status": "REVIEWED", "triggerNodeId": "form", "updatedAt": "2026-10-12T16:01:58.539Z", "version": 1}}
+
+      220 |         const status = action === 'review' ? 'DRAFT' : 'REVIEWED';
+      221 |         const f = fixture(status); addEmail(f, to);
+    > 222 |         await expect(f.service[action]('org_alpha', 'wf_atomic', 'admin')).rejects.toThrow(/Destinatário/);
+          |               ^
+      223 |         expect(f.state().row.status).toBe(status);
+      224 |         expect(f.state().snapshots).toEqual([]);
+      225 |       });
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/workflows/workflows.atomic.spec.ts:222:15
+
+  ● T04 — atomicidade do ciclo de vida, com adaptador sintético › C03 — destinatário obrigatório na definição de e-mail › review rejeita destinatário ausente/inválido (null), sem alterar estado
+
+    expect(received).rejects.toThrow()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"reviewedAt": "2026-10-12T16:01:58.553Z", "reviewedBy": "admin", "workflow": {"createdAt": "2026-10-12T11:00:00.000Z", "description": undefined, "edges": [{"id": "form_mail", "sourceNodeId": "form", "targetNodeId": "mail"}], "id": "wf_atomic", "name": "Definição original", "nodes": [{"config": {}, "id": "form", "label": "Formulário", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"bodyTemplate": "Fixture", "subject": "Fixture", "to": null}, "id": "mail", "label": "E-mail", "position": {"x": 200, "y": 0}, "type": "send_email"}], "orgId": "org_alpha", "reviewedAt": "2026-10-12T16:01:58.553Z", "reviewedBy": "admin", "schemaVersion": "1.0.0", "status": "REVIEWED", "triggerNodeId": "form", "updatedAt": "2026-10-12T16:01:58.553Z", "version": 1}}
+
+      220 |         const status = action === 'review' ? 'DRAFT' : 'REVIEWED';
+      221 |         const f = fixture(status); addEmail(f, to);
+    > 222 |         await expect(f.service[action]('org_alpha', 'wf_atomic', 'admin')).rejects.toThrow(/Destinatário/);
+          |               ^
+      223 |         expect(f.state().row.status).toBe(status);
+      224 |         expect(f.state().snapshots).toEqual([]);
+      225 |       });
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/workflows/workflows.atomic.spec.ts:222:15
+
+  ● T04 — atomicidade do ciclo de vida, com adaptador sintético › C03 — destinatário obrigatório na definição de e-mail › review rejeita destinatário ausente/inválido (""), sem alterar estado
+
+    expect(received).rejects.toThrow()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"reviewedAt": "2026-10-12T16:01:58.554Z", "reviewedBy": "admin", "workflow": {"createdAt": "2026-10-12T11:00:00.000Z", "description": undefined, "edges": [{"id": "form_mail", "sourceNodeId": "form", "targetNodeId": "mail"}], "id": "wf_atomic", "name": "Definição original", "nodes": [{"config": {}, "id": "form", "label": "Formulário", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"bodyTemplate": "Fixture", "subject": "Fixture", "to": ""}, "id": "mail", "label": "E-mail", "position": {"x": 200, "y": 0}, "type": "send_email"}], "orgId": "org_alpha", "reviewedAt": "2026-10-12T16:01:58.554Z", "reviewedBy": "admin", "schemaVersion": "1.0.0", "status": "REVIEWED", "triggerNodeId": "form", "updatedAt": "2026-10-12T16:01:58.554Z", "version": 1}}
+
+      220 |         const status = action === 'review' ? 'DRAFT' : 'REVIEWED';
+      221 |         const f = fixture(status); addEmail(f, to);
+    > 222 |         await expect(f.service[action]('org_alpha', 'wf_atomic', 'admin')).rejects.toThrow(/Destinatário/);
+          |               ^
+      223 |         expect(f.state().row.status).toBe(status);
+      224 |         expect(f.state().snapshots).toEqual([]);
+      225 |       });
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/workflows/workflows.atomic.spec.ts:222:15
+
+  ● T04 — atomicidade do ciclo de vida, com adaptador sintético › C03 — destinatário obrigatório na definição de e-mail › review rejeita destinatário ausente/inválido (" 	"), sem alterar estado
+
+    expect(received).rejects.toThrow()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"reviewedAt": "2026-10-12T16:01:58.555Z", "reviewedBy": "admin", "workflow": {"createdAt": "2026-10-12T11:00:00.000Z", "description": undefined, "edges": [{"id": "form_mail", "sourceNodeId": "form", "targetNodeId": "mail"}], "id": "wf_atomic", "name": "Definição original", "nodes": [{"config": {}, "id": "form", "label": "Formulário", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"bodyTemplate": "Fixture", "subject": "Fixture", "to": " 	"}, "id": "mail", "label": "E-mail", "position": {"x": 200, "y": 0}, "type": "send_email"}], "orgId": "org_alpha", "reviewedAt": "2026-10-12T16:01:58.555Z", "reviewedBy": "admin", "schemaVersion": "1.0.0", "status": "REVIEWED", "triggerNodeId": "form", "updatedAt": "2026-10-12T16:01:58.555Z", "version": 1}}
+
+      220 |         const status = action === 'review' ? 'DRAFT' : 'REVIEWED';
+      221 |         const f = fixture(status); addEmail(f, to);
+    > 222 |         await expect(f.service[action]('org_alpha', 'wf_atomic', 'admin')).rejects.toThrow(/Destinatário/);
+          |               ^
+      223 |         expect(f.state().row.status).toBe(status);
+      224 |         expect(f.state().snapshots).toEqual([]);
+      225 |       });
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/workflows/workflows.atomic.spec.ts:222:15
+
+  ● T04 — atomicidade do ciclo de vida, com adaptador sintético › C03 — destinatário obrigatório na definição de e-mail › review rejeita destinatário ausente/inválido (123), sem alterar estado
+
+    expect(received).rejects.toThrow()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"reviewedAt": "2026-10-12T16:01:58.556Z", "reviewedBy": "admin", "workflow": {"createdAt": "2026-10-12T11:00:00.000Z", "description": undefined, "edges": [{"id": "form_mail", "sourceNodeId": "form", "targetNodeId": "mail"}], "id": "wf_atomic", "name": "Definição original", "nodes": [{"config": {}, "id": "form", "label": "Formulário", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"bodyTemplate": "Fixture", "subject": "Fixture", "to": 123}, "id": "mail", "label": "E-mail", "position": {"x": 200, "y": 0}, "type": "send_email"}], "orgId": "org_alpha", "reviewedAt": "2026-10-12T16:01:58.556Z", "reviewedBy": "admin", "schemaVersion": "1.0.0", "status": "REVIEWED", "triggerNodeId": "form", "updatedAt": "2026-10-12T16:01:58.556Z", "version": 1}}
+
+      220 |         const status = action === 'review' ? 'DRAFT' : 'REVIEWED';
+      221 |         const f = fixture(status); addEmail(f, to);
+    > 222 |         await expect(f.service[action]('org_alpha', 'wf_atomic', 'admin')).rejects.toThrow(/Destinatário/);
+          |               ^
+      223 |         expect(f.state().row.status).toBe(status);
+      224 |         expect(f.state().snapshots).toEqual([]);
+      225 |       });
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/workflows/workflows.atomic.spec.ts:222:15
+
+  ● T04 — atomicidade do ciclo de vida, com adaptador sintético › C03 — destinatário obrigatório na definição de e-mail › publish rejeita destinatário ausente/inválido (undefined), sem alterar estado
+
+    expect(received).rejects.toThrow()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"publishedAt": "2026-10-12T16:01:58.557Z", "versionSnapshot": {"edges": [{"id": "form_mail", "sourceNodeId": "form", "targetNodeId": "mail"}], "id": "snapshot_fixture", "nodes": [{"config": {}, "id": "form", "label": "Formulário", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"bodyTemplate": "Fixture", "subject": "Fixture"}, "id": "mail", "label": "E-mail", "position": {"x": 200, "y": 0}, "type": "send_email"}], "publishedAt": "2026-10-12T16:01:58.557Z", "publishedBy": "admin", "schemaVersion": "1.0.0", "triggerNodeId": "form", "version": 1, "workflowId": "wf_atomic"}, "workflow": {"createdAt": "2026-10-12T11:00:00.000Z", "description": undefined, "edges": [{"id": "form_mail", "sourceNodeId": "form", "targetNodeId": "mail"}], "id": "wf_atomic", "name": "Definição original", "nodes": [{"config": {}, "id": "form", "label": "Formulário", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"bodyTemplate": "Fixture", "subject": "Fixture"}, "id": "mail", "label": "E-mail", "position": {"x": 200, "y": 0}, "type": "send_email"}], "orgId": "org_alpha", "reviewedAt": "2026-10-12T12:00:00.000Z", "reviewedBy": "admin_reviewer", "schemaVersion": "1.0.0", "status": "PUBLISHED", "triggerNodeId": "form", "updatedAt": "2026-10-12T16:01:58.557Z", "version": 1}}
+
+      220 |         const status = action === 'review' ? 'DRAFT' : 'REVIEWED';
+      221 |         const f = fixture(status); addEmail(f, to);
+    > 222 |         await expect(f.service[action]('org_alpha', 'wf_atomic', 'admin')).rejects.toThrow(/Destinatário/);
+          |               ^
+      223 |         expect(f.state().row.status).toBe(status);
+      224 |         expect(f.state().snapshots).toEqual([]);
+      225 |       });
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/workflows/workflows.atomic.spec.ts:222:15
+
+  ● T04 — atomicidade do ciclo de vida, com adaptador sintético › C03 — destinatário obrigatório na definição de e-mail › publish rejeita destinatário ausente/inválido (null), sem alterar estado
+
+    expect(received).rejects.toThrow()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"publishedAt": "2026-10-12T16:01:58.557Z", "versionSnapshot": {"edges": [{"id": "form_mail", "sourceNodeId": "form", "targetNodeId": "mail"}], "id": "snapshot_fixture", "nodes": [{"config": {}, "id": "form", "label": "Formulário", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"bodyTemplate": "Fixture", "subject": "Fixture", "to": null}, "id": "mail", "label": "E-mail", "position": {"x": 200, "y": 0}, "type": "send_email"}], "publishedAt": "2026-10-12T16:01:58.557Z", "publishedBy": "admin", "schemaVersion": "1.0.0", "triggerNodeId": "form", "version": 1, "workflowId": "wf_atomic"}, "workflow": {"createdAt": "2026-10-12T11:00:00.000Z", "description": undefined, "edges": [{"id": "form_mail", "sourceNodeId": "form", "targetNodeId": "mail"}], "id": "wf_atomic", "name": "Definição original", "nodes": [{"config": {}, "id": "form", "label": "Formulário", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"bodyTemplate": "Fixture", "subject": "Fixture", "to": null}, "id": "mail", "label": "E-mail", "position": {"x": 200, "y": 0}, "type": "send_email"}], "orgId": "org_alpha", "reviewedAt": "2026-10-12T12:00:00.000Z", "reviewedBy": "admin_reviewer", "schemaVersion": "1.0.0", "status": "PUBLISHED", "triggerNodeId": "form", "updatedAt": "2026-10-12T16:01:58.557Z", "version": 1}}
+
+      220 |         const status = action === 'review' ? 'DRAFT' : 'REVIEWED';
+      221 |         const f = fixture(status); addEmail(f, to);
+    > 222 |         await expect(f.service[action]('org_alpha', 'wf_atomic', 'admin')).rejects.toThrow(/Destinatário/);
+          |               ^
+      223 |         expect(f.state().row.status).toBe(status);
+      224 |         expect(f.state().snapshots).toEqual([]);
+      225 |       });
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/workflows/workflows.atomic.spec.ts:222:15
+
+  ● T04 — atomicidade do ciclo de vida, com adaptador sintético › C03 — destinatário obrigatório na definição de e-mail › publish rejeita destinatário ausente/inválido (""), sem alterar estado
+
+    expect(received).rejects.toThrow()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"publishedAt": "2026-10-12T16:01:58.558Z", "versionSnapshot": {"edges": [{"id": "form_mail", "sourceNodeId": "form", "targetNodeId": "mail"}], "id": "snapshot_fixture", "nodes": [{"config": {}, "id": "form", "label": "Formulário", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"bodyTemplate": "Fixture", "subject": "Fixture", "to": ""}, "id": "mail", "label": "E-mail", "position": {"x": 200, "y": 0}, "type": "send_email"}], "publishedAt": "2026-10-12T16:01:58.558Z", "publishedBy": "admin", "schemaVersion": "1.0.0", "triggerNodeId": "form", "version": 1, "workflowId": "wf_atomic"}, "workflow": {"createdAt": "2026-10-12T11:00:00.000Z", "description": undefined, "edges": [{"id": "form_mail", "sourceNodeId": "form", "targetNodeId": "mail"}], "id": "wf_atomic", "name": "Definição original", "nodes": [{"config": {}, "id": "form", "label": "Formulário", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"bodyTemplate": "Fixture", "subject": "Fixture", "to": ""}, "id": "mail", "label": "E-mail", "position": {"x": 200, "y": 0}, "type": "send_email"}], "orgId": "org_alpha", "reviewedAt": "2026-10-12T12:00:00.000Z", "reviewedBy": "admin_reviewer", "schemaVersion": "1.0.0", "status": "PUBLISHED", "triggerNodeId": "form", "updatedAt": "2026-10-12T16:01:58.558Z", "version": 1}}
+
+      220 |         const status = action === 'review' ? 'DRAFT' : 'REVIEWED';
+      221 |         const f = fixture(status); addEmail(f, to);
+    > 222 |         await expect(f.service[action]('org_alpha', 'wf_atomic', 'admin')).rejects.toThrow(/Destinatário/);
+          |               ^
+      223 |         expect(f.state().row.status).toBe(status);
+      224 |         expect(f.state().snapshots).toEqual([]);
+      225 |       });
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/workflows/workflows.atomic.spec.ts:222:15
+
+  ● T04 — atomicidade do ciclo de vida, com adaptador sintético › C03 — destinatário obrigatório na definição de e-mail › publish rejeita destinatário ausente/inválido (" 	"), sem alterar estado
+
+    expect(received).rejects.toThrow()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"publishedAt": "2026-10-12T16:01:58.559Z", "versionSnapshot": {"edges": [{"id": "form_mail", "sourceNodeId": "form", "targetNodeId": "mail"}], "id": "snapshot_fixture", "nodes": [{"config": {}, "id": "form", "label": "Formulário", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"bodyTemplate": "Fixture", "subject": "Fixture", "to": " 	"}, "id": "mail", "label": "E-mail", "position": {"x": 200, "y": 0}, "type": "send_email"}], "publishedAt": "2026-10-12T16:01:58.559Z", "publishedBy": "admin", "schemaVersion": "1.0.0", "triggerNodeId": "form", "version": 1, "workflowId": "wf_atomic"}, "workflow": {"createdAt": "2026-10-12T11:00:00.000Z", "description": undefined, "edges": [{"id": "form_mail", "sourceNodeId": "form", "targetNodeId": "mail"}], "id": "wf_atomic", "name": "Definição original", "nodes": [{"config": {}, "id": "form", "label": "Formulário", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"bodyTemplate": "Fixture", "subject": "Fixture", "to": " 	"}, "id": "mail", "label": "E-mail", "position": {"x": 200, "y": 0}, "type": "send_email"}], "orgId": "org_alpha", "reviewedAt": "2026-10-12T12:00:00.000Z", "reviewedBy": "admin_reviewer", "schemaVersion": "1.0.0", "status": "PUBLISHED", "triggerNodeId": "form", "updatedAt": "2026-10-12T16:01:58.559Z", "version": 1}}
+
+      220 |         const status = action === 'review' ? 'DRAFT' : 'REVIEWED';
+      221 |         const f = fixture(status); addEmail(f, to);
+    > 222 |         await expect(f.service[action]('org_alpha', 'wf_atomic', 'admin')).rejects.toThrow(/Destinatário/);
+          |               ^
+      223 |         expect(f.state().row.status).toBe(status);
+      224 |         expect(f.state().snapshots).toEqual([]);
+      225 |       });
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/workflows/workflows.atomic.spec.ts:222:15
+
+  ● T04 — atomicidade do ciclo de vida, com adaptador sintético › C03 — destinatário obrigatório na definição de e-mail › publish rejeita destinatário ausente/inválido (123), sem alterar estado
+
+    expect(received).rejects.toThrow()
+
+    Received promise resolved instead of rejected
+    Resolved to value: {"publishedAt": "2026-10-12T16:01:58.560Z", "versionSnapshot": {"edges": [{"id": "form_mail", "sourceNodeId": "form", "targetNodeId": "mail"}], "id": "snapshot_fixture", "nodes": [{"config": {}, "id": "form", "label": "Formulário", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"bodyTemplate": "Fixture", "subject": "Fixture", "to": 123}, "id": "mail", "label": "E-mail", "position": {"x": 200, "y": 0}, "type": "send_email"}], "publishedAt": "2026-10-12T16:01:58.560Z", "publishedBy": "admin", "schemaVersion": "1.0.0", "triggerNodeId": "form", "version": 1, "workflowId": "wf_atomic"}, "workflow": {"createdAt": "2026-10-12T11:00:00.000Z", "description": undefined, "edges": [{"id": "form_mail", "sourceNodeId": "form", "targetNodeId": "mail"}], "id": "wf_atomic", "name": "Definição original", "nodes": [{"config": {}, "id": "form", "label": "Formulário", "position": {"x": 0, "y": 0}, "type": "trigger_form"}, {"config": {"bodyTemplate": "Fixture", "subject": "Fixture", "to": 123}, "id": "mail", "label": "E-mail", "position": {"x": 200, "y": 0}, "type": "send_email"}], "orgId": "org_alpha", "reviewedAt": "2026-10-12T12:00:00.000Z", "reviewedBy": "admin_reviewer", "schemaVersion": "1.0.0", "status": "PUBLISHED", "triggerNodeId": "form", "updatedAt": "2026-10-12T16:01:58.560Z", "version": 1}}
+
+      220 |         const status = action === 'review' ? 'DRAFT' : 'REVIEWED';
+      221 |         const f = fixture(status); addEmail(f, to);
+    > 222 |         await expect(f.service[action]('org_alpha', 'wf_atomic', 'admin')).rejects.toThrow(/Destinatário/);
+          |               ^
+      223 |         expect(f.state().row.status).toBe(status);
+      224 |         expect(f.state().snapshots).toEqual([]);
+      225 |       });
+
+      at expect (../../node_modules/expect/build/index.js:2116:15)
+      at src/workflows/workflows.atomic.spec.ts:222:15
+
+Test Suites: 1 failed, 1 total
+Tests:       10 failed, 16 skipped, 2 passed, 28 total
+Snapshots:   0 total
+Time:        8.323 s
+Ran all test suites within paths "apps/api/src/workflows/workflows.atomic.spec.ts".

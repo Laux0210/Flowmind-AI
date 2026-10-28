@@ -1,14 +1,16 @@
 import {
   BadRequestException,
   UnauthorizedException,
+  ServiceUnavailableException,
   NotFoundException,
 } from '@nestjs/common';
 import { WorkflowDefinition, WORKFLOW_SCHEMA_VERSION } from '@flowmind/contracts';
 import { WebhooksService } from './webhooks.service';
 import { SchedulerService } from './scheduler.service';
 import { WebhooksController } from './webhooks.controller';
-import { WorkflowsService } from '../workflows/workflows.service';
+import type { WebhookTriggerHeaders } from '@flowmind/contracts';
 import { WorkflowEngineService } from '../engine/workflow-engine.service';
+import { WebhookSignatureValidator } from './webhook-signature.validator';
 
 describe('Triggers (T12 — Webhooks e Agendamento)', () => {
   let webhooksService: WebhooksService;
@@ -57,6 +59,13 @@ describe('Triggers (T12 — Webhooks e Agendamento)', () => {
     schedulerService = new SchedulerService();
   });
 
+  // Fixtures positivas autenticadas; casos sem segredo são testados diretamente
+  // em triggers.hardening.spec.ts e no container.
+  async function authenticatedTrigger(workflow: WorkflowDefinition | null, payload: Record<string, unknown>,
+    headers: WebhookTriggerHeaders = {}, expectedSecret = 'fixture_server_secret') {
+    return webhooksService.handleWebhookTrigger(workflow, payload, { signature: expectedSecret, ...headers }, expectedSecret);
+  }
+
   describe('WebhooksService', () => {
     it('deve disparar workflow publicado com sucesso via webhook', async () => {
       const payload = {
@@ -65,7 +74,7 @@ describe('Triggers (T12 — Webhooks e Agendamento)', () => {
         message: 'Contato via webhook externo',
       };
 
-      const result = await webhooksService.handleWebhookTrigger(
+      const result = await authenticatedTrigger(
         mockPublishedWorkflow,
         payload,
         {},
@@ -80,13 +89,13 @@ describe('Triggers (T12 — Webhooks e Agendamento)', () => {
 
     it('deve rejeitar webhook se o workflow estiver em modo DRAFT (WORKFLOW_NOT_PUBLISHED)', async () => {
       await expect(
-        webhooksService.handleWebhookTrigger(mockDraftWorkflow, {}, {}),
+        authenticatedTrigger(mockDraftWorkflow, {}, {}),
       ).rejects.toThrow(BadRequestException);
     });
 
     it('deve rejeitar se o workflow for nulo (WORKFLOW_NOT_FOUND)', async () => {
       await expect(
-        webhooksService.handleWebhookTrigger(null, {}, {}),
+        authenticatedTrigger(null, {}, {}),
       ).rejects.toThrow(NotFoundException);
     });
 
@@ -95,7 +104,7 @@ describe('Triggers (T12 — Webhooks e Agendamento)', () => {
 
       // 1. Assinatura inválida
       await expect(
-        webhooksService.handleWebhookTrigger(
+        authenticatedTrigger(
           mockPublishedWorkflow,
           {},
           { signature: 'token_errado' },
@@ -103,8 +112,8 @@ describe('Triggers (T12 — Webhooks e Agendamento)', () => {
         ),
       ).rejects.toThrow(UnauthorizedException);
 
-      // 2. Assinatura correta
-      const successResult = await webhooksService.handleWebhookTrigger(
+      // 2. Assinatura correta (secret direto legado)
+      const successResult = await authenticatedTrigger(
         mockPublishedWorkflow,
         {},
         { signature: expectedSecret },
@@ -113,12 +122,59 @@ describe('Triggers (T12 — Webhooks e Agendamento)', () => {
       expect(successResult.status).toBe('COMPLETED');
     });
 
+    it('deve validar assinatura canônica HMAC-SHA256 (t=<timestamp>,v1=<hmac>) e rejeitar adulteração', async () => {
+      const expectedSecret = 'whsec_prod_secret_998877';
+      const payload = { contact: 'lead@test.com', plan: 'enterprise' };
+      const rawPayload = JSON.stringify(payload);
+      const currentTs = Math.floor(Date.now() / 1000);
+
+      const validHmacHeader = WebhookSignatureValidator.computeSignature(
+        rawPayload,
+        expectedSecret,
+        currentTs,
+      );
+
+      // Assinatura HMAC válida: sucesso
+      const res = await webhooksService.handleWebhookTrigger(
+        mockPublishedWorkflow,
+        payload,
+        { signature: validHmacHeader },
+        expectedSecret,
+      );
+      expect(res.status).toBe('COMPLETED');
+
+      // Assinatura HMAC com payload adulterado: UnauthorizedException
+      await expect(
+        webhooksService.handleWebhookTrigger(
+          mockPublishedWorkflow,
+          { ...payload, injected: true },
+          { signature: validHmacHeader },
+          expectedSecret,
+        ),
+      ).rejects.toThrow(UnauthorizedException);
+
+      // Assinatura HMAC expirada (replay): UnauthorizedException
+      const expiredHmacHeader = WebhookSignatureValidator.computeSignature(
+        rawPayload,
+        expectedSecret,
+        currentTs - 400,
+      );
+      await expect(
+        webhooksService.handleWebhookTrigger(
+          mockPublishedWorkflow,
+          payload,
+          { signature: expiredHmacHeader },
+          expectedSecret,
+        ),
+      ).rejects.toThrow(UnauthorizedException);
+    });
+
     it('deve deduplicar requests com a mesma chave de idempotência (Idempotent Replay)', async () => {
       const idempotencyKey = 'unique_req_id_999';
       const payload = { event: 'user_signup', userId: 42 };
 
       // Primeira chamada: executa no motor
-      const firstRes = await webhooksService.handleWebhookTrigger(
+      const firstRes = await authenticatedTrigger(
         mockPublishedWorkflow,
         payload,
         { idempotencyKey },
@@ -127,7 +183,7 @@ describe('Triggers (T12 — Webhooks e Agendamento)', () => {
       expect(engineServiceMock.simulate).toHaveBeenCalledTimes(1);
 
       // Segunda chamada com mesma chave: retorna cache e não executa o motor novamente
-      const secondRes = await webhooksService.handleWebhookTrigger(
+      const secondRes = await authenticatedTrigger(
         mockPublishedWorkflow,
         payload,
         { idempotencyKey },
@@ -138,7 +194,7 @@ describe('Triggers (T12 — Webhooks e Agendamento)', () => {
     });
     it('deve rejeitar payload inválido se não for objeto', async () => {
       await expect(
-        webhooksService.handleWebhookTrigger(
+        authenticatedTrigger(
           mockPublishedWorkflow,
           null as unknown as Record<string, unknown>,
           {},
@@ -146,7 +202,7 @@ describe('Triggers (T12 — Webhooks e Agendamento)', () => {
       ).rejects.toThrow(BadRequestException);
 
       await expect(
-        webhooksService.handleWebhookTrigger(
+        authenticatedTrigger(
           mockPublishedWorkflow,
           [] as unknown as Record<string, unknown>,
           {},
@@ -156,7 +212,7 @@ describe('Triggers (T12 — Webhooks e Agendamento)', () => {
 
     it('deve rejeitar chave de idempotência vazia', async () => {
       await expect(
-        webhooksService.handleWebhookTrigger(
+        authenticatedTrigger(
           mockPublishedWorkflow,
           { name: 'Lead' },
           { idempotencyKey: '   ' },
@@ -166,7 +222,7 @@ describe('Triggers (T12 — Webhooks e Agendamento)', () => {
 
     it('deve limpar chaves expiradas de idempotência no prune', async () => {
       const idempotencyKey = 'key_to_prune';
-      await webhooksService.handleWebhookTrigger(
+      await authenticatedTrigger(
         mockPublishedWorkflow,
         { test: 1 },
         { idempotencyKey },
@@ -178,7 +234,7 @@ describe('Triggers (T12 — Webhooks e Agendamento)', () => {
       nowSpy.mockRestore();
 
       // Nova chamada com a mesma chave executa o motor novamente porque a anterior foi limpa
-      await webhooksService.handleWebhookTrigger(
+      await authenticatedTrigger(
         mockPublishedWorkflow,
         { test: 1 },
         { idempotencyKey },
@@ -208,7 +264,7 @@ describe('Triggers (T12 — Webhooks e Agendamento)', () => {
       expect(schedulerService.validateCronExpression('0 0 5-1 * *')).toBe(false); // start > end
     });
 
-    it('deve calcular próxima execução com timezone configurável', () => {
+    it('deve validar timezone e informar cálculo ainda indisponível', () => {
       const nextRun = schedulerService.calculateNextRun({
         cronExpression: '0 9 * * 1-5',
         timezone: 'America/Sao_Paulo',
@@ -217,7 +273,8 @@ describe('Triggers (T12 — Webhooks e Agendamento)', () => {
 
       expect(nextRun.isValid).toBe(true);
       expect(nextRun.timezone).toBe('America/Sao_Paulo');
-      expect(nextRun.nextExecutionAt).toBeDefined();
+      expect(nextRun.nextExecutionAt).toBeUndefined();
+      expect(nextRun.error).toMatch(/indisponível/);
     });
 
     it('deve rejeitar fuso horário (timezone) IANA inválido', () => {
@@ -280,44 +337,11 @@ describe('Triggers (T12 — Webhooks e Agendamento)', () => {
   });
 
   describe('WebhooksController', () => {
-    let controller: WebhooksController;
-    let workflowsServiceMock: jest.Mocked<WorkflowsService>;
-
-    beforeEach(() => {
-      workflowsServiceMock = {
-        findByIdPublic: jest.fn().mockResolvedValue(mockPublishedWorkflow),
-      } as unknown as jest.Mocked<WorkflowsService>;
-
-      controller = new WebhooksController(workflowsServiceMock, webhooksService);
-    });
-
-    it('deve processar webhook e retornar envelope padronizado ApiResponse', async () => {
-      const response = await controller.handleWebhook(
-        mockPublishedWorkflow.id,
-        { name: 'Lead' },
-        undefined,
-        'idemp_key_1',
-      );
-
-      expect(response.success).toBe(true);
-      expect(response.data.workflowId).toBe(mockPublishedWorkflow.id);
-      expect(response.data.status).toBe('COMPLETED');
-      expect(response.timestamp).toBeDefined();
-    });
-
-    it('deve lançar NotFoundException se workflow não existir', async () => {
-      workflowsServiceMock.findByIdPublic.mockResolvedValue(null);
-
-      await expect(
-        controller.handleWebhook('wf_inexistente', { name: 'Lead' }),
-      ).rejects.toThrow(NotFoundException);
-    });
-
-    it('deve lançar BadRequestException se workflowId for vazio', async () => {
-      await expect(
-        controller.handleWebhook('', { name: 'Lead' }),
-      ).rejects.toThrow(BadRequestException);
+    it('ingresso permanece fechado até resolver autorização no servidor', async () => {
+      const ingress = { handle: jest.fn().mockRejectedValue(new ServiceUnavailableException()) };
+      const controller = new WebhooksController(ingress as never);
+      await expect(controller.handleWebhook('whk_fixture', { rawBody: Buffer.from('{}') } as never, 'application/json')).rejects.toThrow(ServiceUnavailableException);
+      expect(engineServiceMock.simulate).not.toHaveBeenCalled();
     });
   });
 });
-

@@ -1,0 +1,50 @@
+{
+  "checkedAtUtc": "2026-10-15T20:04:25Z",
+  "url": "http://localhost:3000",
+  "bind": "localhost (::1)",
+  "framework": "Next.js 16.4.0 Turbopack dev",
+  "terminalSession": 18904,
+  "serverStarted": true,
+  "httpStatus": 200,
+  "homePageTitle": "FlowMind AI — Automações Empresariais com IA",
+  "pageUsable": true,
+  "routes": {
+    "home": 200,
+    "signIn": 200,
+    "signUp": 200,
+    "dashboard": 307
+  },
+  "clerk": {
+    "cliVersion": "3.4.1",
+    "developmentEnvironmentConfigured": true,
+    "accountlessSetupReported": true,
+    "claimLoginCommandRun": false,
+    "doctorExitCode": 0,
+    "envFile": "apps/web/.env.local",
+    "envFileGitIgnored": true,
+    "claimBreadcrumb": "apps/web/.clerk/keyless.json",
+    "claimBreadcrumbGitIgnored": true,
+    "developmentPrefixesVerified": true,
+    "credentialValuesRecorded": false,
+    "preExistingLocalCliSessionDetected": true
+  },
+  "rootCause": "Clerk middleware rewrote http://127.0.0.1:3000 requests to http://localhost:3000, causing a Next dev self-proxy loop. Running Next with --hostname localhost resolved the loop.",
+  "backendStartedByThisSession": false,
+  "apiPort3001Listening": false,
+  "databaseEnvironmentConfigured": false,
+  "browserOpenedByThisSession": false,
+  "browserConnectorAvailable": false,
+  "visualBrowserVerified": false,
+  "codeChangedByThisSession": true,
+  "codeChanges": [
+    "apps/web/src/app/layout.tsx: ClerkProvider inside body",
+    "apps/web/src/app/sign-in/[[...sign-in]]/page.tsx",
+    "apps/web/src/app/sign-up/[[...sign-up]]/page.tsx",
+    ".gitignore: .clerk/"
+  ],
+  "projectDependenciesAdded": false,
+  "externalAiEnabled": false,
+  "authBypassed": false,
+  "previousNextCachePreservedAt": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-local-site-cache-backup-4ad01fdce0444e2991609d9d3100ff8c\\.next",
+  "frameworkGeneratedFile": "apps/web/AGENTS.md"
+}

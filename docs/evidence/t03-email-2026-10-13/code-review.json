@@ -1,0 +1,42 @@
+{
+  "recordedAtUtc": "2026-10-13T16:28:56.304Z",
+  "reviewer": "/root/review_local_guards",
+  "skill": "superpowers:requesting-code-review",
+  "mode": "READ_ONLY",
+  "baseAndHeadAnchor": "ef50efe73b5074a7411ca8a7005e1914fd9d8cee",
+  "changes": "uncommitted working tree compared against task backups",
+  "scope": [
+    "apps/api/src/ai/ai-generator.service.ts",
+    "apps/api/src/engine/workflow-validation.ts",
+    "apps/web/src/lib/api-client.ts",
+    "apps/web/src/app/workflows/[id]/page.tsx",
+    "apps/web/src/components/workflows/proposal-warnings.tsx"
+  ],
+  "testFiles": [
+    "apps/api/src/ai/ai-generator.validation.spec.ts",
+    "apps/api/src/engine/email-literal.validation.spec.ts",
+    "tests/regression/ai-generation-usage.test.mjs"
+  ],
+  "materialFindings": [],
+  "verdict": "favorable local review; not production acceptance",
+  "filesEdited": false,
+  "freshSuitesRepeated": false,
+  "deferred": [
+    {
+      "scope": "branch availability and resource authorization",
+      "principalRuling": "remain required in T03-S2b/S3; approvals/contracts pending"
+    },
+    {
+      "scope": "model, quotas and further email policies",
+      "principalRuling": "remain in backlog; no business approval inferred"
+    },
+    {
+      "scope": "browser, focus and React lifecycle",
+      "principalRuling": "validation pending; SSR/AST cannot prove these"
+    },
+    {
+      "scope": "Clerk, database, real business HTTP, CI/production",
+      "principalRuling": "separate mandatory integration gates; no production acceptance"
+    }
+  ]
+}

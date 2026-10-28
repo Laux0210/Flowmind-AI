@@ -1,0 +1,21 @@
+{
+  "generatedAtUtc": "2026-10-13T16:17:31.739Z",
+  "scope": "ISOLATED_REACT_SSR_WARNING_LIST",
+  "authAndWorkflowActionsExercised": false,
+  "networkAttempts": 0,
+  "cases": 4,
+  "emptyWarningsRenderNothing": true,
+  "dangerousTextEscaped": true,
+  "hashes": {
+    "apps/web/src/components/workflows/proposal-warnings.tsx": "d75944febbe1be0533d8960e2e5f05212ee3bfe24fd4b908a66cc712b9e1506b",
+    "apps/web/src/app/workflows/[id]/page.tsx": "004b5d8b31fdab410fb9441bbbc53112ed5fe5d9a747f8b34beb234892800359",
+    "apps/api/src/ai/ai-generator.service.ts": "3f99980c3373a432a305406828e7828ba463a5b3cdd1d218a936fe47d346efd0",
+    "apps/api/dist/ai/ai-generator.service.js": "941866c5b24dd25fce64dcbf0dfc8dfe4ce7f9f46c3d42205cad48f4204fb10c",
+    "apps/web/.next/static/chunks/1ix59xuhq-q14.css": "b0cb7bd6fec5951c9c8f5808821438206604b1629a912c96009ac427f38e7d69",
+    "apps/web/.next/static/chunks/3e8tpz4kbg1db.css": "a6a652f687d842a5ef00180ac13478fe0c0ccc7928bf0679e7d2a02455649dba",
+    "docs/evidence/t10-proposal-2026-10-13/preview/proposal-warnings.cjs": "feb4ee0370143b32d3f5040d8d1c4c14e923c604529bf353e3bee3983c227c76",
+    "docs/evidence/t10-proposal-2026-10-13/preview/styles.css": "62a8784bfda0f2f3d806e2287000567173bffebaea4c15cb59902a63ab3b8091",
+    "docs/evidence/t10-proposal-2026-10-13/preview/examples.html": "4273ee7ed9bef189f80fa9cf4a6c32ee63cba838a73cfa781ffaa7307619ac95",
+    "docs/evidence/t10-proposal-2026-10-13/preview/index.html": "4a20d350acbc752c1008cf0e682ed9c10f10142946f9c544ce5a5feb58690220"
+  }
+}

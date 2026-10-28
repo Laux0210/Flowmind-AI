@@ -1,0 +1,54 @@
+{
+  "verifiedAtUtc": "2026-10-23T15:35:09.087Z",
+  "scope": "Current local checkout validation after Option B approval (next@16.4.3 + postcss-selector-parser@7.1.7 override) and T12 webhook/UI stabilization; DB/Redis integration flags explicitly zero for deterministic suite",
+  "exits": {
+    "lint": 0,
+    "typecheck": 0,
+    "test": 0,
+    "test:regression": 0,
+    "build": 0,
+    "check:api-artifact": 0,
+    "check:operation": 0
+  },
+  "inputsBefore": 181,
+  "inputsAfter": 185,
+  "changed": [
+    "apps/api/src/app.module.ts",
+    "apps/api/src/worker.ts",
+    "apps/api/src/worker/bullmq-workflow-queue.ts",
+    "apps/api/src/schedules/schedule-tick.consumer.ts",
+    "apps/api/src/schedules/schedules.controller.ts",
+    "apps/api/src/schedules/schedules.module.ts",
+    "apps/api/src/schedules/schedules.service.ts"
+  ],
+  "stable": false,
+  "jest": {
+    "summary": "Tests:       18 skipped, 788 passed, 806 total",
+    "suites": "Test Suites: 2 skipped, 42 passed, 42 of 44 total"
+  },
+  "regressions": {
+    "summary": "tests 202"
+  },
+  "auditProduction": {
+    "info": 0,
+    "low": 0,
+    "moderate": 0,
+    "high": 0,
+    "critical": 0,
+    "total": 0
+  },
+  "auditFull": {
+    "info": 0,
+    "low": 0,
+    "moderate": 0,
+    "high": 0,
+    "critical": 0,
+    "total": 0
+  },
+  "approvedOptionB": "User explicitly approved Option B (next@16.4.3 in apps/web/package.json + postcss-selector-parser@7.1.7 in root package.json overrides, validated in isolated copy first)",
+  "installedNext": "16.4.3",
+  "installedPostcssSelectorParser": "7.1.7",
+  "fullRealIntegrationAccepted": false,
+  "changedAfterCheckpoint": [],
+  "latestCheckoutAccepted": false
+}

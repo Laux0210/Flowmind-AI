@@ -1,0 +1,25 @@
+ts-jest[config] (WARN) message TS151002: Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+FAIL apps/api/src/engine/email-literal.validation.spec.ts
+  ● Test suite failed to run
+
+    apps/api/src/engine/email-literal.validation.spec.ts:62:76 - error TS2322: Type 'Promise<{ draft: WorkflowDefinition; reasoning: string; warnings: never[]; modelUsed: string; tokensConsumed: number; }>' is not assignable to type 'Promise<AiGenerationResult>'.
+      Type '{ draft: WorkflowDefinition; reasoning: string; warnings: never[]; modelUsed: string; tokensConsumed: number; }' is not assignable to type 'AiGenerationResult'.
+        The types of 'draft.description' are incompatible between these types.
+          Type 'string | undefined' is not assignable to type 'string'.
+            Type 'undefined' is not assignable to type 'string'.
+
+    62     const service = new AiGeneratorService({ generateWorkflow: async () => ({ draft: value.definition,
+                                                                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    63       reasoning: 'Fixture', warnings: [], modelUsed: 'fixture-not-approved', tokensConsumed: 24 }) });
+       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+      apps/api/src/ai/ai-client.interface.ts:12:3
+        12   generateWorkflow(prompt: string, orgId: string): Promise<AiGenerationResult>;
+             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        The expected type comes from the return type of this signature.
+
+Test Suites: 1 failed, 1 total
+Tests:       0 total
+Snapshots:   0 total
+Time:        2.96 s
+Ran all test suites within paths "apps/api/src/engine/email-literal.validation.spec.ts".

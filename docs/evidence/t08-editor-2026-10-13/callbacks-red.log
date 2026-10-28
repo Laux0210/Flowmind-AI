@@ -1,0 +1,208 @@
+(node:15556) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✖ configuração pendente impede salvar uma definição anterior à edição do usuário (82.0063ms)
+(node:15556) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+✖ resposta de salvamento obsoleta não substitui novas alterações nem escreve feedback de erro (38.0728ms)
+✔ parâmetros de e-mail editados preservam IDs, referências e campos não alterados (58.5278ms)
+✔ valores JSON da condição preservam número, array e booleano (0.4885ms)
+✔ JSON inválido e campos desconhecidos não substituem a configuração (0.8802ms)
+✔ aliases existentes de mensagem e mapeamento são preservados ao editar outro campo (0.6553ms)
+✔ draft incompleto continua editável e ausência de opcionais não injeta defaults (0.4384ms)
+✔ edições de parâmetros/posições/conexões são negadas em REVIEWED (0.5449ms)
+✔ edições de parâmetros/posições/conexões são negadas em PUBLISHED (0.1483ms)
+✔ edições de parâmetros/posições/conexões são negadas em ARCHIVED (0.1814ms)
+✔ movimentação persiste coordenadas finitas sem mudar configuração ou arestas (0.2888ms)
+✔ conexões condicionais preservam os handles usados pelo motor (0.226ms)
+✔ ciclo, auto-conexão, nó ausente e conexão repetida são recusados antes de mudar o grafo (0.4799ms)
+✔ remoção de conexão preserva nós e demais IDs, sem resolver convergências (0.1662ms)
+✔ formulários abrangem os seis tipos e conservam ausência versus valores JSON (0.1969ms)
+✖ arestas exibidas no canvas mantêm sourceHandle e targetHandle sem normalização (15.8584ms)
+✖ edição aplicada marca dirty, avança revisão e invalida resultado anterior (17.3379ms)
+✖ edição não altera o workflow durante saving (6.2438ms)
+✖ edição não altera o workflow durante reviewing (10.9633ms)
+✖ edição não altera o workflow durante publishing (6.3196ms)
+✖ edição não altera o workflow durante deactivating (4.9293ms)
+✖ edição não altera o workflow durante simulating (4.9628ms)
+✖ edição não altera o workflow durante generatingAi (4.9891ms)
+✖ duas movimentações antes de renderizar preservam as duas alterações (5.6703ms)
+✖ edição com contexto Alpha→Beta→Alpha anterior é descartada (4.4706ms)
+✖ rascunho local de parâmetros impede trocar etapa, mover ou aplicar conexões (6.6147ms)
+✖ conectar e remover pela interface altera somente as arestas pertinentes (7.0538ms)
+ℹ tests 27
+ℹ suites 0
+ℹ pass 13
+ℹ fail 14
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 616.0236
+
+✖ failing tests:
+
+test at tests\regression\workflow-editing.test.mjs:32:1
+✖ configuração pendente impede salvar uma definição anterior à edição do usuário (82.0063ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /aplique|descarte/i. Input:
+  
+  'salvamento indevido'
+  
+      at TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:38:10)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'salvamento indevido',
+    expected: /aplique|descarte/i,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests\regression\workflow-editing.test.mjs:41:1
+✖ resposta de salvamento obsoleta não substitui novas alterações nem escreve feedback de erro (38.0728ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + {
+  +   message: 'erro de versão anterior',
+  +   type: 'error'
+  + }
+  - null
+  
+      at TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:47:10)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { type: 'error', message: 'erro de versão anterior' },
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests\regression\workflow-editing.test.mjs:145:1
+✖ arestas exibidas no canvas mantêm sourceHandle e targetHandle sem normalização (15.8584ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + undefined
+  - 'false'
+  
+      at TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:148:10)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 'false',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests\regression\workflow-editing.test.mjs:156:1
+✖ edição aplicada marca dirty, avança revisão e invalida resultado anterior (17.3379ms)
+  Error: Handler ausente: commitWorkflowEdit
+      at loadUiHandlers (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-ui-handlers.mjs:45:64)
+      at harness (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:25:10)
+      at editHarness (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:153:10)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:157:13)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\workflow-editing.test.mjs:165:3
+✖ edição não altera o workflow durante saving (6.2438ms)
+  Error: Handler ausente: commitWorkflowEdit
+      at loadUiHandlers (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-ui-handlers.mjs:45:64)
+      at harness (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:25:10)
+      at editHarness (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:153:10)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:166:15)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\workflow-editing.test.mjs:165:3
+✖ edição não altera o workflow durante reviewing (10.9633ms)
+  Error: Handler ausente: commitWorkflowEdit
+      at loadUiHandlers (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-ui-handlers.mjs:45:64)
+      at harness (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:25:10)
+      at editHarness (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:153:10)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:166:15)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\workflow-editing.test.mjs:165:3
+✖ edição não altera o workflow durante publishing (6.3196ms)
+  Error: Handler ausente: commitWorkflowEdit
+      at loadUiHandlers (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-ui-handlers.mjs:45:64)
+      at harness (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:25:10)
+      at editHarness (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:153:10)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:166:15)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\workflow-editing.test.mjs:165:3
+✖ edição não altera o workflow durante deactivating (4.9293ms)
+  Error: Handler ausente: commitWorkflowEdit
+      at loadUiHandlers (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-ui-handlers.mjs:45:64)
+      at harness (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:25:10)
+      at editHarness (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:153:10)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:166:15)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\workflow-editing.test.mjs:165:3
+✖ edição não altera o workflow durante simulating (4.9628ms)
+  Error: Handler ausente: commitWorkflowEdit
+      at loadUiHandlers (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-ui-handlers.mjs:45:64)
+      at harness (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:25:10)
+      at editHarness (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:153:10)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:166:15)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\workflow-editing.test.mjs:165:3
+✖ edição não altera o workflow durante generatingAi (4.9891ms)
+  Error: Handler ausente: commitWorkflowEdit
+      at loadUiHandlers (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-ui-handlers.mjs:45:64)
+      at harness (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:25:10)
+      at editHarness (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:153:10)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:166:15)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\workflow-editing.test.mjs:173:1
+✖ duas movimentações antes de renderizar preservam as duas alterações (5.6703ms)
+  Error: Handler ausente: commitWorkflowEdit
+      at loadUiHandlers (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-ui-handlers.mjs:45:64)
+      at harness (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:25:10)
+      at editHarness (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:153:10)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:174:13)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\workflow-editing.test.mjs:180:1
+✖ edição com contexto Alpha→Beta→Alpha anterior é descartada (4.4706ms)
+  Error: Handler ausente: commitWorkflowEdit
+      at loadUiHandlers (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-ui-handlers.mjs:45:64)
+      at harness (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:25:10)
+      at editHarness (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:153:10)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:181:13)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\workflow-editing.test.mjs:188:1
+✖ rascunho local de parâmetros impede trocar etapa, mover ou aplicar conexões (6.6147ms)
+  Error: Handler ausente: commitWorkflowEdit
+      at loadUiHandlers (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-ui-handlers.mjs:45:64)
+      at harness (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:25:10)
+      at editHarness (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:153:10)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:189:13)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\regression\workflow-editing.test.mjs:198:1
+✖ conectar e remover pela interface altera somente as arestas pertinentes (7.0538ms)
+  Error: Handler ausente: commitWorkflowEdit
+      at loadUiHandlers (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/load-ui-handlers.mjs:45:64)
+      at harness (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:25:10)
+      at editHarness (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:153:10)
+      at async TestContext.<anonymous> (file:///C:/Users/jv883/Documents/Codex/FlowMind-AI/Flowmind-AI/tests/regression/workflow-editing.test.mjs:199:13)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)

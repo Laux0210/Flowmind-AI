@@ -1,0 +1,35 @@
+
+> @flowmind/api@0.1.0 test
+> node --experimental-vm-modules ../../node_modules/jest/bin/jest.js --runInBand --runTestsByPath src/worker/worker.service.spec.ts --testNamePattern oculta erro privado
+
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151002: [0mUsing hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". Please set "isolatedModules: true" in your tsconfig.json. To disable this message, you can set "diagnostics.ignoreCodes" to include 151002 in your ts-jest config. See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/options/diagnostics
+[Nest] 18492  - 12/10/2026, 22:34:11     LOG [WorkerService] Processando job [ID: job_storage] para workflow [ID: wf_worker_1] org [org_test]
+(node:18492) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+FAIL src/worker/worker.service.spec.ts
+  ● WorkerService (T05 — Background Worker sem HTTP) › oculta erro privado do storage e não executa o motor
+
+    TypeError: error.getStatus is not a function
+
+      204 |       throw new Error('A consulta deveria falhar');
+      205 |     } catch (error: any) {
+    > 206 |       expect(error.getStatus()).toBe(503);
+          |                    ^
+      207 |       expect(JSON.stringify(error.getResponse())).not.toContain('private_db_fixture');
+      208 |     }
+      209 |     expect(mockEngine.simulate).not.toHaveBeenCalled();
+
+      at Object.<anonymous> (src/worker/worker.service.spec.ts:206:20)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 13 skipped, 14 total
+Snapshots:   0 total
+Time:        3.533 s
+Ran all test suites within paths "src/worker/worker.service.spec.ts".
+npm error Lifecycle script `test` failed with error:
+npm error code 1
+npm error path C:\Users\jv883\Documents\Codex\FlowMind-AI\Flowmind-AI\apps\api
+npm error workspace @flowmind/api@0.1.0
+npm error location C:\Users\jv883\Documents\Codex\FlowMind-AI\Flowmind-AI\apps\api
+npm error command failed
+npm error command C:\Windows\system32\cmd.exe /d /s /c node --experimental-vm-modules ../../node_modules/jest/bin/jest.js --runInBand --runTestsByPath src/worker/worker.service.spec.ts --testNamePattern ^"oculta^ erro^ privado^"

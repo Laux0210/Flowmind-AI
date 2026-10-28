@@ -6,6 +6,7 @@ import {
   UseGuards,
   HttpCode,
   HttpStatus,
+  BadRequestException,
 } from '@nestjs/common';
 import type {
   ApiResponse,
@@ -18,7 +19,7 @@ import { CurrentOrg } from '../auth/decorators';
 import { ExecutionsService } from './executions.service';
 import { UsageLimitsService } from './usage-limits.service';
 
-@Controller('api/v1/executions')
+@Controller('executions')
 @UseGuards(ClerkAuthGuard)
 export class ExecutionsController {
   private readonly executionsService: ExecutionsService;
@@ -39,7 +40,10 @@ export class ExecutionsController {
     @Query('workflowId') workflowId?: string,
     @Query('limit') limitStr?: string,
   ): Promise<ApiResponse<ExecutionListItemDto[]>> {
-    const limit = limitStr ? parseInt(limitStr, 10) : 50;
+    const limit = limitStr === undefined ? 50 : Number(limitStr);
+    if ((limitStr !== undefined && !/^\d+$/.test(limitStr)) || !Number.isSafeInteger(limit) || limit <= 0) {
+      throw new BadRequestException({ code: 'INVALID_EXECUTION_LIMIT', message: 'O limite deve ser um inteiro positivo.' });
+    }
     const executions = await this.executionsService.listExecutions(
       orgId,
       workflowId,

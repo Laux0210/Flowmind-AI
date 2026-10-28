@@ -1,0 +1,50 @@
+{
+  "createdAtUtc": "2026-10-15T18:38:31.878294+00:00",
+  "files": [
+    {
+      "source": "docs/MEMORIA.md",
+      "backup": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-catalog-20261015-3zvha0pb\\before-concurrency-close-20261015T183831Z\\docs\\MEMORIA.md",
+      "sha256": "e7e355208e3305f9e571afc1f4ce37f4ab24b965bad57f844d7f6da947b8209f"
+    },
+    {
+      "source": "docs/VALIDATION_T03_CATALOG_2026-10-15.md",
+      "backup": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-catalog-20261015-3zvha0pb\\before-concurrency-close-20261015T183831Z\\docs\\VALIDATION_T03_CATALOG_2026-10-15.md",
+      "sha256": "cc117b216c8e143e6508b64daffd9120ab4fc7cc1ad1fa56d8932b42a266827c"
+    },
+    {
+      "source": "plan.md",
+      "backup": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-catalog-20261015-3zvha0pb\\before-concurrency-close-20261015T183831Z\\plan.md",
+      "sha256": "7fa650af4f843e4b5996dcf0940dfb8d975ce340f0c9eda8950bb24a5a0dd986"
+    },
+    {
+      "source": "docs/T03_RESOURCE_IMPLEMENTATION_PLAN.md",
+      "backup": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-catalog-20261015-3zvha0pb\\before-concurrency-close-20261015T183831Z\\docs\\T03_RESOURCE_IMPLEMENTATION_PLAN.md",
+      "sha256": "3d8efb78dd6a4d91df0f8bf8696d746088fccb8d2cd01963bb0d13c771124fa5"
+    },
+    {
+      "source": "README.md",
+      "backup": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-catalog-20261015-3zvha0pb\\before-concurrency-close-20261015T183831Z\\README.md",
+      "sha256": "7576e3062e2e9550515c86fc1734f7ea72c29512cf7ffd299ecae2898f0d0262"
+    },
+    {
+      "source": "docs/QA_SECURITY_MATRIX.md",
+      "backup": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-catalog-20261015-3zvha0pb\\before-concurrency-close-20261015T183831Z\\docs\\QA_SECURITY_MATRIX.md",
+      "sha256": "648d5d8d8fcbbb27d12572a946f7abbb3b62de610056973d15a547d7bed829fa"
+    },
+    {
+      "source": "docs/PROJECT_CONTEXT.md",
+      "backup": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-catalog-20261015-3zvha0pb\\before-concurrency-close-20261015T183831Z\\docs\\PROJECT_CONTEXT.md",
+      "sha256": "dacec842cd0b5c74e1d57eb1f539e40e361d98149484e1f522cbaf09d0e8d40e"
+    },
+    {
+      "source": "docs/AI_MEMORY.md",
+      "backup": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-catalog-20261015-3zvha0pb\\before-concurrency-close-20261015T183831Z\\docs\\AI_MEMORY.md",
+      "sha256": "76c76d9b92d12019ea34716b651ce7bb09bc029c4ece592b871295d673821a14"
+    },
+    {
+      "source": "docs/evidence/t03-catalog-2026-10-15/progress.md",
+      "backup": "C:\\Users\\jv883\\AppData\\Local\\Temp\\flowmind-catalog-20261015-3zvha0pb\\before-concurrency-close-20261015T183831Z\\docs\\evidence\\t03-catalog-2026-10-15\\progress.md",
+      "sha256": "0eba1de6415cd200d228fd453e76c891cac81de08f4a53e5bb8268e61b306712"
+    }
+  ]
+}
